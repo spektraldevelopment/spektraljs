@@ -1,37 +1,4 @@
-//console.log("Spektral: " + Spektral.about());
-
-Spektral.debug();
-
-console.log(Spektral.about());
-
-Spektral.attachEventListener(window, 'click', handleEvent);
-
-function handleEvent(e)
 {
-    Spektral.detachEventListener(window, 'click', handleEvent);
-    console.log("Handle Event");
-}
-
-Spektral.attachEventListener(window, 'keydown', onKeyEvent);
-
-function onKeyEvent(e)
-{
-    var key = Spektral.getKey(e.keyCode);
-    console.log("key: " + key);
-}
-
-console.log("Viewport Size: width: " + Spektral.getViewportSize().width + " height: " + Spektral.getViewportSize().height);
-
-var a = "dog";
-var b = "cat";
-var c = "dog";
-
-var matchA = Spektral.isMatch(a, b);
-var matchB = Spektral.isMatch(a, c);
-
-console.log("b is dog?: " + matchA + " c is dog?: " + matchB);
-
-var jsonString = {
     "projects" : [
 
         {
@@ -77,23 +44,5 @@ var jsonString = {
             "url" : "#Six"
         }
 
-    ]
+   ]
 }
-
-var dataArrayA = Spektral.getParseJSON("js/data.json", true);
-//var dataArrayB = Spektral.getParseJSON(jsonString);
-//var badData = Spektral.getParseJSON([]);
-
-var s = "I'm a string";
-var n = 33;
-var b = true;
-var o = {};
-var a = [];
-
-console.log("Type: " + Spektral.getType(s));
-console.log("Type: " + Spektral.getType(n));
-console.log("Type: " + Spektral.getType(b));
-console.log("Type: " + Spektral.getType(o));
-console.log("Type: " + Spektral.getType(a));
-
-
