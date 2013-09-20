@@ -287,29 +287,40 @@
     };
 
     ////////////////////
-    ////GET NODE VALUE
+    ////GET XML NODE VALUE
     ///////////////////
-    Spektral.getXMLNodeValue = function(xmlNode, request) {
+    Spektral.getXMLNodeValue = function(xml, request) {
         var values = Spektral.splitString(request, ".");
-        var parentNode = xmlNode.getElementsByTagName(values[0])[0];
+        var parentNode = xml.getElementsByTagName(values[0])[0];
         var requestedNode = Spektral.splitString(values[1], "[")[0];
-        var requestedNodeIndex = Spektral.stripBrackets(values[1]);
+        var requestedNodeIndex = Spektral.stripBrackets(values[1]); 
         return parentNode.getElementsByTagName(requestedNode)[requestedNodeIndex].childNodes[0].nodeValue;
     };
 
     //////////////////
     ////CREATE XML NODE ARRAY
     //////////////////
-    Spektral.createXMLNodeArray = function (data) {
+    Spektral.createXMLNodeArray = function (xml, request) {
+        var parentNode = xml.getElementsByTagName(request)[0].childNodes;
+        ///var childNodes 
+        var list = Spektral.listArrayElements(parentNode);
+        //Spektral.log("parentNode.length: " + parentNode.childNodes.length);
+        //In the process of figuring this one out
+    };
 
-    }
+    //////////////////
+    ////QUERY XML -- Can find any node value no matter how deeply buried
+    //////////////////
+    Spektral.queryXML = function (xml, request) {
+
+    };
 
     //////////////////
     ////DETECT CHARACTER
     //////////////////
     Spektral.detectCharacter = function(request, character) {
 
-    }
+    };
 
     //////////////////
     ////STRIP BRACKETS
@@ -329,7 +340,7 @@
             value = request.match(/\{(.*?)\}/)[1];
         } catch(e){}
         return value;
-    }
+    };
 
     //////////////////
     ////SPLIT STRING
@@ -338,6 +349,23 @@
         var values = request.split(character);
         return values;
     };
+
+    //////////////////
+    ////LIST ARRAY ELEMENTS
+    /////////////////
+    Spektral.listArrayElements = function (array) {
+
+        var type = Spektral.getType(array);
+        Spektral.log("Type: " + type);
+
+        if(type !== 'array' && type !== 'nodelist') {
+            Spektral.throwError("listArrayElements: You must pass either an array or nodelist to this function.")
+        } else {
+            for (var i = 0; i < array.length; i++) {
+                Spektral.log("runLoop: item" + i + ": " + array[i].nodeName);
+            }
+        }
+    }
 
 
     ////////////////////

@@ -91,13 +91,15 @@ var xmlFile = Spektral.loadXML("xml/content.xml", onXMLLoaded);
 function onXMLLoaded(d) {
 
     var nodeData = d.getElementsByTagName("header")[0];
-   // console.log("nodeData: " + nodeData);
+    //console.log("nodeData: " + nodeData);
 
-    var thumb = Spektral.getXMLNodeValue(d, "header.thumb[3]");
-    console.log("thumb is: " + thumb);
+    //var thumb = Spektral.getXMLNodeValue(d, "header.thumb[3]");
+    //console.log("thumb is: " + thumb);
 
-    var title = Spektral.getXMLNodeValue(d, "work.panel[0]");
-    console.log("title is: " + title);
+    //var title = Spektral.getXMLNodeValue(d, "work.panel[0]");
+    //console.log("title is: " + title);
+
+    var headerArray = Spektral.createXMLNodeArray(d, "header");
 }
 
 var s = "I'm a string";
@@ -120,5 +122,6 @@ Spektral.stripBrackets(round);
 
 var curly = "[curly]";
 Spektral.stripBrackets(curly);
+
 
 
