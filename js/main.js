@@ -31,7 +31,7 @@ var matchB = Spektral.isMatch(a, c);
 
 console.log("b is dog?: " + matchA + " c is dog?: " + matchB);
 
-var jsonString = {
+var jsonObject = {
     "projects" : [
 
         {
@@ -78,11 +78,14 @@ var jsonString = {
         }
 
     ]
-}
+};
 
-var dataArrayA = Spektral.getParseJSON("js/data.json", true);
-//var dataArrayB = Spektral.getParseJSON(jsonString);
-//var badData = Spektral.getParseJSON([]);
+var jsonFile = Spektral.loadParseJSON("js/data.json", onFileLoaded);
+
+function onFileLoaded(d) {
+    console.log("External json file ready for traversing.");
+}
+var badData = Spektral.loadParseJSON([]);
 
 var s = "I'm a string";
 var n = 33;

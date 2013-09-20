@@ -23,7 +23,7 @@
 
     Spektral.debug = function () {
         debug = true;
-    }
+    };
 
     Spektral.about = function () {
         var mode;
@@ -33,7 +33,7 @@
             mode = "release";
         }
         return "Spektral.js V.01 mode: " + mode;
-    }
+    };
 
     //////////////////
     ////ATTACH EVENT LISTENER
@@ -47,7 +47,7 @@
         } else {
             eventTarget["on" + eventType] = eventHandler;
         }
-    }
+    };
 
     //////////////////
     ////DETACH EVENT LISTENER
@@ -61,7 +61,7 @@
         } else {
             eventTarget["on" + eventType] = null;
         }
-    }
+    };
 
     //////////////////////////////////////
     ////GET KEY
@@ -87,7 +87,7 @@
         if(code === 13) {
             return "ENTER";
         }
-    }
+    };
 
     //////////////////
     ////CANCEL EVENT
@@ -96,7 +96,7 @@
         if (e.preventDefault) {
             e.preventDefault();
         } else { e.returnValue = false; }
-    }
+    };
 
     ///////////////////
     ///CANCEL PROPOGATION
@@ -107,7 +107,7 @@
         } else {
             e.cancelBubble = true;
         }
-    }
+    };
 
     ///////////////////
     ///USE HANDCURSOR
@@ -121,7 +121,7 @@
             //Return to default
         }
 
-    }
+    };
 
     //////////////////
     ////GET COMPUTED STYLE
@@ -134,7 +134,7 @@
             computedStyle = document.defaultView.getComputedStyle(element, null);
         }
         return computedStyle[styleProperty];
-    }
+    };
 
     ///////////////////
     ////GET VIEWPORT SIZE
@@ -159,7 +159,7 @@
         }
 
         return { width: w, height: h };
-    }
+    };
 
     ///////////////////
     ////IS MATCH
@@ -170,46 +170,27 @@
         } else {
             return false;
         }
-    }
+    };
 
     ///////////////////
-    ///GET PARSE JSON
+    ///LOAD PARSE JSON
     ///////////////////
-    Spektral.getParseJSON = function (source, async) {
+    Spektral.loadParseJSON = function (source, callback, async) {
 
-        async = async || false;
+        async = async || true;
 
         var sourceType = Spektral.getType(source);
-        var dataArray = [];
+        var ext = Spektral.getExtension(source);
 
         Spektral.log("sourceType: " + sourceType);
 
         if(sourceType === "string") {
             //load file
-            Spektral.loadFile(source, Spektral.returnJSON, async);
-        } else if(sourceType === "object") {
-            //Parse object
-            Spektral.returnJSON(source);
+            Spektral.loadFile(source, callback, async);
         } else {
             Spektral.throwError("getParseJSON: Invalid source type: " + sourceType + ". Source must be string or external json file.")
         }
-
-        //return dataArray;
-    }
-
-    ////////////////////////
-    ////RETURN JSON - Parses and returns JSON
-    ////////////////////////
-    Spektral.returnJSON = function (data) {
-        var dataArray = [];
-        var json = JSON.parse(data);
-
-
-        Spektral.log("returnJSON: data: " + data);
-
-        //In the middle of converting json to array!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        return dataArray;
-    }
+    };
 
     ///////////////////
     ///GET PARSE XML
@@ -239,7 +220,7 @@
     // 	// xmlhttp.open("GET", source, false);
     // 	// xmlhttp.send();
     // 	// xmlObj = xmlhttp.responseXML;
-    // }
+    // };
 
     ////////////////////
     ////LOAD FILE
@@ -276,55 +257,62 @@
             xhr.overrideMimeType("application/json");
         }
 
-        xhr.onreadystatechange = checkIfReady;
+        Spektral.attachEventListener(xhr, 'readystatechange', checkIfReady);
+        Spektral.attachEventListener(xhr, 'error', onLoadError);
 
         function checkIfReady() {
-
-            Spektral.log("Ready State: " + xhr.readyState);
-
             if(xhr.readyState < 4) {
                 return;
             }
-
             if(xhr.status !== 200) {
                 return;
             }
-
-            // all is well
             if(xhr.readyState === 4) {
-                callback(xhr);
+                var response;
+                if(ext === "json") {
+                    response = xhr.responseText;
+                    callback(JSON.parse(response));
+                } else {
+                    response = xhr.responseXML;
+                }
             }
+        }
+
+        function onLoadError(e) {
+            Spektral.throwError("loadError: There was a load error: " + e);
         }
 
         xhr.open("GET", file, async);
         xhr.send();
-
-        //https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest
-    }
+    };
 
     ////////////////////
     ////GET TYPE
     ////////////////////
     Spektral.getType = function (obj) {
         return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
-    }
+    };
 
     ////////////////////
     ////GET FILE EXTENSION
     ////////////////////
     Spektral.getExtension = function (file) {
+        var type = Spektral.getType(file);
+
         if(file === undefined) {
             Spektral.throwError("getExtension: file is undefined. Did you pass a file name to this function?")
+        } else if (type !== "string") {
+            Spektral.throwError("getExtension: file needs to be string.")
         }
         return file.split('.').pop();
-    }
+    };
 
     ///////////////////
     ////THROW ERROR
     ///////////////////
     Spektral.throwError = function (message) {
         throw new Error("Spektraljs: " + message);
-    }
+    };
 
     ///////////////////
     ////LOG
@@ -333,7 +321,7 @@
         if(debug) {
             console.log("Spektraljs: " + message);
         }
-    }
+    };
 
     window.Spektral = Spektral;
 
