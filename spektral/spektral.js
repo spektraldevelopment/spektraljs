@@ -289,25 +289,55 @@
     ////////////////////
     ////GET NODE VALUE
     ///////////////////
-    Spektral.getNodeValue = function(xml, request) {
-        var xmlDoc = xml;
+    Spektral.getXMLNodeValue = function(xmlNode, request) {
         var values = Spektral.splitString(request, ".");
-        xmlDoc.getElementsByTagName(values[0])[0].childNodes[0].nodeValue;
-        console.log("Main node: " + values[0][0].childNodes[0]);
+        var parentNode = xmlNode.getElementsByTagName(values[0])[0];
+        var requestedNode = Spektral.splitString(values[1], "[")[0];
+        var requestedNodeIndex = Spektral.stripBrackets(values[1]);
+        return parentNode.getElementsByTagName(requestedNode)[requestedNodeIndex].childNodes[0].nodeValue;
     };
+
+    //////////////////
+    ////CREATE XML NODE ARRAY
+    //////////////////
+    Spektral.createXMLNodeArray = function (data) {
+
+    }
+
+    //////////////////
+    ////DETECT CHARACTER
+    //////////////////
+    Spektral.detectCharacter = function(request, character) {
+
+    }
+
+    //////////////////
+    ////STRIP BRACKETS
+    //////////////////
+    Spektral.stripBrackets = function(request) {
+        var value;
+        //[]
+        try {
+            value = request.match(/\[(.*?)\]/)[1];
+        } catch(e){}
+        //()
+        try {
+            value = request.match(/\((.*?)\)/)[1];
+        } catch(e){}
+        //{}
+        try {
+            value = request.match(/\{(.*?)\}/)[1];
+        } catch(e){}
+        return value;
+    }
 
     //////////////////
     ////SPLIT STRING
     //////////////////
     Spektral.splitString = function(request, character) {
-        var valueArray = [];
         var values = request.split(character);
-        for (var i = 0; i < values.length; i++) {
-            valueArray.push(values[i]);
-        }
-
-        return valueArray;
-    }
+        return values;
+    };
 
 
     ////////////////////

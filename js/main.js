@@ -85,13 +85,19 @@ var jsonFile = Spektral.loadJSON("js/data.json", onFileLoaded);
 function onFileLoaded(d) {
     console.log("External json file ready for traversing.");
 }
-//var badData = Spektral.loadJSON([]);
 
 var xmlFile = Spektral.loadXML("xml/content.xml", onXMLLoaded);
 
 function onXMLLoaded(d) {
-    var thumb4 = Spektral.getNodeValue(d, "header.thumb[4]");
-    console.log("XML Data is ready: " + d);
+
+    var nodeData = d.getElementsByTagName("header")[0];
+   // console.log("nodeData: " + nodeData);
+
+    var thumb = Spektral.getXMLNodeValue(d, "header.thumb[3]");
+    console.log("thumb is: " + thumb);
+
+    var title = Spektral.getXMLNodeValue(d, "work.panel[0]");
+    console.log("title is: " + title);
 }
 
 var s = "I'm a string";
@@ -105,5 +111,14 @@ console.log("Type: " + Spektral.getType(n));
 console.log("Type: " + Spektral.getType(b));
 console.log("Type: " + Spektral.getType(o));
 console.log("Type: " + Spektral.getType(a));
+
+var square = "[square]";
+Spektral.stripBrackets(square);
+
+var round = "(round)";
+Spektral.stripBrackets(round);
+
+var curly = "[curly]";
+Spektral.stripBrackets(curly);
 
 
