@@ -80,12 +80,19 @@ var jsonObject = {
     ]
 };
 
-var jsonFile = Spektral.loadParseJSON("js/data.json", onFileLoaded);
+var jsonFile = Spektral.loadJSON("js/data.json", onFileLoaded);
 
 function onFileLoaded(d) {
     console.log("External json file ready for traversing.");
 }
-var badData = Spektral.loadParseJSON([]);
+//var badData = Spektral.loadJSON([]);
+
+var xmlFile = Spektral.loadXML("xml/content.xml", onXMLLoaded);
+
+function onXMLLoaded(d) {
+    var thumb4 = Spektral.getNodeValue(d, "header.thumb[4]");
+    console.log("XML Data is ready: " + d);
+}
 
 var s = "I'm a string";
 var n = 33;

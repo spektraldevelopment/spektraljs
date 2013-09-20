@@ -173,54 +173,52 @@
     };
 
     ///////////////////
-    ///LOAD PARSE JSON
+    ///LOAD JSON
     ///////////////////
-    Spektral.loadParseJSON = function (source, callback, async) {
+    Spektral.loadJSON = function (source, callback, async) {
 
         async = async || true;
 
         var sourceType = Spektral.getType(source);
-        var ext = Spektral.getExtension(source);
+        var ext;
 
-        Spektral.log("sourceType: " + sourceType);
+        try {
+            ext = Spektral.getExtension(source)
+        } catch (e) {
+            Spektral.throwError("loadJSON: source must be string.")
+        }
 
         if(sourceType === "string") {
             //load file
             Spektral.loadFile(source, callback, async);
         } else {
-            Spektral.throwError("getParseJSON: Invalid source type: " + sourceType + ". Source must be string or external json file.")
+            Spektral.throwError("loadJSON: Invalid source type: " + sourceType + ". Source must be string or external json file.");
         }
     };
 
     ///////////////////
-    ///GET PARSE XML
+    ///LOAD XML
     ///////////////////
-    // Spektral.getParseXML = function (source)
-    // {
-    // 	var sourceType = Spektral.getType(source);
+    Spektral.loadXML = function (source, callback, async)
+    {
+        async = async || true;
 
-    // 	if(sourceType === "string") {
-    // 		loadFile(source);
-    // 	}
+        var sourceType = Spektral.getType(source);
+        var ext;
 
-    // 	// Spektral.log("sourceType: " + sourceType);
+        try {
+            ext = Spektral.getExtension(source)
+        } catch (e) {
+            Spektral.throwError("loadXML: source must be string.")
+        }
 
-    // 	// //if(sourceType === "")
-
-    // 	// var xmlhttp;
-    // 	// var xmlObj;
-    // 	// if (window.XMLHttpRequest) {
-    // 	// 	// code for IE7+, Firefox, Chrome, Opera, Safari
-    // 	// 	xmlhttp = new XMLHttpRequest();
-    // 	// } else {
-    // 	// 	// code for IE6, IE5
-    // 	// 	xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    // 	// }
-
-    // 	// xmlhttp.open("GET", source, false);
-    // 	// xmlhttp.send();
-    // 	// xmlObj = xmlhttp.responseXML;
-    // };
+        if(sourceType === "string") {
+            //load file
+            Spektral.loadFile(source, callback, async);
+        } else {
+            Spektral.throwError("loadXML: Invalid source type: " + sourceType + ". Source must be string or external json file.");
+        }
+    };
 
     ////////////////////
     ////LOAD FILE
@@ -270,11 +268,13 @@
             if(xhr.readyState === 4) {
                 var response;
                 if(ext === "json") {
-                    response = xhr.responseText;
-                    callback(JSON.parse(response));
-                } else {
+                    response = JSON.parse(xhr.responseText);
+                } else if(ext === "xml") {
                     response = xhr.responseXML;
+                } else {
+                    response = xhr.responseText;
                 }
+                callback(response);
             }
         }
 
@@ -285,6 +285,30 @@
         xhr.open("GET", file, async);
         xhr.send();
     };
+
+    ////////////////////
+    ////GET NODE VALUE
+    ///////////////////
+    Spektral.getNodeValue = function(xml, request) {
+        var xmlDoc = xml;
+        var values = Spektral.splitString(request, ".");
+        xmlDoc.getElementsByTagName(values[0])[0].childNodes[0].nodeValue;
+        console.log("Main node: " + values[0][0].childNodes[0]);
+    };
+
+    //////////////////
+    ////SPLIT STRING
+    //////////////////
+    Spektral.splitString = function(request, character) {
+        var valueArray = [];
+        var values = request.split(character);
+        for (var i = 0; i < values.length; i++) {
+            valueArray.push(values[i]);
+        }
+
+        return valueArray;
+    }
+
 
     ////////////////////
     ////GET TYPE
