@@ -286,12 +286,101 @@
         xhr.send();
     };
 
+    //////////////////////////////
+    ////CREATE XML OBJECT
+    //////////////////////////////
+    Spektral.createXMLObject = function(xml, node, index) {
+        node = node || xml.firstChild.nodeName;
+        index = index || 0;
+
+        var parentNode = xml.getElementsByTagName(node)[index];
+        var child, type, xmlObject = {};
+        for(var child = parentNode.firstChild; child != null; child = child.nextSibling) {
+            type = Spektral.getType(child);
+
+            // if (child.attributes.length > 0) {
+            //         xmlObject["@attributes"] = {};
+            //         for (var j = 0; j < child.attributes.length; j++) {
+            //             var attribute = child.attributes.item(j);
+            //             //xmlObject["@attributes"][attribute.tagName] = attribute.nodeValue;
+            //             Spektral.log("Attribute: Name: " + attribute.tagName + " Value: " + attribute.nodeValue);
+            //         }
+            //     }
+            
+            
+            if(type === "text") {
+                //CDATA and Text
+                //nodeArray.push(child.nodeValue);
+            } else if (type === "element") {
+                //Spektral.log("Attribute: " + child.nodeName);
+                xmlObject[child.tagName] = Spektral.createObject(child.childNodes); 
+                Spektral.log("TYPEPEPEPEP: " + Spektral.getType(child.childNodes));
+                //for (var i = 0; i < child.length)          
+            }
+        }
+        return xmlObject;
+    }
+
+    Spektral.createObject = function (list, attributes) {
+
+        var child, type, listArray = [], listObject = {};
+        for(var i = 0; i < list.length; i++) {
+            child = list[i];
+             //Spektral.log("createObject: list: " + list[i].attributes);
+            type = child.nodeType;
+            var listObject;
+
+            //Spektral.log("AHAHAHA: " + child.hasAttributes());
+            // if(child.attributes.length >= 1) {
+            //     console.log(child.attribute.item(0).nodeName);
+            // }
+
+
+
+            if(type === 1) {
+                //Spektral.log("child.getAttribute(id)" + child.getAttribute("id"));
+              
+
+              listObject = {};
+              listObject[child.tagName] = Spektral.getTextContent(child);
+              listArray.push(listObject);
+
+              
+
+            } else if (type === 2) {//attribute!!!!
+              Spektral.listNodeAttributes(child); 
+
+            } else if (type === 3 || type === 4) {
+              //Spektral.log("createObject: type === 3 || type === 4: " + child.attributes.item(0));
+            }
+            // type = child.nodeType;
+            // Spektral.log("createObject: TYPE: " + type);
+            // if(type === 4) {
+            //     //CDATA and Text
+            //     //nodeArray.push(child.nodeValue);
+            //     Spektral.log("type===4: " + child.nodeValue);
+            // } else if (type === 1) {
+            //     //Text Content
+            //      Spektral.log("type===1: " + Spektral.getTextContent(child));
+            //     listObject[child.tagName] = Spektral.getTextContent(child);
+            //     //Spektral.log("child.tagName: " + child.tagName + " content: " + Spektral.getTextContent(child) + " child.childNodes: " + child.childNodes);
+            //     //Spektral.log("Nodelist: " + Spektral.listArrayElements(child.childNodes));
+            // }
+        }
+
+        return listArray;
+    }
+
+    ///////////////////////////////
+    ////GET XML NODE VALUE
+    //////////////////////////////
     Spektral.getXMLNodeValue = function(xml, request) {
         var values = Spektral.splitString(request, ".");
         var parentNode = xml.getElementsByTagName(values[0])[0];
         var requestedNode = Spektral.splitString(values[1], "[")[0];
         var requestedNodeIndex = Spektral.stripBrackets(values[1]);
-        return parentNode.getElementsByTagName(requestedNode)[requestedNodeIndex].childNodes[0].nodeValue;
+        //return parentNode.getElementsByTagName(requestedNode)[requestedNodeIndex].childNodes[0].nodeValue;
+        return parentNode.getElementsByTagName(requestedNode)[requestedNodeIndex].innerText;
     };
 
     ////////////////////
@@ -303,9 +392,14 @@
         var child, type, nodeArray = [];
         for(child = parentNode.firstChild; child != null; child = child.nextSibling) {
             type = child.nodeType;
-            if (type === 1) {
-                //console.log("TAG NAME: " + child.tagName);
-                nodeArray.push(Spektral.getTextContent(child));
+            Spektral.log("TYPE: " + type);
+            if(type === 4) {
+                //CDATA and Text
+                nodeArray.push(child.nodeValue);
+            } else if (type === 1) {
+                console.log("TAG NAME: " + child.tagName);
+                //Text Content
+                nodeArray.push(Spektral.getTextContent(child));//CDATA
             }
         }
         return nodeArray;
@@ -326,7 +420,45 @@
         var content = element.textContent; // Check if textContent is defined
         if (content !== undefined) return content;
         else return element.innerText;
-    }
+    };
+
+    Spektral.xmlToJson = function(xml) {
+    
+        // Create the return object
+        var obj = {};
+
+        if (xml.nodeType == 1) { // element
+            // do attributes
+            if (xml.attributes.length > 0) {
+            obj["@attributes"] = {};
+                for (var j = 0; j < xml.attributes.length; j++) {
+                    var attribute = xml.attributes.item(j);
+                    obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
+                }
+            }
+        } else if (xml.nodeType == 3) { // text
+            obj = xml.nodeValue;
+        }
+
+        // do children
+        if (xml.hasChildNodes()) {
+            for(var i = 0; i < xml.childNodes.length; i++) {
+                var item = xml.childNodes.item(i);
+                var nodeName = item.nodeName;
+                if (typeof(obj[nodeName]) == "undefined") {
+                    obj[nodeName] = Spektral.xmlToJson(item);
+                } else {
+                    if (typeof(obj[nodeName].push) == "undefined") {
+                        var old = obj[nodeName];
+                        obj[nodeName] = [];
+                        obj[nodeName].push(old);
+                    }
+                    obj[nodeName].push(Spektral.xmlToJson(item));
+                }
+            }
+        }
+        return obj;
+    };
 
 
 
@@ -336,6 +468,15 @@
     Spektral.queryXML = function (xml, request) {
 
     };
+
+    //////////////////////
+    ////LIST NODE ATTRIBUTES
+    //////////////////////
+    Spektral.listNodeAttributes = function (node) {
+        for (var key in node) {
+            Spektral.log("Node: " + node.nodeName + " Attribute: " + key);
+        }
+    }
 
     //////////////////
     ////DETECT CHARACTER
@@ -385,13 +526,11 @@
     Spektral.listArrayElements = function (array) {
 
         var type = Spektral.getType(array);
-        Spektral.log("Type: " + type);
-
         if(type !== 'array' && type !== 'nodelist') {
             Spektral.throwError("listArrayElements: You must pass either an array or nodelist to this function.")
         } else {
             for (var i = 0; i < array.length; i++) {
-                Spektral.log("runLoop: item" + i + ": " + array[i].nodeName);
+                Spektral.log("listArrayElement: item" + i + ": " + array[i].nodeName);
             }
         }
     }

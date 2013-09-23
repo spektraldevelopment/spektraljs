@@ -8,6 +8,12 @@
             <thumb><![CDATA[site/images/thumbs/unicefThumb.jpg]]></thumb>
         </header>
 
+        <secondHeader>
+            <thumb><![CDATA[second header, dammit]]></thumb>
+             <thumb><![CDATA[second header, dammit]]></thumb>
+              <thumb><![CDATA[second header, dammit]]></thumb>
+        </secondHeader>
+
         <work>
             <panel>
                 <title><![CDATA[INTEL HEMS]]></title>

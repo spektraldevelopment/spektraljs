@@ -9,7 +9,7 @@ Spektral.attachEventListener(window, 'click', handleEvent);
 function handleEvent(e)
 {
     Spektral.detachEventListener(window, 'click', handleEvent);
-    console.log("Handle Event");
+    //console.log("Handle Event");
 }
 
 Spektral.attachEventListener(window, 'keydown', onKeyEvent);
@@ -17,7 +17,7 @@ Spektral.attachEventListener(window, 'keydown', onKeyEvent);
 function onKeyEvent(e)
 {
     var key = Spektral.getKey(e.keyCode);
-    console.log("key: " + key);
+    //console.log("key: " + key);
 }
 
 console.log("Viewport Size: width: " + Spektral.getViewportSize().width + " height: " + Spektral.getViewportSize().height);
@@ -29,7 +29,7 @@ var c = "dog";
 var matchA = Spektral.isMatch(a, b);
 var matchB = Spektral.isMatch(a, c);
 
-console.log("b is dog?: " + matchA + " c is dog?: " + matchB);
+//console.log("b is dog?: " + matchA + " c is dog?: " + matchB);
 
 var jsonObject = {
     "projects" : [
@@ -82,35 +82,20 @@ var jsonObject = {
 
 var jsonFile = Spektral.loadJSON("js/data.json", onFileLoaded);
 
-function onFileLoaded(d) {
-    console.log("External json file ready for traversing.");
+function onFileLoaded(jsonObj) {
+    //console.log("JSON: " + jsonObj.projects[1].title);
+    //console.log("External json file ready for traversing.");
 }
 
-var xmlFile = Spektral.loadXML("xml/content.xml", onXMLLoaded);
+var xmlFile = Spektral.loadXML("xml/test.xml", onXMLLoaded);
 
-function onXMLLoaded(d) {
+function onXMLLoaded(xmlDoc) {
 
-    //var nodeData = d.getElementsByTagName("header")[0];
-    //console.log("nodeData: " + nodeData);
+   var fullXML = Spektral.createXMLObject(xmlDoc);
+   console.log("fullXML: " + JSON.stringify(fullXML.basic));
 
-    //var thumb = Spektral.getXMLNodeValue(d, "header.thumb[3]");
-    //console.log("thumb is: " + thumb);
-
-    //var title = Spektral.getXMLNodeValue(d, "work.panel[0]");
-    //console.log("title is: " + title);
-
-    //var headerArray = Spektral.createXMLNodeArray(d, "header");
-
-    var title = Spektral.createXMLNodeArray(d, "header");
-//    console.log("title: " + title);
-//    console.log("title[0]: " + title[0]);
-//    console.log("title[1]: " + title[3]);
-
-    var panel = Spektral.createXMLNodeArray(d, "panel", 1);
-    console.log("panel: " + panel);
-
-    var header = Spektral.textContent2(d, "panel", 2);
-    //console.log("header: " + header);
+   //var full = Spektral.xmlToJson(xmlDoc);
+   //console.log("full: " + JSON.stringify(full));
 }
 
 var s = "I'm a string";
@@ -119,11 +104,11 @@ var b = true;
 var o = {};
 var a = [];
 
-console.log("Type: " + Spektral.getType(s));
-console.log("Type: " + Spektral.getType(n));
-console.log("Type: " + Spektral.getType(b));
-console.log("Type: " + Spektral.getType(o));
-console.log("Type: " + Spektral.getType(a));
+// console.log("Type: " + Spektral.getType(s));
+// console.log("Type: " + Spektral.getType(n));
+// console.log("Type: " + Spektral.getType(b));
+// console.log("Type: " + Spektral.getType(o));
+// console.log("Type: " + Spektral.getType(a));
 
 var square = "[square]";
 Spektral.stripBrackets(square);
