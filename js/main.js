@@ -90,7 +90,7 @@ var xmlFile = Spektral.loadXML("xml/content.xml", onXMLLoaded);
 
 function onXMLLoaded(d) {
 
-    var nodeData = d.getElementsByTagName("header")[0];
+    //var nodeData = d.getElementsByTagName("header")[0];
     //console.log("nodeData: " + nodeData);
 
     //var thumb = Spektral.getXMLNodeValue(d, "header.thumb[3]");
@@ -99,7 +99,15 @@ function onXMLLoaded(d) {
     //var title = Spektral.getXMLNodeValue(d, "work.panel[0]");
     //console.log("title is: " + title);
 
-    var headerArray = Spektral.createXMLNodeArray(d, "header");
+    //var headerArray = Spektral.createXMLNodeArray(d, "header");
+
+    var title = Spektral.createXMLNodeArray(d, "header");
+//    console.log("title: " + title);
+//    console.log("title[0]: " + title[0]);
+//    console.log("title[1]: " + title[3]);
+
+    var panels = Spektral.createXMLNodeArray(d, "panel");
+    console.log("panels: " + panels.image[0]);
 }
 
 var s = "I'm a string";

@@ -286,27 +286,39 @@
         xhr.send();
     };
 
-    ////////////////////
-    ////GET XML NODE VALUE
-    ///////////////////
     Spektral.getXMLNodeValue = function(xml, request) {
         var values = Spektral.splitString(request, ".");
         var parentNode = xml.getElementsByTagName(values[0])[0];
         var requestedNode = Spektral.splitString(values[1], "[")[0];
-        var requestedNodeIndex = Spektral.stripBrackets(values[1]); 
+        var requestedNodeIndex = Spektral.stripBrackets(values[1]);
         return parentNode.getElementsByTagName(requestedNode)[requestedNodeIndex].childNodes[0].nodeValue;
     };
 
-    //////////////////
+    ////////////////////
     ////CREATE XML NODE ARRAY
-    //////////////////
-    Spektral.createXMLNodeArray = function (xml, request) {
-        var parentNode = xml.getElementsByTagName(request)[0].childNodes;
-        ///var childNodes 
-        var list = Spektral.listArrayElements(parentNode);
-        //Spektral.log("parentNode.length: " + parentNode.childNodes.length);
-        //In the process of figuring this one out
+    ///////////////////
+    Spektral.createXMLNodeArray = function (xml, request, index) {
+        var parentNode = xml.getElementsByTagName(request)[0];
+        var child, type, nodeArray = [];
+        for(child = parentNode.firstChild; child != null; child = child.nextSibling) {
+            type = child.nodeType;
+            if (type === 1) {
+                nodeArray.push(Spektral.getTextContent(child));
+            }
+        }
+        return nodeArray;
     };
+
+    ////////////////////
+    ////GET TEXT CONTENT
+    ///////////////////
+    Spektral.getTextContent = function(element) {
+        //innerHTML?
+        var content = element.textContent; // Check if textContent is defined
+        if (content !== undefined) return content;
+    };
+
+
 
     //////////////////
     ////QUERY XML -- Can find any node value no matter how deeply buried
@@ -321,6 +333,13 @@
     Spektral.detectCharacter = function(request, character) {
 
     };
+
+    ///////////////////
+    ////GET INFO - deconstructs an element down to its properties
+    ///////////////////
+    Spektral.getInfo = function (element) {
+
+    }
 
     //////////////////
     ////STRIP BRACKETS
