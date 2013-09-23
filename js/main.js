@@ -106,8 +106,11 @@ function onXMLLoaded(d) {
 //    console.log("title[0]: " + title[0]);
 //    console.log("title[1]: " + title[3]);
 
-    var panels = Spektral.createXMLNodeArray(d, "panel");
-    console.log("panels: " + panels.image[0]);
+    var panel = Spektral.createXMLNodeArray(d, "panel", 1);
+    console.log("panel: " + panel);
+
+    var header = Spektral.textContent2(d, "panel", 2);
+    //console.log("header: " + header);
 }
 
 var s = "I'm a string";

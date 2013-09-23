@@ -298,11 +298,13 @@
     ////CREATE XML NODE ARRAY
     ///////////////////
     Spektral.createXMLNodeArray = function (xml, request, index) {
-        var parentNode = xml.getElementsByTagName(request)[0];
+        index = index || 0;
+        var parentNode = xml.getElementsByTagName(request)[index];
         var child, type, nodeArray = [];
         for(child = parentNode.firstChild; child != null; child = child.nextSibling) {
             type = child.nodeType;
             if (type === 1) {
+                //console.log("TAG NAME: " + child.tagName);
                 nodeArray.push(Spektral.getTextContent(child));
             }
         }
@@ -317,6 +319,14 @@
         var content = element.textContent; // Check if textContent is defined
         if (content !== undefined) return content;
     };
+
+    Spektral.textContent2 = function(xml, request, index) {
+        index = index || 0;
+        var element = xml.getElementsByTagName(request)[index];
+        var content = element.textContent; // Check if textContent is defined
+        if (content !== undefined) return content;
+        else return element.innerText;
+    }
 
 
 
