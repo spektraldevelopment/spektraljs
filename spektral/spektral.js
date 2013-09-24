@@ -291,9 +291,9 @@
     //**********************************************************************
 
     //////////////////////////////
-    ////CREATE XML OBJECT
+    ////XML TO JSON
     //////////////////////////////
-    Spektral.createXMLObject = function(xml, node, index) {
+    Spektral.xmlToJSON = function(xml, node, index) {
         node = node || xml.firstChild.nodeName;
         index = index || 0;
 
@@ -316,11 +316,13 @@
         return xmlObject;
     };
 
-    Spektral.createObject = function (list, message) {
+    /////////////////////////
+    ////CREATE OBJECT
+    ///////////////////////////
+    Spektral.createObject = function (list) {
 
-        message = message || "First Pass";
+        var child, type, listArray = [], listObject, attributes, attrLength, hasChildren, length;
 
-        var child, type, listArray = [], listObject = {}, attributes, attrLength, hasChildren;
         for(var i = 0; i < list.length; i++) {
             child = list[i];
             type = Spektral.getType(child);
@@ -328,44 +330,8 @@
             if(type === "element") {
 
                 hasChildren = child.hasChildNodes();
+                length = child.childNodes.length;
 
-                listObject = {};
-                listObject[child.tagName] = Spektral.getTextContent(child);
-
-                Spektral.log(message + ": TagName: " + child.tagName + " Spektral.getTextContent(child): " + Spektral.getTextContent(child));
-
-                attributes = child.attributes;
-                attrLength = attributes.length;
-
-                if(attrLength >= 1) {        
-                    for(var j = 0; j < attributes.length; j++) {
-                        listObject[attributes.item(j).name] = attributes.item(j).value;
-                    }
-                }
-
-                if(hasChildren) {
-                    listObject[child.tagName] = Spektral.createObject(child.childNodes, "Second Pass");
-                }
-
-                listArray.push(listObject);
-            } 
-        }
-
-        return listArray;
-    };
-
-    Spektral.createChildObject = function (list) {
-
-        var child, type, listArray = [], listObject, attributes, attrLength, hasChildren;
-        for(var i = 0; i < list.length; i++) {
-            child = list[i];
-            type = child.nodeType;
-
-            try {
-                hasChildren = child.hasChildren();
-            } catch (e) {}
-
-            if(type === 1) {
                 //Element
                 listObject = {};
                 listObject[child.tagName] = Spektral.getTextContent(child);
@@ -379,18 +345,14 @@
                     }
                 }
 
-                if(hasChildren) {
-                    listObject[child.tagName] = Spektral.createChildObject(child.childNodes, "Third Pass");
+                 if(hasChildren && length > 1) {//nodeName
+                    listObject[child.tagName] = Spektral.createChildObject(child.childNodes);
                 } 
-                
+
                 listArray.push(listObject);
-
-            } else if (type === 3 || type === 4) {
-              //text or CDATA
-              //Spektral.log("createObject: type === 3 || type === 4: child.name: " + child.nodeName + " child.value: " + child.nodeValue);
-            }     
+            }
         }
-
+            
         return listArray;
     };
 
@@ -423,12 +385,19 @@
         return attrObj;
     };
 
-    //////////////////
-    ////QUERY XML -- Can find any node value no matter how deeply buried
-    //////////////////
-    Spektral.queryXML = function (xml, request) {
+    
+    /////////////////////////////
+    ////GET NODES
+    ///////////////////////////////
+    Spektral.getNodes = function (list) {
 
-    };
+        for (var i = 0; i < list.length; i++) {
+            //Spektral.log("nodeType: " + list[i].nodeType);
+
+            return list[i].nodeType;
+        }
+    }
+
 
     //////////////////////
     ////LIST NODE ATTRIBUTES
@@ -438,6 +407,17 @@
             Spektral.log("Node: " + node.nodeName + " Attribute: " + key);
         }
     };
+
+    /////////////////////
+    ////IS OBJECT EMPTY
+    ////////////////////
+    Spektral.isObjectEmpty = function (obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
 
     //////////////////
     ////DETECT CHARACTER

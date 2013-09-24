@@ -9,15 +9,26 @@
 
         <groups>
             <group>
-                <item id="Group 1 item 1 id">Group 1: Item 1 content</item>
-                <item id="Group 1 item 2 id">Group 1: Item 2 content</item>
+                <item id="Group 1 item 1 id">Group 1 Item 1 content</item>
+                <item id="Group 1 item 2 id">Group 1 Item 2 content</item>
             </group>
             <group>
-                <item id="Group 2 item 1 id">Group 2: Item 1 content</item>
-                <item id="Group 2 item 2 id">Group 2: Item 2 content</item>
+                <item id="Group 2 item 1 id">Group 2 Item 1 content</item>
+                <item id="Group 2 item 2 id">Group 2 Item 2 content</item>
             </group>
         </groups>
-        
+
+        <!-- <groups>
+            <group>
+                <item id="Group 1 item 1 id"><![CDATA[Group 1 Item 1 content]]></item>
+                <item id="Group 1 item 2 id"><![CDATA[Group 1 Item 2 content]]></item>
+            </group>
+            <group>
+                <item id="Group 2 item 1 id"><![CDATA[Group 2 Item 1 content]]></item>
+                <item id="Group 2 item 2 id"><![CDATA[Group 2 Item 2 content]]></item>
+            </group>
+        </groups> -->
+
        <!--  <groups>
             <group>
                 <subgroup>
