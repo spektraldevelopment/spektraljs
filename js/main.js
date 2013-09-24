@@ -87,15 +87,45 @@ function onFileLoaded(jsonObj) {
     //console.log("External json file ready for traversing.");
 }
 
+var multipleGroups = {
+    "groups" : [ 
+       { "group" : [
+            {
+                "item" : "Group 1 Item 1 content",
+                "id" : "Group 1: Item 1 id"
+            },
+            {
+                "item" : "Group 1 Item 2 content",
+                "id" : "Group 1: Item 2 id"
+            }
+        ] },
+        { "group" : [
+            {
+                "item" : "Group 2 Item 1 content",
+                "id" : "Group 2: Item 1 id"
+            },
+            {
+                "item" : "Group 2 Item 2 content",
+                "id" : "Group 2: Item 2 id"
+            }
+        ] }       
+    ]
+}
+
 var xmlFile = Spektral.loadXML("xml/test.xml", onXMLLoaded);
 
 function onXMLLoaded(xmlDoc) {
 
    var fullXML = Spektral.createXMLObject(xmlDoc);
    console.log("fullXML: " + Spektral.getInfo(fullXML));
+   console.log(" ");
+   console.log("################################");
+   console.log("################################");
+   console.log("################################");
+   console.log(" ");
+   console.log("What it should look like: " + Spektral.getInfo(multipleGroups));
 
-   //var full = Spektral.xmlToJson(xmlDoc);
-   //console.log("full: " + JSON.stringify(full));
+   //console.log("thing one: " + Spektral.getInfo(fullXML.basic.length))
 }
 
 var s = "I'm a string";

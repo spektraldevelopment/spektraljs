@@ -286,6 +286,10 @@
         xhr.send();
     };
 
+
+
+    //**********************************************************************
+
     //////////////////////////////
     ////CREATE XML OBJECT
     //////////////////////////////
@@ -295,14 +299,16 @@
 
         var parentNode = xml.getElementsByTagName(node)[index];
         var child, type, xmlObject = {};
+
         for(var child = parentNode.firstChild; child != null; child = child.nextSibling) {
             type = Spektral.getType(child);
 
+           // Spektral.log("type: " + type);
+
             if(type === "text") {
                 //CDATA and Text
-                //nodeArray.push(child.nodeValue);
+                //nodeArray.push(child.nodeValue);//Remember to code this to handle if the main node has textContent
             } else if (type === "element") {
-                //Spektral.log("Attribute: " + child.nodeName);
                 xmlObject[child.tagName] = Spektral.createObject(child.childNodes);     
             }
         }
@@ -310,15 +316,57 @@
         return xmlObject;
     };
 
-    Spektral.createObject = function (list) {
+    Spektral.createObject = function (list, message) {
 
-        var child, type, listArray = [], listObject = {}, attributes, attrLength;
+        message = message || "First Pass";
+
+        var child, type, listArray = [], listObject = {}, attributes, attrLength, hasChildren;
+        for(var i = 0; i < list.length; i++) {
+            child = list[i];
+            type = Spektral.getType(child);
+
+            if(type === "element") {
+
+                hasChildren = child.hasChildNodes();
+
+                listObject = {};
+                listObject[child.tagName] = Spektral.getTextContent(child);
+
+                Spektral.log(message + ": TagName: " + child.tagName + " Spektral.getTextContent(child): " + Spektral.getTextContent(child));
+
+                attributes = child.attributes;
+                attrLength = attributes.length;
+
+                if(attrLength >= 1) {        
+                    for(var j = 0; j < attributes.length; j++) {
+                        listObject[attributes.item(j).name] = attributes.item(j).value;
+                    }
+                }
+
+                if(hasChildren) {
+                    listObject[child.tagName] = Spektral.createObject(child.childNodes, "Second Pass");
+                }
+
+                listArray.push(listObject);
+            } 
+        }
+
+        return listArray;
+    };
+
+    Spektral.createChildObject = function (list) {
+
+        var child, type, listArray = [], listObject, attributes, attrLength, hasChildren;
         for(var i = 0; i < list.length; i++) {
             child = list[i];
             type = child.nodeType;
 
-            if(type === 1) {
+            try {
+                hasChildren = child.hasChildren();
+            } catch (e) {}
 
+            if(type === 1) {
+                //Element
                 listObject = {};
                 listObject[child.tagName] = Spektral.getTextContent(child);
 
@@ -331,47 +379,23 @@
                     }
                 }
 
+                if(hasChildren) {
+                    listObject[child.tagName] = Spektral.createChildObject(child.childNodes, "Third Pass");
+                } 
+                
                 listArray.push(listObject);
 
             } else if (type === 3 || type === 4) {
-              Spektral.log("createObject: type === 3 || type === 4");
-            }
+              //text or CDATA
+              //Spektral.log("createObject: type === 3 || type === 4: child.name: " + child.nodeName + " child.value: " + child.nodeValue);
+            }     
         }
+
         return listArray;
     };
 
-    ///////////////////////////////
-    ////GET XML NODE VALUE
-    //////////////////////////////
-    Spektral.getXMLNodeValue = function(xml, request) {
-        var values = Spektral.splitString(request, ".");
-        var parentNode = xml.getElementsByTagName(values[0])[0];
-        var requestedNode = Spektral.splitString(values[1], "[")[0];
-        var requestedNodeIndex = Spektral.stripBrackets(values[1]);
-        return parentNode.getElementsByTagName(requestedNode)[requestedNodeIndex].innerText;
-    };
 
-    ////////////////////
-    ////CREATE XML NODE ARRAY
-    ///////////////////
-    Spektral.createXMLNodeArray = function (xml, request, index) {
-        index = index || 0;
-        var parentNode = xml.getElementsByTagName(request)[index];
-        var child, type, nodeArray = [];
-        for(child = parentNode.firstChild; child != null; child = child.nextSibling) {
-            type = child.nodeType;
-            Spektral.log("TYPE: " + type);
-            if(type === 4) {
-                //CDATA and Text
-                nodeArray.push(child.nodeValue);
-            } else if (type === 1) {
-                console.log("TAG NAME: " + child.tagName);
-                //Text Content
-                nodeArray.push(Spektral.getTextContent(child));//CDATA
-            }
-        }
-        return nodeArray;
-    };
+    //**********************************************************************
 
     ////////////////////
     ////GET TEXT CONTENT
@@ -472,7 +496,11 @@
             Spektral.throwError("listArrayElements: You must pass either an array or nodelist to this function.")
         } else {
             for (var i = 0; i < array.length; i++) {
-                Spektral.log("listArrayElement: item" + i + ": " + array[i].nodeName);
+                if(type === 'nodelist') {
+                    Spektral.log("NodeList: listArrayElement: item" + i + ": " + array[i].nodeName);
+                } else if (type === 'array') {
+                    Spektral.log("Array: listArrayElement: item" + i + ": " + array[i]);
+                }
             }
         }
     };
