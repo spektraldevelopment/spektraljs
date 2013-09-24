@@ -314,10 +314,11 @@
             } else if (type === "element") {
                 //Spektral.log("Attribute: " + child.nodeName);
                 xmlObject[child.tagName] = Spektral.createObject(child.childNodes); 
-                Spektral.log("TYPEPEPEPEP: " + Spektral.getType(child.childNodes));
+               // Spektral.log("TYPEPEPEPEP: " + Spektral.getType(child.childNodes));
                 //for (var i = 0; i < child.length)          
             }
         }
+
         return xmlObject;
     }
 
@@ -339,16 +340,36 @@
 
             if(type === 1) {
                 //Spektral.log("child.getAttribute(id)" + child.getAttribute("id"));
-              
+              //if(child.attributes.length > 0) {
+                //for(var i = 0; i < child.attributes.length; i++) {
+                    //Spektral.log("Attribute: " + child.attributes.item(0).name);
+                //}
+              //}
+
+              //Spektral.getNodeAttributes(child);
 
               listObject = {};
               listObject[child.tagName] = Spektral.getTextContent(child);
+
+             // Spektral.getNodeAttributes(child);
+
+               var attributes = child.attributes;
+               var attrLength = attributes.length;
+
+               if(attrLength >= 1) {        
+                 for(var j = 0; j < attributes.length; j++) {
+                     listObject[attributes.item(j).name] = attributes.item(j).value;
+                 }
+               }
+
+              //listObject[child.tagName] = Spektral.getNodeAttributes(child);
               listArray.push(listObject);
 
-              
+              //Spektral.log("listObject.thing: " + listObject.thing);
 
-            } else if (type === 2) {//attribute!!!!
-              Spektral.listNodeAttributes(child); 
+             // var attributes = Spektral.getNodeAttributes(child);
+              //Spektral.log("Attributes: " + Spektral.getInfo(attributes));
+              
 
             } else if (type === 3 || type === 4) {
               //Spektral.log("createObject: type === 3 || type === 4: " + child.attributes.item(0));
@@ -411,7 +432,11 @@
     Spektral.getTextContent = function(element) {
         //innerHTML?
         var content = element.textContent; // Check if textContent is defined
-        if (content !== undefined) return content;
+        if (content !== undefined) { 
+            return content;
+        } else { 
+            return element.innerText;
+        }
     };
 
     Spektral.textContent2 = function(xml, request, index) {
@@ -422,43 +447,56 @@
         else return element.innerText;
     };
 
-    Spektral.xmlToJson = function(xml) {
+    // Spektral.xmlToJson = function(xml) {
     
-        // Create the return object
-        var obj = {};
+    //     // Create the return object
+    //     var obj = {};
 
-        if (xml.nodeType == 1) { // element
-            // do attributes
-            if (xml.attributes.length > 0) {
-            obj["@attributes"] = {};
-                for (var j = 0; j < xml.attributes.length; j++) {
-                    var attribute = xml.attributes.item(j);
-                    obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
-                }
-            }
-        } else if (xml.nodeType == 3) { // text
-            obj = xml.nodeValue;
-        }
+    //     if (xml.nodeType == 1) { // element
+    //         // do attributes
+    //         if (xml.attributes.length > 0) {
+    //         obj["@attributes"] = {};
+    //             for (var j = 0; j < xml.attributes.length; j++) {
+    //                 var attribute = xml.attributes.item(j);
+    //                 obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
+    //             }
+    //         }
+    //     } else if (xml.nodeType == 3) { // text
+    //         obj = xml.nodeValue;
+    //     }
 
-        // do children
-        if (xml.hasChildNodes()) {
-            for(var i = 0; i < xml.childNodes.length; i++) {
-                var item = xml.childNodes.item(i);
-                var nodeName = item.nodeName;
-                if (typeof(obj[nodeName]) == "undefined") {
-                    obj[nodeName] = Spektral.xmlToJson(item);
-                } else {
-                    if (typeof(obj[nodeName].push) == "undefined") {
-                        var old = obj[nodeName];
-                        obj[nodeName] = [];
-                        obj[nodeName].push(old);
-                    }
-                    obj[nodeName].push(Spektral.xmlToJson(item));
-                }
+    //     // do children
+    //     if (xml.hasChildNodes()) {
+    //         for(var i = 0; i < xml.childNodes.length; i++) {
+    //             var item = xml.childNodes.item(i);
+    //             var nodeName = item.nodeName;
+    //             if (typeof(obj[nodeName]) == "undefined") {
+    //                 obj[nodeName] = Spektral.xmlToJson(item);
+    //             } else {
+    //                 if (typeof(obj[nodeName].push) == "undefined") {
+    //                     var old = obj[nodeName];
+    //                     obj[nodeName] = [];
+    //                     obj[nodeName].push(old);
+    //                 }
+    //                 obj[nodeName].push(Spektral.xmlToJson(item));
+    //             }
+    //         }
+    //     }
+    //     return obj;
+    // };
+
+    //////////////////////
+    ////GET NODE ATTRIBUTES
+    //////////////////////
+    Spektral.getNodeAttributes = function (element, obj) {
+        var attributes = element.attributes, attrObj = obj;
+        if(attributes.length >= 1) {
+            for(var i = 0; i < attributes.length; i++) {
+                attrObj[attributes.item(i).name] = attributes.item(i).value;
             }
         }
-        return obj;
-    };
+        return attrObj;
+    }
 
 
 
@@ -489,8 +527,13 @@
     ////GET INFO - deconstructs an element down to its properties
     ///////////////////
     Spektral.getInfo = function (element) {
+        var info;
+        try {
+            info = JSON.stringify(element);
+        } catch (e) {}
 
-    }
+        return info;
+    };
 
     //////////////////
     ////STRIP BRACKETS

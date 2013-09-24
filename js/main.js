@@ -92,7 +92,7 @@ var xmlFile = Spektral.loadXML("xml/test.xml", onXMLLoaded);
 function onXMLLoaded(xmlDoc) {
 
    var fullXML = Spektral.createXMLObject(xmlDoc);
-   console.log("fullXML: " + JSON.stringify(fullXML.basic));
+   console.log("fullXML: " + JSON.stringify(fullXML));
 
    //var full = Spektral.xmlToJson(xmlDoc);
    //console.log("full: " + JSON.stringify(full));
