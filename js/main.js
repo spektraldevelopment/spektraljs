@@ -87,7 +87,16 @@ function onFileLoaded(jsonObj) {
     //console.log("External json file ready for traversing.");
 }
 
-var multipleGroups = { "groups" : [ { "group" : [ { "id":"Group 1 item 1 id"},{"id":"Group 1 item 2 id"}]},{"group":[{"id":"Group 2 item 1 id"},{"id":"Group 2 item 2 id"}]}]} 
+var multipleGroups = {
+    "groups" : [
+    {"group":[ 
+    {"item":"Group 1 Item 1 content","id":"Group 1 item 1 id"},
+    {"item":"Group 1 Item 2 content","id":"Group 1 item 2 id"}]},
+    
+    {"group":[
+    {"item":"Group 2 Item 1 content","id":"Group 2 item 1 id"},
+    {"item":"Group 2 Item 2 content","id":"Group 2 item 2 id"}]}
+]};
 
 var xmlFile = Spektral.loadXML("xml/test.xml", onXMLLoaded);
 

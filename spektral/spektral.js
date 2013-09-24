@@ -334,8 +334,7 @@
 
                 //Element
                 listObject = {};
-                listObject[child.tagName] = Spektral.getTextContent(child);
-
+        
                 attributes = child.attributes;
                 attrLength = attributes.length;
 
@@ -345,8 +344,10 @@
                     }
                 }
 
-                 if(hasChildren && length > 1) {//nodeName
-                    listObject[child.tagName] = Spektral.createChildObject(child.childNodes);
+                listObject[child.tagName] = Spektral.getTextContent(child);
+
+                if(hasChildren && length > 1) {//nodeName
+                    listObject[child.tagName] = Spektral.createObject(child.childNodes);
                 } 
 
                 listArray.push(listObject);
