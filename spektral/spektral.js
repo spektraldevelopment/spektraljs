@@ -298,99 +298,47 @@
         for(var child = parentNode.firstChild; child != null; child = child.nextSibling) {
             type = Spektral.getType(child);
 
-            // if (child.attributes.length > 0) {
-            //         xmlObject["@attributes"] = {};
-            //         for (var j = 0; j < child.attributes.length; j++) {
-            //             var attribute = child.attributes.item(j);
-            //             //xmlObject["@attributes"][attribute.tagName] = attribute.nodeValue;
-            //             Spektral.log("Attribute: Name: " + attribute.tagName + " Value: " + attribute.nodeValue);
-            //         }
-            //     }
-            
-            
             if(type === "text") {
                 //CDATA and Text
                 //nodeArray.push(child.nodeValue);
             } else if (type === "element") {
                 //Spektral.log("Attribute: " + child.nodeName);
-                xmlObject[child.tagName] = Spektral.createObject(child.childNodes); 
-               // Spektral.log("TYPEPEPEPEP: " + Spektral.getType(child.childNodes));
-                //for (var i = 0; i < child.length)          
+                xmlObject[child.tagName] = Spektral.createObject(child.childNodes);     
             }
         }
 
         return xmlObject;
-    }
+    };
 
-    Spektral.createObject = function (list, attributes) {
+    Spektral.createObject = function (list) {
 
-        var child, type, listArray = [], listObject = {};
+        var child, type, listArray = [], listObject = {}, attributes, attrLength;
         for(var i = 0; i < list.length; i++) {
             child = list[i];
-             //Spektral.log("createObject: list: " + list[i].attributes);
             type = child.nodeType;
-            var listObject;
-
-            //Spektral.log("AHAHAHA: " + child.hasAttributes());
-            // if(child.attributes.length >= 1) {
-            //     console.log(child.attribute.item(0).nodeName);
-            // }
-
-
 
             if(type === 1) {
-                //Spektral.log("child.getAttribute(id)" + child.getAttribute("id"));
-              //if(child.attributes.length > 0) {
-                //for(var i = 0; i < child.attributes.length; i++) {
-                    //Spektral.log("Attribute: " + child.attributes.item(0).name);
-                //}
-              //}
 
-              //Spektral.getNodeAttributes(child);
+                listObject = {};
+                listObject[child.tagName] = Spektral.getTextContent(child);
 
-              listObject = {};
-              listObject[child.tagName] = Spektral.getTextContent(child);
+                attributes = child.attributes;
+                attrLength = attributes.length;
 
-             // Spektral.getNodeAttributes(child);
+                if(attrLength >= 1) {        
+                    for(var j = 0; j < attributes.length; j++) {
+                        listObject[attributes.item(j).name] = attributes.item(j).value;
+                    }
+                }
 
-               var attributes = child.attributes;
-               var attrLength = attributes.length;
-
-               if(attrLength >= 1) {        
-                 for(var j = 0; j < attributes.length; j++) {
-                     listObject[attributes.item(j).name] = attributes.item(j).value;
-                 }
-               }
-
-              //listObject[child.tagName] = Spektral.getNodeAttributes(child);
-              listArray.push(listObject);
-
-              //Spektral.log("listObject.thing: " + listObject.thing);
-
-             // var attributes = Spektral.getNodeAttributes(child);
-              //Spektral.log("Attributes: " + Spektral.getInfo(attributes));
-              
+                listArray.push(listObject);
 
             } else if (type === 3 || type === 4) {
-              //Spektral.log("createObject: type === 3 || type === 4: " + child.attributes.item(0));
+              Spektral.log("createObject: type === 3 || type === 4");
             }
-            // type = child.nodeType;
-            // Spektral.log("createObject: TYPE: " + type);
-            // if(type === 4) {
-            //     //CDATA and Text
-            //     //nodeArray.push(child.nodeValue);
-            //     Spektral.log("type===4: " + child.nodeValue);
-            // } else if (type === 1) {
-            //     //Text Content
-            //      Spektral.log("type===1: " + Spektral.getTextContent(child));
-            //     listObject[child.tagName] = Spektral.getTextContent(child);
-            //     //Spektral.log("child.tagName: " + child.tagName + " content: " + Spektral.getTextContent(child) + " child.childNodes: " + child.childNodes);
-            //     //Spektral.log("Nodelist: " + Spektral.listArrayElements(child.childNodes));
-            // }
         }
-
         return listArray;
-    }
+    };
 
     ///////////////////////////////
     ////GET XML NODE VALUE
@@ -400,7 +348,6 @@
         var parentNode = xml.getElementsByTagName(values[0])[0];
         var requestedNode = Spektral.splitString(values[1], "[")[0];
         var requestedNodeIndex = Spektral.stripBrackets(values[1]);
-        //return parentNode.getElementsByTagName(requestedNode)[requestedNodeIndex].childNodes[0].nodeValue;
         return parentNode.getElementsByTagName(requestedNode)[requestedNodeIndex].innerText;
     };
 
@@ -439,66 +386,18 @@
         }
     };
 
-    Spektral.textContent2 = function(xml, request, index) {
-        index = index || 0;
-        var element = xml.getElementsByTagName(request)[index];
-        var content = element.textContent; // Check if textContent is defined
-        if (content !== undefined) return content;
-        else return element.innerText;
-    };
-
-    // Spektral.xmlToJson = function(xml) {
-    
-    //     // Create the return object
-    //     var obj = {};
-
-    //     if (xml.nodeType == 1) { // element
-    //         // do attributes
-    //         if (xml.attributes.length > 0) {
-    //         obj["@attributes"] = {};
-    //             for (var j = 0; j < xml.attributes.length; j++) {
-    //                 var attribute = xml.attributes.item(j);
-    //                 obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
-    //             }
-    //         }
-    //     } else if (xml.nodeType == 3) { // text
-    //         obj = xml.nodeValue;
-    //     }
-
-    //     // do children
-    //     if (xml.hasChildNodes()) {
-    //         for(var i = 0; i < xml.childNodes.length; i++) {
-    //             var item = xml.childNodes.item(i);
-    //             var nodeName = item.nodeName;
-    //             if (typeof(obj[nodeName]) == "undefined") {
-    //                 obj[nodeName] = Spektral.xmlToJson(item);
-    //             } else {
-    //                 if (typeof(obj[nodeName].push) == "undefined") {
-    //                     var old = obj[nodeName];
-    //                     obj[nodeName] = [];
-    //                     obj[nodeName].push(old);
-    //                 }
-    //                 obj[nodeName].push(Spektral.xmlToJson(item));
-    //             }
-    //         }
-    //     }
-    //     return obj;
-    // };
-
     //////////////////////
     ////GET NODE ATTRIBUTES
     //////////////////////
-    Spektral.getNodeAttributes = function (element, obj) {
-        var attributes = element.attributes, attrObj = obj;
+    Spektral.getNodeAttributes = function (element) {
+        var attributes = element.attributes, attrObj = {};
         if(attributes.length >= 1) {
             for(var i = 0; i < attributes.length; i++) {
                 attrObj[attributes.item(i).name] = attributes.item(i).value;
             }
         }
         return attrObj;
-    }
-
-
+    };
 
     //////////////////
     ////QUERY XML -- Can find any node value no matter how deeply buried
@@ -514,7 +413,7 @@
         for (var key in node) {
             Spektral.log("Node: " + node.nodeName + " Attribute: " + key);
         }
-    }
+    };
 
     //////////////////
     ////DETECT CHARACTER
@@ -576,8 +475,7 @@
                 Spektral.log("listArrayElement: item" + i + ": " + array[i].nodeName);
             }
         }
-    }
-
+    };
 
     ////////////////////
     ////GET TYPE
