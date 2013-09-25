@@ -20,7 +20,7 @@ function onKeyEvent(e)
     //console.log("key: " + key);
 }
 
-console.log("Viewport Size: width: " + Spektral.getViewportSize().width + " height: " + Spektral.getViewportSize().height);
+//console.log("Viewport Size: width: " + Spektral.getViewportSize().width + " height: " + Spektral.getViewportSize().height);
 
 var a = "dog";
 var b = "cat";
@@ -103,7 +103,7 @@ var xmlFile = Spektral.loadXML("xml/test.xml", onXMLLoaded);
 function onXMLLoaded(xmlDoc) {
 
    var xmlObj = Spektral.xmlToJSON(xmlDoc);
-   console.log("fullXML: " + Spektral.getInfo(xmlObj));
+   //console.log("fullXML: " + Spektral.getInfo(xmlObj));
 
    //var item = xmlObj.groups[0].group[0].item[0];
 

@@ -71,19 +71,15 @@
         if(code === 38) {
             return "UP";
         }
-
         if(code === 40) {
             return "DOWN";
         }
-
         if(code === 37) {
             return "LEFT";
         }
-
         if(code === 39) {
             return "RIGHT";
         }
-
         if(code === 13) {
             return "ENTER";
         }
@@ -114,13 +110,11 @@
     ///////////////////
     Spektral.useHandCursor = function (element, use) {
         use = use || true;
-
         if(use) {
             //Use hand cursor
         } else {
             //Return to default
         }
-
     };
 
     //////////////////
@@ -358,7 +352,63 @@
     };
 
 
-    //**********************************************************************
+    //***UTILS************************************************************
+
+    //////////////////
+    ////GET ELEMENT
+    //////////////////
+    Spektral.getElement = function (element) {
+
+    };
+
+    //////////////////
+    ////CREATE ELEMENT
+    //////////////////
+    Spektral.createElement = function (element, id) {
+
+    };
+
+    //////////////////
+    ////REMOVE ELEMENT
+    //////////////////
+    Spektral.removeElement = function (element) {
+
+    };
+
+    //////////////////
+    ////SHOW ELEMENT
+    //////////////////
+    Spektral.showElement = function (element) {
+
+    };
+
+    //////////////////
+    ////HIDE ELEMENT
+    //////////////////
+    Spektral.hideElement = function (element) {
+
+    };
+
+    ///////////////////
+    ////CREATE ATTRIBUTE
+    //////////////////
+    Spektral.createAttribute = function (element, attribute, value) {
+        element.setAttribute(attribute, value);
+    };
+
+    //////////////////
+    ////RETRIEVE ATTRIBUTE
+    //////////////////
+    Spektral.retrieveAttribute = function (element, attribute, value ) {
+
+    };
+
+    //////////////////
+    ////DESTROY ATTRIBUTE
+    //////////////////
+    Spektral.destroyAttribute = function ( element, attribute, value ) {
+
+    };
 
     ////////////////////
     ////GET TEXT CONTENT
@@ -385,7 +435,6 @@
         }
         return attrObj;
     };
-
     
     /////////////////////////////
     ////GET NODES
@@ -393,11 +442,9 @@
     Spektral.getNodes = function (list) {
 
         for (var i = 0; i < list.length; i++) {
-            //Spektral.log("nodeType: " + list[i].nodeType);
-
             return list[i].nodeType;
         }
-    }
+    };
 
 
     //////////////////////
@@ -413,12 +460,12 @@
     ////IS OBJECT EMPTY
     ////////////////////
     Spektral.isObjectEmpty = function (obj) {
-    for(var key in obj) {
-        if(obj.hasOwnProperty(key))
-            return false;
-    }
-    return true;
-}
+        for(var key in obj) {
+            if(obj.hasOwnProperty(key))
+                return false;
+        }
+        return true;
+    };
 
     //////////////////
     ////DETECT CHARACTER
