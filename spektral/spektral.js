@@ -563,7 +563,7 @@
         for (var i = 0; i < all.length; i++) {
             node = Spektral.convertCase(all[i].nodeName);
             elementArray.push(node);
-            Spektral.log("listElements: " + node);
+            //Spektral.log("listElements: " + node);
         }
         return elementArray;
     };
