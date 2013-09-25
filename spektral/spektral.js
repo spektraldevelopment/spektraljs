@@ -364,26 +364,50 @@
     ////GET ELEMENT
     //////////////////
     Spektral.getElement = function (element, index) {
+
+        //Working on this
+
         var el, elementList = Spektral.listElements();
 
         for (var i = 0; i < elementList.length; i++) {
 
+            Spektral.log("Do these match: " + Spektral.isMatch(element, elementList[i]));
+
             if(element === elementList[i]) {
-                Spektral.log("getElement: Match!: " + elementList[i]);
-                if(index) {
+                if(index !== "undefined") {
                     el = document.getElementsByTagName(element)[index];
+                    return el;
+                    break;
                 } else {
                     el = document.getElementsByTagName(element);
+                    return el;
+                    break;
                 }
+                Spektral.log("TAG NAME");
             } else {
                 try {
-                    el = document.getElementById(element);
+                    //el = document.getElementById(element);
+                    Spektral.log("ID");
                 } catch (e) { Spektral.throwError("getElement: No ID found!") }
             }
         }
 
+        //el = document.getElementsByTagName(element)[index];
+        //el = document.getElementsByTagName(element);
         //     el = document.getElementsByName(element);//Check if name attribute exists
-        return el;
+        //el = document.getElementById(element);
+        //return el;
+    };
+
+    Spektral.isHTMLElement = function (element) {
+        var list = Spektral.listElements(), isHTML;
+
+        for(var i = 0; i < list.length; i++) {
+            if (element === list[i]) {
+                return true;
+                break;
+            } else { return false }
+        }
     };
 
     //////////////////
