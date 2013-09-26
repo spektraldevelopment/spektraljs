@@ -365,38 +365,27 @@
     //////////////////
     Spektral.getElement = function (element, index) {
 
-        //Working on this
+        //Working on this index = undefined
 
-        var el, elementList = Spektral.listElements();
+        var isHTML = Spektral.isHTMLElement(element);
 
-        for (var i = 0; i < elementList.length; i++) {
-
-            Spektral.log("Do these match: " + Spektral.isMatch(element, elementList[i]));
-
-            if(element === elementList[i]) {
-                if(index !== "undefined") {
-                    el = document.getElementsByTagName(element)[index];
-                    return el;
-                    break;
-                } else {
-                    el = document.getElementsByTagName(element);
-                    return el;
-                    break;
-                }
-                Spektral.log("TAG NAME");
+        if(isHTML) {
+            if(index === undefined) {
+                el = document.getElementsByTagName(element);
             } else {
-                try {
-                    //el = document.getElementById(element);
-                    Spektral.log("ID");
-                } catch (e) { Spektral.throwError("getElement: No ID found!") }
+                el = document.getElementsByTagName(element)[index];
             }
+        } else {
+            el = document.getElementById(element);
         }
+
+        Spektral.log("is element HTML: " + isHTML);
 
         //el = document.getElementsByTagName(element)[index];
         //el = document.getElementsByTagName(element);
         //     el = document.getElementsByName(element);//Check if name attribute exists
         //el = document.getElementById(element);
-        //return el;
+        return el;
     };
 
     Spektral.isHTMLElement = function (element) {
@@ -404,9 +393,14 @@
 
         for(var i = 0; i < list.length; i++) {
             if (element === list[i]) {
-                return true;
+                isHTML = true;
+                return isHTML;
                 break;
-            } else { return false }
+            }
+        }
+
+        if(isHTML === undefined) {
+            return false;
         }
     };
 

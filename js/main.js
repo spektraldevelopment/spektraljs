@@ -131,7 +131,7 @@ Spektral.stripBrackets(round);
 var curly = "[curly]";
 Spektral.stripBrackets(curly);
 
-var h = Spektral.getElement("header");
+var h = Spektral.getElement("header", 0);
 h.innerHTML = "Here's some new text.";
 
 console.log("h is: " + h + " type: " + Spektral.getType(h));
