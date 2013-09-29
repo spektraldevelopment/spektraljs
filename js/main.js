@@ -134,7 +134,16 @@ Spektral.stripBrackets(curly);
 var h = Spektral.getElement("header", 0);
 h.innerHTML = "Here's some new text.";
 
-console.log("h is: " + h + " type: " + Spektral.getType(h));
+var headingOne = Spektral.getElement("headingOne");
+headingOne.innerHTML = "h1 new text!";
+
+var sImage = Spektral.getElement("spektralImage");
+sImage.alt = "New alt description.";
+
+var newSection = Spektral.createNewElement("section", {parent: "paragraphOner"});//{parent: targetDiv}
+newSection.innerHTML = "This is a dynamically created section.";
+
+console.log("newSection: " + newSection);
 
 
 

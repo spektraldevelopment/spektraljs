@@ -9,6 +9,7 @@
  * This notice shall be included in all copies or substantial portions of the Software.
  **/
 (function(window, undefined){
+    "use strict";
 
     var
         location = window.location,
@@ -21,10 +22,16 @@
         //Create Spektral Object
     }
 
+    //////////////////
+    ////DEBUG
+    /////////////////
     Spektral.debug = function () {
         debug = true;
     };
 
+    //////////////////
+    ////ABOUT
+    /////////////////
     Spektral.about = function () {
         var mode;
         if(debug) {
@@ -317,11 +324,11 @@
 
         var child, type, listArray = [], listObject, attributes, attrLength, hasChildren, length;
 
-        for(var i = 0; i < list.length; i++) {
+        for (var i = 0; i < list.length; i++) {
             child = list[i];
             type = Spektral.getType(child);
 
-            if(type === "element") {
+            if (type === "element") {
 
                 hasChildren = child.hasChildNodes();
                 length = child.childNodes.length;
@@ -332,15 +339,15 @@
                 attributes = child.attributes;
                 attrLength = attributes.length;
 
-                if(attrLength >= 1) {        
-                    for(var j = 0; j < attributes.length; j++) {
+                if (attrLength >= 1) {
+                    for (var j = 0; j < attributes.length; j++) {
                         listObject[attributes.item(j).name] = attributes.item(j).value;
                     }
                 }
 
                 listObject[child.tagName] = Spektral.getTextContent(child);
 
-                if(hasChildren && length > 1) {//nodeName
+                if (hasChildren && length > 1) {//nodeName
                     listObject[child.tagName] = Spektral.createObject(child.childNodes);
                 } 
 
@@ -365,49 +372,133 @@
     //////////////////
     Spektral.getElement = function (element, index) {
 
-        //Working on this index = undefined
+        var isHTML = Spektral.isHTMLElement(element), isID = Spektral.isHTMLID(element), isName = Spektral.isHTMLName(element), el;
 
-        var isHTML = Spektral.isHTMLElement(element);
-
-        if(isHTML) {
-            if(index === undefined) {
-                el = document.getElementsByTagName(element);
+        if (isHTML === true) {
+            if (index === undefined) {
+                el = document.getElementsByTagName(element)[0];
             } else {
                 el = document.getElementsByTagName(element)[index];
             }
-        } else {
+        } else if (isID === true) {
             el = document.getElementById(element);
+        } else if (isName === true) {
+            if(index === undefined) {
+                el = document.getElementsByName(element)[0];
+            } else {
+                el = document.getElementsByName(element)[index];
+            }
+        } else {
+            Spektral.throwError("Element Not Found. Ensure you are calling a valid name or element.")
         }
-
-        Spektral.log("is element HTML: " + isHTML);
-
-        //el = document.getElementsByTagName(element)[index];
-        //el = document.getElementsByTagName(element);
-        //     el = document.getElementsByName(element);//Check if name attribute exists
-        //el = document.getElementById(element);
         return el;
     };
 
+    //////////////////
+    ////IS HTML ELEMENT
+    //////////////////
     Spektral.isHTMLElement = function (element) {
-        var list = Spektral.listElements(), isHTML;
 
-        for(var i = 0; i < list.length; i++) {
+        var list = Spektral.listElements(), isHTML;
+        for (var i = 0; i < list.length; i++) {
             if (element === list[i]) {
                 isHTML = true;
                 return isHTML;
                 break;
             }
         }
-
-        if(isHTML === undefined) {
+        if (isHTML === undefined) {
             return false;
         }
     };
 
     //////////////////
+    ////IS HTML ID
+    //////////////////
+    Spektral.isHTMLID = function (element) {
+      var list = Spektral.listElements(), isID, el;
+
+      for (var i = 0; i < list.length; i++) {
+          //Spektral.log("isHTMLID: element id: " + list[i].id);
+      }
+
+      el = document.getElementById(element);
+      if (el !== null) {
+          isID = true;
+      } else {
+          isID = false;
+      }
+      return isID;
+    };
+
+    //////////////////
+    ////IS HTML NAME
+    //////////////////
+    Spektral.isHTMLName = function (element) {
+        var isName, el;
+        el = document.getElementsByName(element);
+
+        if (el !== null) {
+            isName = true;
+        } else {
+            isName = false;
+        }
+        return isName;
+    };
+
+    //////////////////
     ////CREATE ELEMENT
     //////////////////
-    Spektral.createElement = function (element, id) {
+    Spektral.createNewElement = function (element, params) {
+
+        var newElementID, parentNode, parentID, newElement, body = Spektral.getElement("body");
+
+        //Possible params
+        //id: the id of the element being created
+        //parent: the parent node you're adding your new element to, default is <body>
+        params = params || {};
+
+        Spektral.validateParams(params);
+
+        newElementID = params.id || null;
+        parentNode = Spektral.getElement(params.parent) || null;
+
+        Spektral.log("createElement: element: " + element + " params: " + params + " id: " + newElementID + " parent: " + parentNode );
+
+        newElement = document.createElement(element);
+
+        if (parentNode === null) {
+            //body is default element when parent is not defined
+            body.appendChild(newElement);
+        } else {
+            if(parentNode !== null) {
+                parentNode.appendChild(newElement);
+            } else {
+                var errorString = "createElement: could not find parent target node.";
+                if(parentNode !== null) { errorString += " parentNode: " + parentNode }
+                if(parentID !== null) { errorString += " parentID: " + parentID }
+                Spektral.throwError(errorString);
+            }
+        }
+
+        if (newElementID !== null) {
+            newElement.id = newElementID;
+        }
+
+        return newElement;
+    };
+
+    //////////////////
+    ////MOVE TO AFTER
+    //////////////////
+    Spektral.moveToAfter = function (element, targetElement) {
+
+    };
+
+    //////////////////
+    ////MOVE TO BEFORE
+    //////////////////
+    Spektral.moveToBefore = function (element, targetElement) {
 
     };
 
@@ -576,8 +667,20 @@
     ////////////////////
     ////LIST ELEMENTS
     ////////////////////
-    Spektral.listElements = function () {
-        var all = document.getElementsByTagName("*"), elementArray = [], node;
+    Spektral.listElements = function (params) {
+
+        //In the middle of getting elements ID
+
+        var all = document.getElementsByTagName("*"), elementArray = [], node, elementID;
+
+        params = params || {};
+
+        Spektral.validateParams(params);
+
+        //Possible params
+        //id: list Id's of all elements if available
+        elementID = params.id;
+
         for (var i = 0; i < all.length; i++) {
             node = Spektral.convertCase(all[i].nodeName);
             elementArray.push(node);
@@ -605,11 +708,33 @@
         }
     };
 
+    //////////////////
+    ////LIST CHILD NODES
+    /////////////////
+    Spektral.listChildNodes = function (element) {
+        var children = element.childNodes;
+        Spektral.log("Children of: " + element.nodeName);
+        for(var i = 0; i < children.length; i++) {
+            Spektral.log("Child: " + children[i]);
+        }
+    };
+
     ////////////////////
     ////GET TYPE
     ////////////////////
     Spektral.getType = function (obj) {
         return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
+    };
+
+    ////////////////////
+    ////VALIDATE PARAMS
+    ////////////////////
+    Spektral.validateParams = function (params) {
+        var paramsType = Spektral.getType(params);
+
+        if(paramsType !== "object") {
+            Spektral.throwError("validateParams: params must always be an object. Currently it is an " + params + ".")
+        }
     };
 
     ////////////////////
