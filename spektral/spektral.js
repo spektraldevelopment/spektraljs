@@ -374,6 +374,8 @@
 
         var isHTML = Spektral.isHTMLElement(element), isID = Spektral.isHTMLID(element), isName = Spektral.isHTMLName(element), el;
 
+        Spektral.log(element + " is HTMLElement?: " + isHTML + " is ID?: " + isID + " is Name: " + isName);
+
         if (isHTML === true) {
             if (index === undefined) {
                 el = document.getElementsByTagName(element)[0];
@@ -398,16 +400,14 @@
     ////IS HTML ELEMENT
     //////////////////
     Spektral.isHTMLElement = function (element) {
-
-        var list = Spektral.listElements(), isHTML;
+        var list = Spektral.listElements(), isHTML = null;
         for (var i = 0; i < list.length; i++) {
             if (element === list[i]) {
                 isHTML = true;
                 return isHTML;
-                break;
             }
         }
-        if (isHTML === undefined) {
+        if (isHTML === null) {
             return false;
         }
     };
@@ -415,35 +415,33 @@
     //////////////////
     ////IS HTML ID
     //////////////////
-    Spektral.isHTMLID = function (element) {
-      var list = Spektral.listElements(), isID, el;
-
-      for (var i = 0; i < list.length; i++) {
-          //Spektral.log("isHTMLID: element id: " + list[i].id);
-      }
-
-      el = document.getElementById(element);
-      if (el !== null) {
-          isID = true;
-      } else {
-          isID = false;
-      }
-      return isID;
+    Spektral.isHTMLID = function (ID) {
+        var list = Spektral.listElements("id"), isID = null;
+        for (var i = 0; i < list.length; i++) {
+          if(ID === list[i]) {
+              isID = true;
+              return isID;
+          }
+        }
+        if(isID === null) {
+          return false;
+        }
     };
 
     //////////////////
     ////IS HTML NAME
     //////////////////
-    Spektral.isHTMLName = function (element) {
-        var isName, el;
-        el = document.getElementsByName(element);
-
-        if (el !== null) {
-            isName = true;
-        } else {
-            isName = false;
+    Spektral.isHTMLName = function (name) {
+        var list = Spektral.listElements("name"), isName = null;
+        for (var i = 0; i < list.length; i++) {
+            if(name === list[i]) {
+                isName = true;
+                return isName;
+            }
         }
-        return isName;
+        if(isName === null) {
+            return false;
+        }
     };
 
     //////////////////
@@ -572,13 +570,13 @@
 
     
     /////////////////////////////
-    ////GET NODES
+    ////GET NODES -- DO I need this?
     ///////////////////////////////
     Spektral.getNodes = function (list) {
 
-        for (var i = 0; i < list.length; i++) {
-            return list[i].nodeType;
-        }
+//        for(var i = 0; i < list.length; i++) {
+//            return list[i].nodeType;
+//        }
     };
 
 
@@ -660,31 +658,35 @@
     ////SPLIT STRING
     //////////////////
     Spektral.splitString = function(request, character) {
-        var values = request.split(character);
-        return values;
+        return request.split(character);
     };
 
     ////////////////////
     ////LIST ELEMENTS
     ////////////////////
-    Spektral.listElements = function (params) {
+    Spektral.listElements = function (attribute) {
 
-        //In the middle of getting elements ID
+        attribute = attribute || null;
 
         var all = document.getElementsByTagName("*"), elementArray = [], node, elementID;
 
-        params = params || {};
-
-        Spektral.validateParams(params);
-
-        //Possible params
-        //id: list Id's of all elements if available
-        elementID = params.id;
-
         for (var i = 0; i < all.length; i++) {
-            node = Spektral.convertCase(all[i].nodeName);
-            elementArray.push(node);
-            //Spektral.log("listElements: " + node);
+
+            if (attribute === "id") {
+                node = all[i].id;
+                if(node !== "") {
+                    elementArray.push(node);
+                }
+            } else if (attribute === "name") {
+                node = all[i].name;
+                if(node !== "") {
+                    elementArray.push(node);
+                }
+            } else {
+                node = Spektral.convertCase(all[i].nodeName);
+                elementArray.push(node);
+            }
+            //elementArray.push(node);
         }
         return elementArray;
     };

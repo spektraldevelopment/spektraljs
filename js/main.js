@@ -131,19 +131,23 @@ Spektral.stripBrackets(round);
 var curly = "[curly]";
 Spektral.stripBrackets(curly);
 
-var h = Spektral.getElement("header", 0);
-h.innerHTML = "Here's some new text.";
+//var h = Spektral.getElement("header", 0);
+//h.innerHTML = "Here's some new text.";
+//
+//var headingOne = Spektral.getElement("headingOne");
+//headingOne.innerHTML = "h1 new text!";
+//
+//var sImage = Spektral.getElement("spektralImage");
+//sImage.alt = "New alt description.";
+//
+//var newSection = Spektral.createNewElement("section", {parent: "paragraphOner"});//{parent: targetDiv}
+//newSection.innerHTML = "This is a dynamically created section.";
+//
+//console.log("newSection: " + newSection);
 
-var headingOne = Spektral.getElement("headingOne");
-headingOne.innerHTML = "h1 new text!";
+var badId = Spektral.getElement("nonExistent");
 
-var sImage = Spektral.getElement("spektralImage");
-sImage.alt = "New alt description.";
-
-var newSection = Spektral.createNewElement("section", {parent: "paragraphOner"});//{parent: targetDiv}
-newSection.innerHTML = "This is a dynamically created section.";
-
-console.log("newSection: " + newSection);
+console.log("badId: " + badId);
 
 
 
