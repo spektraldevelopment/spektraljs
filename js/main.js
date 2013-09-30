@@ -169,9 +169,12 @@ function onFileLoaded(jsonObj) {
 //
 var image = Spektral.getElement("spektralImage");
 
-Spektral.attachEventListener(image, "click", imageClick);
-
-function imageClick(e) {
-    console.log("Image Clicked!");
-    Spektral.detachEventListener(image, "click", imageClick);
-}
+//Spektral.attachEventListener(image, "click", imageClick);
+//
+//function imageClick(e) {
+//    console.log("Image Clicked!");
+//    Spektral.detachEventListener(image, "click", imageClick);
+//}
+//
+//var ol = Spektral.getElement("ol");
+//Spektral.listNodeAttributes(ol);

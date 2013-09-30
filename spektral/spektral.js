@@ -8,7 +8,9 @@
  *
  * This notice shall be included in all copies or substantial portions of the Software.
  **/
-(function (window, undefined) {
+/*global ActiveXObject: false */
+/*jslint plusplus: true, unparam: true */
+(function (window) {
     "use strict";
 
     var
@@ -57,7 +59,7 @@
             eventTarget["on" + eventType] = eventHandler;
         }
 
-        for (i = 0; i < mouseEvents.length; i += 1) {
+        for (i = 0; i < mouseEvents.length; i++) {
             if (eventType === mouseEvents[i]) {
                 Spektral.useHandCursor(eventTarget);
                 break;
@@ -79,7 +81,7 @@
             eventTarget["on" + eventType] = null;
         }
 
-        for (i = 0; i < mouseEvents.length; i += 1) {
+        for (i = 0; i < mouseEvents.length; i++) {
             if (eventType === mouseEvents[i]) {
                 Spektral.useDefaultCursor(eventTarget);
                 break;
@@ -91,22 +93,23 @@
     ////GET KEY
     //////////////////////////////////////
     Spektral.getKey = function (code) {
-
+        var key;
         if (code === 38) {
-            return "UP";
+            key = "UP";
         }
         if (code === 40) {
-            return "DOWN";
+            key = "DOWN";
         }
         if (code === 37) {
-            return "LEFT";
+            key = "LEFT";
         }
         if (code === 39) {
-            return "RIGHT";
+            key = "RIGHT";
         }
         if (code === 13) {
-            return "ENTER";
+            key = "ENTER";
         }
+        return key;
     };
 
     //////////////////
@@ -146,7 +149,7 @@
     //////////////////
     Spektral.getComputedStyle = function (element, styleProperty) {
         var computedStyle = null;
-        if (typeof element.currentStyle !== "undefined") {
+        if (element.currentStyle !== undefined) {
             computedStyle = element.currentStyle;
         } else {
             computedStyle = document.defaultView.getComputedStyle(element, null);
@@ -184,11 +187,9 @@
     ///////////////////
     Spektral.isMatch = function (itemA, itemB) {
 
-        var isMatch;
+        var isMatch = false;
         if (itemA === itemB) {
             isMatch = true;
-        } else {
-            isMatch = false;
         }
         return isMatch;
     };
@@ -233,35 +234,11 @@
 
         async = async || true;
 
-        var ext = Spektral.getExtension(file), xhr, dataObj, i, versions;
-
-        if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xhr = new XMLHttpRequest();
-        } else {
-            // code for IE6, IE5
-            versions = ["MSXML2.XmlHttp.5.0",
-            "MSXML2.XmlHttp.4.0",
-            "MSXML2.XmlHttp.3.0",
-            "MSXML2.XmlHttp.2.0",
-            "Microsoft.XmlHttp",
-            "Microsoft.XMLHTTP"];
-
-            for (i = 0; i < versions.length; i += 1)
-            {
-                try {
-                    xhr = new ActiveXObject(versions[i]);
-                    break;
-                } catch (e) { Spektral.throwError("loadFile: Couldn't find the proper XMLHttp version.")}
-            }
-        }
+        var ext = Spektral.getExtension(file), xhr = Spektral.getXHR();
 
         if (ext === "json") {
             xhr.overrideMimeType("application/json");
         }
-
-        Spektral.attachEventListener(xhr, 'readystatechange', checkIfReady);
-        Spektral.attachEventListener(xhr, 'error', onLoadError);
 
         function checkIfReady() {
             if (xhr.readyState < 4) {
@@ -287,10 +264,40 @@
             Spektral.throwError("loadError: There was a load error: " + e);
         }
 
+        Spektral.attachEventListener(xhr, 'readystatechange', checkIfReady);
+        Spektral.attachEventListener(xhr, 'error', onLoadError);
+
         xhr.open("GET", file, async);
         xhr.send();
     };
 
+    //////////////////////////////
+    ////GET XHR
+    //////////////////////////////
+    Spektral.getXHR = function () {
+        var result, versions, i;
+
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            result = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            versions = ["MSXML2.XmlHttp.5.0",
+                "MSXML2.XmlHttp.4.0",
+                "MSXML2.XmlHttp.3.0",
+                "MSXML2.XmlHttp.2.0",
+                "Microsoft.XmlHttp",
+                "Microsoft.XMLHTTP"];
+
+            for (i = 0; i < versions.length; i++) {
+                try {
+                    result = new ActiveXObject(versions[i]);
+                    return result;
+                } catch (e) { Spektral.throwError("loadFile: Couldn't find the proper XMLHttp version."); }
+            }
+        }
+        return result;
+    };
 
 
     //**********************************************************************
@@ -304,12 +311,13 @@
 
         var parentNode = xml.getElementsByTagName(node)[index], child, type, xmlObject = {};
 
-        for (child = parentNode.firstChild; child != null; child = child.nextSibling) {
+        for (child = parentNode.firstChild; child !== null; child = child.nextSibling) {
             type = Spektral.getType(child);
 
             if (type === "text") {
                 //CDATA and Text
                 //nodeArray.push(child.nodeValue);//Remember to code this to handle if the main node has textContent
+                Spektral.log("Going to handle text in here someday.");
             } else if (type === "element") {
                 xmlObject[child.tagName] = Spektral.createObject(child.childNodes);
             }
@@ -325,7 +333,7 @@
 
         var child, type, listArray = [], listObject, attributes, attrLength, hasChildren, length, i, j;
 
-        for (i = 0; i < list.length; i += 1) {
+        for (i = 0; i < list.length; i++) {
             child = list[i];
             type = Spektral.getType(child);
 
@@ -336,25 +344,24 @@
 
                 //Element
                 listObject = {};
-        
                 attributes = child.attributes;
                 attrLength = attributes.length;
 
                 if (attrLength >= 1) {
-                    for (j = 0; j < attributes.length; j += 1) {
+                    for (j = 0; j < attributes.length; j++) {
                         listObject[attributes.item(j).name] = attributes.item(j).value;
                     }
                 }
 
                 listObject[child.tagName] = Spektral.getTextContent(child);
 
-                if (hasChildren && length > 1) {//nodeName
+                if (hasChildren && length > 1) {
                     listObject[child.tagName] = Spektral.createObject(child.childNodes);
-                } 
+                }
 
                 listArray.push(listObject);
             }
-        }           
+        }
         return listArray;
     };
 
@@ -377,7 +384,7 @@
 
         var isHTML = Spektral.isHTMLElement(element), isID = Spektral.isHTMLID(element), isName = Spektral.isHTMLName(element), el;
 
-        //Spektral.log(element + " is HTMLElement?: " + isHTML + " is ID?: " + isID + " is Name: " + isName);
+        Spektral.log(element + " is HTMLElement?: " + isHTML + " is ID?: " + isID + " is Name: " + isName);
 
         if (isHTML === true) {
             if (index === undefined) {
@@ -394,7 +401,7 @@
                 el = document.getElementsByName(element)[index];
             }
         } else {
-            Spektral.throwError("Element Not Found. Ensure you are calling a valid name or element.")
+            Spektral.throwError("Element Not Found. Ensure you are calling a valid name or element.");
         }
         return el;
     };
@@ -404,15 +411,16 @@
     //////////////////
     Spektral.isHTMLElement = function (element) {
         var list = Spektral.listElements(), isHTML = null, i;
-        for (i = 0; i < list.length; i += 1) {
+        for (i = 0; i < list.length; i++) {
             if (element === list[i]) {
                 isHTML = true;
-                return isHTML;
+                break;
             }
         }
         if (isHTML === null) {
-            return false;
+            isHTML = false;
         }
+        return isHTML;
     };
 
     //////////////////
@@ -420,15 +428,16 @@
     //////////////////
     Spektral.isHTMLID = function (ID) {
         var list = Spektral.listElements("id"), isID = null, i;
-        for (i = 0; i < list.length; i += 1) {
-          if (ID === list[i]) {
-              isID = true;
-              return isID;
-          }
+        for (i = 0; i < list.length; i++) {
+            if (ID === list[i]) {
+                isID = true;
+                break;
+            }
         }
         if (isID === null) {
-          return false;
+            isID = false;
         }
+        return isID;
     };
 
     //////////////////
@@ -436,15 +445,16 @@
     //////////////////
     Spektral.isHTMLName = function (name) {
         var list = Spektral.listElements("name"), isName = null, i;
-        for (i = 0; i < list.length; i += 1) {
+        for (i = 0; i < list.length; i++) {
             if (name === list[i]) {
                 isName = true;
-                return isName;
+                break;
             }
         }
         if (isName === null) {
-            return false;
+            isName = false;
         }
+        return isName;
     };
 
     //////////////////
@@ -452,7 +462,7 @@
     //////////////////
     Spektral.createNewElement = function (element, id, parent) {
 
-        var newElementID, parentNode, parentID, newElement, body = Spektral.getElement("body"), errorString;
+        var newElementID, parentNode, newElement, body = Spektral.getElement("body"), errorString;
 
         Spektral.log("createNewElement: parent type: " + Spektral.getType(parent));
 
@@ -474,8 +484,7 @@
                 parentNode.appendChild(newElement);
             } else {
                 errorString = "createElement: could not find parent target node.";
-                if (parentNode !== null) { errorString += " parentNode: " + parentNode }
-                if (parentID !== null) { errorString += " parentID: " + parentID }
+                if (parentNode !== null) { errorString += " parentNode: " + parentNode; }
                 Spektral.throwError(errorString);
             }
         }
@@ -520,14 +529,14 @@
     //////////////////
     ////RETRIEVE ATTRIBUTE
     //////////////////
-    Spektral.retrieveAttribute = function (element, attribute, value ) {
+    Spektral.retrieveAttribute = function (element, attribute, value) {
 
     };
 
     //////////////////
     ////DESTROY ATTRIBUTE
     //////////////////
-    Spektral.destroyAttribute = function ( element, attribute, value ) {
+    Spektral.destroyAttribute = function (element, attribute, value) {
 
     };
 
@@ -537,11 +546,10 @@
     Spektral.getTextContent = function (element) {
         //innerHTML?
         var content = element.textContent; // Check if textContent is defined
-        if (content !== undefined) { 
-            return content;
-        } else { 
-            return element.innerText;
+        if (content === "undefined") {
+            content = element.innerText;
         }
+        return content;
     };
 
     //////////////////////
@@ -550,7 +558,7 @@
     Spektral.getNodeAttributes = function (element) {
         var attributes = element.attributes, attrObj = {}, i;
         if (attributes.length >= 1) {
-            for (i = 0; i < attributes.length; i += 1) {
+            for (i = 0; i < attributes.length; i++) {
                 attrObj[attributes.item(i).name] = attributes.item(i).value;
             }
         }
@@ -571,7 +579,6 @@
 
     };
 
-    
     /////////////////////////////
     ////GET NODES -- DO I need this?
     ///////////////////////////////
@@ -588,9 +595,14 @@
     //////////////////////
     Spektral.listNodeAttributes = function (node) {
         var nodeArray = [], key;
+//        if (me.hasOwnProperty(prop)) {
+//            alert(me[prop]);
+//        }
         for (key in node) {
-            nodeArray.push(key);
-            Spektral.log("Node: " + node.nodeName + " Attribute: " + key);
+            if (node.hasOwnProperty(key)) {
+                nodeArray.push(key);
+                Spektral.log("Node: " + node.nodeName + " Attribute: " + key);
+            }
         }
         return nodeArray;
     };
@@ -651,11 +663,13 @@
     ////////////////////
     Spektral.convertCase = function (stringToConvert, newCase) {
         newCase = newCase || "lower";
+        var newString;
         if (newCase === "lower") {
-            return stringToConvert.toLowerCase();
+            newString = stringToConvert.toLowerCase();
         } else if (newCase === "upper") {
-            return stringToConvert.toUpperCase();
+            newString =  stringToConvert.toUpperCase();
         }
+        return newString;
     };
 
     //////////////////
@@ -674,7 +688,7 @@
 
         var all = document.getElementsByTagName("*"), elementArray = [], node, i;
 
-        for (i = 0; i < all.length; i += 1) {
+        for (i = 0; i < all.length; i++) {
             if (attribute === "id") {
                 node = all[i].id;
                 if (node !== "") {
@@ -702,7 +716,7 @@
         if (type !== 'array' && type !== 'nodelist') {
             Spektral.throwError("listArrayElements: You must pass either an array or nodelist to this function.")
         } else {
-            for (i = 0; i < array.length; i += 1) {
+            for (i = 0; i < array.length; i++) {
                 if (type === 'nodelist') {
                     Spektral.log("NodeList: listArrayElement: item" + i + ": " + array[i].nodeName);
                 } else if (type === 'array') {
@@ -718,7 +732,7 @@
     Spektral.listChildNodes = function (element) {
         var children = element.childNodes, i;
         Spektral.log("Children of: " + element.nodeName);
-        for (i = 0; i < children.length; i += 1) {
+        for (i = 0; i < children.length; i++) {
             Spektral.log("Child: " + children[i]);
         }
     };
