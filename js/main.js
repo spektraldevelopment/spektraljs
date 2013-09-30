@@ -140,14 +140,32 @@ Spektral.stripBrackets(curly);
 //var sImage = Spektral.getElement("spektralImage");
 //sImage.alt = "New alt description.";
 //
-//var newSection = Spektral.createNewElement("section", {parent: "paragraphOner"});//{parent: targetDiv}
+//var newSection = Spektral.createNewElement("section", {parent: "paragraphOne"});//{parent: targetDiv}
 //newSection.innerHTML = "This is a dynamically created section.";
 //
 //console.log("newSection: " + newSection);
 
-var badId = Spektral.getElement("nonExistent");
+//var badId = Spektral.getElement("nonExistent");
+//
+//console.log("badId: " + badId);
 
-console.log("badId: " + badId);
+var uList = Spektral.getElement("ul");
+
+console.log("uList: " + uList);
+
+var newItem = Spektral.createNewElement("li", "newItem", uList);
+newItem.innerHTML = "New Item";
+
+var item2 = Spektral.getElement("itemTwo");
+console.log("item2: " + item2);
+
+Spektral.moveToAfter(newItem, item2);
+
+
+
+
+
+
 
 
 

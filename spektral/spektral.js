@@ -368,13 +368,15 @@
     };
 
     //////////////////
-    ////GET ELEMENT
+    ////GET ELEMENT - might rename to "findElement"
     //////////////////
     Spektral.getElement = function (element, index) {
 
+        //Integrate querySelectorAll
+
         var isHTML = Spektral.isHTMLElement(element), isID = Spektral.isHTMLID(element), isName = Spektral.isHTMLName(element), el;
 
-        Spektral.log(element + " is HTMLElement?: " + isHTML + " is ID?: " + isID + " is Name: " + isName);
+        //Spektral.log(element + " is HTMLElement?: " + isHTML + " is ID?: " + isID + " is Name: " + isName);
 
         if (isHTML === true) {
             if (index === undefined) {
@@ -447,21 +449,19 @@
     //////////////////
     ////CREATE ELEMENT
     //////////////////
-    Spektral.createNewElement = function (element, params) {
+    Spektral.createNewElement = function (element, id, parent) {
 
         var newElementID, parentNode, parentID, newElement, body = Spektral.getElement("body");
 
-        //Possible params
-        //id: the id of the element being created
-        //parent: the parent node you're adding your new element to, default is <body>
-        params = params || {};
+        Spektral.log("createNewElement: parent type: " + Spektral.getType(parent));
 
-        Spektral.validateParams(params);
+        newElementID = id || null;
 
-        newElementID = params.id || null;
-        parentNode = Spektral.getElement(params.parent) || null;
-
-        Spektral.log("createElement: element: " + element + " params: " + params + " id: " + newElementID + " parent: " + parentNode );
+        if(Spektral.getType(parent) === "string") {
+            parentNode = Spektral.getElement(parent) || null;
+        } else {
+            parentNode = parent || null;
+        }
 
         newElement = document.createElement(element);
 
@@ -490,14 +490,16 @@
     ////MOVE TO AFTER
     //////////////////
     Spektral.moveToAfter = function (element, targetElement) {
-
+        var parent = element.parentNode;
+        parent.insertBefore(element, targetElement.nextSibling);
     };
 
     //////////////////
     ////MOVE TO BEFORE
     //////////////////
     Spektral.moveToBefore = function (element, targetElement) {
-
+        var parent = element.parentNode;
+        parent.insertBefore(element, targetElement);
     };
 
     //////////////////
