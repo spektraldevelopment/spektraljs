@@ -16,7 +16,10 @@
         location = window.location,
         document = window.document,
         docElem = document.documentElement,
-        debug = false;
+        debug = false,
+        mouseEvents;
+
+    mouseEvents = ["click", "dblclick", "mousedown", "mousemove", "mouseup", "mouseover", "mouseout"];
 
     //////////////////
     ////DEBUG
@@ -44,6 +47,7 @@
     ////ATTACH EVENT LISTENER
     /////////////////
     Spektral.attachEventListener = function (eventTarget, eventType, eventHandler) {
+        var i;
         if (eventTarget.addEventListener) {
             eventTarget.addEventListener(eventType, eventHandler, false);
         } else if (eventTarget.attachEvent) {
@@ -52,12 +56,20 @@
         } else {
             eventTarget["on" + eventType] = eventHandler;
         }
+
+        for (i = 0; i < mouseEvents.length; i += 1) {
+            if (eventType === mouseEvents[i]) {
+                Spektral.useHandCursor(eventTarget);
+                break;
+            }
+        }
     };
 
     //////////////////
     ////DETACH EVENT LISTENER
     /////////////////
     Spektral.detachEventListener = function (eventTarget, eventType, eventHandler) {
+        var i;
         if (eventTarget.removeEventListener) {
             eventTarget.removeEventListener(eventType, eventHandler, false);
         } else if (eventTarget.detachEvent) {
@@ -65,6 +77,13 @@
             eventTarget.detachEvent(eventType, eventHandler);
         } else {
             eventTarget["on" + eventType] = null;
+        }
+
+        for (i = 0; i < mouseEvents.length; i += 1) {
+            if (eventType === mouseEvents[i]) {
+                Spektral.useDefaultCursor(eventTarget);
+                break;
+            }
         }
     };
 
@@ -113,17 +132,13 @@
     ///////////////////
     ///USE HAND CURSOR
     ///////////////////
-    Spektral.useHandCursor = function (element, use) {
-        Spektral.log("use: " + use);
-        use = use || true;
-        Spektral.log("After use: " + use);
-        if (use === true) {
-            Spektral.createSetAttribute(element, "style", "cursor: pointer");
-        } else {
-            Spektral.createSetAttribute(element, "style", "cursor: default");
-        }
+    Spektral.useHandCursor = function (element, cursorType) {
+        cursorType = cursorType || "pointer";
+        Spektral.createSetAttribute(element, "style", "cursor: " + cursorType);
+    };
 
-        Spektral.log("useHandCursor: " + use);
+    Spektral.useDefaultCursor = function (element) {
+        Spektral.createSetAttribute(element, "style", "cursor: default");
     };
 
     //////////////////
@@ -131,7 +146,7 @@
     //////////////////
     Spektral.getComputedStyle = function (element, styleProperty) {
         var computedStyle = null;
-        if (typeof element.currentStyle != "undefined") {
+        if (typeof element.currentStyle !== "undefined") {
             computedStyle = element.currentStyle;
         } else {
             computedStyle = document.defaultView.getComputedStyle(element, null);
@@ -167,12 +182,15 @@
     ///////////////////
     ////IS MATCH
     ///////////////////
-    Spektral.isMatch = function(itemA, itemB) {
+    Spektral.isMatch = function (itemA, itemB) {
+
+        var isMatch;
         if (itemA === itemB) {
-            return true;
+            isMatch = true;
         } else {
-            return false;
+            isMatch = false;
         }
+        return isMatch;
     };
 
     ///////////////////
@@ -183,13 +201,6 @@
         async = async || true;
 
         var sourceType = Spektral.getType(source);
-        var ext;
-
-        try {
-            ext = Spektral.getExtension(source)
-        } catch (e) {
-            Spektral.throwError("loadJSON: source must be string.")
-        }
 
         if (sourceType === "string") {
             //load file
@@ -202,18 +213,10 @@
     ///////////////////
     ///LOAD XML
     ///////////////////
-    Spektral.loadXML = function (source, callback, async)
-    {
+    Spektral.loadXML = function (source, callback, async) {
         async = async || true;
 
         var sourceType = Spektral.getType(source);
-        var ext;
-
-        try {
-            ext = Spektral.getExtension(source)
-        } catch (e) {
-            Spektral.throwError("loadXML: source must be string.")
-        }
 
         if (sourceType === "string") {
             //load file
@@ -230,22 +233,21 @@
 
         async = async || true;
 
-        var ext = Spektral.getExtension(file);
-        var xhr;
-        var dataObj;
+        var ext = Spektral.getExtension(file), xhr, dataObj, i, versions;
+
         if (window.XMLHttpRequest) {
             // code for IE7+, Firefox, Chrome, Opera, Safari
             xhr = new XMLHttpRequest();
         } else {
             // code for IE6, IE5
-            var versions = ["MSXML2.XmlHttp.5.0",
-                "MSXML2.XmlHttp.4.0",
-                "MSXML2.XmlHttp.3.0",
-                "MSXML2.XmlHttp.2.0",
-                "Microsoft.XmlHttp",
-                "Microsoft.XMLHTTP"];
+            versions = ["MSXML2.XmlHttp.5.0",
+            "MSXML2.XmlHttp.4.0",
+            "MSXML2.XmlHttp.3.0",
+            "MSXML2.XmlHttp.2.0",
+            "Microsoft.XmlHttp",
+            "Microsoft.XMLHTTP"];
 
-            for (var i =0; i < versions.length; i++)
+            for (i = 0; i < versions.length; i += 1)
             {
                 try {
                     xhr = new ActiveXObject(versions[i]);
@@ -296,17 +298,14 @@
     //////////////////////////////
     ////XML TO JSON
     //////////////////////////////
-    Spektral.xmlToJSON = function(xml, node, index) {
+    Spektral.xmlToJSON = function (xml, node, index) {
         node = node || xml.firstChild.nodeName;
         index = index || 0;
 
-        var parentNode = xml.getElementsByTagName(node)[index];
-        var child, type, xmlObject = {};
+        var parentNode = xml.getElementsByTagName(node)[index], child, type, xmlObject = {};
 
-        for(var child = parentNode.firstChild; child != null; child = child.nextSibling) {
+        for (child = parentNode.firstChild; child != null; child = child.nextSibling) {
             type = Spektral.getType(child);
-
-           // Spektral.log("type: " + type);
 
             if (type === "text") {
                 //CDATA and Text
@@ -324,9 +323,9 @@
     ///////////////////////////
     Spektral.createObject = function (list) {
 
-        var child, type, listArray = [], listObject, attributes, attrLength, hasChildren, length;
+        var child, type, listArray = [], listObject, attributes, attrLength, hasChildren, length, i, j;
 
-        for (var i = 0; i < list.length; i++) {
+        for (i = 0; i < list.length; i += 1) {
             child = list[i];
             type = Spektral.getType(child);
 
@@ -342,7 +341,7 @@
                 attrLength = attributes.length;
 
                 if (attrLength >= 1) {
-                    for (var j = 0; j < attributes.length; j++) {
+                    for (j = 0; j < attributes.length; j += 1) {
                         listObject[attributes.item(j).name] = attributes.item(j).value;
                     }
                 }
@@ -404,8 +403,8 @@
     ////IS HTML ELEMENT
     //////////////////
     Spektral.isHTMLElement = function (element) {
-        var list = Spektral.listElements(), isHTML = null;
-        for (var i = 0; i < list.length; i++) {
+        var list = Spektral.listElements(), isHTML = null, i;
+        for (i = 0; i < list.length; i += 1) {
             if (element === list[i]) {
                 isHTML = true;
                 return isHTML;
@@ -420,8 +419,8 @@
     ////IS HTML ID
     //////////////////
     Spektral.isHTMLID = function (ID) {
-        var list = Spektral.listElements("id"), isID = null;
-        for (var i = 0; i < list.length; i++) {
+        var list = Spektral.listElements("id"), isID = null, i;
+        for (i = 0; i < list.length; i += 1) {
           if (ID === list[i]) {
               isID = true;
               return isID;
@@ -436,8 +435,8 @@
     ////IS HTML NAME
     //////////////////
     Spektral.isHTMLName = function (name) {
-        var list = Spektral.listElements("name"), isName = null;
-        for (var i = 0; i < list.length; i++) {
+        var list = Spektral.listElements("name"), isName = null, i;
+        for (i = 0; i < list.length; i += 1) {
             if (name === list[i]) {
                 isName = true;
                 return isName;
@@ -453,7 +452,7 @@
     //////////////////
     Spektral.createNewElement = function (element, id, parent) {
 
-        var newElementID, parentNode, parentID, newElement, body = Spektral.getElement("body");
+        var newElementID, parentNode, parentID, newElement, body = Spektral.getElement("body"), errorString;
 
         Spektral.log("createNewElement: parent type: " + Spektral.getType(parent));
 
@@ -474,7 +473,7 @@
             if (parentNode !== null) {
                 parentNode.appendChild(newElement);
             } else {
-                var errorString = "createElement: could not find parent target node.";
+                errorString = "createElement: could not find parent target node.";
                 if (parentNode !== null) { errorString += " parentNode: " + parentNode }
                 if (parentID !== null) { errorString += " parentID: " + parentID }
                 Spektral.throwError(errorString);
@@ -535,7 +534,7 @@
     ////////////////////
     ////GET TEXT CONTENT
     ///////////////////
-    Spektral.getTextContent = function(element) {
+    Spektral.getTextContent = function (element) {
         //innerHTML?
         var content = element.textContent; // Check if textContent is defined
         if (content !== undefined) { 
@@ -549,9 +548,9 @@
     ////GET NODE ATTRIBUTES
     //////////////////////
     Spektral.getNodeAttributes = function (element) {
-        var attributes = element.attributes, attrObj = {};
+        var attributes = element.attributes, attrObj = {}, i;
         if (attributes.length >= 1) {
-            for(var i = 0; i < attributes.length; i++) {
+            for (i = 0; i < attributes.length; i += 1) {
                 attrObj[attributes.item(i).name] = attributes.item(i).value;
             }
         }
@@ -578,7 +577,7 @@
     ///////////////////////////////
     Spektral.getNodes = function (list) {
 
-//        for(var i = 0; i < list.length; i++) {
+//        for (var i = 0; i < list.length; i++) {
 //            return list[i].nodeType;
 //        }
     };
@@ -588,8 +587,8 @@
     ////LIST NODE ATTRIBUTES
     //////////////////////
     Spektral.listNodeAttributes = function (node) {
-        var nodeArray = [];
-        for (var key in node) {
+        var nodeArray = [], key;
+        for (key in node) {
             nodeArray.push(key);
             Spektral.log("Node: " + node.nodeName + " Attribute: " + key);
         }
@@ -600,7 +599,8 @@
     ////IS OBJECT EMPTY
     ////////////////////
     Spektral.isObjectEmpty = function (obj) {
-        for(var key in obj) {
+        var key;
+        for (key in obj) {
             if (obj.hasOwnProperty(key))
                 return false;
         }
@@ -610,7 +610,7 @@
     //////////////////
     ////DETECT CHARACTER
     //////////////////
-    Spektral.detectCharacter = function(request, character) {
+    Spektral.detectCharacter = function (request, character) {
 
     };
 
@@ -629,7 +629,7 @@
     //////////////////
     ////STRIP BRACKETS
     //////////////////
-    Spektral.stripBrackets = function(request) {
+    Spektral.stripBrackets = function (request) {
         var value;
         //[]
         try {
@@ -649,7 +649,7 @@
     ////////////////////
     ////CONVERT CASE
     ////////////////////
-    Spektral.convertCase = function(stringToConvert, newCase) {
+    Spektral.convertCase = function (stringToConvert, newCase) {
         newCase = newCase || "lower";
         if (newCase === "lower") {
             return stringToConvert.toLowerCase();
@@ -661,7 +661,7 @@
     //////////////////
     ////SPLIT STRING
     //////////////////
-    Spektral.splitString = function(request, character) {
+    Spektral.splitString = function (request, character) {
         return request.split(character);
     };
 
@@ -672,10 +672,9 @@
 
         attribute = attribute || null;
 
-        var all = document.getElementsByTagName("*"), elementArray = [], node, elementID;
+        var all = document.getElementsByTagName("*"), elementArray = [], node, i;
 
-        for (var i = 0; i < all.length; i++) {
-
+        for (i = 0; i < all.length; i += 1) {
             if (attribute === "id") {
                 node = all[i].id;
                 if (node !== "") {
@@ -690,7 +689,6 @@
                 node = Spektral.convertCase(all[i].nodeName);
                 elementArray.push(node);
             }
-            //elementArray.push(node);
         }
         return elementArray;
     };
@@ -700,11 +698,11 @@
     /////////////////
     Spektral.listArrayElements = function (array) {
 
-        var type = Spektral.getType(array);
+        var type = Spektral.getType(array), i;
         if (type !== 'array' && type !== 'nodelist') {
             Spektral.throwError("listArrayElements: You must pass either an array or nodelist to this function.")
         } else {
-            for (var i = 0; i < array.length; i++) {
+            for (i = 0; i < array.length; i += 1) {
                 if (type === 'nodelist') {
                     Spektral.log("NodeList: listArrayElement: item" + i + ": " + array[i].nodeName);
                 } else if (type === 'array') {
@@ -718,9 +716,9 @@
     ////LIST CHILD NODES
     /////////////////
     Spektral.listChildNodes = function (element) {
-        var children = element.childNodes;
+        var children = element.childNodes, i;
         Spektral.log("Children of: " + element.nodeName);
-        for(var i = 0; i < children.length; i++) {
+        for (i = 0; i < children.length; i += 1) {
             Spektral.log("Child: " + children[i]);
         }
     };

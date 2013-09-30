@@ -86,12 +86,12 @@ Spektral.debug();
 //    ]
 //};
 //
-//var jsonFile = Spektral.loadJSON("js/data.json", onFileLoaded);
+var jsonFile = Spektral.loadJSON("js/data.json", onFileLoaded);
 //
-//function onFileLoaded(jsonObj) {
-//    //console.log("JSON: " + jsonObj.projects[1].title);
-//    //console.log("External json file ready for traversing.");
-//}
+function onFileLoaded(jsonObj) {
+    //console.log("JSON: " + jsonObj.projects[1].title);
+    //console.log("External json file ready for traversing.");
+}
 //
 //var multipleGroups = {
 //    "groups" : [
@@ -168,11 +168,10 @@ Spektral.debug();
 //Spektral.moveToAfter(newItem, item2);
 //
 var image = Spektral.getElement("spektralImage");
-Spektral.useHandCursor(image);
 
-Spektral.attachEventListener(window, "click", imageClick);
+Spektral.attachEventListener(image, "click", imageClick);
 
 function imageClick(e) {
-    Spektral.log("onImageClick");
-    Spektral.useHandCursor(image, false);
+    console.log("Image Clicked!");
+    Spektral.detachEventListener(image, "click", imageClick);
 }
