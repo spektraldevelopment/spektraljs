@@ -8,19 +8,15 @@
  *
  * This notice shall be included in all copies or substantial portions of the Software.
  **/
-(function(window, undefined){
+(function (window, undefined) {
     "use strict";
 
     var
+        Spektral = {},
         location = window.location,
         document = window.document,
         docElem = document.documentElement,
-        Spektral = Spektral.prototype,
         debug = false;
-
-    function Spektral(){
-        //Create Spektral Object
-    }
 
     //////////////////
     ////DEBUG
@@ -33,13 +29,15 @@
     ////ABOUT
     /////////////////
     Spektral.about = function () {
-        var mode;
-        if(debug) {
+        var mode, message;
+        if (debug) {
             mode = "debug";
         } else {
             mode = "release";
         }
-        return "Spektral.js V.01 mode: " + mode;
+        message = "Spektral.js V.01 mode: " + mode;
+        Spektral.log(message);
+        return message;
     };
 
     //////////////////
@@ -75,19 +73,19 @@
     //////////////////////////////////////
     Spektral.getKey = function (code) {
 
-        if(code === 38) {
+        if (code === 38) {
             return "UP";
         }
-        if(code === 40) {
+        if (code === 40) {
             return "DOWN";
         }
-        if(code === 37) {
+        if (code === 37) {
             return "LEFT";
         }
-        if(code === 39) {
+        if (code === 39) {
             return "RIGHT";
         }
-        if(code === 13) {
+        if (code === 13) {
             return "ENTER";
         }
     };
@@ -105,7 +103,7 @@
     ///CANCEL PROPOGATION
     ///////////////////
     Spektral.cancelPropogation = function (e) {
-        if(e.stopPropagation) {
+        if (e.stopPropagation) {
             e.stopPropagation();
         } else {
             e.cancelBubble = true;
@@ -113,15 +111,19 @@
     };
 
     ///////////////////
-    ///USE HANDCURSOR
+    ///USE HAND CURSOR
     ///////////////////
     Spektral.useHandCursor = function (element, use) {
+        Spektral.log("use: " + use);
         use = use || true;
-        if(use) {
-            //Use hand cursor
+        Spektral.log("After use: " + use);
+        if (use === true) {
+            Spektral.createSetAttribute(element, "style", "cursor: pointer");
         } else {
-            //Return to default
+            Spektral.createSetAttribute(element, "style", "cursor: default");
         }
+
+        Spektral.log("useHandCursor: " + use);
     };
 
     //////////////////
@@ -166,7 +168,7 @@
     ////IS MATCH
     ///////////////////
     Spektral.isMatch = function(itemA, itemB) {
-        if(itemA === itemB) {
+        if (itemA === itemB) {
             return true;
         } else {
             return false;
@@ -189,7 +191,7 @@
             Spektral.throwError("loadJSON: source must be string.")
         }
 
-        if(sourceType === "string") {
+        if (sourceType === "string") {
             //load file
             Spektral.loadFile(source, callback, async);
         } else {
@@ -213,7 +215,7 @@
             Spektral.throwError("loadXML: source must be string.")
         }
 
-        if(sourceType === "string") {
+        if (sourceType === "string") {
             //load file
             Spektral.loadFile(source, callback, async);
         } else {
@@ -260,17 +262,17 @@
         Spektral.attachEventListener(xhr, 'error', onLoadError);
 
         function checkIfReady() {
-            if(xhr.readyState < 4) {
+            if (xhr.readyState < 4) {
                 return;
             }
-            if(xhr.status !== 200) {
+            if (xhr.status !== 200) {
                 return;
             }
-            if(xhr.readyState === 4) {
+            if (xhr.readyState === 4) {
                 var response;
-                if(ext === "json") {
+                if (ext === "json") {
                     response = JSON.parse(xhr.responseText);
-                } else if(ext === "xml") {
+                } else if (ext === "xml") {
                     response = xhr.responseXML;
                 } else {
                     response = xhr.responseText;
@@ -306,11 +308,11 @@
 
            // Spektral.log("type: " + type);
 
-            if(type === "text") {
+            if (type === "text") {
                 //CDATA and Text
                 //nodeArray.push(child.nodeValue);//Remember to code this to handle if the main node has textContent
             } else if (type === "element") {
-                xmlObject[child.tagName] = Spektral.createObject(child.childNodes);     
+                xmlObject[child.tagName] = Spektral.createObject(child.childNodes);
             }
         }
 
@@ -387,7 +389,7 @@
         } else if (isID === true) {
             el = document.getElementById(element);
         } else if (isName === true) {
-            if(index === undefined) {
+            if (index === undefined) {
                 el = document.getElementsByName(element)[0];
             } else {
                 el = document.getElementsByName(element)[index];
@@ -420,12 +422,12 @@
     Spektral.isHTMLID = function (ID) {
         var list = Spektral.listElements("id"), isID = null;
         for (var i = 0; i < list.length; i++) {
-          if(ID === list[i]) {
+          if (ID === list[i]) {
               isID = true;
               return isID;
           }
         }
-        if(isID === null) {
+        if (isID === null) {
           return false;
         }
     };
@@ -436,12 +438,12 @@
     Spektral.isHTMLName = function (name) {
         var list = Spektral.listElements("name"), isName = null;
         for (var i = 0; i < list.length; i++) {
-            if(name === list[i]) {
+            if (name === list[i]) {
                 isName = true;
                 return isName;
             }
         }
-        if(isName === null) {
+        if (isName === null) {
             return false;
         }
     };
@@ -457,7 +459,7 @@
 
         newElementID = id || null;
 
-        if(Spektral.getType(parent) === "string") {
+        if (Spektral.getType(parent) === "string") {
             parentNode = Spektral.getElement(parent) || null;
         } else {
             parentNode = parent || null;
@@ -469,12 +471,12 @@
             //body is default element when parent is not defined
             body.appendChild(newElement);
         } else {
-            if(parentNode !== null) {
+            if (parentNode !== null) {
                 parentNode.appendChild(newElement);
             } else {
                 var errorString = "createElement: could not find parent target node.";
-                if(parentNode !== null) { errorString += " parentNode: " + parentNode }
-                if(parentID !== null) { errorString += " parentID: " + parentID }
+                if (parentNode !== null) { errorString += " parentNode: " + parentNode }
+                if (parentID !== null) { errorString += " parentID: " + parentID }
                 Spektral.throwError(errorString);
             }
         }
@@ -510,9 +512,9 @@
     };
 
     ///////////////////
-    ////CREATE ATTRIBUTE
+    ////CREATE SET ATTRIBUTE
     //////////////////
-    Spektral.createAttribute = function (element, attribute, value) {
+    Spektral.createSetAttribute = function (element, attribute, value) {
         element.setAttribute(attribute, value);
     };
 
@@ -548,7 +550,7 @@
     //////////////////////
     Spektral.getNodeAttributes = function (element) {
         var attributes = element.attributes, attrObj = {};
-        if(attributes.length >= 1) {
+        if (attributes.length >= 1) {
             for(var i = 0; i < attributes.length; i++) {
                 attrObj[attributes.item(i).name] = attributes.item(i).value;
             }
@@ -599,7 +601,7 @@
     ////////////////////
     Spektral.isObjectEmpty = function (obj) {
         for(var key in obj) {
-            if(obj.hasOwnProperty(key))
+            if (obj.hasOwnProperty(key))
                 return false;
         }
         return true;
@@ -676,12 +678,12 @@
 
             if (attribute === "id") {
                 node = all[i].id;
-                if(node !== "") {
+                if (node !== "") {
                     elementArray.push(node);
                 }
             } else if (attribute === "name") {
                 node = all[i].name;
-                if(node !== "") {
+                if (node !== "") {
                     elementArray.push(node);
                 }
             } else {
@@ -699,11 +701,11 @@
     Spektral.listArrayElements = function (array) {
 
         var type = Spektral.getType(array);
-        if(type !== 'array' && type !== 'nodelist') {
+        if (type !== 'array' && type !== 'nodelist') {
             Spektral.throwError("listArrayElements: You must pass either an array or nodelist to this function.")
         } else {
             for (var i = 0; i < array.length; i++) {
-                if(type === 'nodelist') {
+                if (type === 'nodelist') {
                     Spektral.log("NodeList: listArrayElement: item" + i + ": " + array[i].nodeName);
                 } else if (type === 'array') {
                     Spektral.log("Array: listArrayElement: item" + i + ": " + array[i]);
@@ -736,7 +738,7 @@
     Spektral.validateParams = function (params) {
         var paramsType = Spektral.getType(params);
 
-        if(paramsType !== "object") {
+        if (paramsType !== "object") {
             Spektral.throwError("validateParams: params must always be an object. Currently it is an " + params + ".")
         }
     };
@@ -747,7 +749,7 @@
     Spektral.getExtension = function (file) {
         var type = Spektral.getType(file);
 
-        if(file === undefined) {
+        if (file === undefined) {
             Spektral.throwError("getExtension: file is undefined. Did you pass a file name to this function?")
         } else if (type !== "string") {
             Spektral.throwError("getExtension: file needs to be string.")
@@ -766,11 +768,11 @@
     ////LOG
     ///////////////////
     Spektral.log = function (message) {
-        if(debug) {
+        if (debug) {
             console.log("Spektraljs: " + message);
         }
     };
 
-    window.Spektral = Spektral;
+    window.Spektral =  Spektral;
 
 }(window));
