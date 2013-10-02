@@ -372,7 +372,14 @@
     ////QUERY 
     //////////////////
     Spektral.query = function (element) {
-        //Use querySelectorAll
+        var q = document.querySelectorAll(element), item;
+        //Spektral.listArrayElements(q);
+        if (q.length <=1) {
+            item = q[0];
+        } else {
+            item = q;
+        }
+        return item;
     };
 
     //////////////////

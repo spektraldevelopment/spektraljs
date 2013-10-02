@@ -60,7 +60,13 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+.queryList {
+    background: #666;
+}
 
+.queryItem {
+    background: #3d6623;
+}
 
 
 

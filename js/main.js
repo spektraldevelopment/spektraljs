@@ -178,3 +178,8 @@ var image = Spektral.getElement("spektralImage");
 //
 //var ol = Spektral.getElement("ol");
 //Spektral.listNodeAttributes(ol);
+
+//var qList = Spektral.query("ul.queryList");
+
+var ftr = Spektral.query("#mainFooter");
+ftr.innerHTML = "I changed the footer text.";
