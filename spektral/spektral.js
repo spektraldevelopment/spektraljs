@@ -371,13 +371,20 @@
     //////////////////
     ////QUERY 
     //////////////////
-    Spektral.query = function (element) {
-        var q = document.querySelectorAll(element), item;
-        //Spektral.listArrayElements(q);
-        if (q.length <=1) {
-            item = q[0];
+    Spektral.query = function (element, queryAll) {
+        //Still have to test
+        queryAll = queryAll || true;
+        var q, item;
+
+        if(queryAll === true) {
+            q = document.querySelectorAll(element);
+            if (q.length <=1) {
+                item = q[0];
+            } else {
+                item = q;
+            }
         } else {
-            item = q;
+            q = document.querySelector(element);
         }
         return item;
     };
@@ -391,7 +398,7 @@
 
         var isHTML = Spektral.isHTMLElement(element), isID = Spektral.isHTMLID(element), isName = Spektral.isHTMLName(element), el;
 
-        Spektral.log(element + " is HTMLElement?: " + isHTML + " is ID?: " + isID + " is Name: " + isName);
+        //Spektral.log(element + " is HTMLElement?: " + isHTML + " is ID?: " + isID + " is Name: " + isName);
 
         if (isHTML === true) {
             if (index === undefined) {
@@ -408,7 +415,11 @@
                 el = document.getElementsByName(element)[index];
             }
         } else {
-            Spektral.throwError("Element Not Found. Ensure you are calling a valid name or element.");
+            try {
+                el = Spektral.query(element);//Will Test
+            } else {
+                Spektral.throwError("Element Not Found. Ensure you are calling a valid name or element.");
+            }
         }
         return el;
     };
