@@ -534,7 +534,11 @@
     ////REMOVE ELEMENT
     //////////////////
     Spektral.removeElement = function (element) {
-
+        try {
+            element.remove();
+        } catch (e) {
+            element.parentNode.removeChild(element);
+        }
     };
 
     ///////////////////
