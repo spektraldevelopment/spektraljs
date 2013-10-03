@@ -417,7 +417,7 @@
         } else {
             try {
                 el = Spektral.query(element);//Will Test
-            } else {
+            } catch (e) {
                 Spektral.throwError("Element Not Found. Ensure you are calling a valid name or element.");
             }
         }
