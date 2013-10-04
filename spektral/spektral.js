@@ -144,19 +144,6 @@
         Spektral.createSetAttribute(element, "style", "cursor: default");
     };
 
-    //////////////////
-    ////GET COMPUTED STYLE
-    //////////////////
-    Spektral.getComputedStyle = function (element, styleProperty) {
-        var computedStyle = null;
-        if (element.currentStyle !== undefined) {
-            computedStyle = element.currentStyle;
-        } else {
-            computedStyle = document.defaultView.getComputedStyle(element, null);
-        }
-        return computedStyle[styleProperty];
-    };
-
     ///////////////////
     ////GET VIEWPORT SIZE
     ///////////////////
@@ -371,21 +358,17 @@
     //////////////////
     ////QUERY 
     //////////////////
-    Spektral.query = function (element, queryAll) {
-        //Still have to test
-        queryAll = queryAll || true;
+    Spektral.query = function (element) {
         var q, item;
-
-        if(queryAll === true) {
+        try {
             q = document.querySelectorAll(element);
             if (q.length <=1) {
                 item = q[0];
             } else {
                 item = q;
             }
-        } else {
-            q = document.querySelector(element);
-        }
+        } catch (e) {}
+
         return item;
     };
 
@@ -396,7 +379,7 @@
 
         //Integrate querySelectorAll
 
-        var isHTML = Spektral.isHTMLElement(element), isID = Spektral.isHTMLID(element), isName = Spektral.isHTMLName(element), el;
+        var isHTML = Spektral.isHTMLElement(element), isID = Spektral.isHTMLID(element), isName = Spektral.isHTMLName(element), el, elType, nList;
 
         //Spektral.log(element + " is HTMLElement?: " + isHTML + " is ID?: " + isID + " is Name: " + isName);
 
@@ -415,11 +398,16 @@
                 el = document.getElementsByName(element)[index];
             }
         } else {
-            try {
-                el = Spektral.query(element);//Will Test
-            } catch (e) {
+            //Try query
+            el = Spektral.query(element);
+            if(el === undefined) {
                 Spektral.throwError("Element Not Found. Ensure you are calling a valid name or element.");
             }
+        }
+        elType = Spektral.getType(el);
+        if (elType === "nodelist") {
+            Spektral.log("getElement: More than one element was found.");
+            Spektral.listArrayElements(el)
         }
         return el;
     };
@@ -537,12 +525,33 @@
         try {
             element.remove();
         } catch (e) {
+            Spektral.log("removeElement: .remove() was not available. Reverting to removeChild().")
             element.parentNode.removeChild(element);
         }
     };
 
+    //////////////////
+    ////SET STYLE
+    //////////////////
+    Spektral.setStyle = function (element, prop) {
+        element.setAttribute("style", prop);
+    };
+
+    //////////////////
+    ////GET STYLE
+    //////////////////
+    Spektral.getStyle = function (element, styleProperty) {
+        var computedStyle = null;
+        if (element.currentStyle !== undefined) {
+            computedStyle = element.currentStyle;
+        } else {
+            computedStyle = document.defaultView.getComputedStyle(element, null);
+        }
+        return computedStyle[styleProperty];
+    };
+
     ///////////////////
-    ////CREATE SET ATTRIBUTE
+    ////CREATE SET ATTRIBUTE - check if this works on existing attributes
     //////////////////
     Spektral.createSetAttribute = function (element, attribute, value) {
         element.setAttribute(attribute, value);
@@ -551,8 +560,8 @@
     //////////////////
     ////RETRIEVE ATTRIBUTE
     //////////////////
-    Spektral.retrieveAttribute = function (element, attribute, value) {
-
+    Spektral.retrieveAttribute = function (element, attribute) {
+        //apparently harder than I thought
     };
 
     //////////////////
@@ -590,15 +599,69 @@
     //////////////////
     ////SHOW ELEMENT
     //////////////////
-    Spektral.showElement = function (element) {
+    Spektral.showElement = function (element, useDisplay, displayType) {
 
+        useDisplay = display || false;
+        displayType = displayType || "block";
+
+        var displayString;
+
+        if(useDisplay !== false) {
+            displayString = "display:" + displayType;
+            Spektral.setStyle(element, dString);
+            Spektral.log("showElement: display: block")
+        } else {
+            Spektral.setStyle(element, "visibility:true");
+            Spektral.log("showElement: visibility: true");
+        }
     };
 
     //////////////////
     ////HIDE ELEMENT
     //////////////////
-    Spektral.hideElement = function (element) {
+    Spektral.hideElement = function (element, useDisplay) {
 
+        useDisplay = display || false;
+
+        if(useDisplay !== false) {
+            Spektral.setStyle(element, "display:none");
+            Spektral.log("hideElement: display: none")
+        } else {
+            Spektral.setStyle(element, "visibility:true");
+            Spektral.log("hideElement: visibility: false");
+        }
+    };
+
+    //////////////////
+    ////TOGGLE VISIBILITY
+    //////////////////
+    Spektral.toggleVisibility = function (element, useDisplay, displayType) {
+
+        useDisplay = useDisplay || false;
+        displayType = displayType || "block";
+
+        var currentAttr, displayString;
+
+        if(useDisplay != false) {
+            currentAttr = Spektral.getStyle(element, "display");
+            //Element loses styling when this is used - will fix
+            if (currentAttr === "block" || currentAttr === "inline-block" || currentAttr === "inherit") {
+                Spektral.setStyle(element, "display:none");
+            } else {
+                displayString = "display:" + displayType;
+                Spektral.setStyle(element, displayString);
+            }
+            Spektral.log("toggVis: display: " + currentAttr);
+        } else {
+            //When toggled hidden and brought back, element loses its display:block - will fix
+            currentAttr = Spektral.getStyle(element, "visibility");
+            if (currentAttr === "visible") {
+                Spektral.setStyle(element, "visibility:hidden");
+            } else {
+                Spektral.setStyle(element, "visibility:visible");
+            }
+            Spektral.log("toggVis: visibility: " + currentAttr);
+        }
     };
 
     /////////////////////////////
@@ -758,6 +821,14 @@
             Spektral.log("Child: " + children[i]);
         }
     };
+
+    //////////////////
+    ////SHOW ELEMENT IDENTIFIERS - lists an elements tag name, along with id, name, class if available
+    /////////////////
+    Spektral.showElementIdentifiers = function (element) {
+
+    };
+
 
     ////////////////////
     ////GET TYPE

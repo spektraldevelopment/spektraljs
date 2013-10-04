@@ -167,7 +167,7 @@ function onFileLoaded(jsonObj) {
 //
 //Spektral.moveToAfter(newItem, item2);
 //
-var image = Spektral.getElement("spektralImage");
+//var image = Spektral.getElement("spektralImage");
 
 //Spektral.attachEventListener(image, "click", imageClick);
 //
@@ -180,6 +180,25 @@ var image = Spektral.getElement("spektralImage");
 //Spektral.listNodeAttributes(ol);
 
 //var qList = Spektral.query("ul.queryList");
+//var qList = Spektral.getElement(".queryList");
+//console.log("qList: " + qList);
 
-var ftr = Spektral.query("#mainFooter");
-ftr.innerHTML = "I changed the footer text.";
+//var qItems = Spektral.getElement(".queryItem");
+//console.log("qItems: " + qItems);
+
+//var ftr = Spektral.query("#mainFooter", false);
+//Spektral.removeElement(ftr);
+//ftr.innerHTML = "I changed the footer text.";
+
+//var notFound = Spektral.getElement("notFound");
+//console.log("Not Found: " + notFound);
+var tt = Spektral.getElement("toggleTarget");
+var toggVisibility = Spektral.getElement("toggleVis");
+
+Spektral.attachEventListener(toggVisibility, "click", onToggVisClick);
+
+function onToggVisClick() {
+  Spektral.toggleVisibility(tt, true);
+};
+
+
