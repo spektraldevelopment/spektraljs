@@ -541,13 +541,14 @@
     ////GET STYLE
     //////////////////
     Spektral.getStyle = function (element, styleProperty) {
-        var computedStyle = null;
-        if (element.currentStyle !== undefined) {
-            computedStyle = element.currentStyle;
-        } else {
-            computedStyle = document.defaultView.getComputedStyle(element, null);
+
+        var style;
+        try {
+            style = element.currentStyle[styleProperty];
+        } catch (e) {
+            style = document.defaultView.getComputedStyle(element, null).getPropertyValue(styleProperty);
         }
-        return computedStyle[styleProperty];
+        return style;
     };
 
     ///////////////////
@@ -561,6 +562,10 @@
     ////RETRIEVE ATTRIBUTE
     //////////////////
     Spektral.retrieveAttribute = function (element, attribute) {
+
+        var attr;
+        attr = element.getAttribute(attribute);
+        return attr;
         //apparently harder than I thought
     };
 
@@ -575,8 +580,8 @@
     ////GET TEXT CONTENT
     ///////////////////
     Spektral.getTextContent = function (element) {
-        //innerHTML?
-        var content = element.textContent; // Check if textContent is defined
+
+        var content = element.textContent;
         if (content === "undefined") {
             content = element.innerText;
         }
@@ -823,7 +828,7 @@
     };
 
     //////////////////
-    ////SHOW ELEMENT IDENTIFIERS - lists an elements tag name, along with id, name, class if available
+    ////SHOW ELEMENT IDENTIFIERS - lists any elements tag name, along with id, name, class if available
     /////////////////
     Spektral.showElementIdentifiers = function (element) {
 

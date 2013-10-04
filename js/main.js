@@ -193,12 +193,21 @@ function onFileLoaded(jsonObj) {
 //var notFound = Spektral.getElement("notFound");
 //console.log("Not Found: " + notFound);
 var tt = Spektral.getElement("toggleTarget");
+console.log("tt is: " + tt);
 var toggVisibility = Spektral.getElement("toggleVis");
 
 Spektral.attachEventListener(toggVisibility, "click", onToggVisClick);
 
 function onToggVisClick() {
   Spektral.toggleVisibility(tt, true);
-};
+}
+
+//var ttMargin = Spektral.getStyle(tt, "margin");
+//console.log("Margin: " + ttMargin);
+
+var ttSrc = Spektral.retrieveAttribute(tt, "src");
+console.log("ttSrc: " + ttSrc);
+
+
 
 
