@@ -19,7 +19,8 @@
         document = window.document,
         docElem = document.documentElement,
         debug = false,
-        mouseEvents;
+        mouseEvents,
+        styleLibrary = {};
 
     mouseEvents = ["click", "dblclick", "mousedown", "mousemove", "mouseup", "mouseover", "mouseout"];
 
@@ -280,7 +281,7 @@
                 try {
                     result = new ActiveXObject(versions[i]);
                     return result;
-                } catch (e) { Spektral.throwError("loadFile: Couldn't find the proper XMLHttp version."); }
+                } catch (err) { Spektral.throwError("loadFile: Couldn't find the proper XMLHttp version."); }
             }
         }
         return result;
@@ -335,7 +336,7 @@
                 attrLength = attributes.length;
 
                 if (attrLength >= 1) {
-                    for (j = 0; j < attributes.length; j++) {
+                    for (j = 0; j < attributes.length; j += 1) {
                         listObject[attributes.item(j).name] = attributes.item(j).value;
                     }
                 }
@@ -353,7 +354,7 @@
     };
 
 
-    //***UTILS************************************************************
+    //***ELEMENTS************************************************************
 
     //////////////////
     ////QUERY 
@@ -367,7 +368,7 @@
             } else {
                 item = q;
             }
-        } catch (e) {}
+        } catch (err) {}
 
         return item;
     };
@@ -524,11 +525,14 @@
     Spektral.removeElement = function (element) {
         try {
             element.remove();
-        } catch (e) {
+        } catch (err) {
             Spektral.log("removeElement: .remove() was not available. Reverting to removeChild().")
             element.parentNode.removeChild(element);
         }
     };
+
+
+    //***STYLE************************************************************
 
     //////////////////
     ////SET STYLE
@@ -541,15 +545,101 @@
     ////GET STYLE
     //////////////////
     Spektral.getStyle = function (element, styleProperty) {
-
+        styleProperty = styleProperty || undefined;
         var style;
-        try {
-            style = element.currentStyle[styleProperty];
-        } catch (e) {
-            style = document.defaultView.getComputedStyle(element, null).getPropertyValue(styleProperty);
+        if(styleProperty !== undefined) {
+            try {
+                style = element.currentStyle[styleProperty];
+            } catch (err) {
+                style = document.defaultView.getComputedStyle(element, null).getPropertyValue(styleProperty);
+            }
+        } else {
+            try {
+                //style =  Spektral.getStyleAttributes(element);
+            } catch (err) {
+                Spektral.throwError("getStyle: Could not get style.")
+            }
         }
         return style;
     };
+
+    ///////////////////
+    ///GET STYLE ATTRIBUTES
+    ///////////////////
+    Spektral.getStyleAttributes = function (element) {
+
+        var inlineStyle;
+
+        inlineStyle = Spektral.getInlineStyle(element);
+    };
+
+    //////////////////
+    ////GET INLINE STYLE
+    //////////////////
+    Spektral.getInlineStyle = function (element) {
+        var style = Spektral.getNodeAttributes(element).style, attributes, attr, styleObject = {}, i, val, prop;
+        attributes = Spektral.splitString(style, ";");
+        for (i = 0; i < attributes.length; i += 1) {
+            if(attributes[i] !== "") {
+                attr = Spektral.splitString(attributes[i], ":");
+                val = Spektral.stripWhiteSpace(attr[0]);
+                prop = Spektral.stripWhiteSpace(attr[1]);
+                styleObject[val] = prop;
+            }
+        }
+        return styleObject;
+    };
+
+    //////////////////
+    ////GET CSS STYLE
+    //////////////////
+    Spektral.getCSSStyle = function (element) {
+        //working on adapting this to my needs
+        //http://stackoverflow.com/questions/9430659/how-to-get-all-the-applied-styles-of-an-element-by-just-giving-its-id
+        if (!elem) return []; // Element does not exist, empty list.
+        var win = document.defaultView || window, style, styleNode = [];
+        if (win.getComputedStyle) { /* Modern browsers */
+            style = win.getComputedStyle(elem, '');
+            for (var i=0; i<style.length; i++) {
+                styleNode.push( style[i] + ':' + style.getPropertyValue(style[i]) );
+                //               ^name ^           ^ value ^
+            }
+        } else if (elem.currentStyle) { /* IE */
+            style = elem.currentStyle;
+            for (var name in currentStyle) {
+                styleNode.push( name + ':' + currentStyle[name] );
+            }
+        } else { /* Ancient browser..*/
+            style = elem.style;
+            for (var i=0; i<style.length; i++) {
+                styleNode.push( style[i] + ':' + style[style[i]] );
+            }
+        }
+        return styleNode;
+    };
+
+    //////////////////
+    ////REMEMBER STYLE
+    //////////////////
+    Spektral.rememberStyle = function (element) {
+        Spektral.log("Remembering style");
+        var styleObject = {}, currentStyle;
+
+        currentStyle = Spektral.getStyle(element);
+
+        Spektral.log("currentStyle: " + currentStyle);
+
+        Spektral.log("styleObject: " + styleObject);
+    };
+
+    //////////////////
+    ////RESTORE STYLE
+    //////////////////
+    Spektral.restoreStyle = function (element) {
+        Spektral.log("Restoring style");
+    };
+
+    //***ATTRIBUTES************************************************************
 
     ///////////////////
     ////CREATE SET ATTRIBUTE - check if this works on existing attributes
@@ -563,8 +653,19 @@
     //////////////////
     Spektral.retrieveAttribute = function (element, attribute) {
 
-        var attr;
+        var attr, nodeAttrs;
         attr = element.getAttribute(attribute);
+        //maybe if this fails do a manual check?
+        Spektral.log(attribute);
+        if(attr === null) {
+            nodeAttrs = Spektral.getNodeAttributes(element);
+            attr = nodeAttrs[attribute];
+
+            if (attr === undefined) {
+                attr = null;
+                Spektral.throwError("retrieveAttribute: Attribute does not exist. Are you calling its name correctly?");
+            }
+        }
         return attr;
         //apparently harder than I thought
     };
@@ -572,8 +673,15 @@
     //////////////////
     ////DESTROY ATTRIBUTE
     //////////////////
-    Spektral.destroyAttribute = function (element, attribute, value) {
-
+    Spektral.destroyAttribute = function (element, attribute) {
+        if(element.hasAttribute(attribute)) {
+            element.removeAttribute(attribute);
+            if(element.getAttribute(attribute) !== null) {
+                Spektral.throwError("destroyElement: Attribute was unable to be removed for some reason.")
+            } else {
+                Spektral.log("Attribute destroyed.");
+            }
+        }
     };
 
     ////////////////////
@@ -594,7 +702,7 @@
     Spektral.getNodeAttributes = function (element) {
         var attributes = element.attributes, attrObj = {}, i;
         if (attributes.length >= 1) {
-            for (i = 0; i < attributes.length; i++) {
+            for (i = 0; i < attributes.length; i += 1) {
                 attrObj[attributes.item(i).name] = attributes.item(i).value;
             }
         }
@@ -674,7 +782,7 @@
     ///////////////////////////////
     Spektral.getNodes = function (list) {
 
-//        for (var i = 0; i < list.length; i++) {
+//        for (var i = 0; i < list.length; i += 1) {
 //            return list[i].nodeType;
 //        }
     };
@@ -696,6 +804,8 @@
         }
         return nodeArray;
     };
+
+    //***UTILS***********************************************************
 
     /////////////////////
     ////IS OBJECT EMPTY
@@ -723,7 +833,7 @@
         var info;
         try {
             info = JSON.stringify(element);
-        } catch (e) {}
+        } catch (err) {}
 
         return info;
     };
@@ -769,6 +879,21 @@
         return request.split(character);
     };
 
+    //////////////////
+    ////STRIP WHITE SPACE
+    //////////////////
+    Spektral.stripWhiteSpace = function (request, removeAll) {
+        Spektral.log("sws: " + request);
+        removeAll = removeAll || false;
+        var newString;
+        if(removeAll !== false) {
+            newString = request.replace(/\s+/g, '');
+        } else {
+            newString = request.replace(/(^\s+|\s+$)/g,'');
+        }
+        return newString;
+    };
+
     ////////////////////
     ////LIST ELEMENTS
     ////////////////////
@@ -778,7 +903,7 @@
 
         var all = document.getElementsByTagName("*"), elementArray = [], node, i;
 
-        for (i = 0; i < all.length; i++) {
+        for (i = 0; i < all.length; i += 1) {
             if (attribute === "id") {
                 node = all[i].id;
                 if (node !== "") {
@@ -806,7 +931,7 @@
         if (type !== 'array' && type !== 'nodelist') {
             Spektral.throwError("listArrayElements: You must pass either an array or nodelist to this function.")
         } else {
-            for (i = 0; i < array.length; i++) {
+            for (i = 0; i < array.length; i += 1) {
                 if (type === 'nodelist') {
                     Spektral.log("NodeList: listArrayElement: item" + i + ": " + array[i].nodeName);
                 } else if (type === 'array') {
@@ -822,7 +947,7 @@
     Spektral.listChildNodes = function (element) {
         var children = element.childNodes, i;
         Spektral.log("Children of: " + element.nodeName);
-        for (i = 0; i < children.length; i++) {
+        for (i = 0; i < children.length; i += 1) {
             Spektral.log("Child: " + children[i]);
         }
     };

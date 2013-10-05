@@ -68,6 +68,14 @@ textarea {
     background: #3d6623;
 }
 
+#toggleTarget {
+    /*display:block; */
+    /*margin: 20px;*/
+    /*visibility:visible; */
+    /*border: 5px solid red;*/
+    padding: 50px;
+}
+
 
 
 
