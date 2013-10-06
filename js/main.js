@@ -204,11 +204,18 @@ var style = Spektral.getInlineStyle(tt);
 //Spektral.rememberInlineStyle(tt);
 
 var toggVisibility = Spektral.getElement("toggleVis");
+var toggDisplay = Spektral.getElement("toggleDis");
 
 Spektral.attachEventListener(toggVisibility, "click", onToggVisClick);
+Spektral.attachEventListener(toggDisplay, "click", onToggVisClick);
 
-function onToggVisClick() {
-  Spektral.toggleVisibility(tt, true);
+function onToggVisClick(e) {
+
+    var target = Spektral.getTarget(e);
+    var useType = Spektral.retrieveAttribute(target, "data-usetype");
+
+    //Spektral.log("Togg clicked: useType: " + useType);
+    Spektral.toggleVisibility(tt, useType);
 }
 
 //var ttMargin = Spektral.getStyle(tt, "margin");
