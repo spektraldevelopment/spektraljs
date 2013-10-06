@@ -582,19 +582,22 @@
     };
 
     //////////////////
+    ////CLEAR STYLE - clears all styling of element
+    //////////////////
+    Spektral.clearStyle = function (element) {
+
+    };
+
+    //////////////////
     ////GET INLINE STYLE
     //////////////////
     Spektral.getInlineStyle = function (element) {
 
         var style = Spektral.getNodeAttributes(element).style, attributes, attr, styleObject = {}, i, val, oldVal, prop, checkForHypen;
-
         attributes = Spektral.splitString(style, ";");
         for (i = 0; i < attributes.length; i += 1) {
             if(attributes[i] !== "") {
                 attr = Spektral.splitString(attributes[i], ":");
-
-                Spektral.log("getInlineStyle: attr: " + attr);//--Soemthing weird is going on here, will investigate.
-
                 val = Spektral.stripWhiteSpace(attr[0]);//Must convert anything that has a hyphen
                 checkForHypen = Spektral.detectCharacter(val, "-");
                 if(checkForHypen === true) {
@@ -643,22 +646,24 @@
     //////////////////
     Spektral.updateInlineStyleLib = function (id, object) {
         inlineStyleLibrary[id] = object;
-        Spektral.log("updateInlineStyleLib: " + Spektral.getInfo(inlineStyleLibrary));
+        //Spektral.log("updateInlineStyleLib: " + Spektral.getInfo(inlineStyleLibrary));
     };
 
     //////////////////
-    ////SAVE INLINE STYLE - when toggled off we must remember the inline style
+    ////SAVE INLINE STYLE
     //////////////////
-    Spektral.saveInlineStyle = function (element) {
+    Spektral.saveInlineStyle = function (element, useVisibility) {
+
+        useVisibility = useVisibility || false;
         //Since an element remembers its css rules when brought back,
         //it seems like I just have to remember the inline style
         Spektral.log("Saving inline style.");
         var inlineStyle, elementsID, ID;
-
         inlineStyle = Spektral.getInlineStyle(element);
-
+        if(useVisibility === true) {
+            inlineStyle["visibility"] = "visible";//If we're toggling visibility
+        }
         elementsID = Spektral.getElementIdentifiers(element);
-
         if(elementsID.id !== "") {
             ID = elementsID.id;
         } else if (elementsID.name !== "") {
@@ -666,7 +671,6 @@
         } else {
             Spektral.throwError("saveInlineStyle: Element must have an id or name attribute in order to be saved to inline style library.");
         }
-
         Spektral.updateInlineStyleLib(ID, inlineStyle);
     };
 
@@ -674,11 +678,10 @@
     ////RESTORE INLINE STYLE
     //////////////////
     Spektral.restoreInlineStyle = function (element) {//restoreInlineStyle
-        Spektral.log("restoring inline style");
+
+        Spektral.log("Restoring inline style.");
         var elementsID, requestedElement, savedProps, item, propArray = [];
-
         elementsID = Spektral.getElementIdentifiers(element);
-
         if(elementsID.id !== "") {
             requestedElement = elementsID.id;
         } else if (elementsID.name !== "") {
@@ -686,15 +689,11 @@
         } else {
             Spektral.throwError("restoreInlineStyle: Element must have an id or name attribute in order to be restored.");
         }
-
         savedProps = inlineStyleLibrary[requestedElement];
-
         for (item in savedProps) {
             var property = item + ":" + savedProps[item];
             propArray.push(property);
         }
-
-        var pType = Spektral.getType(propArray);
         Spektral.setStyle(element, propArray);
     };
 
@@ -758,7 +757,7 @@
     };
 
     //////////////////////
-    ////GET NODE ATTRIBUTES
+    ////GET NODE ATTRIBUTES - possible duplicate of listNodeAttributes - might want to merge
     //////////////////////
     Spektral.getNodeAttributes = function (element) {
         var attributes = element.attributes, attrObj = {}, i;
@@ -767,7 +766,6 @@
                 attrObj[attributes.item(i).name] = attributes.item(i).value;
             }
         }
-        Spektral.log("getNodeAttributes: " + Spektral.getInfo(attrObj));
         return attrObj;
     };
 
@@ -819,8 +817,8 @@
 
         if(useDisplay != false) {
             currentAttr = Spektral.getStyle(element, "display");
-            if (currentAttr === "block" || currentAttr === "inline-block" || currentAttr === "inherit") {
-                Spektral.saveInlineStyle(element);
+            if (currentAttr === "block" || currentAttr === "inline" || currentAttr === "inline-block" || currentAttr === "inherit") {
+                Spektral.saveInlineStyle(element);//Test for if display is not set!!!!!!!!!
                 Spektral.setStyle(element, "display:none");
             } else {
                 Spektral.restoreInlineStyle(element);
@@ -828,10 +826,12 @@
         } else {
             //When toggled hidden and brought back, element loses its display:block - will fix
             currentAttr = Spektral.getStyle(element, "visibility");
+            Spektral.log("visibility: currentAtrr: " + currentAttr);
             if (currentAttr === "visible") {
+                Spektral.saveInlineStyle(element, true);
                 Spektral.setStyle(element, "visibility:hidden");
             } else {
-                Spektral.setStyle(element, "visibility:visible");
+                Spektral.restoreInlineStyle(element);
             }
             Spektral.log("toggleVisibility: " + currentAttr);
         }
