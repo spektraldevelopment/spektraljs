@@ -808,16 +808,14 @@
     //////////////////
     ////TOGGLE VISIBILITY
     //////////////////
-    Spektral.toggleVisibility = function (element, useDisplay, displayType) {
+    Spektral.toggleVisibility = function (element, useDisplay) {
 
         useDisplay = useDisplay || false;
-        displayType = displayType || "block";
 
-        var currentAttr, displayString;
+        var displayType = Spektral.getStyle(element, "display"), visState, visString;
 
         if(useDisplay != false) {
-            currentAttr = Spektral.getStyle(element, "display");
-            if (currentAttr === "block" || currentAttr === "inline" || currentAttr === "inline-block" || currentAttr === "inherit") {
+            if (displayType === "block" || displayType === "inline" || displayType === "inline-block" || displayType === "inherit") {
                 Spektral.saveInlineStyle(element);//Test for if display is not set!!!!!!!!!
                 Spektral.setStyle(element, "display:none");
             } else {
@@ -825,15 +823,16 @@
             }
         } else {
             //When toggled hidden and brought back, element loses its display:block - will fix
-            currentAttr = Spektral.getStyle(element, "visibility");
-            Spektral.log("visibility: currentAtrr: " + currentAttr);
-            if (currentAttr === "visible") {
+            visState = Spektral.getStyle(element, "visibility");
+            if (visState === "visible") {
                 Spektral.saveInlineStyle(element, true);
-                Spektral.setStyle(element, "visibility:hidden");
+
+                visString = "display:" + displayType + "; visibility:hidden;";
+
+                Spektral.setStyle(element, visString);
             } else {
                 Spektral.restoreInlineStyle(element);
             }
-            Spektral.log("toggleVisibility: " + currentAttr);
         }
     };
 

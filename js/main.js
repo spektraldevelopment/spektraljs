@@ -208,7 +208,7 @@ var toggVisibility = Spektral.getElement("toggleVis");
 Spektral.attachEventListener(toggVisibility, "click", onToggVisClick);
 
 function onToggVisClick() {
-  Spektral.toggleVisibility(tt);
+  Spektral.toggleVisibility(tt, true);
 }
 
 //var ttMargin = Spektral.getStyle(tt, "margin");
