@@ -545,7 +545,12 @@
             propString = prop;
         } else if (pType === "array") {
             for (i = 0; i < prop.length; i += 1) {
-                propString += prop[i] + "; ";// I don't think the extra space at the end will cause any problems
+                if (i !== prop.length - 1) {
+                    propString += prop[i] + "; ";
+                } else {
+                    //The extra space at the end causes a problem, so we'll have to remove it
+                    propString += prop[i] + ";";
+                }
             }
         } else {
             Spektral.throwError("setStyle: Property must be a string or array.")
@@ -582,6 +587,7 @@
     Spektral.getInlineStyle = function (element) {
 
         var style = Spektral.getNodeAttributes(element).style, attributes, attr, styleObject = {}, i, val, oldVal, prop, checkForHypen;
+
         attributes = Spektral.splitString(style, ";");
         for (i = 0; i < attributes.length; i += 1) {
             if(attributes[i] !== "") {
@@ -761,6 +767,7 @@
                 attrObj[attributes.item(i).name] = attributes.item(i).value;
             }
         }
+        Spektral.log("getNodeAttributes: " + Spektral.getInfo(attrObj));
         return attrObj;
     };
 
@@ -812,7 +819,6 @@
 
         if(useDisplay != false) {
             currentAttr = Spektral.getStyle(element, "display");
-            //Element loses styling when this is used - will fix
             if (currentAttr === "block" || currentAttr === "inline-block" || currentAttr === "inherit") {
                 Spektral.saveInlineStyle(element);
                 Spektral.setStyle(element, "display:none");
