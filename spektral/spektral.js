@@ -19,10 +19,8 @@
         document = window.document,
         docElem = document.documentElement,
         debug = false,
-        mouseEvents,
-        styleLibrary = {};
-
-    mouseEvents = ["click", "dblclick", "mousedown", "mousemove", "mouseup", "mouseover", "mouseout"];
+        mouseEvents = ["click", "dblclick", "mousedown", "mousemove", "mouseup", "mouseover", "mouseout"],
+        inlineStyleLibrary = {};
 
     //////////////////
     ////DEBUG
@@ -125,7 +123,7 @@
     ///////////////////
     ///CANCEL PROPOGATION
     ///////////////////
-    Spektral.cancelPropogation = function (e) {
+    Spektral.cancelPropagation = function (e) {
         if (e.stopPropagation) {
             e.stopPropagation();
         } else {
@@ -302,6 +300,7 @@
         for (child = parentNode.firstChild; child !== null; child = child.nextSibling) {
             type = Spektral.getType(child);
 
+
             if (type === "text") {
                 //CDATA and Text
                 //nodeArray.push(child.nodeValue);//Remember to code this to handle if the main node has textContent
@@ -471,7 +470,7 @@
 
         var newElementID, parentNode, newElement, body = Spektral.getElement("body"), errorString;
 
-        Spektral.log("createNewElement: parent type: " + Spektral.getType(parent));
+        //Spektral.log("createNewElement: parent type: " + Spektral.getType(parent));
 
         newElementID = id || null;
 
@@ -499,7 +498,6 @@
         if (newElementID !== null) {
             newElement.id = newElementID;
         }
-
         return newElement;
     };
 
@@ -507,6 +505,7 @@
     ////MOVE TO AFTER
     //////////////////
     Spektral.moveToAfter = function (element, targetElement) {
+
         var parent = element.parentNode;
         parent.insertBefore(element, targetElement.nextSibling);
     };
@@ -515,6 +514,7 @@
     ////MOVE TO BEFORE
     //////////////////
     Spektral.moveToBefore = function (element, targetElement) {
+
         var parent = element.parentNode;
         parent.insertBefore(element, targetElement);
     };
@@ -523,6 +523,7 @@
     ////REMOVE ELEMENT
     //////////////////
     Spektral.removeElement = function (element) {
+
         try {
             element.remove();
         } catch (err) {
@@ -534,17 +535,29 @@
 
     //***STYLE************************************************************
 
+
     //////////////////
     ////SET STYLE
     //////////////////
     Spektral.setStyle = function (element, prop) {
-        element.setAttribute("style", prop);
+        var pType = Spektral.getType(prop), propString = "", i;
+        if(pType === "string") {
+            propString = prop;
+        } else if (pType === "array") {
+            for (i = 0; i < prop.length; i += 1) {
+                propString += prop[i] + "; ";// I don't think the extra space at the end will cause any problems
+            }
+        } else {
+            Spektral.throwError("setStyle: Property must be a string or array.")
+        }
+        element.setAttribute("style", propString);
     };
 
     //////////////////
     ////GET STYLE
     //////////////////
     Spektral.getStyle = function (element, styleProperty) {
+
         styleProperty = styleProperty || undefined;
         var style;
         if(styleProperty !== undefined) {
@@ -555,7 +568,7 @@
             }
         } else {
             try {
-                //style =  Spektral.getStyleAttributes(element);
+                style =  Spektral.getInlineStyle(element);
             } catch (err) {
                 Spektral.throwError("getStyle: Could not get style.")
             }
@@ -563,26 +576,25 @@
         return style;
     };
 
-    ///////////////////
-    ///GET STYLE ATTRIBUTES
-    ///////////////////
-    Spektral.getStyleAttributes = function (element) {
-
-        var inlineStyle;
-
-        inlineStyle = Spektral.getInlineStyle(element);
-    };
-
     //////////////////
     ////GET INLINE STYLE
     //////////////////
     Spektral.getInlineStyle = function (element) {
-        var style = Spektral.getNodeAttributes(element).style, attributes, attr, styleObject = {}, i, val, prop;
+
+        var style = Spektral.getNodeAttributes(element).style, attributes, attr, styleObject = {}, i, val, oldVal, prop, checkForHypen;
         attributes = Spektral.splitString(style, ";");
         for (i = 0; i < attributes.length; i += 1) {
             if(attributes[i] !== "") {
                 attr = Spektral.splitString(attributes[i], ":");
-                val = Spektral.stripWhiteSpace(attr[0]);
+
+                Spektral.log("getInlineStyle: attr: " + attr);//--Soemthing weird is going on here, will investigate.
+
+                val = Spektral.stripWhiteSpace(attr[0]);//Must convert anything that has a hyphen
+                checkForHypen = Spektral.detectCharacter(val, "-");
+                if(checkForHypen === true) {
+                    oldVal = val;
+                    val = Spektral.convertToCamel(oldVal);
+                }
                 prop = Spektral.stripWhiteSpace(attr[1]);
                 styleObject[val] = prop;
             }
@@ -591,52 +603,93 @@
     };
 
     //////////////////
-    ////GET CSS STYLE
+    ////CONVERT TO CAMEL
     //////////////////
-    Spektral.getCSSStyle = function (element) {
-        //working on adapting this to my needs
-        //http://stackoverflow.com/questions/9430659/how-to-get-all-the-applied-styles-of-an-element-by-just-giving-its-id
-        if (!elem) return []; // Element does not exist, empty list.
-        var win = document.defaultView || window, style, styleNode = [];
-        if (win.getComputedStyle) { /* Modern browsers */
-            style = win.getComputedStyle(elem, '');
-            for (var i=0; i<style.length; i++) {
-                styleNode.push( style[i] + ':' + style.getPropertyValue(style[i]) );
-                //               ^name ^           ^ value ^
-            }
-        } else if (elem.currentStyle) { /* IE */
-            style = elem.currentStyle;
-            for (var name in currentStyle) {
-                styleNode.push( name + ':' + currentStyle[name] );
-            }
-        } else { /* Ancient browser..*/
-            style = elem.style;
-            for (var i=0; i<style.length; i++) {
-                styleNode.push( style[i] + ':' + style[style[i]] );
+    Spektral.convertToCamel = function (request, char) {
+
+        char = char || "-";
+        var splitRequest = Spektral.splitString(request, char), newString, stringToConvert, i;
+        newString = splitRequest[0];
+        for (i = 0; i < splitRequest.length; i += 1) {
+            if (i !== 0) {
+                stringToConvert = splitRequest[i].charAt(0).toUpperCase() + splitRequest[i].slice(1);
+                newString += stringToConvert;
             }
         }
-        return styleNode;
+        return newString;
     };
 
     //////////////////
-    ////REMEMBER STYLE
+    ////QUERY INLINE STYLE LIB - allow getElement as well
     //////////////////
-    Spektral.rememberStyle = function (element) {
-        Spektral.log("Remembering style");
-        var styleObject = {}, currentStyle;
+    Spektral.queryInlineStyleLib = function (element) {
 
-        currentStyle = Spektral.getStyle(element);
-
-        Spektral.log("currentStyle: " + currentStyle);
-
-        Spektral.log("styleObject: " + styleObject);
+        var elementObj;
+        elementObj = inlineStyleLibrary[element];
+        if (elementObj === undefined) {
+            Spektral.throwError("queryInlineStyleLib: Could not locate element in library.")
+        }
+        return elementObj;
     };
 
     //////////////////
-    ////RESTORE STYLE
+    ////UPDATE INLINE STYLE LIB
     //////////////////
-    Spektral.restoreStyle = function (element) {
-        Spektral.log("Restoring style");
+    Spektral.updateInlineStyleLib = function (id, object) {
+        inlineStyleLibrary[id] = object;
+        Spektral.log("updateInlineStyleLib: " + Spektral.getInfo(inlineStyleLibrary));
+    };
+
+    //////////////////
+    ////SAVE INLINE STYLE - when toggled off we must remember the inline style
+    //////////////////
+    Spektral.saveInlineStyle = function (element) {
+        //Since an element remembers its css rules when brought back,
+        //it seems like I just have to remember the inline style
+        Spektral.log("Saving inline style.");
+        var inlineStyle, elementsID, ID;
+
+        inlineStyle = Spektral.getInlineStyle(element);
+
+        elementsID = Spektral.getElementIdentifiers(element);
+
+        if(elementsID.id !== "") {
+            ID = elementsID.id;
+        } else if (elementsID.name !== "") {
+            ID = elementsID.name;
+        } else {
+            Spektral.throwError("saveInlineStyle: Element must have an id or name attribute in order to be saved to inline style library.");
+        }
+
+        Spektral.updateInlineStyleLib(ID, inlineStyle);
+    };
+
+    //////////////////
+    ////RESTORE INLINE STYLE
+    //////////////////
+    Spektral.restoreInlineStyle = function (element) {//restoreInlineStyle
+        Spektral.log("restoring inline style");
+        var elementsID, requestedElement, savedProps, item, propArray = [];
+
+        elementsID = Spektral.getElementIdentifiers(element);
+
+        if(elementsID.id !== "") {
+            requestedElement = elementsID.id;
+        } else if (elementsID.name !== "") {
+            requestedElement = elementsID.name;
+        } else {
+            Spektral.throwError("restoreInlineStyle: Element must have an id or name attribute in order to be restored.");
+        }
+
+        savedProps = inlineStyleLibrary[requestedElement];
+
+        for (item in savedProps) {
+            var property = item + ":" + savedProps[item];
+            propArray.push(property);
+        }
+
+        var pType = Spektral.getType(propArray);
+        Spektral.setStyle(element, propArray);
     };
 
     //***ATTRIBUTES************************************************************
@@ -645,6 +698,7 @@
     ////CREATE SET ATTRIBUTE - check if this works on existing attributes
     //////////////////
     Spektral.createSetAttribute = function (element, attribute, value) {
+
         element.setAttribute(attribute, value);
     };
 
@@ -674,6 +728,7 @@
     ////DESTROY ATTRIBUTE
     //////////////////
     Spektral.destroyAttribute = function (element, attribute) {
+
         if(element.hasAttribute(attribute)) {
             element.removeAttribute(attribute);
             if(element.getAttribute(attribute) !== null) {
@@ -759,12 +814,11 @@
             currentAttr = Spektral.getStyle(element, "display");
             //Element loses styling when this is used - will fix
             if (currentAttr === "block" || currentAttr === "inline-block" || currentAttr === "inherit") {
+                Spektral.saveInlineStyle(element);
                 Spektral.setStyle(element, "display:none");
             } else {
-                displayString = "display:" + displayType;
-                Spektral.setStyle(element, displayString);
+                Spektral.restoreInlineStyle(element);
             }
-            Spektral.log("toggVis: display: " + currentAttr);
         } else {
             //When toggled hidden and brought back, element loses its display:block - will fix
             currentAttr = Spektral.getStyle(element, "visibility");
@@ -773,29 +827,15 @@
             } else {
                 Spektral.setStyle(element, "visibility:visible");
             }
-            Spektral.log("toggVis: visibility: " + currentAttr);
+            Spektral.log("toggleVisibility: " + currentAttr);
         }
     };
-
-    /////////////////////////////
-    ////GET NODES -- DO I need this?
-    ///////////////////////////////
-    Spektral.getNodes = function (list) {
-
-//        for (var i = 0; i < list.length; i += 1) {
-//            return list[i].nodeType;
-//        }
-    };
-
 
     //////////////////////
     ////LIST NODE ATTRIBUTES
     //////////////////////
     Spektral.listNodeAttributes = function (node) {
         var nodeArray = [], key;
-//        if (me.hasOwnProperty(prop)) {
-//            alert(me[prop]);
-//        }
         for (key in node) {
             if (node.hasOwnProperty(key)) {
                 nodeArray.push(key);
@@ -823,7 +863,11 @@
     ////DETECT CHARACTER
     //////////////////
     Spektral.detectCharacter = function (request, character) {
-
+        var detected = false, test = request.match(character);
+        if(test !== null) {
+            detected = true;
+        }
+        return detected;
     };
 
     ///////////////////
@@ -883,7 +927,6 @@
     ////STRIP WHITE SPACE
     //////////////////
     Spektral.stripWhiteSpace = function (request, removeAll) {
-        Spektral.log("sws: " + request);
         removeAll = removeAll || false;
         var newString;
         if(removeAll !== false) {
@@ -953,15 +996,25 @@
     };
 
     //////////////////
-    ////SHOW ELEMENT IDENTIFIERS - lists any elements tag name, along with id, name, class if available
+    ////GET ELEMENT IDENTIFIERS - lists any elements tag name, along with id, name, class if available
     /////////////////
-    Spektral.showElementIdentifiers = function (element) {
+    Spektral.getElementIdentifiers = function (element) {
 
+        var identifiers = {}, nn;
+
+        nn = element.nodeName;
+
+        identifiers["id"] = element.id;
+        identifiers["name"] = element.name;
+        identifiers["class"] = element.className;
+        identifiers["nodeName"] = Spektral.convertCase(nn);
+
+        //Spektral.log("Identifiers for: " + element + " : " + Spektral.getInfo(identifiers));
+        return identifiers;
     };
 
-
     ////////////////////
-    ////GET TYPE
+    ////GET TYPE - Maybe if obj is id'd as an element return node name in lower case
     ////////////////////
     Spektral.getType = function (obj) {
         return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();

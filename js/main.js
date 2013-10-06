@@ -194,10 +194,14 @@ function onFileLoaded(jsonObj) {
 //console.log("Not Found: " + notFound);
 var tt = Spektral.getElement("toggleTarget");
 //Spektral.destroyAttribute(tt, "style");
-console.log("tt is: " + tt);
+//console.log("tt is: " + tt);
+Spektral.getElementIdentifiers(tt);
 
-Spektral.getStyleAttributes(tt);
+var style = Spektral.getInlineStyle(tt);
+//console.log("Style: " + style.margin);
 //Spektral.rememberStyle(tt);
+
+//Spektral.rememberInlineStyle(tt);
 
 var toggVisibility = Spektral.getElement("toggleVis");
 
@@ -212,6 +216,20 @@ function onToggVisClick() {
 
 //var ttSrc = Spektral.retrieveAttribute(tt, "src");
 //console.log("ttSrc: " + ttSrc);
+
+var headOne = Spektral.getElement("headingOne");
+var headTwo = Spektral.getElement("headingTwo");
+
+//Spektral.rememberInlineStyle(headOne);
+//Spektral.rememberInlineStyle(headTwo);
+
+//var headOneStyle = Spektral.queryInlineStyleLib("headingOne");
+
+//console.log("headingONe padding-top: " + headOneStyle.paddingTop);
+
+var tooManyHyphens = Spektral.convertToCamel("one-two-three-four");
+
+//onsole.log("TOO MANY HYPHENS: " + tooManyHyphens);
 
 
 
