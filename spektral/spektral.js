@@ -48,7 +48,12 @@
     ////ATTACH EVENT LISTENER
     /////////////////
     Spektral.attachEventListener = function (eventTarget, eventType, eventHandler) {
-        var i;
+        //if eventTarget is undefined then use get element to find it
+        var i, targetType = Spektral.getType(eventTarget);
+
+        if(targetType === "string") {
+            eventTarget = Spektral.getElement(eventTarget);
+        }
         if (eventTarget.addEventListener) {
             eventTarget.addEventListener(eventType, eventHandler, false);
         } else if (eventTarget.attachEvent) {
@@ -57,7 +62,6 @@
         } else {
             eventTarget["on" + eventType] = eventHandler;
         }
-
         for (i = 0; i < mouseEvents.length; i++) {
             if (eventType === mouseEvents[i]) {
                 Spektral.useHandCursor(eventTarget);
@@ -70,7 +74,11 @@
     ////DETACH EVENT LISTENER
     /////////////////
     Spektral.detachEventListener = function (eventTarget, eventType, eventHandler) {
-        var i;
+        //if eventTarget is undefined then use get element to find it
+        var i, targetType = Spektral.getType(eventTarget);
+        if(targetType === "string") {
+            eventTarget = Spektral.getElement(eventTarget);
+        }
         if (eventTarget.removeEventListener) {
             eventTarget.removeEventListener(eventType, eventHandler, false);
         } else if (eventTarget.detachEvent) {
@@ -710,9 +718,7 @@
     //////////////////
     ////RESTORE INLINE STYLE
     //////////////////
-    Spektral.restoreInlineStyle = function (element, type) {//restoreInlineStyle
-
-        Spektral.log("Restoring inline style. TYPE: " + type);
+    Spektral.restoreInlineStyle = function (element) {
 
         var elementsID, requestedElement, savedProps, item, propArray = [];
 
@@ -728,8 +734,7 @@
 
         savedProps = inlineStyleLibrary[requestedElement];
 
-        Spektral.log("Saved props: " + Spektral.getInfo(savedProps));
-
+        Spektral.log("restoreInlineStyle: Saved props: " + Spektral.getInfo(savedProps));
 
         for (item in savedProps) {
             var property = item + ":" + savedProps[item];
@@ -816,17 +821,14 @@
     Spektral.showElement = function (element, useDisplay) {
 
         useDisplay = display || false;
-        Spektral.toggleVisibility(element, useDisplay);
 
-//        var displayType = Spektral.getStyle(element, "display"), visState, visString;
-//
-//        if(useDisplay !== false) {
-//
-//            Spektral.log("showElement: display: block")
-//        } else {
-//
-//            Spektral.log("showElement: visibility: true");
-//        }
+        var currentVState = Spektral.getStyle(element, "visibility"), currentDState = Spektral.getStyle(element, "display"), checkLibForItem = Spektral.queryInlineStyleLib(element);
+
+        if (currentVState === "visible" && currentDState !== "none") {
+            //Element is already seen, don't do anything
+        } else {
+            Spektral.restoreInlineStyle(element);
+        }
     };
 
     //////////////////
@@ -835,65 +837,29 @@
     Spektral.hideElement = function (element, useDisplay) {
 
         useDisplay = display || false;
-        Spektral.toggleVisibility(element, useDisplay);
-
-//        var displayType = Spektral.getStyle(element, "display"), visState, visString;
-//
-//        if(useDisplay !== false) {
-//            Spektral.setStyle(element, "display:none");
-//            Spektral.log("hideElement: display: none")
-//        } else {
-//            Spektral.setStyle(element, "visibility:true");
-//            Spektral.log("hideElement: visibility: false");
-//        }
+        Spektral.toggleVisibility(element);
     };
 
     //////////////////
     ////TOGGLE VISIBILITY
     //////////////////
-    Spektral.toggleVisibility = function (element, type) {
+    Spektral.toggleVisibility = function (element) {
 
-        //Problem - If you toggle visibility and then immediately toggle display, the element does not reappear
-        type = type || "visibility";
-
-        var currentDState = Spektral.getStyle(element, "display"), currentVState = Spektral.getStyle(element, "visibility"), visString, checkLibForItem = Spektral.queryInlineStyleLib(element);;
-
+        var currentVState = Spektral.getStyle(element, "visibility"), currentDState = Spektral.getStyle(element, "display"),  styleString, checkLibForItem = Spektral.queryInlineStyleLib(element);
         if(currentDState === "none") {
-            //The element has been turned off via display or visibility
-            //We'll restore it
-            Spektral.restoreInlineStyle(element, "display");
-        } else if (currentVState === "hidden") {
-            Spektral.restoreInlineStyle(element, "visibility");
+            //Element is already not visible, so we will restore it
+            Spektral.restoreInlineStyle(element);
         } else {
 
-            if(type === "display") {
-                if (currentDState === "block" || currentDState === "inline" || currentDState === "inline-block" || currentDState === "inherit") {
-
-                    if (checkLibForItem === null) {
-                        //Element does not exist in library, add to library
-                        Spektral.saveInlineStyle(element);
-                    }
-                    Spektral.setStyle(element, "display:none; visibility:visible;");
-                } else {
-                    Spektral.restoreInlineStyle(element, type);
+            if(currentVState === "visible") {
+                if (checkLibForItem === null) {
+                    //Element does not exist in library, add to library
+                    Spektral.saveInlineStyle(element);
                 }
+                styleString = "display:" + currentDState + "; visibility:hidden;";
+                Spektral.setStyle(element, styleString);
             } else {
-                //When toggled hidden and brought back, element loses its display:block - will fix
-                //visState = Spektral.getStyle(element, "visibility");
-                if (currentVState === "visible") {
-                    if(checkLibForItem === null) {
-                        //Element does not exist in library, add to library
-                        Spektral.saveInlineStyle(element, true);
-                        visString = "display:none; visibility:hidden;";
-                    } else {
-                        visString = "display:" + checkLibForItem.display + "; visibility:hidden;";
-                    }
-
-                    //visString = "display:" + savedDState + "; visibility:hidden;";
-                    Spektral.setStyle(element, visString);
-                } else {
-                    Spektral.restoreInlineStyle(element, type);
-                }
+                Spektral.restoreInlineStyle(element);
             }
         }
     };
@@ -903,6 +869,21 @@
     //////////////////
     Spektral.toggleDisplay = function (element) {
 
+        var currentDState = Spektral.getStyle(element, "display"), currentVState = Spektral.getStyle(element, "visibility"), checkLibForItem = Spektral.queryInlineStyleLib(element);
+        if(currentVState === "hidden") {
+            //Element is already not visible, so we will restore it
+            Spektral.restoreInlineStyle(element);
+        } else {
+            if (currentDState === "block" || currentDState === "inline" || currentDState === "inline-block" || currentDState === "inherit") {
+                if (checkLibForItem === null) {
+                    //Element does not exist in library, add to library
+                    Spektral.saveInlineStyle(element);
+                }
+                Spektral.setStyle(element, "display:none; visibility:visible;");
+            } else {
+                Spektral.restoreInlineStyle(element);
+            }
+        }
     };
 
     //////////////////////

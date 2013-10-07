@@ -215,8 +215,34 @@ function onToggVisClick(e) {
     var useType = Spektral.retrieveAttribute(target, "data-usetype");
 
     //Spektral.log("Togg clicked: useType: " + useType);
-    Spektral.toggleVisibility(tt, useType);
+    //Spektral.toggleVisibility(tt, useType);
+    if(useType === "display") {
+        Spektral.toggleDisplay(tt);
+    }
+
+    if(useType === "visibility") {
+        Spektral.toggleVisibility(tt);
+    }
 }
+
+Spektral.attachEventListener("showElement", "click", hideShowElement);
+Spektral.attachEventListener("hideElement", "click", hideShowElement);
+
+function hideShowElement(e) {
+    var target = Spektral.getTarget(e).id;
+    if(target === "showElement") {
+        Spektral.log("Show Element");
+        Spektral.showElement(tt);
+    } else {
+        Spektral.hideElement(tt);
+        Spektral.log("hideElement");
+    }
+
+    Spektral.detachEventListener("showElement", "click", hideShowElement);
+
+};
+
+
 
 //var ttMargin = Spektral.getStyle(tt, "margin");
 //console.log("Margin: " + ttMargin);
