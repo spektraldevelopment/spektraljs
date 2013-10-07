@@ -260,7 +260,17 @@ var headTwo = Spektral.getElement("headingTwo");
 
 var tooManyHyphens = Spektral.convertToCamel("one-two-three-four");
 
-//onsole.log("TOO MANY HYPHENS: " + tooManyHyphens);
+//console.log("TOO MANY HYPHENS: " + tooManyHyphens);
+
+Spektral.saveInlineStyle(tt);
+
+var styleAttrs = Spektral.getInfo(Spektral.queryInlineStyleLib(tt));
+console.log("BEFORE styleAttrs: " + styleAttrs);
+
+Spektral.updateLibItem(tt, "border:2px solid grey");
+
+styleAttrs = Spektral.getInfo(Spektral.queryInlineStyleLib(tt));
+console.log("AFTER styleAttrs: " + styleAttrs);
 
 
 

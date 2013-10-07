@@ -643,6 +643,19 @@
         return newString;
     };
 
+    //***************INLINE STYLE LIBRARY********************
+
+    /////////////////
+    ///SHOW INLINE STYLE LIB
+    ////////////////
+    Spektral.showInlineStyleLib = function () {
+        var lib = Spektral.getInfo(inlineStyleLibrary);
+        if (lib === "{}") {
+            lib = "Inline Style library is empty."
+        }
+        return lib;
+    };
+
     //////////////////
     ////QUERY INLINE STYLE LIB - allow getElement as well
     //////////////////
@@ -669,7 +682,7 @@
     //////////////////
     ////UPDATE INLINE STYLE LIB
     //////////////////
-    Spektral.updateInlineStyleLib = function (id, object) {
+    Spektral.updateInlineStyleLib = function (id, object) {//updateInlineStyleLib
         inlineStyleLibrary[id] = object;
         //Spektral.log("updateInlineStyleLib: " + Spektral.getInfo(inlineStyleLibrary));
     };
@@ -677,16 +690,29 @@
     //////////////////
     ////UPDATE LIB ITEM
     //////////////////
-    Spektral.updateLibItem = function (id, newProp) {
-        var itemToUpdate = inlineStyleLibrary[id], prop;
+    Spektral.updateLibItem = function (element, newProp) {
+        //Change a property in the inline style library without overwriting existing data
+        var item = Spektral.queryInlineStyleLib(element), elementsID, ID, val, detectDelim = Spektral.detectCharacter(newProp, ";");
 
-        Spektral.log("updateLibItem: Props for: " + itemToUpdate);
-        for (prop in itemToUpdate) {
-            Spektral.log("Value: " + prop + " Prop: " + itemToUpdate[prop]);
+        if(detectDelim === true) {
+            Spektral.throwError("updateLibItem: Sorry, for now you can only update one value at a time. Don't use ; as well.")
         }
 
+        elementsID = Spektral.getElementIdentifiers(element);
+        if(elementsID.id !== "") {
+            ID = elementsID.id;
+        } else if (elementsID.name !== "") {
+            ID = elementsID.name;
+        } else {
+            Spektral.throwError("queryInlineStyleLib: Element must have an id or name attribute in order to be located in the inline style library.");
+        }
+        Spektral.log("ITEM IS: " + ID);
 
-        //Spektral.log("updateLibItem: " + itemToUpdate);
+        val = Spektral.splitString(newProp, ":");
+
+        //Spektral.log("VAL IS: " + val[0] + " PROP is: " + val[1] + " currentLibValue: " + item["margin"]);
+
+        item[val[0]] = val[1];
     };
 
     //////////////////
@@ -734,7 +760,7 @@
 
         savedProps = inlineStyleLibrary[requestedElement];
 
-        Spektral.log("restoreInlineStyle: Saved props: " + Spektral.getInfo(savedProps));
+        //Spektral.log("restoreInlineStyle: Saved props: " + Spektral.getInfo(savedProps));
 
         for (item in savedProps) {
             var property = item + ":" + savedProps[item];
