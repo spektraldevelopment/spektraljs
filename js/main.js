@@ -231,14 +231,12 @@ Spektral.attachEventListener("hideElement", "click", hideShowElement);
 function hideShowElement(e) {
     var target = Spektral.getTarget(e).id;
     if(target === "showElement") {
-        Spektral.log("Show Element");
+        //Spektral.log("Show Element");
         Spektral.showElement(tt);
     } else {
-        Spektral.hideElement(tt);
-        Spektral.log("hideElement");
+        Spektral.hideElement(tt, true);
+        //Spektral.log("hideElement");
     }
-
-    Spektral.detachEventListener("showElement", "click", hideShowElement);
 
 };
 

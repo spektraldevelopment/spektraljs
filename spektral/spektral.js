@@ -600,7 +600,7 @@
     ////CLEAR STYLE - clears all styling of element
     //////////////////
     Spektral.clearStyle = function (element) {
-
+        Spektral.destroyAttribute(element, "style");
     };
 
     //////////////////
@@ -818,14 +818,15 @@
     //////////////////
     ////SHOW ELEMENT
     //////////////////
-    Spektral.showElement = function (element, useDisplay) {
+    Spektral.showElement = function (element) {
 
-        useDisplay = display || false;
-
-        var currentVState = Spektral.getStyle(element, "visibility"), currentDState = Spektral.getStyle(element, "display"), checkLibForItem = Spektral.queryInlineStyleLib(element);
+        var
+            currentVState = Spektral.getStyle(element, "visibility"),
+            currentDState = Spektral.getStyle(element, "display");
 
         if (currentVState === "visible" && currentDState !== "none") {
             //Element is already seen, don't do anything
+            Spektral.log(element + " is already visible.")
         } else {
             Spektral.restoreInlineStyle(element);
         }
@@ -836,8 +837,34 @@
     //////////////////
     Spektral.hideElement = function (element, useDisplay) {
 
-        useDisplay = display || false;
-        Spektral.toggleVisibility(element);
+        useDisplay = useDisplay || false;
+
+        var
+            currentVState = Spektral.getStyle(element, "visibility"),
+            currentDState = Spektral.getStyle(element, "display"),
+            checkLibForItem = Spektral.queryInlineStyleLib(element),
+            styleString;
+
+        if(currentVState === "hidden" || currentDState === "none") {
+            Spektral.log(element + " is already hidden.")
+        } else {
+
+            //Check if item is in lib
+            if (checkLibForItem === null) {
+                //Element does not exist in library, add to library
+                Spektral.saveInlineStyle(element);
+            }
+
+            if(useDisplay === true) {
+                //set display to none
+                styleString = "display:none; visibility:" + currentVState + ";";
+            } else {
+                //set visibility to hidden
+                styleString = "display:" + currentDState + "; visibility: hidden";
+            }
+            Spektral.setStyle(element, styleString);
+        }
+
     };
 
     //////////////////
@@ -845,7 +872,12 @@
     //////////////////
     Spektral.toggleVisibility = function (element) {
 
-        var currentVState = Spektral.getStyle(element, "visibility"), currentDState = Spektral.getStyle(element, "display"),  styleString, checkLibForItem = Spektral.queryInlineStyleLib(element);
+        var
+            currentVState = Spektral.getStyle(element, "visibility"),
+            currentDState = Spektral.getStyle(element, "display"),
+            styleString,
+            checkLibForItem = Spektral.queryInlineStyleLib(element);
+
         if(currentDState === "none") {
             //Element is already not visible, so we will restore it
             Spektral.restoreInlineStyle(element);
@@ -869,7 +901,11 @@
     //////////////////
     Spektral.toggleDisplay = function (element) {
 
-        var currentDState = Spektral.getStyle(element, "display"), currentVState = Spektral.getStyle(element, "visibility"), checkLibForItem = Spektral.queryInlineStyleLib(element);
+        var
+            currentDState = Spektral.getStyle(element, "display"),
+            currentVState = Spektral.getStyle(element, "visibility"),
+            checkLibForItem = Spektral.queryInlineStyleLib(element);
+
         if(currentVState === "hidden") {
             //Element is already not visible, so we will restore it
             Spektral.restoreInlineStyle(element);
