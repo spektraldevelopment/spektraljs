@@ -120,6 +120,25 @@
     };
 
     //////////////////
+    ////CREATE EVENT
+    //////////////////
+    Spektral.createEvent = function (eventName, details, bub, can) {
+
+        details = details || null;
+        bub = bub || true;
+        can = can || true;
+
+        var event, key;
+
+        if (details === null) {
+            event = new Event(eventName);
+        } else {
+            event = new CustomEvent(eventName, { 'detail': details, bubbles: bub, cancelable: can });
+        }
+        return event;
+    };
+
+    //////////////////
     ////CANCEL EVENT
     //////////////////
     Spektral.cancelEvent = function (e) {

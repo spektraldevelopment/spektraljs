@@ -265,13 +265,38 @@ var tooManyHyphens = Spektral.convertToCamel("one-two-three-four");
 Spektral.saveInlineStyle(tt);
 
 var styleAttrs = Spektral.getInfo(Spektral.queryInlineStyleLib(tt));
-console.log("BEFORE styleAttrs: " + styleAttrs);
+//console.log("BEFORE styleAttrs: " + styleAttrs);
 
 Spektral.updateLibItem(tt, "border:2px solid grey");
 
 styleAttrs = Spektral.getInfo(Spektral.queryInlineStyleLib(tt));
-console.log("AFTER styleAttrs: " + styleAttrs);
+//console.log("AFTER styleAttrs: " + styleAttrs);
 
+//Perhaps make this work with having to define a var
+var spektralEvent = Spektral.createEvent("Spektral");
 
+Spektral.attachEventListener(window, "Spektral", onSpektralCalled);
 
+function onSpektralCalled(e) {
+    if (e.detail === undefined) {
+        console.log("Event: " + e);
+    } else {
+        console.log("Custom Event: " + Spektral.getInfo(e.detail));
+    }
+};
 
+window.dispatchEvent(spektralEvent);
+
+var custEvent = Spektral.createEvent("custEvent", { id: "customEvent", message: "Here's a message from this custom event.", value: "5678"});
+
+Spektral.attachEventListener(window, "custEvent", onSpektralCalled);
+
+window.dispatchEvent(custEvent);
+
+// var event = new Event('build');
+
+// // Listen for the event.
+// window.addEventListener('build', function (e) { console.log("This works!!!") }, false);
+
+// // Dispatch the event.
+// window.dispatchEvent(event);
