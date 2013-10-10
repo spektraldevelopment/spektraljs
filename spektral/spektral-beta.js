@@ -50,10 +50,9 @@
     Spektral.attachEventListener = function (eventTarget, eventType, eventHandler) {
         //if eventTarget is undefined then use get element to find it
         var i, targetType = Spektral.getType(eventTarget);
-
         if(targetType === "string") {
             eventTarget = Spektral.getElement(eventTarget);
-        }
+        } 
         if (eventTarget.addEventListener) {
             eventTarget.addEventListener(eventType, eventHandler, false);
         } else if (eventTarget.attachEvent) {
@@ -63,7 +62,7 @@
             eventTarget["on" + eventType] = eventHandler;
         }
         for (i = 0; i < mouseEvents.length; i++) {
-            if (eventType === mouseEvents[i]) {
+            if (eventType === mouseEvents[i] && targetType !== "global") {
                 Spektral.useHandCursor(eventTarget);
                 break;
             }
@@ -87,9 +86,8 @@
         } else {
             eventTarget["on" + eventType] = null;
         }
-
         for (i = 0; i < mouseEvents.length; i++) {
-            if (eventType === mouseEvents[i]) {
+            if (eventType === mouseEvents[i] && targetType !== "global") {
                 Spektral.useDefaultCursor(eventTarget);
                 break;
             }
@@ -173,8 +171,71 @@
         Spektral.createSetAttribute(element, "style", "cursor: " + cursorType);
     };
 
+    ///////////////////
+    ///USE DEFAULT CURSOR
+    ///////////////////
     Spektral.useDefaultCursor = function (element) {
         Spektral.createSetAttribute(element, "style", "cursor: default");
+    };
+
+    ///////////////////
+    ///GET MOUSE POS - In the midst of getting mouseX/Y within the element
+    ///////////////////
+    Spektral.getMousePos = function (evt) {
+        //evt = evt || window.event;
+
+        if (evt === undefined) {
+            Spektral.throwError("getMousePos: Event is undefined. If not targeting a specific element, use [window].");
+        }
+
+        Spektral.log("getMousePos: evt: " + evt);
+        Spektral.log("getMousePos: evt: type: " + Spektral.getType(evt));
+        Spektral.log("getMousePos: element: " + Spektral.getTarget(evt));
+
+        var 
+            mouse = {}, 
+            x = 0, 
+            y = 0, 
+            offsetX = 0, offsetY = 0, 
+            mouseX = 0, mouseY = 0, 
+            target = Spektral.getTarget(evt), 
+            targetX = Spektral.getPos(target).x, targetY = Spektral.getPos(target).y;
+
+        Spektral.log("getMousePos: targetX: " + targetX + " targetY: " + targetY);
+
+        // if event object has pageX property
+        // get position using pageX, pageY
+        if (evt.pageX) {
+
+            x = evt.pageX;
+            y = evt.pageY;
+            Spektral.log("PageX/Y available.");
+        } else if (evt.clientX) {
+                
+            // if documentElement.scrollLeft supported
+            if (document.documentElement.scrollLeft) {
+
+                offsetX = document.documentElement.scrollLeft;
+                offsetY = document.documentElement.scrollTop;
+            } else if (document.body) {
+
+                offsetX = document.body.scrollLeft;
+                offsetY = document.body.scrollTop;
+            }
+
+            x = evt.clientX + offsetX;
+            y = evt.clientY + offsetY;  
+            Spektral.log("ClientX/Y available.");
+        } else {
+            Spektral.throwError("getMousePos: pageX/Y and clientX/Y could not be found.");
+        }
+
+        mouse["x"] = x;
+        mouse["y"] = y;
+        mouse["mouseX"] = evt.mouseX;
+        mouse["mouseY"] = evt.mouseY;
+
+        return mouse;
     };
 
     ///////////////////
@@ -982,6 +1043,24 @@
     };
 
     //***UTILS***********************************************************
+
+    /////////////////////
+    ////ROUND NUM
+    ////////////////////
+    Spektral.roundNum = function (num) {
+        //Going to round numbers
+    };
+
+    /////////////////////
+    ////GET POS
+    ////////////////////
+    Spektral.getPos = function (element) {
+        var pos = {}, el;
+        el = element.getBoundingClientRect();
+        pos["x"] = el.left;
+        pos["y"] = el.top;
+        return pos;
+    };
 
     /////////////////////
     ////IS OBJECT EMPTY

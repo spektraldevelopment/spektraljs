@@ -193,6 +193,19 @@ function onFileLoaded(jsonObj) {
 //var notFound = Spektral.getElement("notFound");
 //console.log("Not Found: " + notFound);
 var tt = Spektral.getElement("toggleTarget");
+
+var ttPos = Spektral.getPos(tt);
+
+//console.log("tt: Pos: x: " + ttPos.x + );
+
+Spektral.attachEventListener(tt, 'click', onTTClick);
+
+function onTTClick(evt) {
+    var mousePos = Spektral.getMousePos(evt);
+
+    //console.log("Toggle Target: mousePos x: " + mousePos.x + " y: " + mousePos.y + " mouseX: " + mousePos.mouseX + " mouseY: " + mousePos.mouseY);
+}
+
 //Spektral.destroyAttribute(tt, "style");
 //console.log("tt is: " + tt);
 Spektral.getElementIdentifiers(tt);
@@ -292,6 +305,14 @@ var custEvent = Spektral.createEvent("custEvent", { id: "customEvent", message: 
 Spektral.attachEventListener(window, "custEvent", onSpektralCalled);
 
 window.dispatchEvent(custEvent);
+
+//Spektral.attachEventListener(window, 'click', onWindowClick);
+
+function onWindowClick(e) {
+    var mousePos = Spektral.getMousePos();
+
+    console.log("mousePos x: " + mousePos.x + " y: " + mousePos.y);
+}
 
 // var event = new Event('build');
 
