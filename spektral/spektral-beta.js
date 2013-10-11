@@ -188,9 +188,9 @@
             Spektral.throwError("getMousePos: Event is undefined. If not targeting a specific element, use [window].");
         }
 
-        Spektral.log("getMousePos: evt: " + evt);
-        Spektral.log("getMousePos: evt: type: " + Spektral.getType(evt));
-        Spektral.log("getMousePos: element: " + Spektral.getTarget(evt));
+        // Spektral.log("getMousePos: evt: " + evt);
+        // Spektral.log("getMousePos: evt: type: " + Spektral.getType(evt));
+        // Spektral.log("getMousePos: element: " + Spektral.getTarget(evt));
 
         var 
             mouse = {}, 
@@ -201,7 +201,7 @@
             target = Spektral.getTarget(evt), 
             targetX = Spektral.getPos(target).x, targetY = Spektral.getPos(target).y;
 
-        Spektral.log("getMousePos: targetX: " + targetX + " targetY: " + targetY);
+        //Spektral.log("getMousePos: targetX: " + targetX + " targetY: " + targetY);
 
         // if event object has pageX property
         // get position using pageX, pageY
@@ -230,10 +230,12 @@
             Spektral.throwError("getMousePos: pageX/Y and clientX/Y could not be found.");
         }
 
-        mouse["x"] = x;
-        mouse["y"] = y;
-        mouse["mouseX"] = evt.mouseX;
-        mouse["mouseY"] = evt.mouseY;
+        mouse["x"] = Spektral.roundNum(x);
+        mouse["y"] = Spektral.roundNum(y);
+        mouse["mouseX"] = Spektral.roundNum(x - targetX);
+        mouse["mouseY"] = Spektral.roundNum(y - targetY);
+
+        Spektral.log("get MousePos: y: " + y + " targetY: " + targetY);
 
         return mouse;
     };
@@ -1047,8 +1049,17 @@
     /////////////////////
     ////ROUND NUM
     ////////////////////
-    Spektral.roundNum = function (num) {
-        //Going to round numbers
+    Spektral.roundNum = function (num, type) {
+        type = type || "regular";
+        var roundedNum = 0;
+        if (type === "regular") {
+            roundedNum = Math.round(num);
+        } else if (type === "up") {
+            roundedNum = Math.ceil(num)
+        } else if (type === "down") {
+            roundedNum = Math.floor(num);
+        }
+        return roundedNum;
     };
 
     /////////////////////
@@ -1059,6 +1070,11 @@
         el = element.getBoundingClientRect();
         pos["x"] = el.left;
         pos["y"] = el.top;
+        
+        pos["left"] = el.left;
+        pos["top"] = el.top;
+        pos["right"] = el.right;
+        pos["bottom"] = el.bottom;
         return pos;
     };
 
