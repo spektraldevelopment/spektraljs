@@ -208,10 +208,10 @@
         } else if (evt.clientX) {
                 
             // if documentElement.scrollLeft supported
-            if (document.documentElement.scrollLeft) {
+            if (docElem.scrollLeft) {
 
-                offsetX = document.documentElement.scrollLeft;
-                offsetY = document.documentElement.scrollTop;
+                offsetX = docElem.scrollLeft;
+                offsetY = docElem.scrollTop;
             } else if (document.body) {
 
                 offsetX = document.body.scrollLeft;
