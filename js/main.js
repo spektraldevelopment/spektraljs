@@ -197,7 +197,7 @@ var tt = Spektral.getElement("toggleTarget");
 //Spektral.destroyAttribute(tt, "style");
 //console.log("tt is: " + tt);
 //Spektral.getElementIdentifiers(tt);
-Spektral.attachEventListener(tt, "click", onImageClick);
+//Spektral.attachEventListener(tt, "click", onImageClick);
 
 //var style = Spektral.getInlineStyle(tt);
 //console.log("Style: " + style.margin);
@@ -205,28 +205,28 @@ Spektral.attachEventListener(tt, "click", onImageClick);
 
 //Spektral.rememberInlineStyle(tt);
 
-//var toggVisibility = Spektral.getElement("toggleVis");
+var toggVisibility = Spektral.getElement("toggleVis");
 //var toggDisplay = Spektral.getElement("toggleDis");
 //
-//Spektral.attachEventListener(toggVisibility, "click", onToggVisClick);
+Spektral.attachEventListener(toggVisibility, "click", onToggVisClick);
 //Spektral.attachEventListener(toggDisplay, "click", onToggVisClick);
 //
-//function onToggVisClick(e) {
-//
-//    var target = Spektral.getTarget(e);
-//    var useType = Spektral.retrieveAttribute(target, "data-usetype");
-//
-//    //Spektral.log("Togg clicked: useType: " + useType);
-//    //Spektral.toggleVisibility(tt, useType);
-//    if(useType === "display") {
-//        Spektral.toggleDisplay(tt);
-//    }
-//
-//    if(useType === "visibility") {
-//        Spektral.toggleVisibility(tt);
-//    }
-//}
-//
+function onToggVisClick(e) {
+
+    var target = Spektral.getTarget(e);
+    var useType = Spektral.retrieveAttribute(target, "data-usetype");
+
+    //Spektral.log("Togg clicked: useType: " + useType);
+    //Spektral.toggleVisibility(tt, useType);
+    if(useType === "display") {
+        Spektral.toggleDisplay(tt);
+    }
+
+    if(useType === "visibility") {
+        Spektral.toggleVisibility(tt);
+    }
+}
+
 //Spektral.attachEventListener("showElement", "click", hideShowElement);
 //Spektral.attachEventListener("hideElement", "click", hideShowElement);
 //

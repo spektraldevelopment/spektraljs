@@ -168,8 +168,12 @@
     ///////////////////
     Spektral.useHandCursor = function (element, cursorType) {
         cursorType = cursorType || "pointer";
-        var cursorString = "cursor:" + cursorType;
-        Spektral.appendStyle(element, cursorString);
+        var cursorString = "cursor:" + cursorType, elemType = Spektral.getType(element);
+        if(elemType !== "input") {
+            //input elements have the hand cursor by default,
+            //there might be others so I will keep an eye out
+            Spektral.appendStyle(element, cursorString);
+        }
     };
 
     ///////////////////
@@ -946,9 +950,10 @@
     //////////////////////
     Spektral.getNodeAttributes = function (element) {
         var attributes = element.attributes, attrObj = {}, i;
-        //Spektral.listArrayElements(attributes);
+        Spektral.listArrayElements(attributes);
         if (attributes.length >= 1) {
             for (i = 0; i < attributes.length; i += 1) {
+                Spektral.log("getNodeAttributes: name: " + attributes.item(i).name + " nodeName: " + attributes.item(i).nodeName);
                 attrObj[attributes.item(i).nodeName] = attributes.item(i).value;//attributes.item(i).name
             }
         }
