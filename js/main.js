@@ -86,12 +86,12 @@ Spektral.debug();
 //    ]
 //};
 //
-var jsonFile = Spektral.loadJSON("js/data.json", onFileLoaded);
+//var jsonFile = Spektral.loadJSON("js/data.json", onFileLoaded);
 //
-function onFileLoaded(jsonObj) {
+//function onFileLoaded(jsonObj) {
     //console.log("JSON: " + jsonObj.projects[1].title);
     //console.log("External json file ready for traversing.");
-}
+//}
 //
 //var multipleGroups = {
 //    "groups" : [
@@ -196,50 +196,51 @@ var tt = Spektral.getElement("toggleTarget");
 
 //Spektral.destroyAttribute(tt, "style");
 //console.log("tt is: " + tt);
-Spektral.getElementIdentifiers(tt);
+//Spektral.getElementIdentifiers(tt);
+Spektral.attachEventListener(tt, "click", onImageClick);
 
-var style = Spektral.getInlineStyle(tt);
+//var style = Spektral.getInlineStyle(tt);
 //console.log("Style: " + style.margin);
 //Spektral.rememberStyle(tt);
 
 //Spektral.rememberInlineStyle(tt);
 
-var toggVisibility = Spektral.getElement("toggleVis");
-var toggDisplay = Spektral.getElement("toggleDis");
-
-Spektral.attachEventListener(toggVisibility, "click", onToggVisClick);
-Spektral.attachEventListener(toggDisplay, "click", onToggVisClick);
-
-function onToggVisClick(e) {
-
-    var target = Spektral.getTarget(e);
-    var useType = Spektral.retrieveAttribute(target, "data-usetype");
-
-    //Spektral.log("Togg clicked: useType: " + useType);
-    //Spektral.toggleVisibility(tt, useType);
-    if(useType === "display") {
-        Spektral.toggleDisplay(tt);
-    }
-
-    if(useType === "visibility") {
-        Spektral.toggleVisibility(tt);
-    }
-}
-
-Spektral.attachEventListener("showElement", "click", hideShowElement);
-Spektral.attachEventListener("hideElement", "click", hideShowElement);
-
-function hideShowElement(e) {
-    var target = Spektral.getTarget(e).id;
-    if(target === "showElement") {
-        //Spektral.log("Show Element");
-        Spektral.showElement(tt);
-    } else {
-        Spektral.hideElement(tt, true);
-        //Spektral.log("hideElement");
-    }
-
-};
+//var toggVisibility = Spektral.getElement("toggleVis");
+//var toggDisplay = Spektral.getElement("toggleDis");
+//
+//Spektral.attachEventListener(toggVisibility, "click", onToggVisClick);
+//Spektral.attachEventListener(toggDisplay, "click", onToggVisClick);
+//
+//function onToggVisClick(e) {
+//
+//    var target = Spektral.getTarget(e);
+//    var useType = Spektral.retrieveAttribute(target, "data-usetype");
+//
+//    //Spektral.log("Togg clicked: useType: " + useType);
+//    //Spektral.toggleVisibility(tt, useType);
+//    if(useType === "display") {
+//        Spektral.toggleDisplay(tt);
+//    }
+//
+//    if(useType === "visibility") {
+//        Spektral.toggleVisibility(tt);
+//    }
+//}
+//
+//Spektral.attachEventListener("showElement", "click", hideShowElement);
+//Spektral.attachEventListener("hideElement", "click", hideShowElement);
+//
+//function hideShowElement(e) {
+//    var target = Spektral.getTarget(e).id;
+//    if(target === "showElement") {
+//        //Spektral.log("Show Element");
+//        Spektral.showElement(tt);
+//    } else {
+//        Spektral.hideElement(tt, true);
+//        //Spektral.log("hideElement");
+//    }
+//
+//};
 
 
 
@@ -249,8 +250,8 @@ function hideShowElement(e) {
 //var ttSrc = Spektral.retrieveAttribute(tt, "src");
 //console.log("ttSrc: " + ttSrc);
 
-var headOne = Spektral.getElement("headingOne");
-var headTwo = Spektral.getElement("headingTwo");
+//var headOne = Spektral.getElement("headingOne");
+//var headTwo = Spektral.getElement("headingTwo");
 
 //Spektral.rememberInlineStyle(headOne);
 //Spektral.rememberInlineStyle(headTwo);
@@ -259,62 +260,64 @@ var headTwo = Spektral.getElement("headingTwo");
 
 //console.log("headingONe padding-top: " + headOneStyle.paddingTop);
 
-var tooManyHyphens = Spektral.convertToCamel("one-two-three-four");
+//var tooManyHyphens = Spektral.convertToCamel("one-two-three-four");
 
 //console.log("TOO MANY HYPHENS: " + tooManyHyphens);
 
-Spektral.saveInlineStyle(tt);
+//Spektral.saveInlineStyle(tt);
 
-var styleAttrs = Spektral.getInfo(Spektral.queryInlineStyleLib(tt));
+//var styleAttrs = Spektral.getInfo(Spektral.queryInlineStyleLib(tt));
 //console.log("BEFORE styleAttrs: " + styleAttrs);
 
-Spektral.updateLibItem(tt, "border:2px solid grey");
+//Spektral.updateLibItem(tt, "border:2px solid grey");
 
-styleAttrs = Spektral.getInfo(Spektral.queryInlineStyleLib(tt));
+//styleAttrs = Spektral.getInfo(Spektral.queryInlineStyleLib(tt));
 //console.log("AFTER styleAttrs: " + styleAttrs);
 
 //Perhaps make this work with having to define a var
-var spektralEvent = Spektral.createEvent("Spektral");
+//var spektralEvent = Spektral.createEvent("Spektral");
+//
+//Spektral.attachEventListener(window, "Spektral", onSpektralCalled);
+//
+//function onSpektralCalled(e) {
+//    if (e.detail === undefined) {
+//        //console.log("Event: " + e);
+//    } else {
+//        //console.log("Custom Event: " + Spektral.getInfo(e.detail));
+//    }
+//};
+//
+//window.dispatchEvent(spektralEvent);
+//
+//var custEvent = Spektral.createEvent("custEvent", { id: "customEvent", message: "Here's a message from this custom event.", value: "5678"});
+//
+//Spektral.attachEventListener(window, "custEvent", onSpektralCalled);
+//
+//window.dispatchEvent(custEvent);
+//
+////Spektral.attachEventListener(window, 'click', onWindowClick);
+//
+//function onWindowClick(e) {
+//    var mousePos = Spektral.getMousePos();
+//
+//    console.log("mousePos x: " + mousePos.x + " y: " + mousePos.y);
+//}
+//
+//// var event = new Event('build');
+//
+//// // Listen for the event.
+//// window.addEventListener('build', function (e) { console.log("This works!!!") }, false);
+//
+//// // Dispatch the event.
+//// window.dispatchEvent(event);
+// var spektralImage = Spektral.getElement("spektralImage");
 
-Spektral.attachEventListener(window, "Spektral", onSpektralCalled);
-
-function onSpektralCalled(e) {
-    if (e.detail === undefined) {
-        console.log("Event: " + e);
-    } else {
-        console.log("Custom Event: " + Spektral.getInfo(e.detail));
-    }
-};
-
-window.dispatchEvent(spektralEvent);
-
-var custEvent = Spektral.createEvent("custEvent", { id: "customEvent", message: "Here's a message from this custom event.", value: "5678"});
-
-Spektral.attachEventListener(window, "custEvent", onSpektralCalled);
-
-window.dispatchEvent(custEvent);
-
-//Spektral.attachEventListener(window, 'click', onWindowClick);
-
-function onWindowClick(e) {
-    var mousePos = Spektral.getMousePos();
-
-    console.log("mousePos x: " + mousePos.x + " y: " + mousePos.y);
-}
-
-// var event = new Event('build');
-
-// // Listen for the event.
-// window.addEventListener('build', function (e) { console.log("This works!!!") }, false);
-
-// // Dispatch the event.
-// window.dispatchEvent(event);
- var spektralImage = Spektral.getElement("spektralImage");
-
-Spektral.attachEventListener(spektralImage, "click", onImageClick);
+//Spektral.attachEventListener(spektralImage, "click", onImageClick);
 
  function onImageClick(evt) {
     var m = Spektral.getMousePos(evt);
 
     console.log("Toggle Target: mousePos x: " + m.x + " y: " + m.y + " mouseX: " + m.mouseX + " mouseY: " + m.mouseY);
 }
+
+//Spektral.appendStyle(tt, "margin:10px");

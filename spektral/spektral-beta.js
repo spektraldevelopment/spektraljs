@@ -168,7 +168,8 @@
     ///////////////////
     Spektral.useHandCursor = function (element, cursorType) {
         cursorType = cursorType || "pointer";
-        Spektral.createSetAttribute(element, "style", "cursor: " + cursorType);
+        var cursorString = "cursor:" + cursorType;
+        Spektral.appendStyle(element, cursorString);
     };
 
     ///////////////////
@@ -233,9 +234,7 @@
         mouse["x"] = Spektral.roundNum(x);
         mouse["y"] = Spektral.roundNum(y);
         mouse["mouseX"] = Spektral.roundNum(x - targetX);
-        mouse["mouseY"] = Spektral.roundNum(y - targetY);
-
-        Spektral.log("get MousePos: y: " + y + " targetY: " + targetY);
+        mouse["mouseY"] = Spektral.roundNum(y - targetY);//Appears to work, but try on inline elements to be sure.
 
         return mouse;
     };
@@ -652,7 +651,8 @@
         } else {
             Spektral.throwError("setStyle: Property must be a string or array.")
         }
-        element.setAttribute("style", propString);
+        //element.setAttribute("style", propString);
+        Spektral.createSetAttribute(element, "style", propString);
     };
 
     //////////////////
@@ -679,6 +679,43 @@
     };
 
     //////////////////
+    ////APPEND STYLE
+    //////////////////
+    Spektral.appendStyle = function (element, style) {
+        var
+            currentStyle = Spektral.getInlineStyle(element),
+            styleString = "",
+            key,
+            styleExists = false,
+            newStyle = Spektral.splitString(style, ":"),
+            stringCheck = Spektral.detectCharacter(style, ";");
+
+        if(stringCheck === true) {
+            Spektral.throwError("appendStyle: Sorry, for now you can only append one value at a time. Don't include ; in your string.");
+        }
+
+        for (key in currentStyle) {
+            if (key === newStyle[0]) {
+                //Value already exists, so we'll just change it
+                styleExists = true;
+                styleString += key + ":" + style + ";";
+                Spektral.log("Attribute already exists, changing value!");
+            } else {
+                //We'll just build the string and add the new style value at the end.
+                styleString += key + ":" + currentStyle[key] + "; ";
+            }
+        }
+
+        if(styleExists === false) {
+            //Value is new
+            styleString += style + ";";
+        }
+
+        //Spektral.log("appendStyle: element: " + element + " styleString: " + styleString);
+        Spektral.setStyle(element, styleString);
+    };
+
+    //////////////////
     ////CLEAR STYLE - clears all styling of element
     //////////////////
     Spektral.clearStyle = function (element) {
@@ -691,6 +728,8 @@
     Spektral.getInlineStyle = function (element) {
 
         var style = Spektral.getNodeAttributes(element).style, attributes, attr, styleObject = {}, i, val, oldVal, prop, checkForHypen;
+        //Spektral.log("GET INLINE STYLE!!!!!!!!!!!!!! style: " + style + " element: " + element);
+
         attributes = Spektral.splitString(style, ";");
         for (i = 0; i < attributes.length; i += 1) {
             if(attributes[i] !== "") {
@@ -915,12 +954,20 @@
     //////////////////////
     Spektral.getNodeAttributes = function (element) {
         var attributes = element.attributes, attrObj = {}, i;
+        //Spektral.listArrayElements(attributes);
         if (attributes.length >= 1) {
             for (i = 0; i < attributes.length; i += 1) {
-                attrObj[attributes.item(i).name] = attributes.item(i).value;
+                attrObj[attributes.item(i).nodeName] = attributes.item(i).value;//attributes.item(i).name
             }
         }
         return attrObj;
+    };
+
+    //////////////////
+    ////CHECK FOR ATTRIBUTE - check if an element has a particular attribute
+    //////////////////
+    Spektral.checkForAttribute = function (element, attribute) {
+
     };
 
     //////////////////
@@ -1151,6 +1198,7 @@
     ////SPLIT STRING
     //////////////////
     Spektral.splitString = function (request, character) {
+        //Spektral.log("Split String: request: " + request);
         return request.split(character);
     };
 
@@ -1202,7 +1250,8 @@
     Spektral.listArrayElements = function (array) {
 
         var type = Spektral.getType(array), i;
-        if (type !== 'array' && type !== 'nodelist') {
+
+        if (type !== 'array' && type !== 'nodelist' && type !== "namednodemap") {
             Spektral.throwError("listArrayElements: You must pass either an array or nodelist to this function.")
         } else {
             for (i = 0; i < array.length; i += 1) {
@@ -1210,6 +1259,8 @@
                     Spektral.log("NodeList: listArrayElement: item" + i + ": " + array[i].nodeName);
                 } else if (type === 'array') {
                     Spektral.log("Array: listArrayElement: item" + i + ": " + array[i]);
+                } else if (type === "namednodemap") {
+                    Spektral.log("NamedNodeMap: listArrayElement: item" + i + ": " + array[i].nodeName);
                 }
             }
         }
@@ -1248,6 +1299,7 @@
     ////GET TYPE - Maybe if obj is id'd as an element return node name in lower case
     ////////////////////
     Spektral.getType = function (obj) {
+        //Spektral.log("GET TYPE: " + obj);
         var type;
         if(obj.nodeName !== undefined) {
             //element
