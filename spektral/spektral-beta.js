@@ -176,7 +176,7 @@
     ///USE DEFAULT CURSOR
     ///////////////////
     Spektral.useDefaultCursor = function (element) {
-        Spektral.createSetAttribute(element, "style", "cursor: default");
+        Spektral.appendStyle(element, "cursor: default");
     };
 
     ///////////////////
@@ -189,10 +189,6 @@
             Spektral.throwError("getMousePos: Event is undefined. If not targeting a specific element, use [window].");
         }
 
-        // Spektral.log("getMousePos: evt: " + evt);
-        // Spektral.log("getMousePos: evt: type: " + Spektral.getType(evt));
-        // Spektral.log("getMousePos: element: " + Spektral.getTarget(evt));
-
         var 
             mouse = {}, 
             x = 0, 
@@ -202,15 +198,13 @@
             target = Spektral.getTarget(evt), 
             targetX = Spektral.getPos(target).x, targetY = Spektral.getPos(target).y;
 
-        //Spektral.log("getMousePos: targetX: " + targetX + " targetY: " + targetY);
-
         // if event object has pageX property
         // get position using pageX, pageY
         if (evt.pageX) {
 
             x = evt.pageX;
             y = evt.pageY;
-            Spektral.log("PageX/Y available.");
+            //Spektral.log("PageX/Y available.");
         } else if (evt.clientX) {
                 
             // if documentElement.scrollLeft supported
@@ -226,7 +220,7 @@
 
             x = evt.clientX + offsetX;
             y = evt.clientY + offsetY;  
-            Spektral.log("ClientX/Y available.");
+            //Spektral.log("ClientX/Y available.");
         } else {
             Spektral.throwError("getMousePos: pageX/Y and clientX/Y could not be found.");
         }
@@ -628,9 +622,7 @@
         }
     };
 
-
     //***STYLE************************************************************
-
 
     //////////////////
     ////SET STYLE
@@ -1299,7 +1291,6 @@
     ////GET TYPE - Maybe if obj is id'd as an element return node name in lower case
     ////////////////////
     Spektral.getType = function (obj) {
-        //Spektral.log("GET TYPE: " + obj);
         var type;
         if(obj.nodeName !== undefined) {
             //element
