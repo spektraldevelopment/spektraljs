@@ -194,6 +194,8 @@ Spektral.debug();
 //console.log("Not Found: " + notFound);
 var tt = Spektral.getElement("toggleTarget");
 
+Spektral.getInlineStyle(tt);
+
 //Spektral.destroyAttribute(tt, "style");
 //console.log("tt is: " + tt);
 //Spektral.getElementIdentifiers(tt);
@@ -206,10 +208,10 @@ var tt = Spektral.getElement("toggleTarget");
 //Spektral.rememberInlineStyle(tt);
 
 var toggVisibility = Spektral.getElement("toggleVis");
-//var toggDisplay = Spektral.getElement("toggleDis");
+var toggDisplay = Spektral.getElement("toggleDis");
 //
 Spektral.attachEventListener(toggVisibility, "click", onToggVisClick);
-//Spektral.attachEventListener(toggDisplay, "click", onToggVisClick);
+Spektral.attachEventListener(toggDisplay, "click", onToggVisClick);
 //
 function onToggVisClick(e) {
 
@@ -227,20 +229,20 @@ function onToggVisClick(e) {
     }
 }
 
-//Spektral.attachEventListener("showElement", "click", hideShowElement);
-//Spektral.attachEventListener("hideElement", "click", hideShowElement);
+Spektral.attachEventListener("showElement", "click", hideShowElement);
+Spektral.attachEventListener("hideElement", "click", hideShowElement);
 //
-//function hideShowElement(e) {
-//    var target = Spektral.getTarget(e).id;
-//    if(target === "showElement") {
-//        //Spektral.log("Show Element");
-//        Spektral.showElement(tt);
-//    } else {
-//        Spektral.hideElement(tt, true);
-//        //Spektral.log("hideElement");
-//    }
-//
-//};
+function hideShowElement(e) {
+    var target = Spektral.getTarget(e).id;
+    if(target === "showElement") {
+        //Spektral.log("Show Element");
+        Spektral.showElement(tt);
+    } else {
+        Spektral.hideElement(tt, true);
+        //Spektral.log("hideElement");
+    }
+
+};
 
 
 

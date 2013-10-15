@@ -694,8 +694,8 @@
             if (key === newStyle[0]) {
                 //Value already exists, so we'll just change it
                 styleExists = true;
-                styleString += key + ":" + style + ";";
-                Spektral.log("Attribute already exists, changing value!");
+                styleString += key + ":" + newStyle[1] + "; ";
+                //Spektral.log("Attribute already exists, changing value!");
             } else {
                 //We'll just build the string and add the new style value at the end.
                 styleString += key + ":" + currentStyle[key] + "; ";
@@ -704,7 +704,7 @@
 
         if(styleExists === false) {
             //Value is new
-            styleString += style + ";";
+            styleString += style + "; ";
         }
 
         //Spektral.log("appendStyle: element: " + element + " styleString: " + styleString);
@@ -723,24 +723,51 @@
     //////////////////
     Spektral.getInlineStyle = function (element) {
 
-        var style = Spektral.getNodeAttributes(element).style, attributes, attr, styleObject = {}, i, val, oldVal, prop, checkForHypen;
-        //Spektral.log("GET INLINE STYLE!!!!!!!!!!!!!! style: " + style + " element: " + element);
+//        var style = Spektral.getNodeAttributes(element).style, attributes, attr, styleObject = {}, i, val, oldVal, prop, checkForHypen;
+//        //Spektral.log("GET INLINE STYLE!!!!!!!!!!!!!! style: " + style + " element: " + element);
+//
+//        attributes = Spektral.splitString(style, ";");
+//        for (i = 0; i < attributes.length; i += 1) {
+//
+//
+//            Spektral.log("attributes[i]: " + attributes[i]);
+//
+//            //if(i !== (attributes.length - 1)) {
+//                attr = Spektral.splitString(attributes[i], ":");
+//                Spektral.log("attr[0]: " + attr[0]);
+//                val = Spektral.stripWhiteSpace(attr[0]);//Must convert anything that has a hyphen
+//                checkForHypen = Spektral.detectCharacter(val, "-");
+//                if(checkForHypen === true) {
+//                    oldVal = val;
+//                    val = Spektral.convertToCamel(oldVal);
+//                }
+//                prop = Spektral.stripWhiteSpace(attr[1]);
+//                styleObject[val] = prop;
+//            }
+//        //}
+//        return styleObject;
+        //Spektral.log("OMG: " + element.style);
 
-        attributes = Spektral.splitString(style, ";");
-        for (i = 0; i < attributes.length; i += 1) {
-            if(attributes[i] !== "") {
-                attr = Spektral.splitString(attributes[i], ":");
-                val = Spektral.stripWhiteSpace(attr[0]);//Must convert anything that has a hyphen
-                checkForHypen = Spektral.detectCharacter(val, "-");
-                if(checkForHypen === true) {
-                    oldVal = val;
-                    val = Spektral.convertToCamel(oldVal);
-                }
-                prop = Spektral.stripWhiteSpace(attr[1]);
-                styleObject[val] = prop;
-            }
+
+        //I'm going to try a slightly different approach -*************
+
+        var
+            inlineStyle = element.style.cssText,
+            properties = Spektral.splitString(inlineStyle, ";"),
+            key, val, i;
+
+        for (i = 0; i < properties.length; i += 1) {
+            Spektral.log("properties: " + properties[i]);
         }
-        return styleObject;
+
+        Spektral.listArrayElements(properties);
+
+
+
+
+
+
+       //Spektral.log("getInlineStyle: inlineStyle: " + )
     };
 
     //////////////////
@@ -759,6 +786,14 @@
         }
         return newString;
     };
+
+
+
+
+
+
+
+
 
     //***************INLINE STYLE LIBRARY********************
 
@@ -887,6 +922,14 @@
         Spektral.setStyle(element, propArray);
     };
 
+
+
+
+
+
+
+
+
     //***ATTRIBUTES************************************************************
 
     ///////////////////
@@ -950,10 +993,10 @@
     //////////////////////
     Spektral.getNodeAttributes = function (element) {
         var attributes = element.attributes, attrObj = {}, i;
-        Spektral.listArrayElements(attributes);
+        //Spektral.listArrayElements(attributes);
         if (attributes.length >= 1) {
             for (i = 0; i < attributes.length; i += 1) {
-                Spektral.log("getNodeAttributes: name: " + attributes.item(i).name + " nodeName: " + attributes.item(i).nodeName);
+                //Spektral.log("getNodeAttributes: name: " + attributes.item(i).name + " nodeName: " + attributes.item(i).nodeName);
                 attrObj[attributes.item(i).nodeName] = attributes.item(i).value;//attributes.item(i).name
             }
         }
@@ -970,17 +1013,22 @@
     //////////////////
     ////SHOW ELEMENT
     //////////////////
-    Spektral.showElement = function (element) {
+    Spektral.showElement = function (element, displayType) {
+
+        displayType = displayType || "block";
 
         var
             currentVState = Spektral.getStyle(element, "visibility"),
-            currentDState = Spektral.getStyle(element, "display");
+            currentDState = Spektral.getStyle(element, "display"),
+            displayString = "display:" + displayType;
 
         if (currentVState === "visible" && currentDState !== "none") {
             //Element is already seen, don't do anything
             Spektral.log(element + " is already visible.")
         } else {
-            Spektral.restoreInlineStyle(element);
+            //Spektral.restoreInlineStyle(element);
+            Spektral.appendStyle(element, displayType);
+            Spektral.appendStyle(element, "visibility:visible");
         }
     };
 
@@ -995,26 +1043,33 @@
             currentVState = Spektral.getStyle(element, "visibility"),
             currentDState = Spektral.getStyle(element, "display"),
             checkLibForItem = Spektral.queryInlineStyleLib(element),
-            styleString;
+            visString = "",
+            displayString = "";
+
+
 
         if(currentVState === "hidden" || currentDState === "none") {
             Spektral.log(element + " is already hidden.")
         } else {
 
-            //Check if item is in lib
-            if (checkLibForItem === null) {
-                //Element does not exist in library, add to library
-                Spektral.saveInlineStyle(element);
-            }
+//            //Check if item is in lib
+//            if (checkLibForItem === null) {
+//                //Element does not exist in library, add to library
+//                Spektral.saveInlineStyle(element);
+//            }
 
             if(useDisplay === true) {
                 //set display to none
-                styleString = "display:none; visibility:" + currentVState + ";";
+                //styleString = "display:none; visibility:" + currentVState;
+                Spektral.appendStyle(element, "display:none");
+
             } else {
                 //set visibility to hidden
-                styleString = "display:" + currentDState + "; visibility: hidden";
+                //styleString = "display:" + currentDState + "; visibility: hidden";
+                Spektral.appendStyle(element, "visibility:hidden");
             }
-            Spektral.setStyle(element, styleString);
+            //Spektral.setStyle(element, styleString);
+            //Spektral.appendStyle(element, String);
         }
 
     };
@@ -1026,24 +1081,19 @@
 
         var
             currentVState = Spektral.getStyle(element, "visibility"),
-            currentDState = Spektral.getStyle(element, "display"),
-            styleString,
-            checkLibForItem = Spektral.queryInlineStyleLib(element);
+            currentDState = Spektral.getStyle(element, "display");
 
         if(currentDState === "none") {
-            //Element is already not visible, so we will restore it
-            Spektral.restoreInlineStyle(element);
+            //element is hidden
+            Spektral.toggleDisplay(element);//Issue: what if the previous display state was not block?
         } else {
 
             if(currentVState === "visible") {
-                if (checkLibForItem === null) {
-                    //Element does not exist in library, add to library
-                    Spektral.saveInlineStyle(element);
-                }
-                styleString = "display:" + currentDState + "; visibility:hidden;";
-                Spektral.setStyle(element, styleString);
+                Spektral.appendStyle(element, "visibility:hidden");
+                //Spektral.log("Visible, hiding.");
             } else {
-                Spektral.restoreInlineStyle(element);
+                Spektral.appendStyle(element, "visibility:visible");
+                //Spektral.log("Hidden, showing.");
             }
         }
     };
@@ -1051,25 +1101,26 @@
     //////////////////
     ////TOGGLE DISPLAY
     //////////////////
-    Spektral.toggleDisplay = function (element) {
+    Spektral.toggleDisplay = function (element, displayType) {
+
+        displayType = displayType || "block";
 
         var
             currentDState = Spektral.getStyle(element, "display"),
-            currentVState = Spektral.getStyle(element, "visibility"),
-            checkLibForItem = Spektral.queryInlineStyleLib(element);
+            displayString = "display:" + displayType,
+            currentVState = Spektral.getStyle(element, "visibility");
 
         if(currentVState === "hidden") {
-            //Element is already not visible, so we will restore it
-            Spektral.restoreInlineStyle(element);
+            //element is already hidden
+            Spektral.toggleVisibility(element);
         } else {
-            if (currentDState === "block" || currentDState === "inline" || currentDState === "inline-block" || currentDState === "inherit") {
-                if (checkLibForItem === null) {
-                    //Element does not exist in library, add to library
-                    Spektral.saveInlineStyle(element);
-                }
-                Spektral.setStyle(element, "display:none; visibility:visible;");
+
+            if(currentDState === "block" || currentDState === "inline" || currentDState === "inline-block" || currentDState === "inherit") {
+                Spektral.appendStyle(element, "display:none");
+                Spektral.log("toggleDisplay: Visible, hiding.");
             } else {
-                Spektral.restoreInlineStyle(element);
+                Spektral.appendStyle(element, displayString);
+                Spektral.log("toggleDisplay: Hiding, showing: " + displayString);
             }
         }
     };
@@ -1195,8 +1246,25 @@
     ////SPLIT STRING
     //////////////////
     Spektral.splitString = function (request, character) {
-        //Spektral.log("Split String: request: " + request);
-        return request.split(character);
+
+        var splitArray = [], split = request.split(character), i, detectCharacter = Spektral.detectCharacter(request, character), stripped;
+
+        if(detectCharacter === false) {
+            Spektral.throwError("splitString: Could not split string because character [" + character + "] was not in string.")
+        }
+        for (i = 0; i < split.length; i += 1) {
+            if(split[i] !== "") {
+                stripped = Spektral.stripWhiteSpace(split[i]);
+                splitArray.push(stripped);
+                Spektral.log("SPLIT: " + stripped);
+            }
+        }
+
+        //Spektral.log("SplitArray: character: " + character);
+
+        //Spektral.listArrayElements(splitArray);
+
+        return splitArray;
     };
 
     //////////////////
