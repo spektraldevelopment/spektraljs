@@ -19,8 +19,7 @@
         document = window.document,
         docElem = document.documentElement,
         debug = false,
-        mouseEvents = ["click", "dblclick", "mousedown", "mousemove", "mouseup", "mouseover", "mouseout"],
-        inlineStyleLibrary = {};
+        mouseEvents = ["click", "dblclick", "mousedown", "mousemove", "mouseup", "mouseover", "mouseout"];
 
     //////////////////
     ////DEBUG
@@ -723,51 +722,22 @@
     //////////////////
     Spektral.getInlineStyle = function (element) {
 
-//        var style = Spektral.getNodeAttributes(element).style, attributes, attr, styleObject = {}, i, val, oldVal, prop, checkForHypen;
-//        //Spektral.log("GET INLINE STYLE!!!!!!!!!!!!!! style: " + style + " element: " + element);
-//
-//        attributes = Spektral.splitString(style, ";");
-//        for (i = 0; i < attributes.length; i += 1) {
-//
-//
-//            Spektral.log("attributes[i]: " + attributes[i]);
-//
-//            //if(i !== (attributes.length - 1)) {
-//                attr = Spektral.splitString(attributes[i], ":");
-//                Spektral.log("attr[0]: " + attr[0]);
-//                val = Spektral.stripWhiteSpace(attr[0]);//Must convert anything that has a hyphen
-//                checkForHypen = Spektral.detectCharacter(val, "-");
-//                if(checkForHypen === true) {
-//                    oldVal = val;
-//                    val = Spektral.convertToCamel(oldVal);
-//                }
-//                prop = Spektral.stripWhiteSpace(attr[1]);
-//                styleObject[val] = prop;
-//            }
-//        //}
-//        return styleObject;
-        //Spektral.log("OMG: " + element.style);
-
-
-        //I'm going to try a slightly different approach -*************
-
         var
             inlineStyle = element.style.cssText,
             properties = Spektral.splitString(inlineStyle, ";"),
-            key, val, i;
+            property, key, val, i,
+            styleObject = {};
 
         for (i = 0; i < properties.length; i += 1) {
-            Spektral.log("properties: " + properties[i]);
+            property = Spektral.splitString(properties[i], ":");
+            key = property[0];
+            val = property[1];
+            styleObject[key] = val;
         }
 
-        Spektral.listArrayElements(properties);
+        Spektral.log("getInlineStyle: styleObject: " + Spektral.getInfo(styleObject));
 
-
-
-
-
-
-       //Spektral.log("getInlineStyle: inlineStyle: " + )
+        return styleObject;
     };
 
     //////////////////
@@ -786,149 +756,6 @@
         }
         return newString;
     };
-
-
-
-
-
-
-
-
-
-    //***************INLINE STYLE LIBRARY********************
-
-    /////////////////
-    ///SHOW INLINE STYLE LIB
-    ////////////////
-    Spektral.showInlineStyleLib = function () {
-        var lib = Spektral.getInfo(inlineStyleLibrary);
-        if (lib === "{}") {
-            lib = "Inline Style library is empty."
-        }
-        return lib;
-    };
-
-    //////////////////
-    ////QUERY INLINE STYLE LIB - allow getElement as well
-    //////////////////
-    Spektral.queryInlineStyleLib = function (element) {
-
-        var elementObj, elementsID, ID;
-
-        elementsID = Spektral.getElementIdentifiers(element);
-        if(elementsID.id !== "") {
-            ID = elementsID.id;
-        } else if (elementsID.name !== "") {
-            ID = elementsID.name;
-        } else {
-            Spektral.throwError("queryInlineStyleLib: Element must have an id or name attribute in order to be located in the inline style library.");
-        }
-
-        elementObj = inlineStyleLibrary[ID];
-        if (elementObj === undefined) {
-            elementObj = null;
-        }
-        return elementObj;
-    };
-
-    //////////////////
-    ////UPDATE INLINE STYLE LIB
-    //////////////////
-    Spektral.updateInlineStyleLib = function (id, object) {//updateInlineStyleLib
-        inlineStyleLibrary[id] = object;
-        //Spektral.log("updateInlineStyleLib: " + Spektral.getInfo(inlineStyleLibrary));
-    };
-
-    //////////////////
-    ////UPDATE LIB ITEM
-    //////////////////
-    Spektral.updateLibItem = function (element, newProp) {
-        //Change a property in the inline style library without overwriting existing data
-        var item = Spektral.queryInlineStyleLib(element), elementsID, ID, val, detectDelim = Spektral.detectCharacter(newProp, ";");
-
-        if(detectDelim === true) {
-            Spektral.throwError("updateLibItem: Sorry, for now you can only update one value at a time. Don't use ; as well.")
-        }
-
-        elementsID = Spektral.getElementIdentifiers(element);
-        if(elementsID.id !== "") {
-            ID = elementsID.id;
-        } else if (elementsID.name !== "") {
-            ID = elementsID.name;
-        } else {
-            Spektral.throwError("queryInlineStyleLib: Element must have an id or name attribute in order to be located in the inline style library.");
-        }
-        Spektral.log("ITEM IS: " + ID);
-
-        val = Spektral.splitString(newProp, ":");
-
-        //Spektral.log("VAL IS: " + val[0] + " PROP is: " + val[1] + " currentLibValue: " + item["margin"]);
-
-        item[val[0]] = val[1];
-    };
-
-    //////////////////
-    ////SAVE INLINE STYLE
-    //////////////////
-    Spektral.saveInlineStyle = function (element, useVisibility) {
-
-        useVisibility = useVisibility || false;
-        //Since an element remembers its css rules when brought back,
-        //it seems like I just have to remember the inline style
-        Spektral.log("Saving inline style.");
-        var inlineStyle, elementsID, ID;
-        inlineStyle = Spektral.getInlineStyle(element);
-        if(useVisibility === true) {
-            inlineStyle["visibility"] = "visible";//If we're toggling visibility
-        }
-
-        elementsID = Spektral.getElementIdentifiers(element);
-        if(elementsID.id !== "") {
-            ID = elementsID.id;
-        } else if (elementsID.name !== "") {
-            ID = elementsID.name;
-        } else {
-            Spektral.throwError("saveInlineStyle: Element must have an id or name attribute in order to be saved to inline style library.");
-        }
-        Spektral.updateInlineStyleLib(ID, inlineStyle);
-    };
-
-    //////////////////
-    ////RESTORE INLINE STYLE
-    //////////////////
-    Spektral.restoreInlineStyle = function (element) {
-
-        var elementsID, requestedElement, savedProps, item, propArray = [];
-
-        elementsID = Spektral.getElementIdentifiers(element);
-
-        if(elementsID.id !== "") {
-            requestedElement = elementsID.id;
-        } else if (elementsID.name !== "") {
-            requestedElement = elementsID.name;
-        } else {
-            Spektral.throwError("restoreInlineStyle: Element must have an id or name attribute in order to be restored.");
-        }
-
-        savedProps = inlineStyleLibrary[requestedElement];
-
-        //Spektral.log("restoreInlineStyle: Saved props: " + Spektral.getInfo(savedProps));
-
-        for (item in savedProps) {
-            var property = item + ":" + savedProps[item];
-            propArray.push(property);
-        }
-
-        Spektral.setStyle(element, propArray);
-    };
-
-
-
-
-
-
-
-
 
     //***ATTRIBUTES************************************************************
 
@@ -1026,8 +853,7 @@
             //Element is already seen, don't do anything
             Spektral.log(element + " is already visible.")
         } else {
-            //Spektral.restoreInlineStyle(element);
-            Spektral.appendStyle(element, displayType);
+            Spektral.appendStyle(element, displayString);
             Spektral.appendStyle(element, "visibility:visible");
         }
     };
@@ -1041,37 +867,19 @@
 
         var
             currentVState = Spektral.getStyle(element, "visibility"),
-            currentDState = Spektral.getStyle(element, "display"),
-            checkLibForItem = Spektral.queryInlineStyleLib(element),
-            visString = "",
-            displayString = "";
-
-
+            currentDState = Spektral.getStyle(element, "display");
 
         if(currentVState === "hidden" || currentDState === "none") {
             Spektral.log(element + " is already hidden.")
         } else {
-
-//            //Check if item is in lib
-//            if (checkLibForItem === null) {
-//                //Element does not exist in library, add to library
-//                Spektral.saveInlineStyle(element);
-//            }
-
             if(useDisplay === true) {
                 //set display to none
-                //styleString = "display:none; visibility:" + currentVState;
                 Spektral.appendStyle(element, "display:none");
-
             } else {
                 //set visibility to hidden
-                //styleString = "display:" + currentDState + "; visibility: hidden";
                 Spektral.appendStyle(element, "visibility:hidden");
             }
-            //Spektral.setStyle(element, styleString);
-            //Spektral.appendStyle(element, String);
         }
-
     };
 
     //////////////////
@@ -1082,12 +890,10 @@
         var
             currentVState = Spektral.getStyle(element, "visibility"),
             currentDState = Spektral.getStyle(element, "display");
-
         if(currentDState === "none") {
             //element is hidden
             Spektral.toggleDisplay(element);//Issue: what if the previous display state was not block?
         } else {
-
             if(currentVState === "visible") {
                 Spektral.appendStyle(element, "visibility:hidden");
                 //Spektral.log("Visible, hiding.");
@@ -1256,14 +1062,8 @@
             if(split[i] !== "") {
                 stripped = Spektral.stripWhiteSpace(split[i]);
                 splitArray.push(stripped);
-                Spektral.log("SPLIT: " + stripped);
             }
         }
-
-        //Spektral.log("SplitArray: character: " + character);
-
-        //Spektral.listArrayElements(splitArray);
-
         return splitArray;
     };
 
