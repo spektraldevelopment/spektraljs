@@ -51,7 +51,7 @@
         var i, targetType = Spektral.getType(eventTarget);
         if(targetType === "string") {
             eventTarget = Spektral.getElement(eventTarget);
-        } 
+        }
         if (eventTarget.addEventListener) {
             eventTarget.addEventListener(eventType, eventHandler, false);
         } else if (eventTarget.attachEvent) {
@@ -677,36 +677,39 @@
     ////APPEND STYLE
     //////////////////
     Spektral.appendStyle = function (element, style) {
+
         var
             currentStyle = Spektral.getInlineStyle(element),
             styleString = "",
             key,
             styleExists = false,
-            newStyle = Spektral.splitString(style, ":"),
+            newStyle,
             stringCheck = Spektral.detectCharacter(style, ";");
 
+        //stringCheck is for if the user attempts to append multiple properties at the same time
         if(stringCheck === true) {
             Spektral.throwError("appendStyle: Sorry, for now you can only append one value at a time. Don't include ; in your string.");
         }
 
-        for (key in currentStyle) {
-            if (key === newStyle[0]) {
-                //Value already exists, so we'll just change it
-                styleExists = true;
-                styleString += key + ":" + newStyle[1] + "; ";
-                //Spektral.log("Attribute already exists, changing value!");
-            } else {
-                //We'll just build the string and add the new style value at the end.
-                styleString += key + ":" + currentStyle[key] + "; ";
+        if(currentStyle === false) {
+            styleString += style + "; ";
+        } else {
+            Spektral.log("WTF");
+            newStyle = Spektral.splitString(style, ":")
+
+            for (key in currentStyle) {
+                if (key === newStyle[0]) {
+                    //Value already exists, so we'll just change it
+                    styleExists = true;
+                    styleString += key + ":" + newStyle[1] + "; ";
+                    //Spektral.log("Attribute already exists, changing value!");
+                } else {
+                    //We'll just build the string and add the new style value at the end.
+                    styleString += key + ":" + currentStyle[key] + "; ";
+                }
             }
         }
 
-        if(styleExists === false) {
-            //Value is new
-            styleString += style + "; ";
-        }
-
-        //Spektral.log("appendStyle: element: " + element + " styleString: " + styleString);
         Spektral.setStyle(element, styleString);
     };
 
@@ -724,18 +727,23 @@
 
         var
             inlineStyle = element.style.cssText,
-            properties = Spektral.splitString(inlineStyle, ";"),
+            properties,
             property, key, val, i,
             styleObject = {};
 
-        for (i = 0; i < properties.length; i += 1) {
-            property = Spektral.splitString(properties[i], ":");
-            key = property[0];
-            val = property[1];
-            styleObject[key] = val;
-        }
+        if(inlineStyle === "") {
+            styleObject = false;
+            Spektral.log("getInlineStyle: No inline style set.");
+        } else {
+            properties = Spektral.splitString(inlineStyle, ";");
 
-        Spektral.log("getInlineStyle: styleObject: " + Spektral.getInfo(styleObject));
+            for (i = 0; i < properties.length; i += 1) {
+                property = Spektral.splitString(properties[i], ":");
+                key = property[0];
+                val = property[1];
+                styleObject[key] = val;
+            }
+        }
 
         return styleObject;
     };

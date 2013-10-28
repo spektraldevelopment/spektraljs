@@ -192,9 +192,9 @@ Spektral.debug();
 
 //var notFound = Spektral.getElement("notFound");
 //console.log("Not Found: " + notFound);
-var tt = Spektral.getElement("toggleTarget");
-
-Spektral.getInlineStyle(tt);
+//var tt = Spektral.getElement("toggleTarget");
+//
+//Spektral.getInlineStyle(tt);
 
 //Spektral.destroyAttribute(tt, "style");
 //console.log("tt is: " + tt);
@@ -207,42 +207,42 @@ Spektral.getInlineStyle(tt);
 
 //Spektral.rememberInlineStyle(tt);
 
-var toggVisibility = Spektral.getElement("toggleVis");
-var toggDisplay = Spektral.getElement("toggleDis");
+//var toggVisibility = Spektral.getElement("toggleVis");
+//var toggDisplay = Spektral.getElement("toggleDis");
 //
-Spektral.attachEventListener(toggVisibility, "click", onToggVisClick);
-Spektral.attachEventListener(toggDisplay, "click", onToggVisClick);
+//Spektral.attachEventListener(toggVisibility, "click", onToggVisClick);
+//Spektral.attachEventListener(toggDisplay, "click", onToggVisClick);
 //
-function onToggVisClick(e) {
-
-    var target = Spektral.getTarget(e);
-    var useType = Spektral.retrieveAttribute(target, "data-usetype");
-
-    //Spektral.log("Togg clicked: useType: " + useType);
-    //Spektral.toggleVisibility(tt, useType);
-    if(useType === "display") {
-        Spektral.toggleDisplay(tt);
-    }
-
-    if(useType === "visibility") {
-        Spektral.toggleVisibility(tt);
-    }
-}
-
-Spektral.attachEventListener("showElement", "click", hideShowElement);
-Spektral.attachEventListener("hideElement", "click", hideShowElement);
+//function onToggVisClick(e) {
 //
-function hideShowElement(e) {
-    var target = Spektral.getTarget(e).id;
-    if(target === "showElement") {
-        //Spektral.log("Show Element");
-        Spektral.showElement(tt);
-    } else {
-        Spektral.hideElement(tt, true);
-        //Spektral.log("hideElement");
-    }
+//    var target = Spektral.getTarget(e);
+//    var useType = Spektral.retrieveAttribute(target, "data-usetype");
+//
+//    //Spektral.log("Togg clicked: useType: " + useType);
+//    //Spektral.toggleVisibility(tt, useType);
+//    if(useType === "display") {
+//        Spektral.toggleDisplay(tt);
+//    }
+//
+//    if(useType === "visibility") {
+//        Spektral.toggleVisibility(tt);
+//    }
+//}
 
-};
+//Spektral.attachEventListener("showElement", "click", hideShowElement);
+//Spektral.attachEventListener("hideElement", "click", hideShowElement);
+//
+//function hideShowElement(e) {
+//    var target = Spektral.getTarget(e).id;
+//    if(target === "showElement") {
+//        //Spektral.log("Show Element");
+//        Spektral.showElement(tt);
+//    } else {
+//        Spektral.hideElement(tt, true);
+//        //Spektral.log("hideElement");
+//    }
+//
+//};
 
 
 
@@ -316,10 +316,18 @@ function hideShowElement(e) {
 
 //Spektral.attachEventListener(spektralImage, "click", onImageClick);
 
- function onImageClick(evt) {
-    var m = Spektral.getMousePos(evt);
-
-    console.log("Toggle Target: mousePos x: " + m.x + " y: " + m.y + " mouseX: " + m.mouseX + " mouseY: " + m.mouseY);
-}
+//function onImageClick(evt) {
+//    var m = Spektral.getMousePos(evt);
+//
+//    console.log("Toggle Target: mousePos x: " + m.x + " y: " + m.y + " mouseX: " + m.mouseX + " mouseY: " + m.mouseY);
+//}
 
 //Spektral.appendStyle(tt, "margin:10px");
+
+var footer = Spektral.getElement("mainFooter");
+
+Spektral.attachEventListener(footer, 'click', onFooterClick);
+
+function onFooterClick(e) {
+    console.log("Footer Clicked!");
+}
