@@ -192,7 +192,7 @@ Spektral.debug();
 
 //var notFound = Spektral.getElement("notFound");
 //console.log("Not Found: " + notFound);
-//var tt = Spektral.getElement("toggleTarget");
+var tt = Spektral.getElement("toggleTarget");
 //
 //Spektral.getInlineStyle(tt);
 
@@ -207,42 +207,44 @@ Spektral.debug();
 
 //Spektral.rememberInlineStyle(tt);
 
-//var toggVisibility = Spektral.getElement("toggleVis");
-//var toggDisplay = Spektral.getElement("toggleDis");
-//
-//Spektral.attachEventListener(toggVisibility, "click", onToggVisClick);
-//Spektral.attachEventListener(toggDisplay, "click", onToggVisClick);
-//
-//function onToggVisClick(e) {
-//
-//    var target = Spektral.getTarget(e);
-//    var useType = Spektral.retrieveAttribute(target, "data-usetype");
-//
-//    //Spektral.log("Togg clicked: useType: " + useType);
-//    //Spektral.toggleVisibility(tt, useType);
-//    if(useType === "display") {
-//        Spektral.toggleDisplay(tt);
-//    }
-//
-//    if(useType === "visibility") {
-//        Spektral.toggleVisibility(tt);
-//    }
-//}
+var toggVisibility = Spektral.getElement("toggleVis");
+var toggDisplay = Spektral.getElement("toggleDis");
 
-//Spektral.attachEventListener("showElement", "click", hideShowElement);
-//Spektral.attachEventListener("hideElement", "click", hideShowElement);
-//
-//function hideShowElement(e) {
-//    var target = Spektral.getTarget(e).id;
-//    if(target === "showElement") {
-//        //Spektral.log("Show Element");
-//        Spektral.showElement(tt);
-//    } else {
-//        Spektral.hideElement(tt, true);
-//        //Spektral.log("hideElement");
-//    }
-//
-//};
+Spektral.attachEventListener(toggVisibility, "click", onToggVisClick);
+Spektral.attachEventListener(toggDisplay, "click", onToggVisClick);
+
+function onToggVisClick(e) {
+
+    var target = Spektral.getTarget(e);
+    var useType = Spektral.retrieveAttribute(target, "data-usetype");
+
+    Spektral.log("Togg clicked: useType: " + useType);
+    //Spektral.toggleVisibility(tt, useType);
+    if(useType === "display") {
+        Spektral.toggleDisplay(tt);
+        Spektral.log("toggleDisplay");
+    }
+
+    if(useType === "visibility") {
+        Spektral.toggleVisibility(tt);
+        Spektral.log("toggleVisibility");
+    }
+}
+
+Spektral.attachEventListener("showElement", "click", hideShowElement);
+Spektral.attachEventListener("hideElement", "click", hideShowElement);
+
+function hideShowElement(e) {
+    var target = Spektral.getTarget(e).id;
+    if(target === "showElement") {
+        Spektral.log("Show Element");
+        Spektral.showElement(tt);
+    } else {
+        Spektral.hideElement(tt, true);
+        Spektral.log("hideElement");
+    }
+
+};
 
 
 

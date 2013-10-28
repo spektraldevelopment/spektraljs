@@ -682,7 +682,7 @@
             currentStyle = Spektral.getInlineStyle(element),
             styleString = "",
             key,
-            styleExists = false,
+            propertyExists = false,
             newStyle,
             stringCheck = Spektral.detectCharacter(style, ";");
 
@@ -694,13 +694,12 @@
         if(currentStyle === false) {
             styleString += style + "; ";
         } else {
-            Spektral.log("WTF");
             newStyle = Spektral.splitString(style, ":")
 
             for (key in currentStyle) {
                 if (key === newStyle[0]) {
                     //Value already exists, so we'll just change it
-                    styleExists = true;
+                    propertyExists = true;
                     styleString += key + ":" + newStyle[1] + "; ";
                     //Spektral.log("Attribute already exists, changing value!");
                 } else {
@@ -708,8 +707,11 @@
                     styleString += key + ":" + currentStyle[key] + "; ";
                 }
             }
-        }
 
+            if(propertyExists === false) {
+                styleString += style + "; ";
+            }
+        }
         Spektral.setStyle(element, styleString);
     };
 
