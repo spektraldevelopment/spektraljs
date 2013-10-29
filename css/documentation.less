@@ -13,11 +13,34 @@
 @orange: #eb7f00;
 
 ///////////////////////////
+//Mixins
+///////////////////////////
+.rounded-corners (@radius: 5px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -ms-border-radius: @radius;
+  -o-border-radius: @radius;
+  border-radius: @radius;
+}
+
+.textShadow (@X: 1px, @Y: 1px, @blur: 3px, @color: #888) {
+  text-shadow: @X @Y @blur @color;
+}
+
+///////////////////////////
 //Fonts
 ///////////////////////////
-@header: Arial, Helvetica, sans-serif;
-@paragraph: Tahoma, Geneva, sans-serif;
+.header () {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
 
+.paragraph () {
+  font-family: Tahoma, Geneva, sans-serif;
+}
+
+////////////////////////////
+//**********SITE**********//
+////////////////////////////
 
 html, body {
   margin: 0;
@@ -31,43 +54,95 @@ h1, h2, h3, h4, p {
   color: #fff;
 }
 
-#mainContent {
-  position: relative;
-  margin: 0 auto;
-  width: 960px;
-  background-color: #aaaaaa;
-}
-
-.method {
-  padding: 10px;
+#mainHeader {
+  padding: 5px;
   background-color: @dark-blue;
 }
 
+#mainHeader h1 {
+  .textShadow();
+}
+
+#alertBox {
+  width: 100%;
+  color: #ffffff;
+  background-color: #ff0007;
+  text-align: center;
+  padding: 5px 0;
+}
+
+#glossary {
+  .rounded-corners(5px);
+  padding: 10px;
+  background-color: rgba(red(@white), green(@white), blue(@white), 0.25);
+  width: 295px;
+  height: 100%;
+  float: left;
+}
+
+#glossary h2 {
+  .rounded-corners(5px);
+  .header();
+  .textShadow();
+  text-align: center;
+  padding: 5px;
+  color: @black;
+  background-color: rgba(red(@white), green(@white), blue(@white), 0.75);
+}
+
+#mainContent {
+  position: relative;
+  margin: 0 auto;
+  padding: 5px;
+  width: 960px;
+  height: 100%;
+  background-color: @dark-blue;
+}
+
+.method {
+  .rounded-corners(5px);
+  margin-bottom: 5px;
+  padding: 10px;
+  background-color: rgba(red(@white), green(@white), blue(@white), 0.25);
+  width: 615px;
+  height: 100%;
+  float: right;
+}
+
 .method h2 {
-  font-family: @header;
-  padding-bottom: 10px;
-  background-color: #1695a3;
+  .rounded-corners(5px);
+  .header();
+  .textShadow();
+  padding: 5px;
+  color: @black;
+  background-color: rgba(red(@white), green(@white), blue(@white), 0.75);
 }
 
 .method p {
-  font-family: @paragraph;
-  background-color: #a38829;
+  .paragraph();
+  padding: 5px 0;
+  font-size: 14px;
 }
 
 .method code {
-//  padding-bottom: 10px;
-  background-color: #65a35b;
+  .rounded-corners(5px);
+  display: block;
+  padding: 5px;
+  background-color: rgba(red(@white), green(@white), blue(@white), 0.5);
 }
 
-.method h3 {
-  font-family: @header;
-//  padding-bottom: 10px;
-  background-color: #883ca3;
+//***********CLEAR FIX**********//
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
 }
 
-.method h4 {
-  font-family: @header;
-//  padding-bottom: 10px;
-  background-color: #9d9ea3;
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  *zoom: 1;
 }
 
