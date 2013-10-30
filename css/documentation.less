@@ -57,7 +57,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  background-color: #000;
+  background-color: #232323;
 }
 
 h1, h2, h3, h4, p {
@@ -68,7 +68,8 @@ h1, h2, h3, h4, p {
 
 #mainHeader {
   padding: 5px;
-  background-color: @orange;
+  .transparentBG(@orange, 0.85);
+  //background-color: @orange;
 }
 
 #mainHeader h1 {
@@ -148,7 +149,7 @@ h1, h2, h3, h4, p {
 
 .method p {
   .paragraph();
-  padding: 5px 0;
+  padding: 5px 10px;
   font-size: 14px;
 }
 
@@ -157,7 +158,18 @@ h1, h2, h3, h4, p {
   .textShadow();
   .transparentBG(@white, 0.5);
   display: block;
-  padding: 5px;
+  padding: 5px 10px;
+}
+
+#mainFooter {
+  .transparentBG(@orange, 0.65);
+}
+
+#mainFooter small {
+  position: relative;
+  color: @white;
+  float: right;
+  padding: 0 10px;
 }
 
 //***********CLEAR FIX**********//
