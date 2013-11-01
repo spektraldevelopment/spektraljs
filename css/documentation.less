@@ -46,7 +46,7 @@
 
 .paragraph () {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 200;
+  font-weight: 500;
   letter-spacing: 0.05em;
 }
 
@@ -54,26 +54,33 @@
 //**********SITE**********//
 ////////////////////////////
 
+//* {
+//  margin: 0;
+//  padding: 0;
+//}
+
 html, body {
   margin: 0;
   padding: 0;
   background-color: #232323;
+  height: 100%;
 }
 
 h1, h2, h3, h4, p {
-  padding: 0;
   margin: 0;
+  padding: 0;
   color: #fff;
 }
 
 #mainHeader {
   padding: 5px;
-  .transparentBG(@orange, 0.85);
+  .transparentBG(@white, 0.85);
   //background-color: @orange;
 }
 
 #mainHeader h1 {
   .textShadow();
+  color: @black;
 }
 
 #alertBox {
@@ -88,75 +95,88 @@ h1, h2, h3, h4, p {
 #glossary {
   .rounded-corners(5px);
   .shadow();
-  .transparentBG(@white, 0.25);
+  .transparentBG(@white, 0.75);
+  //border: 2px solid @black;
   padding: 10px;
   width: 295px;
-  height: 100%;
+  //height: 100%;
   float: left;
 }
 
 #glossary h2 {
   .rounded-corners(5px);
   .header();
-  .textShadow();
-  .transparentBG(@white, 0.5);
+  .textShadow(0, 0, 10px, @white);
+  .transparentBG(@black, 0.5);
   text-align: center;
   padding: 5px;
   color: @black;
 }
 
 #glossary ul {
-  margin: 10px 0;
+  margin: 10px;
   padding: 0;
   list-style: none;
 }
 
 #glossary ul li {
   .paragraph();
-  color: @white;
+  font-weight: 500;
+  color: @black;
 
 }
 
 #mainContent {
   .shadow();
+  .transparentBG(@white, 0.75);
   position: relative;
   margin: 10px auto;
   padding: 5px;
   width: 960px;
   height: 100%;
-  background-color: @dark-blue;
+  //background-color: @white;
 }
 
 .method {
   .rounded-corners(5px);
   .shadow();
-  .transparentBG(@white, 0.25);
+  .transparentBG(@white, 0.75);
   margin-bottom: 5px;
   padding: 10px;
   width: 615px;
-  height: 100%;
+  //height: 100%;
   float: right;
 }
 
 .method h2 {
   .rounded-corners(7px);
   .header();
-  .textShadow();
-  .transparentBG(@white, 0.5);
+  .textShadow(0px, 0px, 10px, @white);
+  .transparentBG(@black, 0.5);
   padding: 5px 10px;
   color: @black;
 }
 
 .method p {
   .paragraph();
+  color: @black;
   padding: 5px 10px;
   font-size: 14px;
 }
 
+#uses {
+
+}
+
+#support {
+  padding: 0 10px;
+}
+
 .method code {
   .rounded-corners(5px);
-  .textShadow();
-  .transparentBG(@white, 0.5);
+  //.textShadow(1px, 1px, 3px, @white);
+  .transparentBG(@black, 0.5);
+  color: @white;
   display: block;
   padding: 5px 10px;
 }
@@ -185,5 +205,23 @@ h1, h2, h3, h4, p {
 
 .clearfix {
   *zoom: 1;
+}
+
+//***********STICKY FOOTER***********//
+.page-wrap {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -20px;
+}
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+.site-footer, .page-wrap:after {
+  /* .push must be the same height as footer */
+  height: 20px;
+}
+.site-footer {
+  //background: orange;
 }
 
