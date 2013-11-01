@@ -96,10 +96,8 @@ h1, h2, h3, h4, p {
   .rounded-corners(5px);
   .shadow();
   .transparentBG(@white, 0.75);
-  //border: 2px solid @black;
   padding: 10px;
   width: 295px;
-  //height: 100%;
   float: left;
 }
 
@@ -133,8 +131,8 @@ h1, h2, h3, h4, p {
   margin: 10px auto;
   padding: 5px;
   width: 960px;
-  height: 100%;
-  //background-color: @white;
+  min-height: 100%;
+  height: auto;
 }
 
 .method {
@@ -144,7 +142,6 @@ h1, h2, h3, h4, p {
   margin-bottom: 5px;
   padding: 10px;
   width: 615px;
-  //height: 100%;
   float: right;
 }
 
@@ -182,12 +179,12 @@ h1, h2, h3, h4, p {
 }
 
 #mainFooter {
-  .transparentBG(@orange, 0.65);
+  .transparentBG(@white, 0.65);
 }
 
 #mainFooter small {
   position: relative;
-  color: @white;
+  color: @black;
   float: right;
   padding: 0 10px;
 }
