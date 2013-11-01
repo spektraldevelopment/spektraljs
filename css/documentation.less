@@ -12,7 +12,13 @@
 @white: #fff;
 @orange: #eb7f00;
 
-///////////////////////////
+@green: #54574F;
+@beige: #D7AF67;
+@gold: #A3681C;
+@cream: #F1D7B2;
+@brown: #352F2F;
+
+  ///////////////////////////
 //Mixins
 ///////////////////////////
 .rounded-corners (@radius: 5px) {
@@ -62,7 +68,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  background-color: #232323;
+  background-color: @brown;
   height: 100%;
 }
 
@@ -74,13 +80,13 @@ h1, h2, h3, h4, p {
 
 #mainHeader {
   padding: 5px;
-  .transparentBG(@white, 0.85);
-  //background-color: @orange;
+  //.transparentBG(@white, 0.85);
+  background-color: @green;
 }
 
 #mainHeader h1 {
-  .textShadow();
-  color: @black;
+  .textShadow(1px, 1px, 3px, @black);
+  color: @cream;
 }
 
 #alertBox {
@@ -104,11 +110,12 @@ h1, h2, h3, h4, p {
 #glossary h2 {
   .rounded-corners(5px);
   .header();
-  .textShadow(0, 0, 10px, @white);
-  .transparentBG(@black, 0.5);
+  .textShadow(0, 0, 10px, @black);
+  //.transparentBG(@black, 0.5);
+  background-color: @green;
   text-align: center;
   padding: 5px;
-  color: @black;
+  color: @cream;
 }
 
 #glossary ul {
@@ -120,13 +127,15 @@ h1, h2, h3, h4, p {
 #glossary ul li {
   .paragraph();
   font-weight: 500;
-  color: @black;
+  color: @brown;
 
 }
 
 #mainContent {
+  .rounded-corners();
   .shadow();
-  .transparentBG(@white, 0.75);
+  .transparentBG(@gold, 0.4);
+  //background-color: @brown;
   position: relative;
   margin: 10px auto;
   padding: 5px;
@@ -148,15 +157,16 @@ h1, h2, h3, h4, p {
 .method h2 {
   .rounded-corners(7px);
   .header();
-  .textShadow(0px, 0px, 10px, @white);
-  .transparentBG(@black, 0.5);
+  .textShadow(0px, 0px, 10px, @black);
+  //.transparentBG(@black, 0.5);
+  background-color: @green;
   padding: 5px 10px;
-  color: @black;
+  color: @cream;
 }
 
 .method p {
   .paragraph();
-  color: @black;
+  color: @brown;
   padding: 5px 10px;
   font-size: 14px;
 }
@@ -172,19 +182,21 @@ h1, h2, h3, h4, p {
 .method code {
   .rounded-corners(5px);
   //.textShadow(1px, 1px, 3px, @white);
-  .transparentBG(@black, 0.5);
-  color: @white;
+  //.transparentBG(@green, 0.5);
+  background-color: @green;
+  color: @cream;
   display: block;
   padding: 5px 10px;
 }
 
 #mainFooter {
-  .transparentBG(@white, 0.65);
+  //.transparentBG(@green, 0.65);
+  background-color: @green;
 }
 
 #mainFooter small {
   position: relative;
-  color: @black;
+  color: @cream;
   float: right;
   padding: 0 10px;
 }

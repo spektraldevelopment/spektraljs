@@ -1,0 +1,18 @@
+{
+    "methods" : [
+        {
+            "title" : "Method One",
+            "description" : "projectone",
+            "code" : "Spektral.log()",
+            "uses" : "none",
+            "support" : "Chrome, FF, IE9+"
+        },
+        {
+            "title" : "Method Two",
+            "description" : "projectone",
+            "code" : "Spektral.log()",
+            "uses" : "none",
+            "support" : "Chrome, FF, IE9+"
+        }
+    ]
+}
