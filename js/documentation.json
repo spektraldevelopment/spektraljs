@@ -1,18 +1,44 @@
 {
     "methods" : [
         {
-            "title" : "Method One",
-            "description" : "projectone",
-            "code" : "Spektral.log()",
-            "uses" : "none",
-            "support" : "Chrome, FF, IE9+"
+            "title" : "debug()",
+            "description" : "Allows for logging in Spektral.js. When not called using Spektral.log() will not yield any logging in the console.",
+            "code" : "Spektral.debug()",
+            "params" : [],
+            "dependencies" : "None",
+            "support" : "Currently in testing."
         },
         {
-            "title" : "Method Two",
-            "description" : "projectone",
-            "code" : "Spektral.log()",
-            "uses" : "none",
-            "support" : "Chrome, FF, IE9+"
+            "title" : "about()",
+            "description" : "Shows in the console which version of Spektral.js you are using, and what mode it is in. (debug or release)",
+            "code" : "Spektral.about()",
+            "params" : [],
+            "dependencies" : "None",
+            "support" : "Currently in testing."
+        },
+        {
+            "title" : "attachEventListener()",
+            "description" : "Attaches an event listener to any element. If a mouse event, the hand cursor is automatically applied.",
+            "code" : "Spektral.attachEventListener(eventTarget, eventType, eventHandler)",
+            "params" : [
+                { "eventTarget" : "Accepts element or string (will use getElement() if string)." },
+                { "eventType" : "Accepts any valid event type, ex. 'click', 'complete', 'load'. Also accepts custom event types." },
+                { "eventHandler" : "The function you wish to use to handle the event when it is fired." }
+            ],
+            "dependencies" : "getType(), getElement(), useHandCursor()",
+            "support" : "Currently in testing."
+        },
+        {
+            "title" : "detachEventListener()",
+            "description" : "Detaches an event listener from any element. If a mouse event, the hand cursor is automatically set back to default.",
+            "code" : "Spektral.detachEventListener(eventTarget, eventType, eventHandler)",
+            "params" : [
+                { "eventTarget" : "Accepts element or string (will use getElement() if string)." },
+                { "eventType" : "Accepts any valid event type, ex. 'click', 'complete', 'load'. Also accepts custom event types." },
+                { "eventHandler" : "The function you wish to use to handle the event when it is fired." }
+            ],
+            "dependencies" : "getType(), getElement(), useDefaultCursor()",
+            "support" : "Currently in testing."
         }
     ]
 }
