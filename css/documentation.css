@@ -123,6 +123,15 @@ p {
   background-color: #352f2f;
   color: #f1d7b2;
 }
+.method section {
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px;
+  background-color: rgba(84, 87, 79, 0.25);
+  margin: 10px 0;
+}
 .method p {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
