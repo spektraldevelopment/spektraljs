@@ -69,7 +69,7 @@
 
         clearMethodContainer();
 
-        var title, description, code, params, dependencies, support;
+        var title, description, code, params, paramsList, parameter, dependencies, support, i, key, val;
 
 //        title = jsonObject[id].title;
 //        description = jsonObject[id].description;
@@ -89,8 +89,25 @@
 
         params = Spektral.createNewElement("div", "params", methodContainer);
 
-        if (Spektral.isObjectEmpty(jsonObject[id].params) === false) {
+        paramsList = jsonObject[id].params;
+
+        if (Spektral.isObjectEmpty(paramsList) === false) {
             //Have to create a div with p tags in them for each
+
+//            for (i = 0; i < paramsList.length; i += 1) {
+//                parameter = Spektral.createNewElement("p", "parameter" + i, params);
+//                parameter.innerHTML = paramsList[i];
+//            }
+              for (key in paramsList) {
+                  parameter = Spektral.createNewElement("p", key, params);
+                  //parameter.innerHTML = paramsList[key].propertyName;
+
+
+
+                  Spektral.log("paramsList[key]: " + Spektral.getInfo(paramsList[key]));
+              }
+
+
         } else {
             params.innerHTML = "Parameters: None."
         }
