@@ -63,9 +63,9 @@ p {
   list-style: none;
 }
 #glossary ul li {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  letter-spacing: 0.05em;
-  font-weight: 500;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 16px;
+  font-weight: bold;
   color: #352f2f;
 }
 #mainContent {
@@ -110,6 +110,17 @@ p {
   text-shadow: 0px 0px 10px #000000;
   background-color: #54574f;
   padding: 5px 10px;
+  color: #f1d7b2;
+}
+.method h3 {
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px;
+  padding: 2px 5px;
+  font-size: 18px;
+  background-color: #352f2f;
   color: #f1d7b2;
 }
 .method p {

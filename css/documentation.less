@@ -125,10 +125,10 @@ h1, h2, h3, h4, p {
 }
 
 #glossary ul li {
-  .paragraph();
-  font-weight: 500;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 16px;
+  font-weight: bold;
   color: @brown;
-
 }
 
 #mainContent {
@@ -161,6 +161,17 @@ h1, h2, h3, h4, p {
   //.transparentBG(@black, 0.5);
   background-color: @green;
   padding: 5px 10px;
+  color: @cream;
+}
+
+.method h3 {
+  .rounded-corners(7px);
+  //.transparentBG(@brown, 0.5);
+  //.textShadow(0px, 0px, 5px, @black);
+  //.shadow();
+  padding: 2px 5px;
+  font-size: 18px;
+  background-color: @brown;
   color: @cream;
 }
 

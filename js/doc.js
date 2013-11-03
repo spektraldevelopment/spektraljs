@@ -69,7 +69,7 @@
 
         clearMethodContainer();
 
-        var title, description, code, params, paramsList, parameter, dependencies, support, i, key, val;
+        var title, description, code, params, paramsList, paramObj, parameter, paramTitle, paramDesc, dependencies, support, i, key, k;
 
 //        title = jsonObject[id].title;
 //        description = jsonObject[id].description;
@@ -87,27 +87,25 @@
         code = Spektral.createNewElement("code", "code", methodContainer);
         code.innerHTML = jsonObject[id].code;
 
-        params = Spektral.createNewElement("div", "params", methodContainer);
+        params = Spektral.createNewElement("section", "params", methodContainer);
 
         paramsList = jsonObject[id].params;
 
         if (Spektral.isObjectEmpty(paramsList) === false) {
             //Have to create a div with p tags in them for each
+            for (key in paramsList) {
+            parameter = Spektral.createNewElement("div", key, params);
+            paramObj = paramsList[key];
+                for(k in paramObj) {
+                  //parameter.innerHTML = k + " : " + paramObj[k];
+                  //Spektral.log("k is: " + k + " paramObj: " + paramObj[k]);
+                    paramTitle = Spektral.createNewElement("h3", "paramTitle", parameter);
+                    paramTitle.innerHTML = k;
 
-//            for (i = 0; i < paramsList.length; i += 1) {
-//                parameter = Spektral.createNewElement("p", "parameter" + i, params);
-//                parameter.innerHTML = paramsList[i];
-//            }
-              for (key in paramsList) {
-                  parameter = Spektral.createNewElement("p", key, params);
-                  //parameter.innerHTML = paramsList[key].propertyName;
-
-
-
-                  Spektral.log("paramsList[key]: " + Spektral.getInfo(paramsList[key]));
-              }
-
-
+                    paramDesc = Spektral.createNewElement("p", "paramDesc", parameter);
+                    paramDesc.innerHTML = paramObj[k];
+                }
+            }
         } else {
             params.innerHTML = "Parameters: None."
         }
