@@ -163,6 +163,13 @@
     };
 
     ///////////////////
+    ///GET TARGET ID
+    ///////////////////
+    Spektral.getTargetID = function (element) {
+        return element.target.id;
+    }
+
+    ///////////////////
     ///USE HAND CURSOR
     ///////////////////
     Spektral.useHandCursor = function (element, cursorType) {
@@ -625,6 +632,13 @@
         }
     };
 
+    //////////////////
+    ////CLEAR ALL CHILDREN
+    //////////////////
+    Spektral.clearAllChildren = function (parent) {
+        parent.innerHTML = '';
+    }
+
     //***STYLE************************************************************
 
     //////////////////
@@ -1078,6 +1092,14 @@
     };
 
     //////////////////
+    ////STRIP STRING
+    //////////////////
+    Spektral.stripString = function (request, chars) {
+        return request.replace(chars, '');
+    }
+
+
+    //////////////////
     ////STRIP WHITE SPACE
     //////////////////
     Spektral.stripWhiteSpace = function (request, removeAll) {
@@ -1147,10 +1169,36 @@
     Spektral.listChildNodes = function (element) {
         var children = element.childNodes, i;
         Spektral.log("Children of: " + element.nodeName);
-        for (i = 0; i < children.length; i += 1) {
-            Spektral.log("Child: " + children[i]);
-        }
+//        for (i = 0; i < children.length; i += 1) {
+//            Spektral.log("Child: " + children[i]);
+//        }
+        Spektral.log("children: " + Spektral.getInfo(children));
     };
+
+    //////////////////
+    ////GET CHILD NODES
+    /////////////////
+    Spektral.getChildNodes = function (parent) {
+        var children = parent.childNodes, childArr = [], i, isElement;
+        for (i = 0; i < children.length; i += 1) {
+            isElement = Spektral.isElement(children[i]);
+            if(isElement === true) {
+                childArr.push(children[i]);
+            }
+        }
+        return childArr;
+    }
+
+    //////////////////
+    ////IS ELEMENT
+    /////////////////
+    Spektral.isElement = function (possibleElement) {
+        var isAnElement = false, type = possibleElement.nodeType;
+        if(type === 1) {
+            isAnElement = true;
+        }
+        return isAnElement;
+    }
 
     //////////////////
     ////GET ELEMENT IDENTIFIERS - lists any elements tag name, along with id, name, class if available

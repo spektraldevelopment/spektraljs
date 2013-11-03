@@ -2,8 +2,8 @@
     "methods" : [
         {
             "title" : "debug()",
-            "description" : "Allows for logging in Spektral.js. When not called using Spektral.log() will not yield any logging in the console.",
-            "code" : "Spektral.debug()",
+            "description" : "Allows for logging in Spektral.js. When not called, using Spektral.log() will not log in console. Can be used outside of Spektral.js instead of console.log.",
+            "code" : "Spektral.debug();",
             "params" : [],
             "dependencies" : "None",
             "support" : "Currently in testing."
@@ -11,15 +11,15 @@
         {
             "title" : "about()",
             "description" : "Shows in the console which version of Spektral.js you are using, and what mode it is in. (debug or release)",
-            "code" : "Spektral.about()",
+            "code" : "Spektral.about();",
             "params" : [],
             "dependencies" : "None",
             "support" : "Currently in testing."
         },
         {
             "title" : "attachEventListener()",
-            "description" : "Attaches an event listener to any element. If a mouse event, the hand cursor is automatically applied.",
-            "code" : "Spektral.attachEventListener(eventTarget, eventType, eventHandler)",
+            "description" : "Attaches an event listener to any element. If a mouse event, the hand (pointer) cursor is automatically applied.",
+            "code" : "Spektral.attachEventListener(eventTarget, eventType, eventHandler);",
             "params" : [
                 { "eventTarget" : "Accepts element or string (will use getElement() if string)." },
                 { "eventType" : "Accepts any valid event type, ex. 'click', 'complete', 'load'. Also accepts custom event types." },
@@ -31,7 +31,7 @@
         {
             "title" : "detachEventListener()",
             "description" : "Detaches an event listener from any element. If a mouse event, the hand cursor is automatically set back to default.",
-            "code" : "Spektral.detachEventListener(eventTarget, eventType, eventHandler)",
+            "code" : "Spektral.detachEventListener(eventTarget, eventType, eventHandler);",
             "params" : [
                 { "eventTarget" : "Accepts element or string (will use getElement() if string)." },
                 { "eventType" : "Accepts any valid event type, ex. 'click', 'complete', 'load'. Also accepts custom event types." },
