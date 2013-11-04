@@ -93,9 +93,11 @@
 
         paramsList = jsonObject[id].params;
 
+        parameter = Spektral.createNewElement("div", "param" + key, params);
+
         if (Spektral.isObjectEmpty(paramsList) === false) {
             for (key in paramsList) {
-            parameter = Spektral.createNewElement("div", "param" + key, params);
+            //parameter = Spektral.createNewElement("div", "param" + key, params);
             paramObj = paramsList[key];
                 for(k in paramObj) {
                     paramTitle = Spektral.createNewElement("h3", "paramTitle", parameter);
@@ -106,7 +108,8 @@
                 }
             }
         } else {
-            params.innerHTML = "Parameters: None."
+            paramDesc = Spektral.createNewElement("p", "paramDesc", parameter);
+            paramDesc.innerHTML = "No parameters."
         }
 
         details = Spektral.createNewElement("section", "details", methodContainer);

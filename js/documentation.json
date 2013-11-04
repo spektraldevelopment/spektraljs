@@ -39,6 +39,520 @@
             ],
             "dependencies" : "getType(), getElement(), useDefaultCursor()",
             "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "getKey()",
+            "description" : "Converts the key code returned from a keyboard event into a string. ex. key code 38 returns \"UP\". Currently supports directional arrows and enter button.",
+            "code" : "Spektral.getKey(code);",
+            "params" : [
+                {"code" : "Key code returned from a keyboard event."}
+            ],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "createEvent()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "cancelEvent()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "cancelPropagation()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "getTarget()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "getTargetID()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "useHandCursor()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "useDefaultCursor()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "getMousePos()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "getViewPortSize()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "isMatch()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "loadJSON()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "loadXML()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "loadFile()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "getXHR()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "xmlToJSON()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "createObject()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "query()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "getElement()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "isHTMLElement()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "isHTMLID()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "isHTMLName()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "createNewElement()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "moveToAfter()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "moveToBefore()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "removeElement()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "clearAllChildren()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "setStyle()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "getStyle()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "appendStyle()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "clearStyle()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "getInlineStyle()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "convertToCamel()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "createSetAttribute()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "retrieveAttribute()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "destroyAttribute()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "getTextContent()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "getNodeAttributes()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "checkForAttribute()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "showElement()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "hideElement()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "toggleVisibility ()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "toggleDisplay()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "listNodeAttributes()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "roundNum()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "getPos()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "isObjectEmpty()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "detectCharacter()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "getInfo()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "stripBrackets()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "convertCase()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "splitString()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "stripWhiteSpace()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "listElements()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "listArrayElements()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "listChildNodes()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "getChildNodes()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "isElement()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "getElementIdentifiers()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "getType()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "validateParams()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "getExtension()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "throwError()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "log()",
+            "description" : "",
+            "code" : "",
+            "params" : [],
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
         }
     ]
 }
