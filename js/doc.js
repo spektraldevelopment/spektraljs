@@ -58,6 +58,8 @@
     ////ON LIST ITEM CLICK
     ////////////////////
     function onListItemClick (e) {
+
+        scrollToTop(e);
         var target = Spektral.getTargetID(e), num = Spektral.stripString(target, "item");
         populateMethodContainer(num);
     }
@@ -138,5 +140,11 @@
         Spektral.clearAllChildren(methodContainer);
     }
 
+    ////////////////////
+    ////SCROLL TO TOP
+    ////////////////////
+    function scrollToTop(e) {
+        TweenLite.to(window, 0.5, {scrollTo:{y:0}, ease: Expo.easeOut});
+    }
 
 }(window));

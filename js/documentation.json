@@ -6,7 +6,8 @@
             "code" : "Spektral.debug();",
             "params" : [],
             "dependencies" : "None",
-            "compatibility" : "Currently in testing."
+            "compatibility" : "Currently in testing.",
+            "category" : "global"
         },
         {
             "title" : "about()",
@@ -14,158 +15,206 @@
             "code" : "Spektral.about();",
             "params" : [],
             "dependencies" : "None",
-            "compatibility" : "Currently in testing."
+            "compatibility" : "Currently in testing.",
+            "category" : "global"
         },
         {
             "title" : "attachEventListener()",
             "description" : "Attaches an event listener to any element. If a mouse event, the hand (pointer) cursor is automatically applied.",
             "code" : "Spektral.attachEventListener(eventTarget, eventType, eventHandler);",
             "params" : [
-                { "eventTarget" : "Accepts element or string (will use getElement() if string)." },
-                { "eventType" : "Accepts any valid event type, ex. 'click', 'complete', 'load'. Also accepts custom event types." },
-                { "eventHandler" : "The function you wish to use to handle the event when it is fired." }
+                { "eventTarget (required)" : "Accepts element or string (will use getElement() if string)." },
+                { "eventType (required)" : "Accepts any valid event type, ex. 'click', 'complete', 'load'. Also accepts custom event types." },
+                { "eventHandler (required)" : "The function you wish to use to handle the event when it is fired." }
             ],
             "dependencies" : "getType(), getElement(), useHandCursor()",
-            "compatibility" : "Currently in testing."
+            "compatibility" : "Currently in testing.",
+            "category" : "events"
         },
         {
             "title" : "detachEventListener()",
             "description" : "Detaches an event listener from any element. If a mouse event, the hand cursor is automatically set back to default.",
             "code" : "Spektral.detachEventListener(eventTarget, eventType, eventHandler);",
             "params" : [
-                { "eventTarget" : "Accepts element or string (will use getElement() if string)." },
-                { "eventType" : "Accepts any valid event type, ex. 'click', 'complete', 'load'. Also accepts custom event types." },
-                { "eventHandler" : "The function you wish to use to handle the event when it is fired." }
+                { "eventTarget (required)" : "Accepts element or string (will use getElement() if string)." },
+                { "eventType (required)" : "Accepts any valid event type, ex. 'click', 'complete', 'load'. Also accepts custom event types." },
+                { "eventHandler (required)" : "The function you wish to use to handle the event when it is fired." }
             ],
             "dependencies" : "getType(), getElement(), useDefaultCursor()",
-            "compatibility" : "Currently in testing."
+            "compatibility" : "Currently in testing.",
+            "category" : "events"
         },
         {
             "title" : "getKey()",
             "description" : "Converts the key code returned from a keyboard event into a string. ex. key code 38 returns \"UP\". Currently supports directional arrows and enter button.",
             "code" : "Spektral.getKey(code);",
             "params" : [
-                {"code" : "Key code returned from a keyboard event."}
+                {"code (required)" : "Key code returned from a keyboard event."}
             ],
             "dependencies" : "None",
-            "compatibility" : "Currently in testing."
+            "compatibility" : "Currently in testing.",
+            "category" : "utils"
         },
         {
             "title" : "createEvent()",
             "description" : "Creates a custom event.",
             "code" : "Spektral.createEvent(eventName, details, bub, can);",
             "params" : [
-                {"eventName" : "The name of the custom event you wish to create."},
-                {"details" : ""},
-                {"bub" : "Determines whether event can bubble. Default: true."},
-                {"can" : "Determines whether event can be canceled. Default: true."}
+                {"eventName (required)" : "The name of the custom event you wish to create."},
+                {"details (optional)" : "Allows you to pass custom properties to the event."},
+                {"bub - (optional, default: true)" : "Determines whether event can bubble."},
+                {"can - (optional, default: true)" : "Determines whether event can be canceled."}
             ],
             "dependencies" : "None",
-            "compatibility" : "Currently in testing."
+            "compatibility" : "Currently in testing.",
+            "category" : "events"
         },
         {
             "title" : "cancelEvent()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
+            "description" : "Prevents default action triggered by event.",
+            "code" : "Spektral.cancelEvent(evt);",
+            "params" : [
+                {"evt (required)" : "The returned value from the event."}
+            ],
             "dependencies" : "None",
-            "compatibility" : "Currently in testing."
+            "compatibility" : "Currently in testing.",
+            "category" : "events"
         },
         {
             "title" : "cancelPropagation()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
+            "description" : "Stops the event from bubbling up to parent elements.",
+            "code" : "Spektral.stopPropagation(evt);",
+            "params" : [
+                {"evt (required)" : "The returned value from the event."}
+            ],
             "dependencies" : "None",
-            "compatibility" : "Currently in testing."
+            "compatibility" : "Currently in testing.",
+            "category" : "events"
         },
         {
             "title" : "getTarget()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
+            "description" : "Returns the target element that is attached to the triggered event.",
+            "code" : "Spektral.getTarget(element);",
+            "params" : [
+                {"evt (required)" : "The returned value from the event."}
+            ],
             "dependencies" : "None",
-            "compatibility" : "Currently in testing."
+            "compatibility" : "Currently in testing.",
+            "category" : "utils"
         },
         {
             "title" : "getTargetID()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
+            "description" : "Returns the id of the element, if it has one.",
+            "code" : "Spektral.getTargetID(element)",
+            "params" : [
+                {"element (required)" : "The element you wish to get the id from."}
+            ],
             "dependencies" : "None",
-            "compatibility" : "Currently in testing."
+            "compatibility" : "Currently in testing.",
+            "category" : "utils"
         },
         {
             "title" : "useHandCursor()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "dependencies" : "None",
-            "compatibility" : "Currently in testing."
+            "description" : "Sets cursor style to hand (pointer).",
+            "code" : "Spektral.useHandCursor(element, cursorType);",
+            "params" : [
+                {"element (required)" : "The element you want to apply the hand cursor to."},
+                {"cursorType (optional, default: pointer)" : "The type of hand cursor you want to apply. Besides \"pointer\" you may also use any valid cursor style you want."}
+            ],
+            "dependencies" : "getType(), appendStyle()",
+            "compatibility" : "Currently in testing.",
+            "category" : "style"
         },
         {
             "title" : "useDefaultCursor()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "dependencies" : "None",
-            "compatibility" : "Currently in testing."
+            "description" : "Simply sets the cursor to the browsers default style.",
+            "code" : "Spektral.useDefaultCursor(element);",
+            "params" : [
+                {"element (required)" : "The element you want to reset to the default cursor."}
+            ],
+            "dependencies" : "appendStyle()",
+            "compatibility" : "Currently in testing.",
+            "category" : "style"
         },
         {
             "title" : "getMousePos()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "dependencies" : "None",
-            "compatibility" : "Currently in testing."
+            "description" : "Returns the mouses X/Y co-ordinates either with an element or window.",
+            "code" : "Spektral.getMousePos(evt);",
+            "params" : [
+                {"evt (required)" : "The returned value from the event."}
+            ],
+            "dependencies" : "throwError(), getTarget(), getPos()",
+            "compatibility" : "Currently in testing.",
+            "category" : "utils"
         },
         {
             "title" : "getViewPortSize()",
-            "description" : "",
-            "code" : "",
+            "description" : "Returns the height and width of the browser viewport.",
+            "code" : "Spektral.getViewPortSize();",
             "params" : [],
             "dependencies" : "None",
-            "compatibility" : "Currently in testing."
+            "compatibility" : "Currently in testing.",
+            "category" : "utils"
         },
         {
             "title" : "isMatch()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
+            "description" : "Compares to objects/elements to determine whether they are the same.",
+            "code" : "Spektral.isMatch(itemA, itemB",
+            "params" : [
+                {"itemA (required)" : "The first item you want to compare."},
+                {"itemB (required)" : "The item you want to compare against itemA."}
+            ],
             "dependencies" : "None",
-            "compatibility" : "Currently in testing."
+            "compatibility" : "Currently in testing.",
+            "category" : "utils"
         },
         {
             "title" : "loadJSON()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "dependencies" : "None",
-            "compatibility" : "Currently in testing."
+            "description" : "Loads an external JSON file.",
+            "code" : "Spektral.loadJSON(source, callback, async);",
+            "params" : [
+                {"source (required)" : "The location of the JSON file you wish to load."},
+                {"callback (required)" : "The function that will receive the results after load."},
+                {"async (optional, default: true)" : "You can set whether the file loads asynchronously or not."}
+            ],
+            "dependencies" : "getType(), loadFile(), throwError()",
+            "compatibility" : "Currently in testing.",
+            "category" : "ajax"
         },
         {
             "title" : "loadXML()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "dependencies" : "None",
-            "compatibility" : "Currently in testing."
+            "description" : "Loads an external XML file.",
+            "code" : "Spektral.loadXML(source, callback, async);",
+            "params" : [
+                {"source (required)" : "The location of the XML file you wish to load."},
+                {"callback (required)" : "The function that will receive the results after load."},
+                {"async (optional, default: true)" : "You can set whether the file loads asynchronously or not."}
+            ],
+            "dependencies" : "getType(), loadFile(), throwError()",
+            "compatibility" : "Currently in testing.",
+            "category" : "ajax"
         },
         {
             "title" : "loadFile()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "dependencies" : "None",
-            "compatibility" : "Currently in testing."
+            "description" : "Loads an external file using XMLHttpRequest/ActiveXObject. Ex. .txt, .xml, .json",
+            "code" : "Spektral.loadFile(file, callback, async).",
+            "params" : [
+                {"source (required)" : "The location of the file you wish to load."},
+                {"callback (required)" : "The function that will receive the results after load."},
+                {"async (optional, default: true)" : "You can set whether the file loads asynchronously or not."}
+            ],
+            "dependencies" : "getExtension(), getXHR(), throwError(), attachEventListener()",
+            "compatibility" : "Currently in testing.",
+            "category" : "ajax"
         },
         {
             "title" : "getXHR()",
-            "description" : "",
+            "description" : "Determines whether to use XMLHttpRequest or ActiveXObject when loading an external file.",
             "code" : "",
             "params" : [],
             "dependencies" : "None",
-            "compatibility" : "Currently in testing."
+            "compatibility" : "Currently in testing.",
+            "category" : "ajax"
         },
         {
             "title" : "xmlToJSON()",

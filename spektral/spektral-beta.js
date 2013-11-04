@@ -138,28 +138,28 @@
     //////////////////
     ////CANCEL EVENT
     //////////////////
-    Spektral.cancelEvent = function (e) {
-        if (e.preventDefault) {
-            e.preventDefault();
-        } else { e.returnValue = false; }
+    Spektral.cancelEvent = function (evt) {
+        if (evt.preventDefault) {
+            evt.preventDefault();
+        } else { evt.returnValue = false; }
     };
 
     ///////////////////
     ///CANCEL PROPOGATION
     ///////////////////
-    Spektral.cancelPropagation = function (e) {
-        if (e.stopPropagation) {
-            e.stopPropagation();
+    Spektral.cancelPropagation = function (evt) {
+        if (evt.stopPropagation) {
+            evt.stopPropagation();
         } else {
-            e.cancelBubble = true;
+            evt.cancelBubble = true;
         }
     };
 
     ///////////////////
     ///GET TARGET
     ///////////////////
-    Spektral.getTarget = function (element) {
-        return element.relatedTarget || element.fromElement || element.target;
+    Spektral.getTarget = function (evt) {
+        return evt.relatedTarget || evt.fromElement || evt.target;
     };
 
     ///////////////////
