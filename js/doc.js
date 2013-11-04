@@ -69,14 +69,16 @@
 
         clearMethodContainer();
 
-        var title, description, code, params, paramsList, paramObj, parameter, paramTitle, paramDesc, dependencies, support, i, key, k;
-
-//        title = jsonObject[id].title;
-//        description = jsonObject[id].description;
-//        code = jsonObject[id].code;
-//        params = jsonObject[id].params;
-//        dependencies = jsonObject[id].dependencies;
-//        support = jsonObject[id].support;
+        var
+            title,
+            description,
+            code, params,
+            paramsList, paramObj,
+            parameter, paramTitle,
+            paramDesc, depend,
+            dependTitle, compatibilityTitle,
+            compatibility, key,
+            k, details;
 
         title = Spektral.createNewElement("h2", "title", methodContainer);
         title.innerHTML = jsonObject[id].title;
@@ -92,13 +94,10 @@
         paramsList = jsonObject[id].params;
 
         if (Spektral.isObjectEmpty(paramsList) === false) {
-            //Have to create a div with p tags in them for each
             for (key in paramsList) {
-            parameter = Spektral.createNewElement("div", key, params);
+            parameter = Spektral.createNewElement("div", "param" + key, params);
             paramObj = paramsList[key];
                 for(k in paramObj) {
-                  //parameter.innerHTML = k + " : " + paramObj[k];
-                  //Spektral.log("k is: " + k + " paramObj: " + paramObj[k]);
                     paramTitle = Spektral.createNewElement("h3", "paramTitle", parameter);
                     paramTitle.innerHTML = k;
 
@@ -109,6 +108,21 @@
         } else {
             params.innerHTML = "Parameters: None."
         }
+
+        details = Spektral.createNewElement("section", "details", methodContainer);
+
+        dependTitle = Spektral.createNewElement("h3", "dependTitle", details);
+        dependTitle.innerHTML = "Dependencies";
+
+        depend = Spektral.createNewElement("p", "dependencies", details);
+        depend.innerHTML = jsonObject[id].dependencies;
+
+        compatibilityTitle = Spektral.createNewElement("h3", "compatibilityTitle", details);
+        compatibilityTitle.innerHTML = "Compatibility";
+
+        compatibility = Spektral.createNewElement("p", "compatibility", details);
+        compatibility.innerHTML = jsonObject[id].compatibility;
+
 
         TweenLite.to(methodContainer, 0.25, {opacity:"1", ease:Expo.easeIn});
     }

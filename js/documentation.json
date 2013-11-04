@@ -6,7 +6,7 @@
             "code" : "Spektral.debug();",
             "params" : [],
             "dependencies" : "None",
-            "support" : "Currently in testing."
+            "compatibility" : "Currently in testing."
         },
         {
             "title" : "about()",
@@ -14,7 +14,7 @@
             "code" : "Spektral.about();",
             "params" : [],
             "dependencies" : "None",
-            "support" : "Currently in testing."
+            "compatibility" : "Currently in testing."
         },
         {
             "title" : "attachEventListener()",
@@ -26,7 +26,7 @@
                 { "eventHandler" : "The function you wish to use to handle the event when it is fired." }
             ],
             "dependencies" : "getType(), getElement(), useHandCursor()",
-            "support" : "Currently in testing."
+            "compatibility" : "Currently in testing."
         },
         {
             "title" : "detachEventListener()",
@@ -38,7 +38,7 @@
                 { "eventHandler" : "The function you wish to use to handle the event when it is fired." }
             ],
             "dependencies" : "getType(), getElement(), useDefaultCursor()",
-            "support" : "Currently in testing."
+            "compatibility" : "Currently in testing."
         }
     ]
 }

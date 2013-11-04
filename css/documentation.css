@@ -58,8 +58,15 @@ p {
   color: #f1d7b2;
 }
 #glossary ul {
-  margin: 10px;
-  padding: 0;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px;
+  background-color: rgba(84, 87, 79, 0.25);
+  text-shadow: 0 0 3px #f1d7b2;
+  margin: 10px 0;
+  padding: 10px;
   list-style: none;
 }
 #glossary ul li {
@@ -118,7 +125,7 @@ p {
   -ms-border-radius: 7px;
   -o-border-radius: 7px;
   border-radius: 7px;
-  padding: 2px 5px;
+  padding: 2px 10px;
   font-size: 18px;
   background-color: #352f2f;
   color: #f1d7b2;
@@ -137,7 +144,7 @@ p {
   font-weight: 500;
   letter-spacing: 0.05em;
   color: #352f2f;
-  padding: 5px 10px;
+  padding: 5px 20px;
   font-size: 14px;
 }
 .method div {
@@ -148,9 +155,6 @@ p {
   padding: 5px 10px;
   font-size: 14px;
 }
-#support {
-  padding: 0 10px;
-}
 .method code {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -158,11 +162,41 @@ p {
   -o-border-radius: 5px;
   border-radius: 5px;
   text-shadow: 0 0 5px #000000;
+  background-color: rgba(84, 87, 79, 0.75);
   font-size: 14px;
-  background-color: #54574f;
   color: #f1d7b2;
   display: block;
+  padding: 5px 20px;
+}
+#paramDesc {
   padding: 5px 10px;
+}
+#description {
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px;
+  background-color: rgba(84, 87, 79, 0.25);
+  margin: 10px 0;
+}
+#details {
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px;
+  background-color: rgba(84, 87, 79, 0.75);
+  padding: 5px 10px;
+}
+#details p {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 16px;
+  font-weight: bold;
+  text-shadow: 0px 0px 10px #000000;
+  padding: 5px 10px;
+  font-size: 14px;
+  color: #f1d7b2;
 }
 #mainFooter {
   background-color: #54574f;
