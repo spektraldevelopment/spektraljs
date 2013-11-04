@@ -400,11 +400,10 @@
         for (child = parentNode.firstChild; child !== null; child = child.nextSibling) {
             type = Spektral.getType(child);
 
-
             if (type === "text") {
                 //CDATA and Text
                 //nodeArray.push(child.nodeValue);//Remember to code this to handle if the main node has textContent
-                Spektral.log("Going to handle text in here someday.");
+                //Spektral.log("Going to handle text in here someday.");
             } else if (type === "element") {
                 xmlObject[child.tagName] = Spektral.createObject(child.childNodes);
             }
