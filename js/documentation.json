@@ -52,9 +52,14 @@
         },
         {
             "title" : "createEvent()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
+            "description" : "Creates a custom event.",
+            "code" : "Spektral.createEvent(eventName, details, bub, can);",
+            "params" : [
+                {"eventName" : "The name of the custom event you wish to create."},
+                {"details" : ""},
+                {"bub" : "Determines whether event can bubble. Default: true."},
+                {"can" : "Determines whether event can be canceled. Default: true."}
+            ],
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },

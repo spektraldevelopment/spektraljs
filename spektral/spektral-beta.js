@@ -749,7 +749,7 @@
 
         if(inlineStyle === "") {
             styleObject = false;
-            Spektral.log("getInlineStyle: No inline style set.");
+            //Spektral.log("getInlineStyle: No inline style set.");
         } else {
             properties = Spektral.splitString(inlineStyle, ";");
 
