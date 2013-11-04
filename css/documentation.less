@@ -58,7 +58,7 @@
 
 .codeText () {
   font-family: "Courier New", Courier, monospace;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
 }
 
@@ -120,7 +120,6 @@ h1, h2, h3, h4, p {
 #glossary ul {
   .rounded-corners(7px);
   .transparentBG(@green, 0.25);
-  .textShadow(0, 0, 3px, @cream);
   margin: 10px 0;
   padding: 10px;
   list-style: none;
@@ -130,9 +129,15 @@ h1, h2, h3, h4, p {
   .rounded-corners(7px);
   .transparentBG(@green, 0.25);
   .codeText();
+  .textShadow(0, 0, 3px, @cream);
   margin: 5px 0;
   padding: 5px;
   color: @brown;
+}
+
+#glossary ul li:hover {
+  .textShadow(0, 0, 3px, @black);
+  color: @beige;
 }
 
 #mainContent {
@@ -168,7 +173,8 @@ h1, h2, h3, h4, p {
 
 .method h3 {
   .rounded-corners(7px);
-  padding: 2px 10px;
+  .textShadow(0px, 0px, 10px, @black);
+  padding: 5px 10px;
   font-size: 18px;
   background-color: @brown;
   color: @cream;
