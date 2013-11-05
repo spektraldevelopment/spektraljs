@@ -23,9 +23,9 @@
             "description" : "Attaches an event listener to any element. If a mouse event, the hand (pointer) cursor is automatically applied.",
             "code" : "Spektral.attachEventListener(eventTarget, eventType, eventHandler);",
             "params" : [
-                { "eventTarget (required)" : "Expects: Element or String. Will use getElement() if string." },
-                { "eventType (required)" : "Expects: String. Any valid event type, ex. 'click', 'complete', 'load'. Also accepts custom event types." },
-                { "eventHandler (required)" : "Expects: Function. The function you wish to use to handle the event when it is fired." }
+                { "eventTarget (required, expects: Element or String)" : "Will use getElement() if string." },
+                { "eventType (required, expects: String)" : "Any valid event type, ex. 'click', 'complete', 'load'. Also accepts custom event types." },
+                { "eventHandler (required, expects: Function)" : "The function you wish to use to handle the event when it is fired." }
             ],
             "dependencies" : "getType(), getElement(), useHandCursor()",
             "compatibility" : "Currently in testing.",
@@ -36,9 +36,9 @@
             "description" : "Detaches an event listener from any element. If a mouse event, the hand cursor is automatically set back to default.",
             "code" : "Spektral.detachEventListener(eventTarget, eventType, eventHandler);",
             "params" : [
-                { "eventTarget (required)" : "Expects: Element or String. Will use getElement() if string." },
-                { "eventType (required)" : "Expects: String. Any valid event type, ex. 'click', 'complete', 'load'. Also accepts custom event types." },
-                { "eventHandler (required)" : "Expects: Function. The function you wish to use to handle the event when it is fired." }
+                { "eventTarget (required, expects: Element or String)" : "Will use getElement() if string." },
+                { "eventType (required), expects: String)" : "Any valid event type, ex. 'click', 'complete', 'load'. Also accepts custom event types." },
+                { "eventHandler (required, expects: Function)" : "The function that was assign to the event." }
             ],
             "dependencies" : "getType(), getElement(), useDefaultCursor()",
             "compatibility" : "Currently in testing.",
@@ -49,7 +49,7 @@
             "description" : "Converts the key code returned from a keyboard event into a string. ex. key code 38 returns \"UP\". Currently supports directional arrows and enter button.",
             "code" : "Spektral.getKey(code);",
             "params" : [
-                {"code (required)" : "Expects: Number. Key code returned from a keyboard event."}
+                {"code (required, expects: Number)" : "Key code returned from a keyboard event."}
             ],
             "dependencies" : "None",
             "compatibility" : "Currently in testing.",
@@ -60,10 +60,10 @@
             "description" : "Creates a custom event.",
             "code" : "Spektral.createEvent(eventName, details, bub, can);",
             "params" : [
-                {"eventName (required)" : "Expects: String. The name of the custom event you wish to create."},
-                {"details (optional)" : "Expects: Object. Allows you to pass custom properties to the event."},
-                {"bub - (optional, default: true)" : "Expects: Boolean. Determines whether event can bubble."},
-                {"can - (optional, default: true)" : "Expects: Boolean. Determines whether event can be canceled."}
+                {"eventName (required, expects: String)" : "The name of the custom event you wish to create."},
+                {"details (optional, expects: Object)" : "Allows you to pass custom properties to the event."},
+                {"bub (optional, expects: Boolean, default: true)" : "Determines whether event can bubble."},
+                {"can (optional, expects: Boolean, default: true)" : "Determines whether event can be canceled."}
             ],
             "dependencies" : "None",
             "compatibility" : "Currently in testing.",
@@ -74,7 +74,7 @@
             "description" : "Prevents default action triggered by event.",
             "code" : "Spektral.cancelEvent(evt);",
             "params" : [
-                {"evt (required)" : "Expects: Returned event value."}
+                {"evt (required, expects: Returned event value)" : "The returned value event from the function assigned to the event."}
             ],
             "dependencies" : "None",
             "compatibility" : "Currently in testing.",
@@ -85,7 +85,7 @@
             "description" : "Stops the event from bubbling up to parent elements.",
             "code" : "Spektral.stopPropagation(evt);",
             "params" : [
-                {"evt (required)" : "Expects: Returned event value."}
+                {"evt (required, expects: Returned event value)" : "The returned value event from the function assigned to the event."}
             ],
             "dependencies" : "None",
             "compatibility" : "Currently in testing.",
@@ -96,7 +96,7 @@
             "description" : "Returns the target element that is attached to the triggered event.",
             "code" : "Spektral.getTarget(element);",
             "params" : [
-                {"evt (required)" : "Expects: Returned event value."}
+                {"evt (required, expects: Returned event value)" : "The returned value event from the function assigned to the event."}
             ],
             "dependencies" : "None",
             "compatibility" : "Currently in testing.",
@@ -107,7 +107,7 @@
             "description" : "Returns the id of the element, if it has one.",
             "code" : "Spektral.getTargetID(element)",
             "params" : [
-                {"element (required)" : "Expects: Element. The element you wish to get the id from."}
+                {"element (required, expects: Element)" : "The element you wish to get the id from."}
             ],
             "dependencies" : "None",
             "compatibility" : "Currently in testing.",
@@ -118,8 +118,8 @@
             "description" : "Sets cursor style to hand (pointer).",
             "code" : "Spektral.useHandCursor(element, cursorType);",
             "params" : [
-                {"element (required)" : "Expects: Element. The element you want to apply the hand cursor to."},
-                {"cursorType (optional, default: pointer)" : "Expects: String. The type of hand cursor you want to apply. Besides \"pointer\" you may also use any valid cursor style you want."}
+                {"element (required, expects: Element)" : "The element you want to apply the hand cursor to."},
+                {"cursorType (optional, expects: String. default: \"pointer\")" : "The type of hand cursor you want to apply. Besides \"pointer\" you may also use any valid cursor style you want."}
             ],
             "dependencies" : "getType(), appendStyle()",
             "compatibility" : "Currently in testing.",
@@ -130,7 +130,7 @@
             "description" : "Simply sets the cursor to the browsers default style.",
             "code" : "Spektral.useDefaultCursor(element);",
             "params" : [
-                {"element (required)" : "Expects: Element. The element you want to reset to the default cursor."}
+                {"element (required, expects: Element)" : "The element you want to reset to the default cursor."}
             ],
             "dependencies" : "appendStyle()",
             "compatibility" : "Currently in testing.",
@@ -141,7 +141,7 @@
             "description" : "Returns the mouses X/Y co-ordinates either with an element or window.",
             "code" : "Spektral.getMousePos(evt);",
             "params" : [
-                {"evt (required)" : "Expects: Returned event value."}
+                {"evt (required, expects: Returned event value)" : "The returned value event from the function assigned to the event."}
             ],
             "dependencies" : "throwError(), getTarget(), getPos()",
             "compatibility" : "Currently in testing.",
@@ -161,8 +161,8 @@
             "description" : "Compares to objects/elements to determine whether they are the same.",
             "code" : "Spektral.isMatch(itemA, itemB);",
             "params" : [
-                {"itemA (required)" : "Expects: Anything. The first item you want to compare."},
-                {"itemB (required)" : "Expects: Anything. The item you want to compare against itemA."}
+                {"itemA (required, expects: Anything)" : "The first item you want to compare."},
+                {"itemB (required, expects: Anything)" : "The item you want to compare against itemA."}
             ],
             "dependencies" : "None",
             "compatibility" : "Currently in testing.",
@@ -173,9 +173,9 @@
             "description" : "Loads an external JSON file.",
             "code" : "Spektral.loadJSON(source, callback, async);",
             "params" : [
-                {"source (required)" : "The location of the JSON file you wish to load."},
-                {"callback (required)" : "The function that will receive the results after load."},
-                {"async (optional, default: true)" : "You can set whether the file loads asynchronously or not."}
+                {"source (required, expects: String)" : "The location of the JSON file you wish to load."},
+                {"callback (required, expects: Function)" : "The function that will receive the results after load."},
+                {"async (optional, expects: Boolean, default: true)" : "You can set whether the file loads asynchronously or not."}
             ],
             "dependencies" : "getType(), loadFile(), throwError()",
             "compatibility" : "Currently in testing.",
@@ -186,9 +186,9 @@
             "description" : "Loads an external XML file.",
             "code" : "Spektral.loadXML(source, callback, async);",
             "params" : [
-                {"source (required)" : "The location of the XML file you wish to load."},
-                {"callback (required)" : "The function that will receive the results after load."},
-                {"async (optional, default: true)" : "You can set whether the file loads asynchronously or not."}
+                {"source (required, expects: String)" : "The location of the XML file you wish to load."},
+                {"callback (required, expects: Function)" : "The function that will receive the results after load."},
+                {"async (optional, expects: Boolean, default: true)" : "You can set whether the file loads asynchronously or not."}
             ],
             "dependencies" : "getType(), loadFile(), throwError()",
             "compatibility" : "Currently in testing.",
@@ -196,12 +196,12 @@
         },
         {
             "title" : "loadFile()",
-            "description" : "Loads an external file using XMLHttpRequest/ActiveXObject. Ex. .txt, .xml, .json",
+            "description" : "Loads an external file using XMLHttpRequest/ActiveXObject.</br>Ex. TEXT, XML, JSON",
             "code" : "Spektral.loadFile(file, callback, async).",
             "params" : [
-                {"source (required)" : "The location of the file you wish to load."},
-                {"callback (required)" : "The function that will receive the results after load."},
-                {"async (optional, default: true)" : "You can set whether the file loads asynchronously or not."}
+                {"source (required, expects: String)" : "The location of the file you wish to load."},
+                {"callback (required, expects: Function)" : "The function that will receive the results after load."},
+                {"async (optional, expects: Boolean, default: true)" : "You can set whether the file loads asynchronously or not."}
             ],
             "dependencies" : "getExtension(), getXHR(), throwError(), attachEventListener()",
             "compatibility" : "Currently in testing.",
@@ -221,8 +221,8 @@
             "description" : "Converts an XML structure to a JSON object for ease of use in JavaScript.",
             "code" : "Spektral.xmlToJSON(xml, node, index);",
             "params" : [
-                {"xml (required, expects: loaded XML object)" : "The loaded or embedded XML."},
-                {"node (optional, default: firstChild.nodeName)" : "By default xmlToJSON creates an object out of the entire file, but you can specify a particular parent node if needed."},
+                {"xml (required, expects: XML object)" : "The loaded or embedded XML."},
+                {"node (optional, default: firstChild.nodeName)" : "By default xmlToJSON() creates an object out of the entire file, but you can specify a particular parent node if needed."},
                 {"index (optional, default: 0)" : "Can be used if you only want a specific child node."}
             ],
             "dependencies" : "getType(), createObject()",
@@ -231,10 +231,10 @@
         },
         {
             "title" : "createObject()",
-            "description" : "Takes a NodeList and converts it into an array of objects, returning the result.",
+            "description" : "Takes a nodeList and converts it into an array of objects, returning the result.",
             "code" : "Spektral.createObject(list);",
             "params" : [
-                "list (required, expects: NodeList) " : "A NodeList of elements."
+                {"list (required, expects: nodeList) " : "A nodeList of elements."}
             ],
             "dependencies" : "getType(), getTextContent(), createObject()",
             "compatibility" : "Currently in testing.",
@@ -245,17 +245,20 @@
             "description" : "Uses querySelectorAll to locate and return an element.",
             "code" : "Spektral.query(element)",
             "params" : [
-                {"element (required, expects:string)" : "The element you wish to locate."}
+                {"element (required, expects: String)" : "The element you wish to locate."}
             ],
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "getElement()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "dependencies" : "None",
+            "description" : "Returns an element from the DOM.",
+            "code" : "Spektral.getElement(element, index);",
+            "params" : [
+                {"element (required, expects: String)" : "You can search for an element by it's id, class, or tag name. If multiple instances of the element are found (ex. elements share the same class or tag name), will return a nodeList of elements."},
+                {"index (optional, expects: Number)" : "Use this to target an element that shares the same class or tag name with other elements. Ex. The third list item in an unordered list."}
+            ],
+            "dependencies" : "isHTMLElement(), isHTMLID(), isHTMLName(), query(), throwError(), getType(), log(), listArrayElements()",
             "compatibility" : "Currently in testing."
         },
         {
