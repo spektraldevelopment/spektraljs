@@ -214,7 +214,13 @@ p {
 #mainFooter {
   background-color: #54574f;
 }
-#mainFooter small {
+#statement {
+  position: relative;
+  color: #f1d7b2;
+  float: left;
+  padding: 0 10px;
+}
+#copyright {
   position: relative;
   color: #f1d7b2;
   float: right;
