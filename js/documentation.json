@@ -263,90 +263,119 @@
         },
         {
             "title" : "isHTMLElement()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "dependencies" : "None",
+            "description" : "Used by getElement() to determine whether you are trying to find an element.",
+            "code" : "Spektral.isHTMLElement(element);",
+            "params" : [
+                {"element (required, expects: String)" : "Only accepts the tag name of the element you wish to check for. If you want to check if pre-defined variable is an element, use isElement()."}
+            ],
+            "dependencies" : "listElements()",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "isHTMLID()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "dependencies" : "None",
+            "description" : "Used by getElement() to determine whether you are trying to find an element by its id attribute.",
+            "code" : "Spektral.isHTMLID(id);",
+            "params" : [
+                {"id (required, expects: String)" : "Only accepts the id of the element you wish to check for."}
+            ],
+            "dependencies" : "listElements()",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "isHTMLName()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "dependencies" : "None",
+            "description" : "Used by getElement() to determine whether you are trying to find an element by its name attribute.",
+            "code" : "Spektral.isHTMLName(name);",
+            "params" : [
+                {"name" : "Only accepts the name of the element you wish to check for."}
+            ],
+            "dependencies" : "listElements()",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "createNewElement()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "dependencies" : "None",
+            "description" : "Created a new element and adds it to the parent of your choosing.",
+            "code" : "Spektral.createNewElement(element, id, parent);",
+            "params" : [
+                {"element (required, expects: String)" : "Accepts an valid HTML element."},
+                {"id (optional, expects: String)" : "If not defined, an id will not be assigned to element."},
+                {"parent (optional, expects: String or Element)" : "If not defined, will add new element to the body element."}
+            ],
+            "dependencies" : "getElement(), getType(), throwError()",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "moveToAfter()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
+            "description" : "Moves an element to after another element in the same parent node.",
+            "code" : "Spektral.moveToAfter(element, targetElement);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you wish to move."},
+                {"targetElement (required, expects: Element)" : "The target element in the same parent node."}
+            ],
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "moveToBefore()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
+            "description" : "Moves an element to before another element in the same parent node.",
+            "code" : "Spektral.moveToBefore(element, targetElement);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you wish to move."},
+                {"targetElement (required, expects: Element)" : "The target element in the same parent node."}
+            ],
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "removeElement()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
+            "description" : "Removes an element from the DOM.",
+            "code" : "Spektral.removeElement(element);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to remove from the DOM."}
+            ],
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "clearAllChildren()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
+            "description" : "Clears all child nodes from a parent node.",
+            "code" : "Spektral.clearAllChildren(parent);",
+            "params" : [
+                {"parent (required, expects: Element)" : "The parent you want to clear of all children."}
+            ],
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "setStyle()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "dependencies" : "None",
+            "description" : "Sets the inline style of an element. Will overwrite current inline style, to avoid this, use appendStyle().",
+            "code" : "Spektral.setStyle(element, styleProperty);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to change the inline style of."},
+                {"styleProperty (required, expects: String)" : "The property you want to set and its value. Ex. \"display: block\".</br>Note: At the moment you can only change one property at a time, I hope to change this in a future release."}
+            ],
+            "dependencies" : "getType(), throwError(), createSetAttribute()",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "getStyle()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "dependencies" : "None",
+            "description" : "Gets the current inline style of an element.",
+            "code" : "Spektral.getStyle(element, styleProperty);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to get the inline style of."},
+                {"styleProperty (optional, expects: String)" : "Can be set to an individual style property, if left undefined getStyle() will return all style properties."}
+            ],
+            "dependencies" : "getInlineStyle(), throwError()",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "appendStyle()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "dependencies" : "None",
+            "description" : "Changes the inline style of an element, while preserving the existing inline style.",
+            "code" : "Spektral.appendStyle(element, styleProperty);",
+            "params" : [
+                {"element (required, expects: Element" : "The element you want to append the inline style of."},
+                {"styleProperty (required, expects: String)" : "The property you wish to add or modify to the current inline style.</br>Note: At the moment you can only add/modify one property at a time, I hope to change this in a future release."}
+            ],
+            "dependencies" : "getInlineStyle(), detectCharacter(), throwError(), splitString(), setStyle()",
             "compatibility" : "Currently in testing."
         },
         {

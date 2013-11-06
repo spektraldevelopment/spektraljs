@@ -626,7 +626,7 @@
         try {
             element.remove();
         } catch (err) {
-            Spektral.log("removeElement: .remove() was not available. Reverting to removeChild().")
+            //Spektral.log("removeElement: .remove() was not available. Reverting to removeChild().")
             element.parentNode.removeChild(element);
         }
     };
@@ -659,7 +659,6 @@
         } else {
             Spektral.throwError("setStyle: Property must be a string or array.")
         }
-        //element.setAttribute("style", propString);
         Spektral.createSetAttribute(element, "style", propString);
     };
 
@@ -689,7 +688,7 @@
     //////////////////
     ////APPEND STYLE
     //////////////////
-    Spektral.appendStyle = function (element, style) {
+    Spektral.appendStyle = function (element, styleProperty) {
 
         var
             currentStyle = Spektral.getInlineStyle(element),
@@ -697,7 +696,7 @@
             key,
             propertyExists = false,
             newStyle,
-            stringCheck = Spektral.detectCharacter(style, ";");
+            stringCheck = Spektral.detectCharacter(styleProperty, ";");
 
         //stringCheck is for if the user attempts to append multiple properties at the same time
         if(stringCheck === true) {
@@ -705,9 +704,9 @@
         }
 
         if(currentStyle === false) {
-            styleString += style + "; ";
+            styleString += styleProperty + "; ";
         } else {
-            newStyle = Spektral.splitString(style, ":")
+            newStyle = Spektral.splitString(styleProperty, ":")
 
             for (key in currentStyle) {
                 if (key === newStyle[0]) {
@@ -722,7 +721,7 @@
             }
 
             if(propertyExists === false) {
-                styleString += style + "; ";
+                styleString += styleProperty + "; ";
             }
         }
         Spektral.setStyle(element, styleString);
