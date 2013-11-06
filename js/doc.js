@@ -147,4 +147,12 @@
         TweenLite.to(window, 0.5, {scrollTo:{y:0}, ease: Expo.easeOut});
     }
 
+    var testElement = Spektral.getElement("testElement");
+
+    var getStyle = Spektral.getStyle(testElement);
+    Spektral.log("getStyle: " + Spektral.getInfo(getStyle));
+
+    var getInlineStyle = Spektral.getInlineStyle(testElement);
+    Spektral.log("getInlineStyle: " + Spektral.getInfo(getInlineStyle));
+
 }(window));

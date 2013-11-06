@@ -358,7 +358,7 @@
         },
         {
             "title" : "getStyle()",
-            "description" : "Gets the current inline style of an element.",
+            "description" : "Gets the current inline style of an element. Returns false is no inline style found.",
             "code" : "Spektral.getStyle(element, styleProperty);",
             "params" : [
                 {"element (required, expects: Element)" : "The element you want to get the inline style of."},
@@ -380,18 +380,22 @@
         },
         {
             "title" : "clearStyle()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "dependencies" : "None",
+            "description" : "Clears all inline styling on an element.",
+            "code" : "Spektral.clearStyle(element);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you wish to clear the style of."}
+            ],
+            "dependencies" : "destroyAttribute()",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "getInlineStyle()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "dependencies" : "None",
+            "description" : "Gets the inline style of an element. Returns false is no inline style found. Unlike getStyle(), you cannot specify individual style properties.",
+            "code" : "Spektral.getInlineStyle(element);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to get the inline style from."}
+            ],
+            "dependencies" : "splitString()",
             "compatibility" : "Currently in testing."
         },
         {
