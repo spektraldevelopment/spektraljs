@@ -147,7 +147,4 @@
         TweenLite.to(window, 0.5, {scrollTo:{y:0}, ease: Expo.easeOut});
     }
 
-    var test = Spektral.isHTMLElement(methodContainer);
-    console.log("test is HTML element?:" + test);
-
 }(window));

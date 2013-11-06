@@ -372,7 +372,7 @@
             "description" : "Changes the inline style of an element, while preserving the existing inline style.",
             "code" : "Spektral.appendStyle(element, styleProperty);",
             "params" : [
-                {"element (required, expects: Element" : "The element you want to append the inline style of."},
+                {"element (required, expects: Element)" : "The element you want to append the inline style of."},
                 {"styleProperty (required, expects: String)" : "The property you wish to add or modify to the current inline style.</br>Note: At the moment you can only add/modify one property at a time, I hope to change this in a future release."}
             ],
             "dependencies" : "getInlineStyle(), detectCharacter(), throwError(), splitString(), setStyle()",
