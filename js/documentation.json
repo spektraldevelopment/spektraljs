@@ -519,33 +519,42 @@
         },
         {
             "title" : "listNodeAttributes()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
+            "description" : "Returns an array of attributes of a node as an Array.",
+            "code" : "Spektral.listNodeAttributes(node);",
+            "params" : [
+                {"node (required, expects: Element or XML node)" : "The node you want to get attributes from."}
+            ],
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "roundNum()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
+            "description" : "Returns a  rounded number.",
+            "code" : "Spektral.roundNum(num, type);",
+            "params" : [
+                {"num (required, expects: Number)" : ""},
+                {"type (optional, default: \"regular\")" : "\"regular\" will use Math.round, but you could also pass \"up\" (Math.ceil) or \"down\" (Math.floor)."}
+            ],
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "getPos()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
+            "description" : "Returns an object containing the x, y, left, top, right, bottom properties of an element.",
+            "code" : "Spektral.getPos(element);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want get the position data from."}
+            ],
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "isObjectEmpty()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
+            "description" : "Determines whether an object is empty and returns a boolean.",
+            "code" : "Spektral.isObjectEmpty(obj);",
+            "params" : [
+                {"obj (required, expects: Object)" : "The object you wish to test."}
+            ],
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
