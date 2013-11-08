@@ -807,7 +807,6 @@
             }
         }
         return attr;
-        //apparently harder than I thought
     };
 
     //////////////////
@@ -820,7 +819,7 @@
             if(element.getAttribute(attribute) !== null) {
                 Spektral.throwError("destroyElement: Attribute was unable to be removed for some reason.")
             } else {
-                Spektral.log("Attribute destroyed.");
+                //Spektral.log("Attribute destroyed.");
             }
         }
     };
@@ -873,7 +872,7 @@
 
         if (currentVState === "visible" && currentDState !== "none") {
             //Element is already seen, don't do anything
-            Spektral.log(element + " is already visible.")
+            //Spektral.log(element + " is already visible.")
         } else {
             Spektral.appendStyle(element, displayString);
             Spektral.appendStyle(element, "visibility:visible");
@@ -892,7 +891,7 @@
             currentDState = Spektral.getStyle(element, "display");
 
         if(currentVState === "hidden" || currentDState === "none") {
-            Spektral.log(element + " is already hidden.")
+            //Spektral.log(element + " is already hidden.")
         } else {
             if(useDisplay === true) {
                 //set display to none

@@ -390,7 +390,7 @@
         },
         {
             "title" : "getInlineStyle()",
-            "description" : "Gets the inline style of an element. Returns false is no inline style found. Unlike getStyle(), you cannot specify individual style properties.",
+            "description" : "Gets the entire inline style of an element. Returns false is no inline style found. Unlike getStyle(), you cannot specify individual style properties.",
             "code" : "Spektral.getInlineStyle(element);",
             "params" : [
                 {"element (required, expects: Element)" : "The element you want to get the inline style from."}
@@ -400,90 +400,121 @@
         },
         {
             "title" : "convertToCamel()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "dependencies" : "None",
+            "description" : "Converts a string separated with hyphens into camel case. Ex. \"data-type\" becomes \"dataType\".",
+            "code" : "Spektral.convertToCamel(request, char);",
+            "params" : [
+                {"request (required, expects: String)" : "The string you wish to convert to camel case."},
+                {"char (optional, default: hyphen)" : "You can use a different character other than a hyphen if need be."}
+            ],
+            "dependencies" : "splitString()",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "createSetAttribute()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
+            "description" : "Adds any valid attribute to an element.",
+            "code" : "Spektral.createSetAttribute(element, attribute, value);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to add the attribute to."},
+                {"attribute (required, expects: String)" : "The attribute you wish to set."},
+                {"value (required, expects: String)" : "The value you want to assign to the new attribute."}
+            ],
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "retrieveAttribute()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "dependencies" : "None",
+            "description" : "Retrieves an attribute from an element.",
+            "code" : "Spektral.retrieveAttribute(element, attribute);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to retrieve the attribute from."},
+                {"attribute (required, expects: String)" : "The name of the attribute."}
+            ],
+            "dependencies" : "getNodeAttributes(), throwError()",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "destroyAttribute()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "dependencies" : "None",
+            "description" : "Remove an attribute from an element.",
+            "code" : "Spektral.destroyAttribute(element, attribute);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to remove the attribute from."},
+                {"attribute (required, expects: String)" : "The attribute you want to remove."}
+            ],
+            "dependencies" : "throwError()",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "getTextContent()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
+            "description" : "Returns the inner text inside an element.",
+            "code" : "Spektral.getTextContent(element);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you wish to retrieve the text from."}
+            ],
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "getNodeAttributes()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
+            "description" : "Returns an object with all the attribute of a node.",
+            "code" : "Spektral.getNodeAttributes(element);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to get all attributes from."}
+            ],
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
         {
-            "title" : "checkForAttribute()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
+            "title" : "checkForAttribute() - Currently Not Available",
+            "description" : "Checks if an attribute exists within an element.",
+            "code" : "Spektral.checkForAttribute(element, attribute);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to check for the attribute."},
+                {"attribute (required, expects: String)" : "The attribute you want to check for."}
+            ],
             "dependencies" : "None",
-            "compatibility" : "Currently in testing."
+            "compatibility" : "Not Available."
         },
         {
             "title" : "showElement()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "dependencies" : "None",
+            "description" : "Shows an element that is hidden.",
+            "code" : "Spektral.showElement(element, displayType);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you wish to show."},
+                {"displayType (optional, default: \"block\")" : "The display type you want to use."}
+            ],
+            "dependencies" : "getStyle(), appendStyle()",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "hideElement()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "dependencies" : "None",
+            "description" : "Hides an element.",
+            "code" : "Spektral.hideElement(element, useDisplay);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to hide."},
+                {"useDisplay (optional, default: false)" : "By setting to true you can hide the element by using the display property, by default the visibility property is used."}
+            ],
+            "dependencies" : "getStyle(), appendStyle()",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "toggleVisibility ()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "dependencies" : "None",
+            "description" : "Toggles the visibility property of an element.",
+            "code" : "Spektral.toggleVisibility(element);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to toggle the visibility of."}
+            ],
+            "dependencies" : "getStyle(), toggleDisplay(), appendStyle()",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "toggleDisplay()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "dependencies" : "None",
+            "description" : "Toggles the display property of an element.",
+            "code" : "Spektral.toggleDisplay(element, displayType);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to toggle the display of."},
+                {"displayType (optional, default: \"block\")" : "The type of display you want to use when the element is visible. Supports block, inline, inline-block, and inherit."}
+            ],
+            "dependencies" : "getStyle(), toggleVisibility(), appendStyle()",
             "compatibility" : "Currently in testing."
         },
         {
