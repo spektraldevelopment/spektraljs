@@ -184,6 +184,9 @@ p {
   display: block;
   padding: 5px 20px;
 }
+#paramContainer {
+  padding: 10px;
+}
 #paramDesc {
   padding: 5px 10px;
 }
@@ -203,7 +206,7 @@ p {
   -o-border-radius: 7px;
   border-radius: 7px;
   background-color: rgba(84, 87, 79, 0.75);
-  padding: 5px 10px;
+  padding: 10px;
 }
 #details p {
   font-family: "Courier New", Courier, monospace;

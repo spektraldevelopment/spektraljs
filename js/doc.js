@@ -95,7 +95,7 @@
 
         paramsList = jsonObject[id].params;
 
-        parameter = Spektral.createNewElement("div", "param" + key, params);
+        parameter = Spektral.createNewElement("div", "paramContainer", params);
 
         if (Spektral.isObjectEmpty(paramsList) === false) {
             for (key in paramsList) {
@@ -146,13 +146,5 @@
     function scrollToTop(e) {
         TweenLite.to(window, 0.5, {scrollTo:{y:0}, ease: Expo.easeOut});
     }
-
-    var testElement = Spektral.getElement("testElement");
-
-    var getStyle = Spektral.getStyle(testElement);
-    Spektral.log("getStyle: " + Spektral.getInfo(getStyle));
-
-    var getInlineStyle = Spektral.getInlineStyle(testElement);
-    Spektral.log("getInlineStyle: " + Spektral.getInfo(getInlineStyle));
 
 }(window));
