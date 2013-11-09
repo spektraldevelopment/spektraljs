@@ -5,6 +5,7 @@
             "description" : "Allows for logging in Spektral.js. When not called, using Spektral.log() will not log in console. Can be used outside of Spektral.js instead of console.log.",
             "code" : "Spektral.debug();",
             "params" : [],
+            "returns" : "Nothing",
             "dependencies" : "None",
             "compatibility" : "Currently in testing.",
             "category" : "global"
@@ -14,6 +15,7 @@
             "description" : "Shows in the console which version of Spektral.js you are using, and what mode it is in. (debug or release)",
             "code" : "Spektral.about();",
             "params" : [],
+            "returns" : "Nothing",
             "dependencies" : "None",
             "compatibility" : "Currently in testing.",
             "category" : "global"
@@ -27,6 +29,7 @@
                 { "eventType (required, expects: String)" : "Any valid event type, ex. 'click', 'complete', 'load'. Also accepts custom event types." },
                 { "eventHandler (required, expects: Function)" : "The function you wish to use to handle the event when it is fired." }
             ],
+            "returns" : "",
             "dependencies" : "getType(), getElement(), useHandCursor()",
             "compatibility" : "Currently in testing.",
             "category" : "events"
@@ -40,6 +43,7 @@
                 { "eventType (required), expects: String)" : "Any valid event type, ex. 'click', 'complete', 'load'. Also accepts custom event types." },
                 { "eventHandler (required, expects: Function)" : "The function that was assign to the event." }
             ],
+            "returns" : "",
             "dependencies" : "getType(), getElement(), useDefaultCursor()",
             "compatibility" : "Currently in testing.",
             "category" : "events"
@@ -51,6 +55,7 @@
             "params" : [
                 {"code (required, expects: Number)" : "Key code returned from a keyboard event."}
             ],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing.",
             "category" : "utils"
@@ -65,6 +70,7 @@
                 {"bub (optional, expects: Boolean, default: true)" : "Determines whether event can bubble."},
                 {"can (optional, expects: Boolean, default: true)" : "Determines whether event can be canceled."}
             ],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing.",
             "category" : "events"
@@ -76,6 +82,7 @@
             "params" : [
                 {"evt (required, expects: Returned event value)" : "The returned value event from the function assigned to the event."}
             ],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing.",
             "category" : "events"
@@ -87,6 +94,7 @@
             "params" : [
                 {"evt (required, expects: Returned event value)" : "The returned value event from the function assigned to the event."}
             ],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing.",
             "category" : "events"
@@ -98,6 +106,7 @@
             "params" : [
                 {"evt (required, expects: Returned event value)" : "The returned value event from the function assigned to the event."}
             ],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing.",
             "category" : "utils"
@@ -109,6 +118,7 @@
             "params" : [
                 {"element (required, expects: Element)" : "The element you wish to get the id from."}
             ],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing.",
             "category" : "utils"
@@ -121,6 +131,7 @@
                 {"element (required, expects: Element)" : "The element you want to apply the hand cursor to."},
                 {"cursorType (optional, expects: String. default: \"pointer\")" : "The type of hand cursor you want to apply. Besides \"pointer\" you may also use any valid cursor style you want."}
             ],
+            "returns" : "",
             "dependencies" : "getType(), appendStyle()",
             "compatibility" : "Currently in testing.",
             "category" : "style"
@@ -132,6 +143,7 @@
             "params" : [
                 {"element (required, expects: Element)" : "The element you want to reset to the default cursor."}
             ],
+            "returns" : "",
             "dependencies" : "appendStyle()",
             "compatibility" : "Currently in testing.",
             "category" : "style"
@@ -143,6 +155,7 @@
             "params" : [
                 {"evt (required, expects: Returned event value)" : "The returned value event from the function assigned to the event."}
             ],
+            "returns" : "",
             "dependencies" : "throwError(), getTarget(), getPos()",
             "compatibility" : "Currently in testing.",
             "category" : "utils"
@@ -152,6 +165,7 @@
             "description" : "Returns the height and width of the browser viewport.",
             "code" : "Spektral.getViewPortSize();",
             "params" : [],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing.",
             "category" : "utils"
@@ -164,6 +178,7 @@
                 {"itemA (required, expects: Anything)" : "The first item you want to compare."},
                 {"itemB (required, expects: Anything)" : "The item you want to compare against itemA."}
             ],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing.",
             "category" : "utils"
@@ -177,6 +192,7 @@
                 {"callback (required, expects: Function)" : "The function that will receive the results after load."},
                 {"async (optional, expects: Boolean, default: true)" : "You can set whether the file loads asynchronously or not."}
             ],
+            "returns" : "",
             "dependencies" : "getType(), loadFile(), throwError()",
             "compatibility" : "Currently in testing.",
             "category" : "ajax"
@@ -190,6 +206,7 @@
                 {"callback (required, expects: Function)" : "The function that will receive the results after load."},
                 {"async (optional, expects: Boolean, default: true)" : "You can set whether the file loads asynchronously or not."}
             ],
+            "returns" : "",
             "dependencies" : "getType(), loadFile(), throwError()",
             "compatibility" : "Currently in testing.",
             "category" : "ajax"
@@ -203,6 +220,7 @@
                 {"callback (required, expects: Function)" : "The function that will receive the results after load."},
                 {"async (optional, expects: Boolean, default: true)" : "You can set whether the file loads asynchronously or not."}
             ],
+            "returns" : "",
             "dependencies" : "getExtension(), getXHR(), throwError(), attachEventListener()",
             "compatibility" : "Currently in testing.",
             "category" : "ajax"
@@ -212,6 +230,7 @@
             "description" : "Determines whether to use XMLHttpRequest or ActiveXObject when loading an external file, and returns the available xhr.",
             "code" : "Spektral.getXHR();",
             "params" : [],
+            "returns" : "",
             "dependencies" : "throwError()",
             "compatibility" : "Currently in testing.",
             "category" : "ajax"
@@ -225,6 +244,7 @@
                 {"node (optional, default: firstChild.nodeName)" : "By default xmlToJSON() creates an object out of the entire file, but you can specify a particular parent node if needed."},
                 {"index (optional, default: 0)" : "Can be used if you only want a specific child node."}
             ],
+            "returns" : "",
             "dependencies" : "getType(), createObject()",
             "compatibility" : "Currently in testing.",
             "category" : "ajax"
@@ -236,6 +256,7 @@
             "params" : [
                 {"list (required, expects: nodeList) " : "A nodeList of elements."}
             ],
+            "returns" : "",
             "dependencies" : "getType(), getTextContent(), createObject()",
             "compatibility" : "Currently in testing.",
             "category" : "objects"
@@ -247,6 +268,7 @@
             "params" : [
                 {"element (required, expects: String)" : "The element you wish to locate."}
             ],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
@@ -258,6 +280,7 @@
                 {"element (required, expects: String)" : "You can search for an element by it's id, class, or tag name. If multiple instances of the element are found (ex. elements share the same class or tag name), will return a nodeList of elements."},
                 {"index (optional, expects: Number)" : "Use this to target an element that shares the same class or tag name with other elements. Ex. The third list item in an unordered list."}
             ],
+            "returns" : "",
             "dependencies" : "isHTMLElement(), isHTMLID(), isHTMLName(), query(), throwError(), getType(), log(), listArrayElements()",
             "compatibility" : "Currently in testing."
         },
@@ -268,6 +291,7 @@
             "params" : [
                 {"element (required, expects: String)" : "Only accepts the tag name of the element you wish to check for. If you want to check if pre-defined variable is an element, use isElement()."}
             ],
+            "returns" : "",
             "dependencies" : "listElements()",
             "compatibility" : "Currently in testing."
         },
@@ -278,6 +302,7 @@
             "params" : [
                 {"id (required, expects: String)" : "Only accepts the id of the element you wish to check for."}
             ],
+            "returns" : "",
             "dependencies" : "listElements()",
             "compatibility" : "Currently in testing."
         },
@@ -288,6 +313,7 @@
             "params" : [
                 {"name" : "Only accepts the name of the element you wish to check for."}
             ],
+            "returns" : "",
             "dependencies" : "listElements()",
             "compatibility" : "Currently in testing."
         },
@@ -300,6 +326,7 @@
                 {"id (optional, expects: String)" : "If not defined, an id will not be assigned to element."},
                 {"parent (optional, expects: String or Element)" : "If not defined, will add new element to the body element."}
             ],
+            "returns" : "",
             "dependencies" : "getElement(), getType(), throwError()",
             "compatibility" : "Currently in testing."
         },
@@ -311,6 +338,7 @@
                 {"element (required, expects: Element)" : "The element you wish to move."},
                 {"targetElement (required, expects: Element)" : "The target element in the same parent node."}
             ],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
@@ -322,6 +350,7 @@
                 {"element (required, expects: Element)" : "The element you wish to move."},
                 {"targetElement (required, expects: Element)" : "The target element in the same parent node."}
             ],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
@@ -332,6 +361,7 @@
             "params" : [
                 {"element (required, expects: Element)" : "The element you want to remove from the DOM."}
             ],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
@@ -342,6 +372,7 @@
             "params" : [
                 {"parent (required, expects: Element)" : "The parent you want to clear of all children."}
             ],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
@@ -353,6 +384,7 @@
                 {"element (required, expects: Element)" : "The element you want to change the inline style of."},
                 {"styleProperty (required, expects: String)" : "The property you want to set and its value. Ex. \"display: block\".</br>Note: At the moment you can only change one property at a time, I hope to change this in a future release."}
             ],
+            "returns" : "",
             "dependencies" : "getType(), throwError(), createSetAttribute()",
             "compatibility" : "Currently in testing."
         },
@@ -364,6 +396,7 @@
                 {"element (required, expects: Element)" : "The element you want to get the inline style of."},
                 {"styleProperty (optional, expects: String)" : "Can be set to an individual style property, if left undefined getStyle() will return all style properties."}
             ],
+            "returns" : "",
             "dependencies" : "getInlineStyle(), throwError()",
             "compatibility" : "Currently in testing."
         },
@@ -375,6 +408,7 @@
                 {"element (required, expects: Element)" : "The element you want to append the inline style of."},
                 {"styleProperty (required, expects: String)" : "The property you wish to add or modify to the current inline style.</br>Note: At the moment you can only add/modify one property at a time, I hope to change this in a future release."}
             ],
+            "returns" : "",
             "dependencies" : "getInlineStyle(), detectCharacter(), throwError(), splitString(), setStyle()",
             "compatibility" : "Currently in testing."
         },
@@ -385,6 +419,7 @@
             "params" : [
                 {"element (required, expects: Element)" : "The element you wish to clear the style of."}
             ],
+            "returns" : "",
             "dependencies" : "destroyAttribute()",
             "compatibility" : "Currently in testing."
         },
@@ -395,6 +430,7 @@
             "params" : [
                 {"element (required, expects: Element)" : "The element you want to get the inline style from."}
             ],
+            "returns" : "",
             "dependencies" : "splitString()",
             "compatibility" : "Currently in testing."
         },
@@ -406,6 +442,7 @@
                 {"request (required, expects: String)" : "The string you wish to convert to camel case."},
                 {"char (optional, default: hyphen)" : "You can use a different character other than a hyphen if need be."}
             ],
+            "returns" : "",
             "dependencies" : "splitString()",
             "compatibility" : "Currently in testing."
         },
@@ -418,6 +455,7 @@
                 {"attribute (required, expects: String)" : "The attribute you wish to set."},
                 {"value (required, expects: String)" : "The value you want to assign to the new attribute."}
             ],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
@@ -429,6 +467,7 @@
                 {"element (required, expects: Element)" : "The element you want to retrieve the attribute from."},
                 {"attribute (required, expects: String)" : "The name of the attribute."}
             ],
+            "returns" : "",
             "dependencies" : "getNodeAttributes(), throwError()",
             "compatibility" : "Currently in testing."
         },
@@ -440,6 +479,7 @@
                 {"element (required, expects: Element)" : "The element you want to remove the attribute from."},
                 {"attribute (required, expects: String)" : "The attribute you want to remove."}
             ],
+            "returns" : "",
             "dependencies" : "throwError()",
             "compatibility" : "Currently in testing."
         },
@@ -450,6 +490,7 @@
             "params" : [
                 {"element (required, expects: Element)" : "The element you wish to retrieve the text from."}
             ],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
@@ -460,6 +501,7 @@
             "params" : [
                 {"element (required, expects: Element)" : "The element you want to get all attributes from."}
             ],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
@@ -471,6 +513,7 @@
                 {"element (required, expects: Element)" : "The element you want to check for the attribute."},
                 {"attribute (required, expects: String)" : "The attribute you want to check for."}
             ],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Not Available."
         },
@@ -482,6 +525,7 @@
                 {"element (required, expects: Element)" : "The element you wish to show."},
                 {"displayType (optional, default: \"block\")" : "The display type you want to use."}
             ],
+            "returns" : "",
             "dependencies" : "getStyle(), appendStyle()",
             "compatibility" : "Currently in testing."
         },
@@ -493,6 +537,7 @@
                 {"element (required, expects: Element)" : "The element you want to hide."},
                 {"useDisplay (optional, default: false)" : "By setting to true you can hide the element by using the display property, by default the visibility property is used."}
             ],
+            "returns" : "",
             "dependencies" : "getStyle(), appendStyle()",
             "compatibility" : "Currently in testing."
         },
@@ -503,6 +548,7 @@
             "params" : [
                 {"element (required, expects: Element)" : "The element you want to toggle the visibility of."}
             ],
+            "returns" : "",
             "dependencies" : "getStyle(), toggleDisplay(), appendStyle()",
             "compatibility" : "Currently in testing."
         },
@@ -514,6 +560,7 @@
                 {"element (required, expects: Element)" : "The element you want to toggle the display of."},
                 {"displayType (optional, default: \"block\")" : "The type of display you want to use when the element is visible. Supports block, inline, inline-block, and inherit."}
             ],
+            "returns" : "",
             "dependencies" : "getStyle(), toggleVisibility(), appendStyle()",
             "compatibility" : "Currently in testing."
         },
@@ -524,6 +571,7 @@
             "params" : [
                 {"node (required, expects: Element or XML node)" : "The node you want to get attributes from."}
             ],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
@@ -535,6 +583,7 @@
                 {"num (required, expects: Number)" : ""},
                 {"type (optional, default: \"regular\")" : "\"regular\" will use Math.round, but you could also pass \"up\" (Math.ceil) or \"down\" (Math.floor)."}
             ],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
@@ -545,6 +594,7 @@
             "params" : [
                 {"element (required, expects: Element)" : "The element you want get the position data from."}
             ],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
@@ -555,46 +605,77 @@
             "params" : [
                 {"obj (required, expects: Object)" : "The object you wish to test."}
             ],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "detectCharacter()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
+            "description" : "Detects if a certain character exists in a string. Returns a boolean.",
+            "code" : "Spektral.detectCharacter(request, character);",
+            "params" : [
+                {"request (required, expects: String)" : "The string you wish to search."},
+                {"character (required, expects: String)" : "The character you want to detect."}
+            ],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "getInfo()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
+            "description" : "Returns the data within an object as a string.",
+            "code" : "Spektral.getInfo(obj);",
+            "params" : [
+                {"obj (required, expects: Object)" : "The object you want to stringify."}
+            ],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "stripBrackets()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
+            "description" : "Strip square, curly, and rounded brackets from around a string.",
+            "code" : "Spektral.stripBrackets(request);",
+            "params" : [
+                {"request (required, expects: String)" : "The string you wish to strip brackets from."}
+            ],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "convertCase()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
+            "description" : "Converts a string to either all upper or all lower case.",
+            "code" : "Spektral.convertCase(request, newCase);",
+            "params" : [
+                {"request (required, expects: String)" : "The string you want to convert to upper/lower case."},
+                {"newCase (optional, default: \"lower\")" : "Use \"upper\" to convert to upper case."}
+            ],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "splitString()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
+            "description" : "Splits a string separated by common characters, and returns the separate pieces in an array. Ex. comma.",
+            "code" : "Spektral.splitString(request, character);",
+            "params" : [
+                {"request (required, expects: String)" : "The string you want split."},
+                {"character (optional, default: comma" : "The character used to separate words in the string. Commonly a comma, but can be set to anything."}
+            ],
+            "returns" : "Array",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "title" : "stripString()",
+            "description" : "Strips a string of a character.",
+            "code" : "Spektral.stripString(request, chars);",
+            "params" : [
+                {"request (required, expects: String)" : "The string you want to strip the characters from."},
+                {"chars (required, expects: String)" : "The character you wish to strip from the string."}
+            ],
+            "returns" : "String",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
@@ -603,6 +684,7 @@
             "description" : "",
             "code" : "",
             "params" : [],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
@@ -611,6 +693,7 @@
             "description" : "",
             "code" : "",
             "params" : [],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
@@ -619,6 +702,7 @@
             "description" : "",
             "code" : "",
             "params" : [],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
@@ -627,6 +711,7 @@
             "description" : "",
             "code" : "",
             "params" : [],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
@@ -643,6 +728,7 @@
             "description" : "",
             "code" : "",
             "params" : [],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
@@ -651,6 +737,7 @@
             "description" : "",
             "code" : "",
             "params" : [],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
@@ -659,6 +746,7 @@
             "description" : "",
             "code" : "",
             "params" : [],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
@@ -667,6 +755,7 @@
             "description" : "",
             "code" : "",
             "params" : [],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
@@ -675,6 +764,7 @@
             "description" : "",
             "code" : "",
             "params" : [],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
@@ -683,6 +773,7 @@
             "description" : "",
             "code" : "",
             "params" : [],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
@@ -691,6 +782,7 @@
             "description" : "",
             "code" : "",
             "params" : [],
+            "returns" : "",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         }

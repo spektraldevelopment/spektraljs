@@ -500,7 +500,7 @@
             //Try query
             el = Spektral.query(element);
             if(el === undefined) {
-                Spektral.throwError("Element Not Found. Ensure you are calling a valid name or element.");
+                Spektral.throwError("Element Not Found. Ensure you are calling an existing element.");
             }
         }
         elType = Spektral.getType(el);
@@ -891,7 +891,7 @@
             currentDState = Spektral.getStyle(element, "display");
 
         if(currentVState === "hidden" || currentDState === "none") {
-            //Spektral.log(element + " is already hidden.")
+            ////Spektral.log(element + " is already hidden.")
         } else {
             if(useDisplay === true) {
                 //set display to none
@@ -944,10 +944,10 @@
 
             if(currentDState === "block" || currentDState === "inline" || currentDState === "inline-block" || currentDState === "inherit") {
                 Spektral.appendStyle(element, "display:none");
-                Spektral.log("toggleDisplay: Visible, hiding.");
+                //Spektral.log("toggleDisplay: Visible, hiding.");
             } else {
                 Spektral.appendStyle(element, displayString);
-                Spektral.log("toggleDisplay: Hiding, showing: " + displayString);
+                //Spektral.log("toggleDisplay: Hiding, showing: " + displayString);
             }
         }
     };
@@ -960,7 +960,7 @@
         for (key in node) {
             if (node.hasOwnProperty(key)) {
                 nodeArray.push(key);
-                Spektral.log("Node: " + node.nodeName + " Attribute: " + key);
+                //Spektral.log("Node: " + node.nodeName + " Attribute: " + key);
             }
         }
         return nodeArray;
@@ -1004,10 +1004,13 @@
     ////IS OBJECT EMPTY
     ////////////////////
     Spektral.isObjectEmpty = function (obj) {
+
+        //Check this, not sure if working properly
         var key;
         for (key in obj) {
-            if (obj.hasOwnProperty(key))
+            if (obj.hasOwnProperty(key)) {
                 return false;
+            }
         }
         return true;
     };
@@ -1024,12 +1027,12 @@
     };
 
     ///////////////////
-    ////GET INFO - deconstructs an element down to its properties
+    ////GET INFO 
     ///////////////////
-    Spektral.getInfo = function (element) {
+    Spektral.getInfo = function (obj) {
         var info;
         try {
-            info = JSON.stringify(element);
+            info = JSON.stringify(obj);
         } catch (err) {}
 
         return info;
@@ -1058,13 +1061,13 @@
     ////////////////////
     ////CONVERT CASE
     ////////////////////
-    Spektral.convertCase = function (stringToConvert, newCase) {
+    Spektral.convertCase = function (request, newCase) {
         newCase = newCase || "lower";
         var newString;
         if (newCase === "lower") {
-            newString = stringToConvert.toLowerCase();
+            newString = request.toLowerCase();
         } else if (newCase === "upper") {
-            newString =  stringToConvert.toUpperCase();
+            newString =  request.toUpperCase();
         }
         return newString;
     };
