@@ -681,108 +681,123 @@
         },
         {
             "title" : "stripWhiteSpace()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "returns" : "",
+            "description" : "Removes the whitespace from the start and end of a string. It can all strip all whitespace if specified.",
+            "code" : "Spektral.stripWhiteSpace(request, removeAll);",
+            "params" : [
+                {"request (required, expects: String)" : "The string you want to strip whitespace from."},
+                {"removeAll (optional, default: False)" : "When set to true, will return the string with all whitespace stripped."}
+            ],
+            "returns" : "String",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "listElements()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "returns" : "",
-            "dependencies" : "None",
+            "description" : "Returns an array with all the elements currently in use in the DOM.",
+            "code" : "Spektral.listElements(attribute);",
+            "params" : [
+                {"attribute (optional, expects: String)" : "You can pass in either \"id\" or \"name\" to retrieve elements only by those attributes."}
+            ],
+            "returns" : "Array",
+            "dependencies" : "convertCase()",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "listArrayElements()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "returns" : "",
-            "dependencies" : "None",
+            "description" : "A debugging function. Logs the objects in an array in the console.",
+            "code" : "Spektral.listArrayElements(array);",
+            "params" : [
+                {"array (required, expects: Array, NodeList, NamedNodeMap)" : "The array you want to log."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "getType(), throwError(), log()",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "listChildNodes()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "returns" : "",
-            "dependencies" : "None",
+            "description" : "A debugging function. Logs the children of a node.",
+            "code" : "Spektral.listChildNodes(parent);",
+            "params" : [
+                {"parent (required, expects: Element)" : "The element you wish to log the children of."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "log()",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "getChildNodes()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "dependencies" : "None",
+            "description" : "Retrieves the children of a node.",
+            "code" : "Spektral.getChildNodes(parent);",
+            "params" : [
+                {"parent (required, expects: Element)" : "The element you wish to get the children of."}
+            ],
+            "returns" : "Array",
+            "dependencies" : "isElement()",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "isElement()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "returns" : "",
+            "description" : "Checks if an object is possibly an HTML element.",
+            "code" : "Spektral.isElement(possibleElement);",
+            "params" : [
+                {"possibleElement (required, expects: Anything)" : "The object you wish to check."}
+            ],
+            "returns" : "Boolean",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "getElementIdentifiers()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "returns" : "",
-            "dependencies" : "None",
+            "description" : "Gets an elements id attributes and returns them as an object. Will return the following properties: id, name, class, nodeName.",
+            "code" : "Spektral.getElementIdentifiers(element);",
+            "params" : [
+                {"element (required, expects: Element" : "The element you want to get the identifiers from."}
+            ],
+            "returns" : "Object",
+            "dependencies" : "convertCase()",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "getType()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "returns" : "",
-            "dependencies" : "None",
-            "compatibility" : "Currently in testing."
-        },
-        {
-            "title" : "validateParams()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "returns" : "",
+            "description" : "Returns the type of an object.",
+            "code" : "Spektral.getType(obj);",
+            "params" : [
+                {"obj (required, expects: Anything)" : "Usually object is either an element, variable, or object, but could be anything."}
+            ],
+            "returns" : "String",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "getExtension()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "returns" : "",
-            "dependencies" : "None",
+            "description" : "Gets the extension of a file.",
+            "code" : "Spektral.getExtension(file);",
+            "params" : [
+                {"file (required, expects: String)" : "The full file name."}
+            ],
+            "returns" : "String",
+            "dependencies" : "getType(), throwError()",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "throwError()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "returns" : "",
+            "description" : "Throws an error if encountered.",
+            "code" : "Spektral.throwError(message);",
+            "params" : [
+                {"message (required, expects: String)" : "The error message you wish to throw."}
+            ],
+            "returns" : "Error",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
         {
             "title" : "log()",
-            "description" : "",
-            "code" : "",
-            "params" : [],
-            "returns" : "",
+            "description" : "Logs debugging information in the console, if present. Primarily for internal use, can be used outside of Spektral.js.",
+            "code" : "Spektral.log(message);",
+            "params" : [
+                {"message (required, expects: String)" : "The data you wish to log."}
+            ],
+            "returns" : "Nothing",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         }

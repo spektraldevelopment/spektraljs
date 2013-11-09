@@ -506,7 +506,7 @@
         elType = Spektral.getType(el);
         if (elType === "nodelist") {
             Spektral.log("getElement: More than one element was found.");
-            Spektral.listArrayElements(el)
+            Spektral.listArrayObjects(el)
         }
         return el;
     };
@@ -841,7 +841,7 @@
     //////////////////////
     Spektral.getNodeAttributes = function (element) {
         var attributes = element.attributes, attrObj = {}, i;
-        //Spektral.listArrayElements(attributes);
+        //Spektral.listArrayObjects(attributes);
         if (attributes.length >= 1) {
             for (i = 0; i < attributes.length; i += 1) {
                 //Spektral.log("getNodeAttributes: name: " + attributes.item(i).name + " nodeName: " + attributes.item(i).nodeName);
@@ -1077,6 +1077,8 @@
     //////////////////
     Spektral.splitString = function (request, character) {
 
+        character = character || ",";
+
         var splitArray = [], split = request.split(character), i, detectCharacter = Spektral.detectCharacter(request, character), stripped;
 
         if(detectCharacter === false) {
@@ -1144,12 +1146,12 @@
     //////////////////
     ////LIST ARRAY ELEMENTS
     /////////////////
-    Spektral.listArrayElements = function (array) {
+    Spektral.listArrayObjects = function (array) {
 
         var type = Spektral.getType(array), i;
 
         if (type !== 'array' && type !== 'nodelist' && type !== "namednodemap") {
-            Spektral.throwError("listArrayElements: You must pass either an array or nodelist to this function.")
+            Spektral.throwError("listArrayObjects: You must pass either an array or nodelist to this function.")
         } else {
             for (i = 0; i < array.length; i += 1) {
                 if (type === 'nodelist') {
@@ -1166,12 +1168,9 @@
     //////////////////
     ////LIST CHILD NODES
     /////////////////
-    Spektral.listChildNodes = function (element) {
-        var children = element.childNodes, i;
-        Spektral.log("Children of: " + element.nodeName);
-//        for (i = 0; i < children.length; i += 1) {
-//            Spektral.log("Child: " + children[i]);
-//        }
+    Spektral.listChildNodes = function (parent) {
+        var children = parent.childNodes, i;
+        Spektral.log("Children of: " + parent.nodeName);
         Spektral.log("children: " + Spektral.getInfo(children));
     };
 
