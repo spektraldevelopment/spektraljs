@@ -77,10 +77,13 @@
             code, params,
             paramsList, paramObj,
             parameter, paramTitle,
-            paramDesc, depend,
+            paramDesc, returnsTitle, returns, depend,
             dependTitle, compatibilityTitle,
             compatibility, key,
             k, details;
+
+        var info = Spektral.getInfo(jsonObject[id]);
+        Spektral.log("Method info: " + info);
 
         title = Spektral.createNewElement("h2", "title", methodContainer);
         title.innerHTML = jsonObject[id].title;
@@ -115,6 +118,12 @@
         }
 
         details = Spektral.createNewElement("section", "details", methodContainer);
+
+        returnsTitle = Spektral.createNewElement("h3", "returnsTitle", details);
+        returnsTitle.innerHTML = "Returns";
+
+        returns = Spektral.createNewElement("p", "returns", details);
+        returns.innerHTML = jsonObject[id].returns;
 
         dependTitle = Spektral.createNewElement("h3", "dependTitle", details);
         dependTitle.innerHTML = "Dependencies";
