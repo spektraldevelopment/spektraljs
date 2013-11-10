@@ -1,26 +1,27 @@
 {
     "methods" : [
         {
+            "category" : ["debugging"],
             "title" : "debug()",
             "description" : "Allows for logging in Spektral.js. When not called, using Spektral.log() will not log in console. Can be used outside of Spektral.js instead of console.log.",
             "code" : "Spektral.debug();",
             "params" : [],
             "returns" : "Nothing",
             "dependencies" : "None",
-            "compatibility" : "Currently in testing.",
-            "category" : "global"
+            "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["debugging"],
             "title" : "about()",
             "description" : "Shows in the console which version of Spektral.js you are using, and what mode it is in. (debug or release)",
             "code" : "Spektral.about();",
             "params" : [],
             "returns" : "Nothing",
             "dependencies" : "None",
-            "compatibility" : "Currently in testing.",
-            "category" : "global"
+            "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["event"],
             "title" : "attachEventListener()",
             "description" : "Attaches an event listener to any element. If a mouse event, the hand (pointer) cursor is automatically applied.",
             "code" : "Spektral.attachEventListener(eventTarget, eventType, eventHandler);",
@@ -31,10 +32,10 @@
             ],
             "returns" : "Nothing",
             "dependencies" : "getType(), getElement(), useHandCursor()",
-            "compatibility" : "Currently in testing.",
-            "category" : "events"
+            "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["event"],
             "title" : "detachEventListener()",
             "description" : "Detaches an event listener from any element. If a mouse event, the hand cursor is automatically set back to default.",
             "code" : "Spektral.detachEventListener(eventTarget, eventType, eventHandler);",
@@ -45,10 +46,10 @@
             ],
             "returns" : "Nothing",
             "dependencies" : "getType(), getElement(), useDefaultCursor()",
-            "compatibility" : "Currently in testing.",
-            "category" : "events"
+            "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["event, utils"],
             "title" : "getKey()",
             "description" : "Converts the key code returned from a keyboard event into a string. ex. key code 38 returns \"UP\". Currently supports directional arrows and enter button.",
             "code" : "Spektral.getKey(code);",
@@ -57,10 +58,10 @@
             ],
             "returns" : "String",
             "dependencies" : "None",
-            "compatibility" : "Currently in testing.",
-            "category" : "utils"
+            "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["event"],
             "title" : "createEvent()",
             "description" : "Creates a custom event.",
             "code" : "Spektral.createEvent(eventName, details, bub, can);",
@@ -72,10 +73,10 @@
             ],
             "returns" : "Event",
             "dependencies" : "None",
-            "compatibility" : "Currently in testing.",
-            "category" : "events"
+            "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["event"],
             "title" : "cancelEvent()",
             "description" : "Prevents default action triggered by event.",
             "code" : "Spektral.cancelEvent(evt);",
@@ -84,10 +85,10 @@
             ],
             "returns" : "Nothing",
             "dependencies" : "None",
-            "compatibility" : "Currently in testing.",
-            "category" : "events"
+            "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["event"],
             "title" : "cancelPropagation()",
             "description" : "Stops the event from bubbling up to parent elements.",
             "code" : "Spektral.stopPropagation(evt);",
@@ -96,10 +97,10 @@
             ],
             "returns" : "Nothing",
             "dependencies" : "None",
-            "compatibility" : "Currently in testing.",
-            "category" : "events"
+            "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["event, utils"],
             "title" : "getTarget()",
             "description" : "Returns the target element that is attached to the triggered event.",
             "code" : "Spektral.getTarget(element);",
@@ -108,10 +109,10 @@
             ],
             "returns" : "Element",
             "dependencies" : "None",
-            "compatibility" : "Currently in testing.",
-            "category" : "utils"
+            "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["event, utils"],
             "title" : "getTargetID()",
             "description" : "Returns the id of the element, if it has one.",
             "code" : "Spektral.getTargetID(element)",
@@ -120,10 +121,10 @@
             ],
             "returns" : "String",
             "dependencies" : "None",
-            "compatibility" : "Currently in testing.",
-            "category" : "utils"
+            "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["style"],
             "title" : "useHandCursor()",
             "description" : "Sets cursor style to hand (pointer).",
             "code" : "Spektral.useHandCursor(element, cursorType);",
@@ -133,10 +134,10 @@
             ],
             "returns" : "Nothing",
             "dependencies" : "getType(), appendStyle()",
-            "compatibility" : "Currently in testing.",
-            "category" : "style"
+            "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["style"],
             "title" : "useDefaultCursor()",
             "description" : "Simply sets the cursor to the browsers default style.",
             "code" : "Spektral.useDefaultCursor(element);",
@@ -145,10 +146,10 @@
             ],
             "returns" : "Nothing",
             "dependencies" : "appendStyle()",
-            "compatibility" : "Currently in testing.",
-            "category" : "style"
+            "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["event, utils"],
             "title" : "getMousePos()",
             "description" : "Returns the mouses X/Y co-ordinates either with an element or window.",
             "code" : "Spektral.getMousePos(evt);",
@@ -157,20 +158,20 @@
             ],
             "returns" : "Object",
             "dependencies" : "throwError(), getTarget(), getPos()",
-            "compatibility" : "Currently in testing.",
-            "category" : "utils"
+            "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["utils"],
             "title" : "getViewPortSize()",
             "description" : "Returns the height and width of the browser viewport.",
             "code" : "Spektral.getViewPortSize();",
             "params" : [],
             "returns" : "Object",
             "dependencies" : "None",
-            "compatibility" : "Currently in testing.",
-            "category" : "utils"
+            "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["utils"],
             "title" : "isMatch()",
             "description" : "Compares to objects/elements to determine whether they are the same.",
             "code" : "Spektral.isMatch(itemA, itemB);",
@@ -180,10 +181,10 @@
             ],
             "returns" : "Boolean",
             "dependencies" : "None",
-            "compatibility" : "Currently in testing.",
-            "category" : "utils"
+            "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["ajax"],
             "title" : "loadJSON()",
             "description" : "Loads an external JSON file.",
             "code" : "Spektral.loadJSON(source, callback, async);",
@@ -194,10 +195,10 @@
             ],
             "returns" : "Nothing",
             "dependencies" : "getType(), loadFile(), throwError()",
-            "compatibility" : "Currently in testing.",
-            "category" : "ajax"
+            "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["ajax"],
             "title" : "loadXML()",
             "description" : "Loads an external XML file.",
             "code" : "Spektral.loadXML(source, callback, async);",
@@ -208,10 +209,10 @@
             ],
             "returns" : "Nothing",
             "dependencies" : "getType(), loadFile(), throwError()",
-            "compatibility" : "Currently in testing.",
-            "category" : "ajax"
+            "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["ajax"],
             "title" : "loadFile()",
             "description" : "Loads an external file using XMLHttpRequest/ActiveXObject.</br>Ex. TEXT, XML, JSON",
             "code" : "Spektral.loadFile(file, callback, async).",
@@ -222,20 +223,20 @@
             ],
             "returns" : "Nothing",
             "dependencies" : "getExtension(), getXHR(), throwError(), attachEventListener()",
-            "compatibility" : "Currently in testing.",
-            "category" : "ajax"
+            "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["ajax"],
             "title" : "getXHR()",
             "description" : "Determines whether to use XMLHttpRequest or ActiveXObject when loading an external file, and returns the available xhr.",
             "code" : "Spektral.getXHR();",
             "params" : [],
             "returns" : "XMLHttpRequest or ActiveXObject",
             "dependencies" : "throwError()",
-            "compatibility" : "Currently in testing.",
-            "category" : "ajax"
+            "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["object"],
             "title" : "xmlToJSON()",
             "description" : "Converts an XML structure to a JSON object for ease of use in JavaScript.",
             "code" : "Spektral.xmlToJSON(xml, node, index);",
@@ -246,10 +247,10 @@
             ],
             "returns" : "Object",
             "dependencies" : "getType(), createObject()",
-            "compatibility" : "Currently in testing.",
-            "category" : "ajax"
+            "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["object"],
             "title" : "createObject()",
             "description" : "Takes a nodeList and converts it into an array containing objects, returning the result.",
             "code" : "Spektral.createObject(list);",
@@ -258,10 +259,10 @@
             ],
             "returns" : "Array",
             "dependencies" : "getType(), getTextContent(), createObject()",
-            "compatibility" : "Currently in testing.",
-            "category" : "objects"
+            "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["DOM, selector"],
             "title" : "query()",
             "description" : "Uses querySelectorAll to locate and return an element.",
             "code" : "Spektral.query(element)",
@@ -273,6 +274,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["DOM, selector"],
             "title" : "getElement()",
             "description" : "Returns an element from the DOM.",
             "code" : "Spektral.getElement(element, index);",
@@ -285,6 +287,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["utils"],
             "title" : "isHTMLElement()",
             "description" : "Used by getElement() to determine whether you are trying to find an element.",
             "code" : "Spektral.isHTMLElement(element);",
@@ -296,6 +299,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["utils"],
             "title" : "isHTMLID()",
             "description" : "Used by getElement() to determine whether you are trying to find an element by its id attribute.",
             "code" : "Spektral.isHTMLID(id);",
@@ -307,6 +311,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["utils"],
             "title" : "isHTMLName()",
             "description" : "Used by getElement() to determine whether you are trying to find an element by its name attribute.",
             "code" : "Spektral.isHTMLName(name);",
@@ -318,6 +323,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["DOM"],
             "title" : "createNewElement()",
             "description" : "Created a new element and adds it to the parent of your choosing.",
             "code" : "Spektral.createNewElement(element, id, parent);",
@@ -331,6 +337,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["DOM"],
             "title" : "moveToAfter()",
             "description" : "Moves an element to after another element in the same parent node.",
             "code" : "Spektral.moveToAfter(element, targetElement);",
@@ -343,6 +350,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["DOM"],
             "title" : "moveToBefore()",
             "description" : "Moves an element to before another element in the same parent node.",
             "code" : "Spektral.moveToBefore(element, targetElement);",
@@ -355,6 +363,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["DOM"],
             "title" : "removeElement()",
             "description" : "Removes an element from the DOM.",
             "code" : "Spektral.removeElement(element);",
@@ -366,6 +375,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["DOM"],
             "title" : "clearAllChildren()",
             "description" : "Clears all child nodes from a parent node.",
             "code" : "Spektral.clearAllChildren(parent);",
@@ -377,6 +387,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["style"],
             "title" : "setStyle()",
             "description" : "Sets the inline style of an element. Will overwrite current inline style, to avoid this, use appendStyle().",
             "code" : "Spektral.setStyle(element, styleProperty);",
@@ -389,6 +400,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["style"],
             "title" : "getStyle()",
             "description" : "Gets the current inline style of an element. Returns false is no inline style found.",
             "code" : "Spektral.getStyle(element, styleProperty);",
@@ -401,6 +413,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["style"],
             "title" : "appendStyle()",
             "description" : "Changes the inline style of an element, while preserving the existing inline style.",
             "code" : "Spektral.appendStyle(element, styleProperty);",
@@ -413,6 +426,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["style"],
             "title" : "clearStyle()",
             "description" : "Clears all inline styling on an element.",
             "code" : "Spektral.clearStyle(element);",
@@ -424,6 +438,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["style"],
             "title" : "getInlineStyle()",
             "description" : "Gets the entire inline style of an element. Returns false is no inline style found. Unlike getStyle(), you cannot specify individual style properties.",
             "code" : "Spektral.getInlineStyle(element);",
@@ -435,6 +450,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["string"],
             "title" : "convertToCamel()",
             "description" : "Converts a string separated with hyphens into camel case. Ex. \"data-type\" becomes \"dataType\".",
             "code" : "Spektral.convertToCamel(request, char);",
@@ -447,6 +463,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["DOM"],
             "title" : "createSetAttribute()",
             "description" : "Adds any valid attribute to an element.",
             "code" : "Spektral.createSetAttribute(element, attribute, value);",
@@ -460,6 +477,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["DOM"],
             "title" : "retrieveAttribute()",
             "description" : "Retrieves an attribute from an element.",
             "code" : "Spektral.retrieveAttribute(element, attribute);",
@@ -472,6 +490,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["DOM"],
             "title" : "destroyAttribute()",
             "description" : "Remove an attribute from an element.",
             "code" : "Spektral.destroyAttribute(element, attribute);",
@@ -484,6 +503,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["DOM, string"],
             "title" : "getTextContent()",
             "description" : "Returns the inner text inside an element.",
             "code" : "Spektral.getTextContent(element);",
@@ -495,6 +515,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["DOM"],
             "title" : "getNodeAttributes()",
             "description" : "Returns an object with all the attribute of a node.",
             "code" : "Spektral.getNodeAttributes(element);",
@@ -506,6 +527,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["DOM"],
             "title" : "checkForAttribute() - Currently Not Available",
             "description" : "Checks if an attribute exists within an element.",
             "code" : "Spektral.checkForAttribute(element, attribute);",
@@ -518,6 +540,7 @@
             "compatibility" : "Not Available."
         },
         {
+            "category" : ["style"],
             "title" : "showElement()",
             "description" : "Shows an element that is hidden.",
             "code" : "Spektral.showElement(element, displayType);",
@@ -530,6 +553,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["style"],
             "title" : "hideElement()",
             "description" : "Hides an element.",
             "code" : "Spektral.hideElement(element, useDisplay);",
@@ -542,6 +566,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["style"],
             "title" : "toggleVisibility ()",
             "description" : "Toggles the visibility property of an element.",
             "code" : "Spektral.toggleVisibility(element);",
@@ -553,6 +578,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["style"],
             "title" : "toggleDisplay()",
             "description" : "Toggles the display property of an element.",
             "code" : "Spektral.toggleDisplay(element, displayType);",
@@ -565,6 +591,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["array"],
             "title" : "listNodeAttributes()",
             "description" : "Returns an array of attributes of a node as an Array.",
             "code" : "Spektral.listNodeAttributes(node);",
@@ -576,6 +603,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["number, utils"],
             "title" : "roundNum()",
             "description" : "Returns a  rounded number.",
             "code" : "Spektral.roundNum(num, type);",
@@ -588,6 +616,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["utils"],
             "title" : "getPos()",
             "description" : "Returns an object containing the x, y, left, top, right, bottom properties of an element.",
             "code" : "Spektral.getPos(element);",
@@ -599,6 +628,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["utils, object"],
             "title" : "isObjectEmpty()",
             "description" : "Determines whether an object is empty and returns a boolean.",
             "code" : "Spektral.isObjectEmpty(obj);",
@@ -610,6 +640,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["utils, string"],
             "title" : "detectCharacter()",
             "description" : "Detects if a certain character exists in a string. Returns a boolean.",
             "code" : "Spektral.detectCharacter(request, character);",
@@ -622,6 +653,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["utils, object"],
             "title" : "getInfo()",
             "description" : "Returns the data within an object as a string.",
             "code" : "Spektral.getInfo(obj);",
@@ -633,6 +665,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["string, utils"],
             "title" : "stripBrackets()",
             "description" : "Strip square, curly, and rounded brackets from around a string.",
             "code" : "Spektral.stripBrackets(request);",
@@ -644,6 +677,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["string, utils"],
             "title" : "convertCase()",
             "description" : "Converts a string to either all upper or all lower case.",
             "code" : "Spektral.convertCase(request, newCase);",
@@ -656,6 +690,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["string, utils"],
             "title" : "splitString()",
             "description" : "Splits a string separated by common characters, and returns the separate pieces in an array. Ex. comma.",
             "code" : "Spektral.splitString(request, character);",
@@ -668,6 +703,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["string, utils"],
             "title" : "stripString()",
             "description" : "Strips a string of a character.",
             "code" : "Spektral.stripString(request, chars);",
@@ -680,6 +716,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["string, utils"],
             "title" : "stripWhiteSpace()",
             "description" : "Removes the whitespace from the start and end of a string. It can all strip all whitespace if specified.",
             "code" : "Spektral.stripWhiteSpace(request, removeAll);",
@@ -692,6 +729,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["array"],
             "title" : "listElements()",
             "description" : "Returns an array with all the elements currently in use in the DOM.",
             "code" : "Spektral.listElements(attribute);",
@@ -703,6 +741,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["array, object"],
             "title" : "listArrayObjects()",
             "description" : "A debugging function. Logs the objects in an array in the console.",
             "code" : "Spektral.listArrayObjects(array);",
@@ -714,6 +753,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["debugging, DOM"],
             "title" : "listChildNodes()",
             "description" : "A debugging function. Logs the children of a node.",
             "code" : "Spektral.listChildNodes(parent);",
@@ -725,6 +765,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["array, utils"],
             "title" : "getChildNodes()",
             "description" : "Retrieves the children of a node.",
             "code" : "Spektral.getChildNodes(parent);",
@@ -736,6 +777,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["utils"],
             "title" : "isElement()",
             "description" : "Checks if an object is possibly an HTML element.",
             "code" : "Spektral.isElement(possibleElement);",
@@ -747,6 +789,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["utils"],
             "title" : "getElementIdentifiers()",
             "description" : "Gets an elements id attributes and returns them as an object. Will return the following properties: id, name, class, nodeName.",
             "code" : "Spektral.getElementIdentifiers(element);",
@@ -758,6 +801,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["utils"],
             "title" : "getType()",
             "description" : "Returns the type of an object.",
             "code" : "Spektral.getType(obj);",
@@ -769,6 +813,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["utils"],
             "title" : "getExtension()",
             "description" : "Gets the extension of a file.",
             "code" : "Spektral.getExtension(file);",
@@ -780,6 +825,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["debugging"],
             "title" : "throwError()",
             "description" : "Throws an error if encountered.",
             "code" : "Spektral.throwError(message);",
@@ -791,6 +837,7 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["debugging"],
             "title" : "log()",
             "description" : "Logs debugging information in the console, if present. Primarily for internal use, can be used outside of Spektral.js.",
             "code" : "Spektral.log(message);",
