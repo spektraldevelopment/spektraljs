@@ -80,10 +80,10 @@
             paramDesc, returnsTitle, returns, depend,
             dependTitle, compatibilityTitle,
             compatibility, key,
-            k, details;
+            k, details, info;
 
-        var info = Spektral.getInfo(jsonObject[id]);
-        Spektral.log("Method info: " + info);
+        info = Spektral.getInfo(jsonObject[id]);
+        //Spektral.log("Method info: " + info);
 
         title = Spektral.createNewElement("h2", "title", methodContainer);
         title.innerHTML = jsonObject[id].title;
