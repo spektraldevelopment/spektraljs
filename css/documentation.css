@@ -60,7 +60,7 @@ p {
   padding: 5px;
   color: #f1d7b2;
 }
-#glossary ul {
+.glossSection {
   -webkit-border-radius: 7px;
   -moz-border-radius: 7px;
   -ms-border-radius: 7px;
@@ -71,7 +71,7 @@ p {
   padding: 10px;
   list-style: none;
 }
-#glossary ul li {
+.glossSection li {
   -webkit-border-radius: 7px;
   -moz-border-radius: 7px;
   -ms-border-radius: 7px;
@@ -86,7 +86,7 @@ p {
   padding: 5px;
   color: #352f2f;
 }
-#glossary ul li:hover {
+.glossSection li:hover {
   text-shadow: 0 0 3px #000000;
   color: #d7af67;
 }

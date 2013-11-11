@@ -121,7 +121,15 @@ h1, h2, h3, h4, p {
   color: @cream;
 }
 
-#glossary ul {
+//#glossary ul {
+//  .rounded-corners(7px);
+//  .transparentBG(@green, 0.25);
+//  margin: 10px 0;
+//  padding: 10px;
+//  list-style: none;
+//}
+
+.glossSection {
   .rounded-corners(7px);
   .transparentBG(@green, 0.25);
   margin: 10px 0;
@@ -129,7 +137,7 @@ h1, h2, h3, h4, p {
   list-style: none;
 }
 
-#glossary ul li {
+.glossSection li {
   .rounded-corners(7px);
   .transparentBG(@green, 0.25);
   .codeText();
@@ -139,10 +147,25 @@ h1, h2, h3, h4, p {
   color: @brown;
 }
 
-#glossary ul li:hover {
+.glossSection li:hover {
   .textShadow(0, 0, 3px, @black);
   color: @beige;
 }
+
+//#glossary ul li {
+//  .rounded-corners(7px);
+//  .transparentBG(@green, 0.25);
+//  .codeText();
+//  .textShadow(0, 0, 3px, @cream);
+//  margin: 5px 0;
+//  padding: 5px;
+//  color: @brown;
+//}
+//
+//#glossary ul li:hover {
+//  .textShadow(0, 0, 3px, @black);
+//  color: @beige;
+//}
 
 #mainContent {
   .rounded-corners();

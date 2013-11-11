@@ -336,20 +336,280 @@
             "compatibility" : "Currently in testing."
         }
     ],
-    "number" : [
-
-    ],
     "string" : [
-
+        {
+            "category" : ["string, utils"],
+            "title" : "convertCase()",
+            "description" : "Converts a string to either all upper or all lower case.",
+            "code" : "Spektral.convertCase(request, newCase);",
+            "params" : [
+                {"request (required, expects: String)" : "The string you want to convert to upper/lower case."},
+                {"newCase (optional, default: \"lower\")" : "Use \"upper\" to convert to upper case."}
+            ],
+            "returns" : "",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["string, utils"],
+            "title" : "splitString()",
+            "description" : "Splits a string separated by common characters, and returns the separate pieces in an array. Ex. comma.",
+            "code" : "Spektral.splitString(request, character);",
+            "params" : [
+                {"request (required, expects: String)" : "The string you want split."},
+                {"character (optional, default: comma" : "The character used to separate words in the string. Commonly a comma, but can be set to anything."}
+            ],
+            "returns" : "Array",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["string, utils"],
+            "title" : "stripString()",
+            "description" : "Strips a string of a character.",
+            "code" : "Spektral.stripString(request, chars);",
+            "params" : [
+                {"request (required, expects: String)" : "The string you want to strip the characters from."},
+                {"chars (required, expects: String)" : "The character you wish to strip from the string."}
+            ],
+            "returns" : "String",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["string, utils"],
+            "title" : "stripWhiteSpace()",
+            "description" : "Removes the whitespace from the start and end of a string. It can all strip all whitespace if specified.",
+            "code" : "Spektral.stripWhiteSpace(request, removeAll);",
+            "params" : [
+                {"request (required, expects: String)" : "The string you want to strip whitespace from."},
+                {"removeAll (optional, default: False)" : "When set to true, will return the string with all whitespace stripped."}
+            ],
+            "returns" : "String",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["string, utils"],
+            "title" : "stripBrackets()",
+            "description" : "Strip square, curly, and rounded brackets from around a string.",
+            "code" : "Spektral.stripBrackets(request);",
+            "params" : [
+                {"request (required, expects: String)" : "The string you wish to strip brackets from."}
+            ],
+            "returns" : "String",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils, string"],
+            "title" : "detectCharacter()",
+            "description" : "Detects if a certain character exists in a string. Returns a boolean.",
+            "code" : "Spektral.detectCharacter(request, character);",
+            "params" : [
+                {"request (required, expects: String)" : "The string you wish to search."},
+                {"character (required, expects: String)" : "The character you want to detect."}
+            ],
+            "returns" : "Boolean",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        }
     ],
     "object" : [
-
+        {
+            "category" : ["object"],
+            "title" : "createObject()",
+            "description" : "Takes a nodeList and converts it into an array containing objects, returning the result.",
+            "code" : "Spektral.createObject(list);",
+            "params" : [
+                {"list (required, expects: nodeList) " : "A nodeList of elements."}
+            ],
+            "returns" : "Array",
+            "dependencies" : "getType(), getTextContent(), createObject()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["array, object"],
+            "title" : "listArrayObjects()",
+            "description" : "A debugging function. Logs the objects in an array in the console.",
+            "code" : "Spektral.listArrayObjects(array);",
+            "params" : [
+                {"array (required, expects: Array, NodeList, NamedNodeMap)" : "The array you want to log."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "getType(), throwError(), log()",
+            "compatibility" : "Currently in testing."
+        }
     ],
     "style" : [
-
+        {
+            "category" : ["style"],
+            "title" : "setStyle()",
+            "description" : "Sets the inline style of an element. Will overwrite current inline style, to avoid this, use appendStyle().",
+            "code" : "Spektral.setStyle(element, styleProperty);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to change the inline style of."},
+                {"styleProperty (required, expects: String)" : "The property you want to set and its value. Ex. \"display: block\".</br>Note: At the moment you can only change one property at a time, I hope to change this in a future release."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "getType(), throwError(), createSetAttribute()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["style"],
+            "title" : "getStyle()",
+            "description" : "Gets the current inline style of an element. Returns false is no inline style found.",
+            "code" : "Spektral.getStyle(element, styleProperty);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to get the inline style of."},
+                {"styleProperty (optional, expects: String)" : "Can be set to an individual style property, if left undefined getStyle() will return all style properties."}
+            ],
+            "returns" : "String",
+            "dependencies" : "getInlineStyle(), throwError()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["style"],
+            "title" : "appendStyle()",
+            "description" : "Changes the inline style of an element, while preserving the existing inline style.",
+            "code" : "Spektral.appendStyle(element, styleProperty);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to append the inline style of."},
+                {"styleProperty (required, expects: String)" : "The property you wish to add or modify to the current inline style.</br>Note: At the moment you can only add/modify one property at a time, I hope to change this in a future release."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "getInlineStyle(), detectCharacter(), throwError(), splitString(), setStyle()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["style"],
+            "title" : "clearStyle()",
+            "description" : "Clears all inline styling on an element.",
+            "code" : "Spektral.clearStyle(element);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you wish to clear the style of."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "destroyAttribute()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["style"],
+            "title" : "getInlineStyle()",
+            "description" : "Gets the entire inline style of an element. Returns false is no inline style found. Unlike getStyle(), you cannot specify individual style properties.",
+            "code" : "Spektral.getInlineStyle(element);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to get the inline style from."}
+            ],
+            "returns" : "Object",
+            "dependencies" : "splitString()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["style"],
+            "title" : "showElement()",
+            "description" : "Shows an element that is hidden.",
+            "code" : "Spektral.showElement(element, displayType);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you wish to show."},
+                {"displayType (optional, default: \"block\")" : "The display type you want to use."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "getStyle(), appendStyle()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["style"],
+            "title" : "hideElement()",
+            "description" : "Hides an element.",
+            "code" : "Spektral.hideElement(element, useDisplay);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to hide."},
+                {"useDisplay (optional, default: false)" : "By setting to true you can hide the element by using the display property, by default the visibility property is used."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "getStyle(), appendStyle()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["style"],
+            "title" : "toggleVisibility ()",
+            "description" : "Toggles the visibility property of an element.",
+            "code" : "Spektral.toggleVisibility(element);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to toggle the visibility of."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "getStyle(), toggleDisplay(), appendStyle()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["style"],
+            "title" : "toggleDisplay()",
+            "description" : "Toggles the display property of an element.",
+            "code" : "Spektral.toggleDisplay(element, displayType);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to toggle the display of."},
+                {"displayType (optional, default: \"block\")" : "The type of display you want to use when the element is visible. Supports block, inline, inline-block, and inherit."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "getStyle(), toggleVisibility(), appendStyle()",
+            "compatibility" : "Currently in testing."
+        }
     ],
     "ajax" : [
-
+        {
+            "category" : ["ajax"],
+            "title" : "loadJSON()",
+            "description" : "Loads an external JSON file.",
+            "code" : "Spektral.loadJSON(source, callback, async);",
+            "params" : [
+                {"source (required, expects: String)" : "The location of the JSON file you wish to load."},
+                {"callback (required, expects: Function)" : "The function that will receive the results after load."},
+                {"async (optional, expects: Boolean, default: true)" : "You can set whether the file loads asynchronously or not."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "getType(), loadFile(), throwError()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["ajax"],
+            "title" : "loadXML()",
+            "description" : "Loads an external XML file.",
+            "code" : "Spektral.loadXML(source, callback, async);",
+            "params" : [
+                {"source (required, expects: String)" : "The location of the XML file you wish to load."},
+                {"callback (required, expects: Function)" : "The function that will receive the results after load."},
+                {"async (optional, expects: Boolean, default: true)" : "You can set whether the file loads asynchronously or not."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "getType(), loadFile(), throwError()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["ajax"],
+            "title" : "loadFile()",
+            "description" : "Loads an external file using XMLHttpRequest/ActiveXObject.</br>Ex. TEXT, XML, JSON",
+            "code" : "Spektral.loadFile(file, callback, async).",
+            "params" : [
+                {"source (required, expects: String)" : "The location of the file you wish to load."},
+                {"callback (required, expects: Function)" : "The function that will receive the results after load."},
+                {"async (optional, expects: Boolean, default: true)" : "You can set whether the file loads asynchronously or not."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "getExtension(), getXHR(), throwError(), attachEventListener()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["ajax"],
+            "title" : "getXHR()",
+            "description" : "Determines whether to use XMLHttpRequest or ActiveXObject when loading an external file, and returns the available xhr.",
+            "code" : "Spektral.getXHR();",
+            "params" : [],
+            "returns" : "XMLHttpRequest or ActiveXObject",
+            "dependencies" : "throwError()",
+            "compatibility" : "Currently in testing."
+        }
     ],
     "utils" : [
         {
@@ -359,6 +619,19 @@
             "code" : "Spektral.getViewPortSize();",
             "params" : [],
             "returns" : "Object",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["number, utils"],
+            "title" : "roundNum()",
+            "description" : "Returns a  rounded number.",
+            "code" : "Spektral.roundNum(num, type);",
+            "params" : [
+                {"num (required, expects: Number)" : ""},
+                {"type (optional, default: \"regular\")" : "\"regular\" will use Math.round, but you could also pass \"up\" (Math.ceil) or \"down\" (Math.floor)."}
+            ],
+            "returns" : "Number",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },

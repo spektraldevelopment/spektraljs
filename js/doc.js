@@ -4,7 +4,7 @@
     //vars
     var
         jsonObject = {},
-        glossList = Spektral.getElement("glossaryList"),
+        glossary = Spektral.getElement("glossary"),
         methodContainer = Spektral.getElement("methodContainer");
 
     //Comment for production
@@ -28,14 +28,14 @@
     ////LOAD JSON
     ////////////////////
     function loadJSON(e) {
-        Spektral.loadJSON("js/documentation.json", onJSONLoaded);
+        Spektral.loadJSON("js/documentation2.json", onJSONLoaded);
     }
 
     ////////////////////
     ////ON JSON LOADED
     ////////////////////
     function onJSONLoaded(e) {
-        jsonObject = e.methods;
+        jsonObject = e;
         buildGlossary();
     }
 
@@ -43,14 +43,19 @@
     ////BUILD GLOSSARY
     ////////////////////
     function buildGlossary() {
-        var key, item, listItem;
+        var key, catTitle, item, listItem;
 
         for (key in jsonObject) {
-            item = jsonObject[key].title;
 
-            listItem = Spektral.createNewElement("li", "item" + key, glossList);
-            listItem.innerHTML = item;
-            Spektral.attachEventListener(listItem, 'click', onListItemClick);
+            catTitle = Spektral.createNewElement("h2", key, "glossary");
+            Spektral.createSetAttribute(catTitle, "class", "glossSection");
+            catTitle.innerHTML = key;
+
+//            item = jsonObject[key].title;
+//
+//            listItem = Spektral.createNewElement("li", "item" + key, glossList);
+//            listItem.innerHTML = item;
+//            Spektral.attachEventListener(listItem, 'click', onListItemClick);
         }
     }
 
