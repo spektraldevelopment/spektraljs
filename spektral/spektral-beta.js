@@ -170,6 +170,13 @@
     }
 
     ///////////////////
+    ///GET PARENT
+    ///////////////////
+    Spektral.getParent = function (element) {
+        return element.parentNode;
+    }
+
+    ///////////////////
     ///USE HAND CURSOR
     ///////////////////
     Spektral.useHandCursor = function (element, cursorType) {
@@ -1068,6 +1075,8 @@
             newString = request.toLowerCase();
         } else if (newCase === "upper") {
             newString =  request.toUpperCase();
+        } else if (newCase === "first") {
+            newString = request.charAt(0).toUpperCase() + request.slice(1);
         }
         return newString;
     };
