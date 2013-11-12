@@ -1,4 +1,4 @@
-//API Documentation JS
+//API Documentation Spektral.js
 (function(){
 
     //vars
@@ -43,41 +43,63 @@
     ////BUILD GLOSSARY
     ////////////////////
     function buildGlossary() {
-        var key, catTitle, item, listItem;
 
+        var key, catSection, catTitle;
         for (key in jsonObject) {
 
-            catTitle = Spektral.createNewElement("h2", key, "glossary");
-            Spektral.createSetAttribute(catTitle, "class", "glossSection");
-            catTitle.innerHTML = key;
+            catSection = Spektral.createNewElement("div", key + "Section", glossary);
+            Spektral.createSetAttribute(catSection, "class", "glossSection");
 
-//            item = jsonObject[key].title;
-//
-//            listItem = Spektral.createNewElement("li", "item" + key, glossList);
-//            listItem.innerHTML = item;
-//            Spektral.attachEventListener(listItem, 'click', onListItemClick);
+            catTitle = Spektral.createNewElement("h2", "", catSection);
+            catTitle.innerHTML = key;
+            populateCategories(key, jsonObject[key], catSection);
+        }
+    }
+
+    ////////////////////
+    ////POPULATE CATEGORIES
+    ////////////////////
+    function populateCategories(cat, catObject, section) {
+
+        var key, catList, item, listItem, itemNum = 0;
+
+        catList = Spektral.createNewElement("ul", cat, section);
+
+        for (key in catObject) {
+
+            item = catObject[key];
+            listItem = Spektral.createNewElement("li", "item" + itemNum, catList);
+            listItem.innerHTML = item.title;
+            Spektral.attachEventListener(listItem, "click", onListItemClick);
+            itemNum += 1;
         }
     }
 
     ////////////////////
     ////ON LIST ITEM CLICK
     ////////////////////
-    function onListItemClick (e) {
+    function onListItemClick(e) {
 
         scrollToTop(e);
-        var target = Spektral.getTargetID(e), num = Spektral.stripString(target, "item");
-        populateMethodContainer(num);
+
+        var
+            target = Spektral.getTarget(e),
+            targetID = Spektral.getTargetID(e),
+            cat = Spektral.getParent(target).id,
+            num = Spektral.stripString(targetID, "item");
+
+        populateMethodContainer(cat, num);
     }
 
     ////////////////////
     ////POPULATE METHOD CONTAINER
     ////////////////////
-    function populateMethodContainer(id) {
+    function populateMethodContainer(cat, id) {
 
         clearMethodContainer();
 
         var
-            title,
+            methodObject, title,
             description,
             code, params,
             paramsList, paramObj,
@@ -85,23 +107,25 @@
             paramDesc, returnsTitle, returns, depend,
             dependTitle, compatibilityTitle,
             compatibility, key,
-            k, details;
+            k, details, info;
 
-        var info = Spektral.getInfo(jsonObject[id]);
+          methodObject = jsonObject[cat][id];
+
+        info = Spektral.getInfo(methodObject);
         Spektral.log("Method info: " + info);
 
         title = Spektral.createNewElement("h2", "title", methodContainer);
-        title.innerHTML = jsonObject[id].title;
+        title.innerHTML = methodObject.title;
 
         description = Spektral.createNewElement("p", "description", methodContainer);
-        description.innerHTML = jsonObject[id].description;
+        description.innerHTML = methodObject.description;
 
         code = Spektral.createNewElement("code", "code", methodContainer);
-        code.innerHTML = jsonObject[id].code;
+        code.innerHTML = methodObject.code;
 
         params = Spektral.createNewElement("section", "params", methodContainer);
 
-        paramsList = jsonObject[id].params;
+        paramsList = methodObject.params;
 
         parameter = Spektral.createNewElement("div", "paramContainer", params);
 
@@ -128,20 +152,19 @@
         returnsTitle.innerHTML = "Returns";
 
         returns = Spektral.createNewElement("p", "returns", details);
-        returns.innerHTML = jsonObject[id].returns;
+        returns.innerHTML = methodObject.returns;
 
         dependTitle = Spektral.createNewElement("h3", "dependTitle", details);
         dependTitle.innerHTML = "Dependencies";
 
         depend = Spektral.createNewElement("p", "dependencies", details);
-        depend.innerHTML = jsonObject[id].dependencies;
+        depend.innerHTML = methodObject.dependencies;
 
         compatibilityTitle = Spektral.createNewElement("h3", "compatibilityTitle", details);
         compatibilityTitle.innerHTML = "Compatibility";
 
         compatibility = Spektral.createNewElement("p", "compatibility", details);
-        compatibility.innerHTML = jsonObject[id].compatibility;
-
+        compatibility.innerHTML = methodObject.compatibility;
 
         TweenLite.to(methodContainer, 0.25, {opacity:"1", ease:Expo.easeIn});
     }

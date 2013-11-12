@@ -102,70 +102,9 @@ h1, h2, h3, h4, p {
   padding: 5px 0;
 }
 
-#glossary {
-  .rounded-corners(5px);
-  .shadow();
-  .transparentBG(@white, 0.75);
-  padding: 10px;
-  width: 295px;
-  float: left;
-}
-
-#glossary h2 {
-  .rounded-corners(5px);
-  .header();
-  .textShadow(0, 0, 10px, @black);
-  background-color: @green;
-  text-align: center;
-  padding: 5px;
-  color: @cream;
-}
-
-//#glossary ul {
-//  .rounded-corners(7px);
-//  .transparentBG(@green, 0.25);
-//  margin: 10px 0;
-//  padding: 10px;
-//  list-style: none;
-//}
-
-.glossSection {
-  .rounded-corners(7px);
-  .transparentBG(@green, 0.25);
-  margin: 10px 0;
-  padding: 10px;
-  list-style: none;
-}
-
-.glossSection li {
-  .rounded-corners(7px);
-  .transparentBG(@green, 0.25);
-  .codeText();
-  .textShadow(0, 0, 3px, @cream);
-  margin: 5px 0;
-  padding: 5px;
-  color: @brown;
-}
-
-.glossSection li:hover {
-  .textShadow(0, 0, 3px, @black);
-  color: @beige;
-}
-
-//#glossary ul li {
-//  .rounded-corners(7px);
-//  .transparentBG(@green, 0.25);
-//  .codeText();
-//  .textShadow(0, 0, 3px, @cream);
-//  margin: 5px 0;
-//  padding: 5px;
-//  color: @brown;
-//}
-//
-//#glossary ul li:hover {
-//  .textShadow(0, 0, 3px, @black);
-//  color: @beige;
-//}
+////////////////////
+////MAIN CONTENT
+////////////////////
 
 #mainContent {
   .rounded-corners();
@@ -178,6 +117,73 @@ h1, h2, h3, h4, p {
   min-height: 100%;
   height: auto;
 }
+
+////////////////////
+////GLOSSARY LIST
+////////////////////
+
+#glossary {
+  .rounded-corners(5px);
+  .shadow();
+  .transparentBG(@white, 0.75);
+  padding: 10px;
+  width: 295px;
+  float: left;
+}
+
+.glossHeader {
+  .rounded-corners(5px);
+  .header();
+  .textShadow(0, 0, 10px, @black);
+  background-color: @green;
+  text-align: center;
+  padding: 5px;
+  color: @cream;
+}
+
+.glossSection {
+  .rounded-corners(7px);
+  .transparentBG(@green, 0.25);
+  margin: 10px 0;
+  padding: 10px;
+}
+
+.glossSection h2 {
+  .rounded-corners(7px);
+  .textShadow(0, 0, 10px, @black);
+  font-size: 18px;
+  text-transform: capitalize;
+  padding: 5px 10px;
+  color: @cream;
+  background-color: @brown;
+}
+
+.glossSection ul {
+  .rounded-corners(7px);
+  margin: 0;
+  padding: 0;
+}
+
+.glossSection li {
+  .rounded-corners(7px);
+  .transparentBG(@green, 0.25);
+  .codeText();
+  .textShadow(0, 0, 3px, @cream);
+  .shadow();
+  margin: 5px 0;
+  padding: 5px 10px;
+  color: @brown;
+  list-style: none;
+}
+
+.glossSection li:hover {
+  .textShadow(0, 0, 3px, @black);
+  color: @beige;
+}
+
+////////////////////
+////METHOD
+////////////////////
 
 .method {
   .rounded-corners(5px);
@@ -264,6 +270,10 @@ h1, h2, h3, h4, p {
   font-size: 14px;
   color: @cream;
 }
+
+////////////////////
+////FOOTER
+////////////////////
 
 #mainFooter {
   background-color: @green;

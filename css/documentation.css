@@ -33,6 +33,23 @@ p {
   margin: 10px 0;
   padding: 5px 0;
 }
+#mainContent {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: inset 0px 0px 5px #000000;
+  -webkit-box-shadow: inset 0px 0px 5px #000000;
+  box-shadow: inset 0px 0px 5px #000000;
+  background-color: rgba(163, 104, 28, 0.4);
+  position: relative;
+  margin: 10px auto;
+  padding: 5px;
+  width: 960px;
+  min-height: 100%;
+  height: auto;
+}
 #glossary {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -47,7 +64,7 @@ p {
   width: 295px;
   float: left;
 }
-#glossary h2 {
+.glossHeader {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
@@ -69,7 +86,28 @@ p {
   background-color: rgba(84, 87, 79, 0.25);
   margin: 10px 0;
   padding: 10px;
-  list-style: none;
+}
+.glossSection h2 {
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px;
+  text-shadow: 0 0 10px #000000;
+  font-size: 18px;
+  text-transform: capitalize;
+  padding: 5px 10px;
+  color: #f1d7b2;
+  background-color: #352f2f;
+}
+.glossSection ul {
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px;
+  margin: 0;
+  padding: 0;
 }
 .glossSection li {
   -webkit-border-radius: 7px;
@@ -82,30 +120,17 @@ p {
   font-size: 18px;
   font-weight: bold;
   text-shadow: 0 0 3px #f1d7b2;
+  -moz-box-shadow: inset 0px 0px 5px #000000;
+  -webkit-box-shadow: inset 0px 0px 5px #000000;
+  box-shadow: inset 0px 0px 5px #000000;
   margin: 5px 0;
-  padding: 5px;
+  padding: 5px 10px;
   color: #352f2f;
+  list-style: none;
 }
 .glossSection li:hover {
   text-shadow: 0 0 3px #000000;
   color: #d7af67;
-}
-#mainContent {
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  border-radius: 5px;
-  -moz-box-shadow: inset 0px 0px 5px #000000;
-  -webkit-box-shadow: inset 0px 0px 5px #000000;
-  box-shadow: inset 0px 0px 5px #000000;
-  background-color: rgba(163, 104, 28, 0.4);
-  position: relative;
-  margin: 10px auto;
-  padding: 5px;
-  width: 960px;
-  min-height: 100%;
-  height: auto;
 }
 .method {
   -webkit-border-radius: 5px;

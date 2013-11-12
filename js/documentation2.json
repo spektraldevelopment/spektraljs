@@ -50,6 +50,18 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["DOM, event"],
+            "title" : "getParent()",
+            "description" : "Returns the parent of the requested element.",
+            "code" : "Spektral.getParent(element);",
+            "params" : [
+                {"element (required, expects: Element)" : "The child you want to find the parent of."}
+            ],
+            "returns" : "Element",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
             "category" : ["DOM"],
             "title" : "createNewElement()",
             "description" : "Created a new element and adds it to the parent of your choosing.",
@@ -344,7 +356,7 @@
             "code" : "Spektral.convertCase(request, newCase);",
             "params" : [
                 {"request (required, expects: String)" : "The string you want to convert to upper/lower case."},
-                {"newCase (optional, default: \"lower\")" : "Use \"upper\" to convert to upper case."}
+                {"newCase (optional, default: \"lower\")" : "Use \"upper\" to convert to upper case. You can also use \"first\" to capitalize the first letter of the string."}
             ],
             "returns" : "",
             "dependencies" : "None",
