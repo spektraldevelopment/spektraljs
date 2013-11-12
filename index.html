@@ -36,7 +36,9 @@
                 <div id="example" class="clearfix">
                     <h3>Example Usage</h3>
                     <code>
-                        var image = Spektral.getElement("exampleImage");
+                        var
+                            image = Spektral.getElement("exampleImage"),
+                            visToggle = Spektral.getElement("toggleButton";
 
                         Spektral.attachEventListener(image, "click", onImageClick);
 
@@ -44,6 +46,7 @@
                         Spektral.toggleVisibility(image);
                         }
                     </code>
+                    <input type="button" id="toggleButton" class="exampleButton" value="Toggle Image Visibility">
                     <img id="exampleImage" alt="Spektral.js example image." src="img/spektraljs.jpg"/>
                 </div>
             </section>
@@ -53,20 +56,42 @@
             <small id="statement">This API documentation was created using Spektral.js</small>
             <small id="copyright">&#169; Spektral Development 2013</small>
         </footer>
-        <script>
-            var image = Spektral.getElement("exampleImage");
-
-            Spektral.attachEventListener(image, "click", onImageClick);
-
-            function onImageClick(e) {
-                Spektral.toggleVisibility(image);
-            }
-        </script>
         <script src="js/vendor/greensock/easing/EasePack.min.js"></script>
         <script src="js/vendor/greensock/plugins/CSSPlugin.min.js"></script>
         <script src="js/vendor/greensock/plugins/ScrollToPlugin.min.js"></script>
         <script src="js/vendor/greensock/TweenLite.min.js"></script>
         <script src="spektral/spektral-beta.js"></script>
         <script src="js/doc.js"></script>
+        <script>
+
+            var image, visToggle, button;
+
+            initExamples();
+
+            function initExamples() {
+                if(document.readyState === "complete") {
+                    createExamples();
+                }
+                else {
+                    Spektral.attachEventListener(window, 'load', createExamples);
+                }
+            }
+
+            function createExamples() {
+
+                image = Spektral.getElement("exampleImage"),
+                visToggle = Spektral.getElement("toggleButton");
+
+                Spektral.attachEventListener(toggleButton, "click", onButtonClick);
+
+                function onButtonClick(evt) {
+
+                    //button = Spektral.getTargetID()
+
+                    Spektral.toggleVisibility(image);
+                    console.log("onButtonClick");
+                }
+            }
+        </script>
     </body>
 </html>
