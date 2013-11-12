@@ -112,7 +112,7 @@
           methodObject = jsonObject[cat][id];
 
         info = Spektral.getInfo(methodObject);
-        Spektral.log("Method info: " + info);
+        //Spektral.log("Method info: " + info);
 
         title = Spektral.createNewElement("h2", "title", methodContainer);
         title.innerHTML = methodObject.title;
