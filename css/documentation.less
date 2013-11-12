@@ -118,6 +118,27 @@ h1, h2, h3, h4, p {
   height: auto;
 }
 
+#example {
+  .rounded-corners(7px);
+  .transparentBG(@green, 0.25);
+  margin: 0;
+  padding: 10px;
+}
+
+#example code {
+  margin: 10px 0;
+  line-height: 20px;
+}
+
+#example img {
+  position: relative;
+  float: right;
+  border: 5px solid @white;
+  .shadow(0, 0, 10px, 1px, @black);
+  margin: 0;
+  padding: 0;
+}
+
 ////////////////////
 ////GLOSSARY LIST
 ////////////////////

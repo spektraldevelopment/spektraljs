@@ -28,13 +28,24 @@
         <section id="mainContent" class="clearfix">
             <aside id="glossary">
                 <h2 class="glossHeader">Available Methods</h2>
-                <!--<ul id="glossaryList">-->
-                <!--</ul>-->
             </aside>
             <section id="methodContainer" class="method">
                 <h2>Spektral.js API Documentation</h2>
                 <p>Spektral.js is a collection of helpful methods and functions to help you speed up development time.
                     It's key goal is to utilize the latest, and best practices features of JavaScript, It is free to use under the MIT license.</p>
+                <div id="example" class="clearfix">
+                    <h3>Example Usage</h3>
+                    <code>
+                        var image = Spektral.getElement("exampleImage");
+
+                        Spektral.attachEventListener(image, "click", onImageClick);
+
+                        function onImageClick(e) {
+                        Spektral.toggleVisibility(image);
+                        }
+                    </code>
+                    <img id="exampleImage" alt="Spektral.js example image." src="img/spektraljs.jpg"/>
+                </div>
             </section>
         </section>
 
@@ -42,7 +53,15 @@
             <small id="statement">This API documentation was created using Spektral.js</small>
             <small id="copyright">&#169; Spektral Development 2013</small>
         </footer>
+        <script>
+            var image = Spektral.getElement("exampleImage");
 
+            Spektral.attachEventListener(image, "click", onImageClick);
+
+            function onImageClick(e) {
+                Spektral.toggleVisibility(image);
+            }
+        </script>
         <script src="js/vendor/greensock/easing/EasePack.min.js"></script>
         <script src="js/vendor/greensock/plugins/CSSPlugin.min.js"></script>
         <script src="js/vendor/greensock/plugins/ScrollToPlugin.min.js"></script>

@@ -50,6 +50,30 @@ p {
   min-height: 100%;
   height: auto;
 }
+#example {
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px;
+  background-color: rgba(84, 87, 79, 0.25);
+  margin: 0;
+  padding: 10px;
+}
+#example code {
+  margin: 10px 0;
+  line-height: 20px;
+}
+#example img {
+  position: relative;
+  float: right;
+  border: 5px solid #ffffff;
+  -moz-box-shadow: 0 0 10px 1px #000000;
+  -webkit-box-shadow: 0 0 10px 1px #000000;
+  box-shadow: 0 0 10px 1px #000000;
+  margin: 0;
+  padding: 0;
+}
 #glossary {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
