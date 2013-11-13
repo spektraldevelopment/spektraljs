@@ -36,14 +36,23 @@
                 <div id="example" class="clearfix">
                     <h3>Example Usage</h3>
                     <code>
-                        var
-                            image = Spektral.getElement("exampleImage"),
-                            visToggle = Spektral.getElement("toggleButton";
+                        var image, visToggle, button;
 
-                        Spektral.attachEventListener(image, "click", onImageClick);
+                        image = Spektral.getElement("exampleImage"),
 
-                        function onImageClick(e) {
-                        Spektral.toggleVisibility(image);
+                        visToggle = Spektral.getElement("toggleButton");
+
+                        Spektral.attachEventListener(toggleButton, "click", onButtonClick);
+
+                        function onButtonClick(evt) {
+
+                            button = Spektral.getTargetID(evt);
+
+                            if (button === "toggleButton") {
+
+                            Spektral.toggleVisibility(image);
+
+                            }
                         }
                     </code>
                     <input type="button" id="toggleButton" class="exampleButton" value="Toggle Image Visibility">
@@ -86,9 +95,13 @@
 
                 function onButtonClick(evt) {
 
-                    //button = Spektral.getTargetID()
+                    button = Spektral.getTargetID(evt);
 
-                    Spektral.toggleVisibility(image);
+                    if (button === "toggleButton") {
+                        Spektral.toggleVisibility(image);
+                    }
+
+
                     console.log("onButtonClick");
                 }
             }

@@ -40,13 +40,13 @@
         {
             "category" : ["event, utils"],
             "title" : "getTargetID()",
-            "description" : "Returns the id of the element, if it has one.",
-            "code" : "Spektral.getTargetID(element)",
+            "description" : "Returns the id of the element, or the id of an element that triggered an event.",
+            "code" : "Spektral.getTargetID(obj)",
             "params" : [
-                {"element (required, expects: Element)" : "The element you wish to get the id from."}
+                {"obj (required, expects: Element or Returned Event)" : "The element or returned event you want to get the id from."}
             ],
             "returns" : "String",
-            "dependencies" : "None",
+            "dependencies" : "getType(), isElement()",
             "compatibility" : "Currently in testing."
         },
         {

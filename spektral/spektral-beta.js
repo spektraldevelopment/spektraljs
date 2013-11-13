@@ -165,8 +165,14 @@
     ///////////////////
     ///GET TARGET ID
     ///////////////////
-    Spektral.getTargetID = function (element) {
-        return element.target.id;
+    Spektral.getTargetID = function (obj) {
+        var targetID, type = Spektral.getType(obj), element = Spektral.isElement(obj); 
+        if (element === true) {
+            targetID = obj.id;
+        } else {
+            targetID = obj.target.id;
+        }
+        return targetID;
     }
 
     ///////////////////
