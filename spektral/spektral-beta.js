@@ -699,6 +699,21 @@
     };
 
     //////////////////
+    ////GET CSS STYLE
+    //////////////////
+    Spektral.getCSSStyle = function(element, property) {
+        
+        property = property || null;
+        var style;
+        if (property === null) {
+            style = document.defaultView.getComputedStyle(element, null);
+        } else {
+            style = document.defaultView.getComputedStyle(element, null).getPropertyValue(property);
+        }
+        return style;
+    };
+
+    //////////////////
     ////APPEND STYLE
     //////////////////
     Spektral.appendStyle = function (element, styleProperty) {

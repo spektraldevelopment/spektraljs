@@ -184,4 +184,10 @@
         TweenLite.to(window, 0.5, {scrollTo:{y:0}, ease: Expo.easeOut});
     }
 
+    var buttonGroup = Spektral.getElement("buttonGroup"), info;
+
+    info = Spektral.getCSSStyle(buttonGroup, "margin-left");
+
+    Spektral.log("info: " + Spektral.getInfo(info));
+
 }(window));
