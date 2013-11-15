@@ -57,13 +57,13 @@ p {
   -o-border-radius: 7px;
   border-radius: 7px;
   background-color: rgba(84, 87, 79, 0.25);
-  width: 595px;
   margin: 0;
   padding: 10px;
 }
 #example div {
   position: relative;
   display: inline-block;
+  width: 417px;
   margin: 0 auto;
   padding: 0;
   border: 2px solid red;
