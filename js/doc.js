@@ -188,6 +188,6 @@
 
     info = Spektral.getCSSStyle(buttonGroup, "margin-left");
 
-    Spektral.log("info: " + Spektral.getInfo(info));
+    //Spektral.log("info: " + Spektral.getInfo(info));
 
 }(window));

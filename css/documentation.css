@@ -59,7 +59,7 @@ p {
   background-color: rgba(84, 87, 79, 0.25);
   display: block;
   margin: 0;
-  padding: 0;
+  padding: 10px;
 }
 #example div {
   display: block;
