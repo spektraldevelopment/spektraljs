@@ -11,6 +11,8 @@
         <meta name="viewport" content="width=device-width">
 
         <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/prettify.css">
+        <link rel="stylesheet" href="css/desert.css" />
         <link rel="stylesheet" href="css/documentation.css">
 
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
@@ -28,6 +30,7 @@
         <section id="mainContent" class="clearfix">
             <aside id="glossary">
                 <h2 class="glossHeader">Available Methods</h2>
+                <img id="listLoading" src="img/loader.gif" alt="Loading Icon"/>
             </aside>
             <section id="methodContainer" class="method">
                 <h2>Spektral.js API Documentation</h2>
@@ -41,19 +44,30 @@
                         <input type="button" id="addStyleButton" class="exampleButton" value="Add Padding">
                     </div>
                     <img id="exampleImage" style="padding: 10px" alt="Spektral.js example image." src="img/spektraljs.jpg"/>
-                    <pre><code>var
+                    <pre class="prettyprint">
+var
     image = Spektral.getElement("exampleImage"),
-    visToggle = Spektral.getElement("toggleButton"),
-    button;
+    toggleButton = Spektral.getElement("toggleButton"),
+    removeStyleButton = Spektral.getElement("removeStyleButton"),
+    addStyleButton = Spektral.getElement("addStyleButton");
 
 Spektral.attachEventListener(toggleButton, "click", onButtonClick);
+Spektral.attachEventListener(removeStyleButton, "click", onButtonClick);
+Spektral.attachEventListener(addStyleButton, "click", onButtonClick);
 
 function onButtonClick(evt) {
-button = Spektral.getTargetID(evt);
+
+    button = Spektral.getTargetID(evt);
+
     if (button === "toggleButton") {
         Spektral.toggleVisibility(image);
+    } else if (button === "removeStyleButton") {
+        Spektral.clearStyle(image);
+    } else if (button === "addStyleButton") {
+        Spektral.setStyle(image, "padding:10px");
     }
-}</code></pre>
+}
+                    </pre>
                 </div>
             </section>
         </section>
@@ -62,6 +76,7 @@ button = Spektral.getTargetID(evt);
             <small id="statement">This API documentation was created using Spektral.js</small>
             <small id="copyright">&#169; Spektral Development 2013</small>
         </footer>
+        <script src="js/vendor/prettify/prettify.js"></script>
         <script src="js/vendor/greensock/easing/EasePack.min.js"></script>
         <script src="js/vendor/greensock/plugins/CSSPlugin.min.js"></script>
         <script src="js/vendor/greensock/plugins/ScrollToPlugin.min.js"></script>
@@ -105,9 +120,10 @@ button = Spektral.getTargetID(evt);
                     } else if (button === "addStyleButton") {
                         Spektral.setStyle(image, "padding:10px");
                     }
-                    console.log("onButtonClick");
                 }
             }
+
+            prettyPrint();
         </script>
     </body>
 </html>
