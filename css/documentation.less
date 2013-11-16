@@ -121,22 +121,13 @@ h1, h2, h3, h4, p {
 #example {
   .rounded-corners(7px);
   .transparentBG(@green, 0.25);
-  //width: 595px;
   margin: 0;
   padding: 10px;
 }
 
 #example div {
-//  width: 417px;//I don't like this but for now it will do
-//  display: inline-block;
-//  margin: 20px auto;
-//  padding: 0;
-//  //position: relative;
-//  //overflow: hidden;
-//  //border: 2px solid red;
   position: relative;
-  display: inline-block;
-  width: 417px;
+  width: 417px;//I don't like this but it will do for now
   margin: 0 auto;
   padding: 0;
   border: 2px solid red;
@@ -147,9 +138,6 @@ h1, h2, h3, h4, p {
   .transparentBG(@green, 0.25);
   .paragraph();
   .textShadow(0, 0, 5px, @black);
-//  display: inline;
-//  position: relative;
-//  float: center;
   color: @cream;
   padding: 7px;
   outline: none;
@@ -160,7 +148,6 @@ h1, h2, h3, h4, p {
   .rounded-corners(4px);
   display: block;
   position: relative;
-  //float: center;
   margin: 10px auto;
   padding: 10px;
 }
@@ -168,7 +155,6 @@ h1, h2, h3, h4, p {
 #example code {
   .textShadow(0, 0, 10px, @black);
   .shadow();
-  //width: 100%;
   margin: 40px 0;
   padding: 10px 20px;
   line-height: 24px;
