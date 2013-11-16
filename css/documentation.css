@@ -62,11 +62,9 @@ p {
 }
 #example div {
   position: relative;
-  display: inline-block;
   width: 417px;
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 0;
-  border: 2px solid red;
 }
 #example input {
   -webkit-border-radius: 4px;
