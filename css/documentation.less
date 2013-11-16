@@ -121,23 +121,26 @@ h1, h2, h3, h4, p {
 #example {
   .rounded-corners(7px);
   .transparentBG(@green, 0.25);
+  display: block;
   margin: 0;
-  padding: 10px;
-}
-
-#example div {
-  position: relative;
-  width: 417px;//I don't like this but it will do for now
-  margin: 20px auto;
   padding: 0;
 }
 
+#example div {
+  display: block;
+  margin: 20px auto;
+  padding: 0;
+  text-align: center;
+}
+
 #example input {
+  //display: inline-block;
   .rounded-corners(4px);
   .transparentBG(@green, 0.25);
   .paragraph();
   .textShadow(0, 0, 5px, @black);
   color: @cream;
+  margin: 0;
   padding: 7px;
   outline: none;
 }
@@ -148,12 +151,12 @@ h1, h2, h3, h4, p {
   display: block;
   position: relative;
   margin: 10px auto;
-  padding: 10px;
 }
 
 #example code {
   .textShadow(0, 0, 10px, @black);
   .shadow();
+  display: block;
   margin: 40px 0;
   padding: 10px 20px;
   line-height: 24px;

@@ -37,10 +37,10 @@
                     <h3>Example Usage</h3>
                     <div id="buttonGroup">
                         <input type="button" id="toggleButton" class="exampleButton" value="Toggle Image Visibility">
-                        <input type="button" id="removeStyleButton" class="exampleButton" value="Remove Border">
-                        <input type="button" id="addStyleButton" class="exampleButton" value="Add Border">
+                        <input type="button" id="removeStyleButton" class="exampleButton" value="Remove Padding">
+                        <input type="button" id="addStyleButton" class="exampleButton" value="Add Padding">
                     </div>
-                    <img id="exampleImage" alt="Spektral.js example image." src="img/spektraljs.jpg"/>
+                    <img id="exampleImage" style="padding: 10px" alt="Spektral.js example image." src="img/spektraljs.jpg"/>
                     <pre><code>var
     image = Spektral.getElement("exampleImage"),
     visToggle = Spektral.getElement("toggleButton"),
@@ -70,7 +70,7 @@ button = Spektral.getTargetID(evt);
         <script src="js/doc.js"></script>
         <script>
 
-            var image, visToggle, button;
+            var image, toggleButton, removeStyleButton, addStyleButton, button;
 
             initExamples();
 
@@ -86,9 +86,13 @@ button = Spektral.getTargetID(evt);
             function createExamples() {
 
                 image = Spektral.getElement("exampleImage"),
-                visToggle = Spektral.getElement("toggleButton");
+                toggleButton = Spektral.getElement("toggleButton"),
+                removeStyleButton = Spektral.getElement("removeStyleButton"),
+                addStyleButton = Spektral.getElement("addStyleButton");
 
                 Spektral.attachEventListener(toggleButton, "click", onButtonClick);
+                Spektral.attachEventListener(removeStyleButton, "click", onButtonClick);
+                Spektral.attachEventListener(addStyleButton, "click", onButtonClick);
 
                 function onButtonClick(evt) {
 
@@ -96,9 +100,11 @@ button = Spektral.getTargetID(evt);
 
                     if (button === "toggleButton") {
                         Spektral.toggleVisibility(image);
+                    } else if (button === "removeStyleButton") {
+                        Spektral.clearStyle(image);
+                    } else if (button === "addStyleButton") {
+                        Spektral.setStyle(image, "padding:10px");
                     }
-
-
                     console.log("onButtonClick");
                 }
             }

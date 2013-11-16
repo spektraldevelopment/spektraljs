@@ -186,7 +186,7 @@
 
     var buttonGroup = Spektral.getElement("buttonGroup"), info;
 
-    info = Spektral.getCSSStyle(buttonGroup, "width");
+    info = Spektral.getCSSStyle(buttonGroup, "margin-left");
 
     Spektral.log("info: " + Spektral.getInfo(info));
 

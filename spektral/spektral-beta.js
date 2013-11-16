@@ -489,7 +489,7 @@
     //////////////////
     Spektral.getElement = function (element, index) {
 
-        //Integrate querySelectorAll
+        //Spektral.log("getElement: element: " + Spektral.getType(element));
 
         var isHTML = Spektral.isHTMLElement(element), isID = Spektral.isHTMLID(element), isName = Spektral.isHTMLName(element), el, elType, nList;
 
