@@ -97,6 +97,12 @@ p {
   margin: 10px auto;
 }
 #example pre {
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px;
+  background-color: #352f2f;
   padding: 10px;
   font-size: 12px;
 }
