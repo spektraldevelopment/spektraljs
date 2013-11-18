@@ -48,7 +48,7 @@
         for (key in jsonObject) {
 
             catSection = Spektral.createNewElement("div", key + "Section", glossary);
-            Spektral.createSetAttribute(catSection, "class", "glossSection");
+            Spektral.createSetAttribute(catSection, "class", "glossSection categoryBlock");
 
             catTitle = Spektral.createNewElement("h2", "", catSection);
             catTitle.innerHTML = key;
@@ -73,6 +73,25 @@
             Spektral.attachEventListener(listItem, "click", onListItemClick);
             itemNum += 1;
         }
+
+        initPackery();
+    }
+
+    function initPackery() {
+
+//        var pckry = new Packery( glossary, {
+//            itemSelector: '.categoryBlock',
+//            gutter: 0
+//        });
+//
+//        pckry.on( 'layoutComplete', function( pckryInstance, laidOutItems ) {
+//            console.log('Packery layout completed on ' + laidOutItems.length + ' items');
+//        });
+        var msnry = new Masonry( glossary, {
+            // options
+            columnWidth: 1,
+            itemSelector: '.categoryBlock'
+        });
     }
 
     ////////////////////
