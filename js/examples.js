@@ -3,7 +3,8 @@
 
     //vars
     var
-        jsonObject = {};
+        jsonObject = {},
+        glossary = Spektral.getElement("glossary");
 
     //Comment for production
     Spektral.debug();

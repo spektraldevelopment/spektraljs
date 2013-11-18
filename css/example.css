@@ -60,15 +60,15 @@ p {
   background-color: rgba(255, 255, 255, 0.75);
   margin: 0;
   padding: 10px;
-  width: auto;
-  height: auto;
-  float: left;
 }
 #glossary img {
   display: block;
   position: relative;
   margin: 0 auto;
   padding: 10px;
+}
+.categoryBlock {
+  width: 25%;
 }
 .glossHeader {
   -webkit-border-radius: 5px;
@@ -90,10 +90,6 @@ p {
   -o-border-radius: 7px;
   border-radius: 7px;
   background-color: rgba(84, 87, 79, 0.25);
-  position: relative;
-  float: left;
-  display: inline-block;
-  width: 295px;
   margin: 10px 0;
   padding: 10px;
 }
