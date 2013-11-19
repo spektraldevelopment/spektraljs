@@ -48,12 +48,23 @@
         for (key in jsonObject) {
 
             catSection = Spektral.createNewElement("div", key + "Section", glossary);
-            Spektral.createSetAttribute(catSection, "class", "glossSection categoryBlock");
+            Spektral.createSetAttribute(catSection, "class", "glossSection");
 
             catTitle = Spektral.createNewElement("h2", "", catSection);
             catTitle.innerHTML = key;
             populateCategories(key, jsonObject[key], catSection);
         }
+
+        $(document).ready(function() {
+            // Handler for .ready() called.
+            $('#glossary').isotope({
+                // options
+                itemSelector : '.glossSection',
+                layoutMode : 'fitColumns',
+                resizesContainer: false
+            });
+
+        });
     }
 
     ////////////////////
@@ -73,25 +84,6 @@
             Spektral.attachEventListener(listItem, "click", onListItemClick);
             itemNum += 1;
         }
-
-        initPackery();
-    }
-
-    function initPackery() {
-
-//        var pckry = new Packery( glossary, {
-//            itemSelector: '.categoryBlock',
-//            gutter: 0
-//        });
-//
-//        pckry.on( 'layoutComplete', function( pckryInstance, laidOutItems ) {
-//            console.log('Packery layout completed on ' + laidOutItems.length + ' items');
-//        });
-        var msnry = new Masonry( glossary, {
-            // options
-            columnWidth: 1,
-            itemSelector: '.categoryBlock'
-        });
     }
 
     ////////////////////
