@@ -4,7 +4,8 @@
     //vars
     var
         jsonObject = {},
-        glossary = Spektral.getElement("glossary");
+        glossary = Spektral.getElement("glossary"),
+        glossaryContainer = Spektral.getElement("glossaryContainer");
 
     //Comment for production
     Spektral.debug();
@@ -47,7 +48,7 @@
         var key, catSection, catTitle;
         for (key in jsonObject) {
 
-            catSection = Spektral.createNewElement("div", key + "Section", glossary);
+            catSection = Spektral.createNewElement("div", key + "Section", glossaryContainer);
             Spektral.createSetAttribute(catSection, "class", "glossSection");
 
             catTitle = Spektral.createNewElement("h2", "", catSection);
@@ -71,7 +72,7 @@
 //            });
 //
 ////        });
-        var msnry = new Masonry( glossary, {
+        var msnry = new Masonry( glossaryContainer, {
             // options
             itemSelector: '.glossSection',
             "isFitWidth": true
