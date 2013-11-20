@@ -123,12 +123,10 @@ h1, h2, h3, h4, p {
   .rounded-corners(5px);
   .shadow();
   .transparentBG(@white, 0.75);
-  //display: block;
-  margin: 10px;
-//  padding: 0;//10
-//  padding-left: 5px;
-  width: auto;
-  height: 100%;
+  margin: 10px auto;
+  padding: 20px;
+  width: 80%;
+  height: auto;
 }
 
 #glossary img {
@@ -141,15 +139,16 @@ h1, h2, h3, h4, p {
 #glossaryContainer {
   margin: 0 auto;
   padding: 0;
-  width: 100%;
+  width: inherit;
   height: 100%;
 }
 #glossHeader {
   .rounded-corners(5px);
   .header();
   .textShadow(0, 0, 10px, @black);
-  width: auto;
-  margin: 10px;
+  position:relative;
+  width: 100%;
+  margin: 0 auto;
   background-color: @green;
   text-align: center;
   padding: 5px;
