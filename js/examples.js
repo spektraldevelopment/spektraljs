@@ -55,16 +55,30 @@
             populateCategories(key, jsonObject[key], catSection);
         }
 
-        $(document).ready(function() {
-            // Handler for .ready() called.
-            $('#glossary').isotope({
-                // options
-                itemSelector : '.glossSection',
-                layoutMode : 'fitColumns',
-                resizesContainer: false
-            });
-
+//        $(document).ready(function() {
+//            // Handler for .ready() called.
+//            $('#glossary').isotope({
+//                // options
+//                itemSelector : '.glossSection',
+//                layoutMode : 'fitColumns',
+//                resizesContainer: false
+//            });
+//
+//            $.extend( $.Isotope.prototype, {
+//                _fitColumnsLayout : function () {
+//                    ///console.log("FUCK!!!!!!!")
+//                }
+//            });
+//
+////        });
+        var msnry = new Masonry( glossary, {
+            // options
+            itemSelector: '.glossSection',
+            "isFitWidth": true
         });
+
+        //$('#glossary').freetile();
+
     }
 
     ////////////////////
