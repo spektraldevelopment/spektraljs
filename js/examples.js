@@ -56,27 +56,31 @@
             populateCategories(key, jsonObject[key], catSection);
         }
 
-//        $(document).ready(function() {
-//            // Handler for .ready() called.
-//            $('#glossary').isotope({
+        $(document).ready(function() {
+            // Handler for .ready() called.
+            $('#glossaryContainer').isotope({
+                // options
+                itemSelector : '.glossSection',
+                layoutMode: "perfectMasonry",
+                perfectMasonry: {
+                    columnWidth: 295,
+                    maxCols: 5
+                }
+            });
+
+//            $('#glossaryContainer').isotope({
 //                // options
 //                itemSelector : '.glossSection',
 //                layoutMode : 'fitColumns',
 //                resizesContainer: false
 //            });
-//
-//            $.extend( $.Isotope.prototype, {
-//                _fitColumnsLayout : function () {
-//                    ///console.log("FUCK!!!!!!!")
-//                }
-//            });
-//
-////        });
-        var msnry = new Masonry( glossaryContainer, {
-            // options
-            itemSelector: '.glossSection',
-            "isFitWidth": true
+
         });
+//        var msnry = new Masonry( glossaryContainer, {
+//            // options
+//            itemSelector: '.glossSection',
+//            "isFitWidth": true
+//        });
 
         //$('#glossary').freetile();
 
