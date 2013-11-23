@@ -43,6 +43,15 @@
   background-color: rgba(red(@color), green(@color), blue(@color), @alpha);
 }
 
+.grid (@count: 4, @gap: 10px) {
+  -moz-column-count: @count;
+  -moz-column-gap: @gap;
+  -webkit-column-count: @count;
+  -webkit-column-gap: @gap;
+  column-count: @count;
+  column-gap: @gap;
+}
+
 ///////////////////////////
 //Fonts
 ///////////////////////////

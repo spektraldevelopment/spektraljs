@@ -60,10 +60,10 @@
             // Handler for .ready() called.
             $('#glossaryContainer').isotope({
                 // options
-                itemSelector : '.glossSection',
+               // itemSelector : '.glossSection',
                 layoutMode: "perfectMasonry",
                 perfectMasonry: {
-                    columnWidth: 295,
+                    //columnWidth: 295,
                     maxCols: 5
                 }
             });
