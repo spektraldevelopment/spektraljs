@@ -1027,15 +1027,42 @@
     /////////////////////
     ////GET POS
     ////////////////////
-    Spektral.getPos = function (element) {
-        var pos = {}, el = element.getBoundingClientRect();
-        pos["x"] = el.left;
-        pos["y"] = el.top;
+    Spektral.getPos = function (element, rel) {
+
+        Spektral.log("relative after: " + rel);
+
+        var 
+            pos = {}, 
+            parent = Spektral.getParent(element),
+            el = element.getBoundingClientRect(),
+            par = parent.getBoundingClientRect(),
+            left, top,
+            right, bottom;
+
+        if(rel === true) {
+            //Position relative to parent
+            top = (el.top - par.top);
+            right = (par.right - el.right);
+            bottom = (par.bottom - el.bottom);
+            left = (el.left - par.left);
+        } else {
+            //Position relative to browser
+            top = el.top;
+            right = el.right;
+            bottom = el.bottom;
+            left = el.left;
+        }
+
+        //Spektral.log("getPos top: " + top + " right: " + right + " bottom: " + bottom + " left: " + left);    
+
+        pos["x"] = left;
+        pos["y"] = top;
         
-        pos["left"] = el.left;
-        pos["top"] = el.top;
-        pos["right"] = el.right;
-        pos["bottom"] = el.bottom;
+        pos["top"] = top;
+        pos["right"] = right;
+        pos["bottom"] = bottom;
+        pos["left"] = left;
+
         return pos;
     };
 

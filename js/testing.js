@@ -347,6 +347,12 @@ var mh = Spektral.getElement("mainHeader");
 
 Spektral.log("tt got style?: " + Spektral.checkForAttribute(tt, "style"));
 
+var mht = Spektral.getElement("mainHeaderTag");
+
+var mhtPos = Spektral.getPos(mht, true);
+
+Spektral.log("mhtPos: " + Spektral.getInfo(mhtPos));
+
 //var headTwo = Spektral.getElement("headingTwo");
 //var headTwoDimensions = Spektral.getDimensions(headTwo);
 //Spektral.log("headTwo: " + Spektral.getInfo(headTwoDimensions));
