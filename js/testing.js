@@ -333,3 +333,16 @@ Spektral.attachEventListener(footer, 'click', onFooterClick);
 function onFooterClick(e) {
     console.log("Footer Clicked!");
 }
+
+var testStringToNum = "1234px";
+
+var newNum = Spektral.stringToNum(testStringToNum);
+
+Spektral.log("newNum: " + newNum);
+
+var ttDimensions = Spektral.getDimensions(tt);
+Spektral.log("ttDimensions: " + Spektral.getInfo(ttDimensions));
+
+var headTwo = Spektral.getElement("headingTwo");
+var headTwoDimensions = Spektral.getDimensions(headTwo);
+Spektral.log("headTwo: " + Spektral.getInfo(headTwoDimensions));

@@ -1013,11 +1013,18 @@
     };
 
     /////////////////////
+    ////STRING TO NUM
+    ////////////////////
+    Spektral.stringToNum = function(str) {
+        var num = parseInt(str, 10);
+        return num;
+    };
+
+    /////////////////////
     ////GET POS
     ////////////////////
     Spektral.getPos = function (element) {
-        var pos = {}, el;
-        el = element.getBoundingClientRect();
+        var pos = {}, el = element.getBoundingClientRect();
         pos["x"] = el.left;
         pos["y"] = el.top;
         
@@ -1026,6 +1033,72 @@
         pos["right"] = el.right;
         pos["bottom"] = el.bottom;
         return pos;
+    };
+
+    /////////////////////
+    ////GET DIMENSIONS
+    ////////////////////
+    Spektral.getDimensions = function (element) {
+        var 
+            dimensions = {},
+            innerWidth = Spektral.getStyle(element, "width"),
+            innerHeight = Spektral.getStyle(element, "height"),
+
+            paddingTop = Spektral.getStyle(element, "padding-top"),
+            paddingRight = Spektral.getStyle(element, "padding-right"),
+            paddingBottom = Spektral.getStyle(element, "padding-bottom"),
+            paddingLeft = Spektral.getStyle(element, "padding-left"),
+
+            borderTop = Spektral.getStyle(element, "border-top-width"),
+            borderRight = Spektral.getStyle(element, "border-right-width"),
+            borderBottom = Spektral.getStyle(element, "border-bottom-width"),
+            borderLeft = Spektral.getStyle(element, "border-left-width"),
+
+            marginTop = Spektral.getStyle(element, "margin-top"),
+            marginRight = Spektral.getStyle(element, "margin-right"),
+            marginBottom = Spektral.getStyle(element, "margin-bottom"),
+            marginLeft = Spektral.getStyle(element, "margin-left"),
+            totalWidth, totalHeight;
+
+        dimensions["innerWidth"] = Spektral.stringToNum(innerWidth);
+        dimensions["innerHeight"] = Spektral.stringToNum(innerHeight);
+
+        dimensions["paddingTop"] = Spektral.stringToNum(paddingTop);
+        dimensions["paddingRight"] = Spektral.stringToNum(paddingRight);
+        dimensions["paddingBottom"] = Spektral.stringToNum(paddingBottom);
+        dimensions["paddingLeft"] = Spektral.stringToNum(paddingLeft);
+
+        dimensions["borderTop"] = Spektral.stringToNum(borderTop);
+        dimensions["borderRight"] = Spektral.stringToNum(borderRight);
+        dimensions["borderBottom"] = Spektral.stringToNum(borderBottom);
+        dimensions["borderLeft"] = Spektral.stringToNum(borderLeft);
+        
+        dimensions["marginTop"] = Spektral.stringToNum(marginTop);
+        dimensions["marginRight"] = Spektral.stringToNum(marginRight);
+        dimensions["marginBottom"] = Spektral.stringToNum(marginBottom);
+        dimensions["marginLeft"] = Spektral.stringToNum(marginLeft);
+
+        totalWidth = Spektral.stringToNum(marginLeft) + 
+        Spektral.stringToNum(borderLeft) + 
+        Spektral.stringToNum(paddingLeft) + 
+        Spektral.stringToNum(innerWidth) + 
+        Spektral.stringToNum(paddingRight) + 
+        Spektral.stringToNum(borderRight) + 
+        Spektral.stringToNum(marginRight);
+        
+
+        totalHeight = Spektral.stringToNum(marginTop) + 
+        Spektral.stringToNum(borderTop) + 
+        Spektral.stringToNum(paddingTop) + 
+        Spektral.stringToNum(innerHeight) + 
+        Spektral.stringToNum(paddingBottom) + 
+        Spektral.stringToNum(borderBottom) + 
+        Spektral.stringToNum(marginBottom);
+
+        dimensions["totalWidth"] = totalWidth;
+        dimensions["totalHeight"] = totalHeight;
+
+        return dimensions;
     };
 
     /////////////////////
