@@ -343,6 +343,10 @@ Spektral.log("newNum: " + newNum);
 var ttDimensions = Spektral.getDimensions(tt);
 Spektral.log("ttDimensions: " + Spektral.getInfo(ttDimensions));
 
+var mh = Spektral.getElement("mainHeader");
+
+Spektral.log("tt got style?: " + Spektral.checkForAttribute(tt, "style"));
+
 //var headTwo = Spektral.getElement("headingTwo");
 //var headTwoDimensions = Spektral.getDimensions(headTwo);
 //Spektral.log("headTwo: " + Spektral.getInfo(headTwoDimensions));

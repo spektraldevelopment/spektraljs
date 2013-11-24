@@ -883,7 +883,11 @@
     ////CHECK FOR ATTRIBUTE - check if an element has a particular attribute
     //////////////////
     Spektral.checkForAttribute = function (element, attribute) {
-
+        var exists = false;
+        if(element.getAttribute(attribute) !== null) {
+            exists = true;
+        }
+        return exists;
     };
 
     //////////////////
