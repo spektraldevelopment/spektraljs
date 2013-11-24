@@ -648,6 +648,18 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["number, utils"],
+            "title" : "stringToNum()",
+            "description" : "Removes px or em from a string, and converts it to a number.",
+            "code" : "Spektral.stringToNum(str);",
+            "params" : [
+                {"str (required, expects: String)" : "Example: 10px or 4em."}
+            ],
+            "returns" : "Number",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
             "category" : ["event, utils"],
             "title" : "getKey()",
             "description" : "Converts the key code returned from a keyboard event into a string. ex. key code 38 returns \"UP\". Currently supports directional arrows and enter button.",
@@ -718,6 +730,18 @@
             ],
             "returns" : "Object",
             "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
+            "title" : "getDimensions()",
+            "description" : "Returns an object with all dimensional properties. The object contains the following properties:</br>innerWidth, innerHeight, padding, paddingTop, paddingRight, paddingBottom, paddingLeft, border, borderTop, borderRight, borderBottom, borderLeft, margin, marginTop, marginRight, marginBottom, marginLeft, totalWidth, totalHeight",
+            "code" : "Spektral.getDimensions(element);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want retrieve the dimensions from."}
+            ],
+            "returns" : "Object",
+            "dependencies" : "getStyle(), stringToNum()",
             "compatibility" : "Currently in testing."
         },
         {

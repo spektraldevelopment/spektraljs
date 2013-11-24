@@ -1044,16 +1044,19 @@
             innerWidth = Spektral.getStyle(element, "width"),
             innerHeight = Spektral.getStyle(element, "height"),
 
+            padding = Spektral.getStyle(element, "padding"),
             paddingTop = Spektral.getStyle(element, "padding-top"),
             paddingRight = Spektral.getStyle(element, "padding-right"),
             paddingBottom = Spektral.getStyle(element, "padding-bottom"),
             paddingLeft = Spektral.getStyle(element, "padding-left"),
 
+            border = Spektral.getStyle(element, "border"),
             borderTop = Spektral.getStyle(element, "border-top-width"),
             borderRight = Spektral.getStyle(element, "border-right-width"),
             borderBottom = Spektral.getStyle(element, "border-bottom-width"),
             borderLeft = Spektral.getStyle(element, "border-left-width"),
 
+            margin = Spektral.getStyle(element, "margin"),
             marginTop = Spektral.getStyle(element, "margin-top"),
             marginRight = Spektral.getStyle(element, "margin-right"),
             marginBottom = Spektral.getStyle(element, "margin-bottom"),
@@ -1063,16 +1066,19 @@
         dimensions["innerWidth"] = Spektral.stringToNum(innerWidth);
         dimensions["innerHeight"] = Spektral.stringToNum(innerHeight);
 
+        dimensions["padding"] = Spektral.stringToNum(padding);
         dimensions["paddingTop"] = Spektral.stringToNum(paddingTop);
         dimensions["paddingRight"] = Spektral.stringToNum(paddingRight);
         dimensions["paddingBottom"] = Spektral.stringToNum(paddingBottom);
         dimensions["paddingLeft"] = Spektral.stringToNum(paddingLeft);
 
+        dimensions["border"] = Spektral.stringToNum(border);
         dimensions["borderTop"] = Spektral.stringToNum(borderTop);
         dimensions["borderRight"] = Spektral.stringToNum(borderRight);
         dimensions["borderBottom"] = Spektral.stringToNum(borderBottom);
         dimensions["borderLeft"] = Spektral.stringToNum(borderLeft);
         
+        dimensions["margin"] = Spektral.stringToNum(margin);
         dimensions["marginTop"] = Spektral.stringToNum(marginTop);
         dimensions["marginRight"] = Spektral.stringToNum(marginRight);
         dimensions["marginBottom"] = Spektral.stringToNum(marginBottom);
