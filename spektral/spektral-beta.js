@@ -1398,6 +1398,17 @@
         return file.split('.').pop();
     };
 
+    ////////////////////
+    ////NAVIGATE TO URL
+    ////////////////////
+    Spektral.navigateToURL = function(url) {
+        try {
+            window.location = url;
+        } catch (e) {
+            window.location.href = url;
+        }
+    };
+
     ///////////////////
     ////THROW ERROR
     ///////////////////
