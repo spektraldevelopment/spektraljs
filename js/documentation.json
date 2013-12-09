@@ -815,6 +815,18 @@
             "returns" : "String",
             "dependencies" : "getType(), throwError()",
             "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
+            "title" : "navigateToURL()",
+            "description" : "Navigates the browser to a url.",
+            "code" : "Spektral.navigateToURL(url);",
+            "params" : [
+                {"url (required, expects: String)" : "The url you want the browser to go to."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
         }
 
     ],
