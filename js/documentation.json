@@ -545,7 +545,7 @@
         },
         {
             "category" : ["style"],
-            "title" : "toggleVisibility ()",
+            "title" : "toggleVisibility()",
             "description" : "Toggles the visibility property of an element.",
             "code" : "Spektral.toggleVisibility(element);",
             "params" : [

@@ -4,8 +4,7 @@
     //vars
     var
         jsonObject = {},
-        glossary = Spektral.getElement("glossary"),
-        glossaryContainer = Spektral.getElement("glossaryContainer");
+        glossary = Spektral.getElement("glossary");
 
     //Comment for production
     Spektral.debug();
@@ -38,7 +37,7 @@
         jsonObject = e;
         Spektral.removeElement(listLoading);
         buildGlossary();
-    }
+    };
 
     ////////////////////
     ////BUILD GLOSSARY
@@ -48,7 +47,7 @@
         var key, catSection, catTitle;
         for (key in jsonObject) {
 
-            catSection = Spektral.createNewElement("div", key + "Section", glossaryContainer);
+            catSection = Spektral.createNewElement("div", key + "Section", glossary);
             Spektral.createSetAttribute(catSection, "class", "glossSection");
 
             catTitle = Spektral.createNewElement("h2", "", catSection);
@@ -57,34 +56,23 @@
         }
 
         $(document).ready(function() {
-            // Handler for .ready() called.
-            $('#glossaryContainer').isotope({
+
+            var msnry = new Masonry( glossary, {
                 // options
-               // itemSelector : '.glossSection',
-                layoutMode: "perfectMasonry",
-                perfectMasonry: {
-                    //columnWidth: 295,
-                    maxCols: 5
-                }
+                itemSelector: '.glossSection',
+                gutter: 10,
+                isInitLayout: false,
+                "isFitWidth": true
             });
 
-//            $('#glossaryContainer').isotope({
-//                // options
-//                itemSelector : '.glossSection',
-//                layoutMode : 'fitColumns',
-//                resizesContainer: false
-//            });
+            msnry.on( "layoutComplete", function() {
+                //glossary.setAttribute("style", "visibility:visible");
+                console.log("layout is complete");
+            });
 
+            msnry.layout();
         });
-//        var msnry = new Masonry( glossaryContainer, {
-//            // options
-//            itemSelector: '.glossSection',
-//            "isFitWidth": true
-//        });
-
-        //$('#glossary').freetile();
-
-    }
+    };
 
     ////////////////////
     ////POPULATE CATEGORIES
@@ -103,7 +91,7 @@
             Spektral.attachEventListener(listItem, "click", onListItemClick);
             itemNum += 1;
         }
-    }
+    };
 
     ////////////////////
     ////ON LIST ITEM CLICK
@@ -116,6 +104,6 @@
             targetID = Spektral.getTargetID(e),
             cat = Spektral.getParent(target).id,
             num = Spektral.stripString(targetID, "item");
-    }
+    };
 
 }(window));
