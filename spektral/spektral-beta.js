@@ -1401,11 +1401,25 @@
     ////////////////////
     ////NAVIGATE TO URL
     ////////////////////
-    Spektral.navigateToURL = function(url) {
-        try {
-            window.location = url;
-        } catch (e) {
-            window.location.href = url;
+    Spektral.navigateToURL = function(url, newWindow, focusOnNew) {
+
+        //Still have to test this, also I might allow for multiple window names:
+        //ex. _self, _parent etc.
+        newWindow = newWindow || false;
+        focusOnNew = focusOnNew || false;
+        if(newWindow === false) {
+            try {
+                window.location = url;
+            } catch (e) {
+                window.location.href = url;
+            }
+        } else {
+            if(focusOnNew === false) { 
+                window.open(url, "_blank");
+            } else {
+                window.open(url, "_blank");
+                window.focus();
+            }
         }
     };
 
