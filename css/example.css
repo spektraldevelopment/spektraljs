@@ -136,7 +136,7 @@ p {
   position: relative;
   margin: 10px auto;
   padding: 5px;
-  width: 90%;
+  width: 50%;
   min-height: 100%;
   height: auto;
 }
@@ -179,6 +179,21 @@ p {
 .example:after {
   clear: both;
 }
+.information {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: inset 0px 0px 5px #000000;
+  -webkit-box-shadow: inset 0px 0px 5px #000000;
+  box-shadow: inset 0px 0px 5px #000000;
+  position: relative;
+  float: left;
+  background-color: #54574f;
+  padding: 10px;
+  width: auto;
+}
 .method {
   font-family: Verdana, Geneva, sans-serif;
   font-size: 30px;
@@ -188,12 +203,8 @@ p {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
-  display: block;
-  position: relative;
-  float: left;
   margin: 10px;
   padding: 10px;
-  width: 80%;
   background-color: #352f2f;
   color: #f1d7b2;
 }
@@ -212,9 +223,6 @@ p {
   box-shadow: inset 0px 0px 5px #000000;
   margin: 0 10px;
   padding: 10px;
-  position: relative;
-  float: left;
-  display: block;
 }
 .exampleContainer {
   -webkit-border-radius: 5px;
@@ -229,7 +237,7 @@ p {
   float: right;
   background-color: #54574f;
   padding: 10px;
-  width: 50%;
+  width: auto;
 }
 .exampleContainer img {
   border: 5px solid #ffffff;

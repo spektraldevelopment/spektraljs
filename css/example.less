@@ -202,7 +202,7 @@ h1, h2, h3, h4, p {
   position: relative;
   margin: 10px auto;
   padding: 5px;
-  width: 90%;
+  width: 50%;
   min-height: 100%;
   height: auto;
 }
@@ -229,16 +229,22 @@ h1, h2, h3, h4, p {
   width:auto;
 }
 
+.information {
+  .rounded-corners(5px);
+  .shadow();
+  position: relative;
+  float: left;
+  background-color: @green;
+  padding: 10px;
+  width: auto;
+}
+
 .method {
   .header(30px);
   .textShadow();
   .rounded-corners(5px);
-  display: block;
-  position: relative;
-  float: left;
   margin: 10px;
   padding: 10px;
-  width: 80%;
   background-color: @brown;
   color: @cream;
 }
@@ -249,9 +255,6 @@ h1, h2, h3, h4, p {
   .shadow();
   margin: 0 10px;
   padding: 10px;
-  position: relative;
-  float: left;
-  display: block;
 }
 
 .exampleContainer {
@@ -261,7 +264,7 @@ h1, h2, h3, h4, p {
   float: right;
   background-color: @green;
   padding: 10px;
-  width: 50%;
+  width: auto;
 }
 
 .exampleContainer img {
