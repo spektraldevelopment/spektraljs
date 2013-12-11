@@ -167,9 +167,9 @@ p {
   -webkit-box-shadow: inset 0px 0px 5px #000000;
   box-shadow: inset 0px 0px 5px #000000;
   background-color: rgba(84, 87, 79, 0.25);
-  margin: 5px;
-  padding: 10px;
-  width: auto;
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
 .example:before,
 .example:after {
@@ -185,14 +185,12 @@ p {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
-  -moz-box-shadow: inset 0px 0px 5px #000000;
-  -webkit-box-shadow: inset 0px 0px 5px #000000;
-  box-shadow: inset 0px 0px 5px #000000;
   position: relative;
   float: left;
-  background-color: #54574f;
-  padding: 10px;
-  width: auto;
+  background-color: rgba(84, 87, 79, 0.25);
+  margin: 10px;
+  padding: 0;
+  width: 45%;
 }
 .method {
   font-family: Verdana, Geneva, sans-serif;
@@ -205,23 +203,21 @@ p {
   border-radius: 5px;
   margin: 10px;
   padding: 10px;
-  background-color: #352f2f;
+  background-color: #54574f;
   color: #f1d7b2;
 }
 .description {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   letter-spacing: 0.05em;
-  font-size: 14px;
+  font-size: 16px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
-  -moz-box-shadow: inset 0px 0px 5px #000000;
-  -webkit-box-shadow: inset 0px 0px 5px #000000;
-  box-shadow: inset 0px 0px 5px #000000;
-  margin: 0 10px;
+  background-color: rgba(84, 87, 79, 0.25);
+  margin: 10px;
   padding: 10px;
 }
 .exampleContainer {
@@ -230,14 +226,12 @@ p {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
-  -moz-box-shadow: inset 0px 0px 5px #000000;
-  -webkit-box-shadow: inset 0px 0px 5px #000000;
-  box-shadow: inset 0px 0px 5px #000000;
   position: relative;
   float: right;
   background-color: #54574f;
+  margin: 10px;
   padding: 10px;
-  width: auto;
+  width: 45%;
 }
 .exampleContainer img {
   border: 5px solid #ffffff;

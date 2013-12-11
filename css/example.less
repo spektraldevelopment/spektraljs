@@ -224,47 +224,52 @@ h1, h2, h3, h4, p {
   .rounded-corners(5px);
   .shadow();
   .transparentBG(@green, 0.25);
-  margin: 5px;
-  padding: 10px;
-  width:auto;
+  margin: 0;
+  padding: 0;
+  width:100%;
 }
 
 .information {
   .rounded-corners(5px);
-  .shadow();
+  //.shadow();
   position: relative;
   float: left;
-  background-color: @green;
-  padding: 10px;
-  width: auto;
+  //background-color: @green;
+  .transparentBG(@green, 0.25);
+  margin: 10px;
+  padding: 0;
+  width: 45%;
 }
 
 .method {
   .header(30px);
   .textShadow();
   .rounded-corners(5px);
+  //.shadow();
   margin: 10px;
   padding: 10px;
-  background-color: @brown;
+  background-color: @green;
   color: @cream;
 }
 
 .description {
-  .paragraph();
+  .paragraph(16px);
   .rounded-corners(5px);
-  .shadow();
-  margin: 0 10px;
+  //.shadow();
+  .transparentBG(@green, 0.25);
+  margin: 10px;
   padding: 10px;
 }
 
 .exampleContainer {
   .rounded-corners(5px);
-  .shadow();
+  //.shadow();
   position: relative;
   float: right;
   background-color: @green;
-  padding: 10px;
-  width: auto;
+  margin: 10px;
+  padding: 10px;//10
+  width: 45%;
 }
 
 .exampleContainer img {

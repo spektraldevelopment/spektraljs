@@ -106,4 +106,11 @@
             num = Spektral.stripString(targetID, "item");
     };
 
+    ////////////////////
+    ////TEST METHOD
+    ////////////////////
+    function testMethod(expected) {
+
+    }
+
 }(window));
