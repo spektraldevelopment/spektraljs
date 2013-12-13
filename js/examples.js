@@ -106,11 +106,78 @@
             num = Spektral.stripString(targetID, "item");
     };
 
+    ////////////////////////////////////////////////
+    ////**************TESTING**********************
+    ////////////////////////////////////////////////
+
+
+    ////////////////////
+    ////GET ELEMENT
+    ////////////////////
+    getElement();
+
+    function getElement() {
+
+        var geTestOne = Spektral.getElement("#geTestOne");
+        var geTestOneResult = testMethod("getElement()", geTestOne, "div");
+
+        console.log("geTestOneResult: " + geTestOneResult);
+
+        var geTestTwo = Spektral.getElement(".geTestTwo");
+        var geTestTwoResult = testMethod("getElement()", geTestTwo, "img");
+
+
+//        var geTestThree = Spektral.getElement("getTestThree");
+
+
+    }
+
+
     ////////////////////
     ////TEST METHOD
     ////////////////////
-    function testMethod(expected) {
+    function testMethod(desc, result, expected) {
 
-    }
+        var
+            resultType = checkType(result),
+            pass = false;
+
+        if(resultType === expected) {
+            pass = true;
+        } else {
+            console.log("!" + desc + " test failed. expected: " + expected + ", resultType: " + resultType + ".");
+        }
+
+        return pass;
+    };
+
+    ////////////////////
+    ////CHECK TYPE
+    ////////////////////
+    function checkType(obj) {
+        var type;
+        if(obj.nodeName !== undefined) {
+            //element
+            type = (obj.nodeName);
+        } else {
+            //everything else
+            type = ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1]
+        }
+        type = type.toLowerCase();
+        return type;
+    };
+
+    ////////////////////
+    ////STRINGIFY OBJ
+    ////////////////////
+    function stringifyObj(obj) {
+        var info;
+        try {
+            info = JSON.stringify(obj);
+        } catch (err) {}
+
+        return info;
+    };
+
 
 }(window));
