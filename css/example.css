@@ -195,7 +195,7 @@ p {
 .method {
   font-family: Verdana, Geneva, sans-serif;
   font-size: 30px;
-  text-shadow: 1px 1px 3px #888888;
+  text-shadow: 1px 1px 2px #000000;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
@@ -226,14 +226,51 @@ p {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
+  background-color: rgba(84, 87, 79, 0.25);
   position: relative;
   float: right;
-  background-color: #54574f;
   margin: 10px;
   padding: 10px;
   width: 45%;
 }
-.exampleContainer img {
+.testDiv {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  font-size: 14px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  text-shadow: 1px 1px 2px #000000;
+  text-align: center;
+  margin: 5px;
+  padding: 5px;
+  color: #f1d7b2;
+  background-color: #54574f;
+}
+.testInput {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  font-size: 14px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  text-shadow: 1px 1px 2px #000000;
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+  width: auto;
+  padding: 5px 10px;
+  color: #f1d7b2;
+  background-color: #54574f;
+}
+.testImg {
   border: 5px solid #ffffff;
 }
 #mainFooter {

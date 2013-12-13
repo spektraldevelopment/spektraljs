@@ -243,9 +243,8 @@ h1, h2, h3, h4, p {
 
 .method {
   .header(30px);
-  .textShadow();
+  .textShadow(1px, 1px, 2px, @black);
   .rounded-corners(5px);
-  //.shadow();
   margin: 10px;
   padding: 10px;
   background-color: @green;
@@ -255,7 +254,6 @@ h1, h2, h3, h4, p {
 .description {
   .paragraph(16px);
   .rounded-corners(5px);
-  //.shadow();
   .transparentBG(@green, 0.25);
   margin: 10px;
   padding: 10px;
@@ -263,16 +261,47 @@ h1, h2, h3, h4, p {
 
 .exampleContainer {
   .rounded-corners(5px);
-  //.shadow();
+  .transparentBG(@green, 0.25);
   position: relative;
   float: right;
-  background-color: @green;
   margin: 10px;
   padding: 10px;//10
   width: 45%;
 }
 
-.exampleContainer img {
+.prettyCode {
+
+}
+
+//////////////////
+///TEST ELEMENT STYLES
+///////////////////
+.testDiv {
+  .paragraph();
+  .rounded-corners(5px);
+  .textShadow(1px, 1px, 2px, @black);
+  text-align: center;
+  margin: 5px;
+  padding: 5px;
+  color: @cream;
+  background-color: @green;
+}
+
+.testInput {
+  .paragraph();
+  .rounded-corners(5px);
+  .textShadow(1px, 1px, 2px, @black);
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+  width: auto;
+  padding: 5px 10px;
+  color: @cream;
+  background-color: @green;
+}
+
+.testImg {
   border: 5px solid @white;
 }
 
