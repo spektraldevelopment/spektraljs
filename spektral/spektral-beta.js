@@ -491,9 +491,15 @@
 
         //Spektral.log("getElement: element: " + Spektral.getType(element));
 
-        var isHTML = Spektral.isHTMLElement(element), isID = Spektral.isHTMLID(element), isName = Spektral.isHTMLName(element), el, elType, nList;
-
-        //Spektral.log(element + " is HTMLElement?: " + isHTML + " is ID?: " + isID + " is Name: " + isName);
+        var 
+            isHTML = Spektral.isHTMLElement(element), 
+            isID = Spektral.isHTMLID(element), 
+            isClass = Spektral.isHTMLClass(element),
+            isName = Spektral.isHTMLName(element), 
+            el, elType, nList;
+        if(element === "geTestTwo") {
+            Spektral.log(element + " is HTMLElement?: " + isHTML + " is ID?: " + isID + " is Class?: " + isClass + " is Name: " + isName);
+        }
 
         if (isHTML === true) {
             if (index === undefined) {
@@ -512,8 +518,9 @@
         } else {
             //Try query
             el = Spektral.query(element);
+            Spektral.log(element + " used query.")
             if(el === undefined) {
-                Spektral.throwError("Element Not Found. Ensure you are calling an existing element.");
+                Spektral.throwError("Element: " + element + " Not Found. Ensure you are calling an existing element.");
             }
         }
         elType = Spektral.getType(el);
@@ -545,7 +552,9 @@
     ////IS HTML ID
     //////////////////
     Spektral.isHTMLID = function (ID) {
-        var list = Spektral.listElements("id"), isID = null, i;
+        var 
+            list = Spektral.listElements("id"), 
+            isID = null, i;
         for (i = 0; i < list.length; i++) {
             if (ID === list[i]) {
                 isID = true;
@@ -556,6 +565,32 @@
             isID = false;
         }
         return isID;
+    };
+
+    //////////////////
+    ////IS HTML CLASS
+    //////////////////
+    Spektral.isHTMLClass = function (cl) {
+        //I will have to create a method that can retrieve a node with a class name 
+        //that's cross compatible
+
+        
+        // var 
+        //     list = Spektral.listElements("class"), 
+        //     isClass = null, i;
+        //     // if(cl === "geTestTwo") {
+        //     //     Spektral.listArrayObjects(list);
+        //     // }
+        // for (i = 0; i < list.length; i++) {
+        //     if (cl === list[i]) {
+        //         isClass = true;
+        //         break;
+        //     }
+        // }
+        // if (isClass === null) {
+        //     isClass = false;
+        // }
+        // return isClass;
     };
 
     //////////////////
@@ -1262,7 +1297,9 @@
 
         attribute = attribute || null;
 
-        var all = document.getElementsByTagName("*"), elementArray = [], node, i;
+        var 
+            all = document.getElementsByTagName("*"),
+            elementArray = [], node, i;
 
         for (i = 0; i < all.length; i += 1) {
             if (attribute === "id") {

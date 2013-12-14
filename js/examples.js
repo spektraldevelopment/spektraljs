@@ -119,13 +119,13 @@
     function getElement() {
 
         var
-            geTestOne = Spektral.getElement("#geTestOne"),
-            geTestOneResult = testMethod("getElement()", geTestOne, "div"),
-            geTestTwo = Spektral.getElement(".geTestTwo"),
-            geTestTwoResult = testMethod("getElement()", geTestTwo, "div"),
-            geTestThree = Spektral.getElement("getTestThree"),
-            geTestThreeResult = testMethod("getElement()", geTestThree, "input");
-    }
+            geTestOne = Spektral.getElement("geTestOne"),
+            geTestOneResult = testMethod("getElement()", geTestOne, "div");
+//            geTestTwo = Spektral.getElement("geTestTwo"),
+//            geTestTwoResult = testMethod("getElement()", geTestTwo, "div");
+//            geTestThree = Spektral.getElement("getTestThree"),
+//            geTestThreeResult = testMethod("getElement()", geTestThree, "input");
+    };
 
 
     ////////////////////
