@@ -6,8 +6,8 @@
             "description" : "Returns an element from the DOM.",
             "code" : "Spektral.getElement(element, index);",
             "params" : [
-                {"element (required, expects: String)" : "You can search for an element by it's id, class, or name. If multiple instances of the element are found (ex. elements sharing the same class or name), will return a nodeList of elements."},
-                {"index (optional, expects: Number)" : "Use this to target an element that shares the same class or name with other elements. Ex. The third list item in an unordered list."}
+                {"element (required, expects: String)" : "You can search for an element by it's node type, id, or name (in the case of an input element). If multiple instances of the element are found (ex. elements sharing the same node type or name), will return a nodeList of elements. </br>Note: Currently getElement does not retrieve nodes by their class name, I am in the process of enabling this functionality."},
+                {"index (optional, expects: Number)" : "Use this to target an element that shares the same node type or name with other elements. Ex. The third list item in an unordered list."}
             ],
             "returns" : "Element",
             "dependencies" : "isHTMLElement(), isHTMLID(), isHTMLName(), query(), throwError(), getType(), log(), listArrayElements()",
