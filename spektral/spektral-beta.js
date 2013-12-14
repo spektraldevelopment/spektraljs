@@ -485,6 +485,25 @@
     };
 
     //////////////////
+    ////GET ELEMENT BY CLASS
+    //////////////////
+    Spektral.getElementByClass = function (className, index) {
+        var el, elLength;
+
+        if(index === undefined) {
+            el = document.getElementsByClassName(className);
+        } else {
+            el = document.getElementsByClassName(className)[index];
+        }
+        elLength = el.length;
+        if(elLength === 1) {
+            return el[0];
+        } else {
+            return el;
+        }
+    };
+
+    //////////////////
     ////GET ELEMENT - might rename to "findElement"
     //////////////////
     Spektral.getElement = function (element, index) {
@@ -498,7 +517,9 @@
             isName = Spektral.isHTMLName(element), 
             el, elType, nList;
         if(element === "geTestTwo") {
-            Spektral.log(element + " is HTMLElement?: " + isHTML + " is ID?: " + isID + " is Class?: " + isClass + " is Name: " + isName);
+            //Spektral.log(element + " is HTMLElement?: " + isHTML + " is ID?: " + isID + " is Class?: " + isClass + " is Name: " + isName);
+            var list = Spektral.listElements("class");
+            Spektral.log("geTestTwo: " + Spektral.listArrayObjects(list));
         }
 
         if (isHTML === true) {
@@ -518,9 +539,13 @@
         } else {
             //Try query
             el = Spektral.query(element);
-            Spektral.log(element + " used query.")
+            Spektral.log(element + " tried query.")
             if(el === undefined) {
-                Spektral.throwError("Element: " + element + " Not Found. Ensure you are calling an existing element.");
+                el = Spektral.getElementByClass(element);
+                Spektral.log(element + " tried getElementByClass.")
+                if (el === undefined) {
+                    Spektral.throwError("Element: " + element + " Not Found. Ensure you are calling an existing element.");
+                }
             }
         }
         elType = Spektral.getType(el);
@@ -570,27 +595,25 @@
     //////////////////
     ////IS HTML CLASS
     //////////////////
-    Spektral.isHTMLClass = function (cl) {
+    Spektral.isHTMLClass = function (className) {
         //I will have to create a method that can retrieve a node with a class name 
         //that's cross compatible
-
-        
-        // var 
-        //     list = Spektral.listElements("class"), 
-        //     isClass = null, i;
-        //     // if(cl === "geTestTwo") {
-        //     //     Spektral.listArrayObjects(list);
-        //     // }
-        // for (i = 0; i < list.length; i++) {
-        //     if (cl === list[i]) {
-        //         isClass = true;
-        //         break;
-        //     }
-        // }
-        // if (isClass === null) {
-        //     isClass = false;
-        // }
-        // return isClass;
+        var 
+            list = Spektral.listElements("class"), 
+            isClass = null, i;
+            // if(cl === "geTestTwo") {
+            //     Spektral.listArrayObjects(list);
+            // }
+        for (i = 0; i < list.length; i++) {
+            if (className === list[i]) {
+                isClass = true;
+                break;
+            }
+        }
+        if (isClass === null) {
+            isClass = false;
+        }
+        return isClass;
     };
 
     //////////////////
@@ -1309,6 +1332,13 @@
                 }
             } else if (attribute === "name") {
                 node = all[i].name;
+                if (node !== "") {
+                    elementArray.push(node);
+                }
+            } else if (attribute === "class") {
+                //Works but if you use multiple classes it doesn't find the class properly
+                //In this case getElementByClass is used instead.
+                node = all[i].className;
                 if (node !== "") {
                     elementArray.push(node);
                 }
