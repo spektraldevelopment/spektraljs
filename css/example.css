@@ -40,6 +40,7 @@ p {
   -webkit-box-shadow: inset 0px 0px 5px #000000;
   box-shadow: inset 0px 0px 5px #000000;
   background-color: rgba(255, 255, 255, 0.75);
+  display: none;
   margin: 10px auto;
   padding: 60px 10px;
   width: 80%;
@@ -167,9 +168,10 @@ p {
   -webkit-box-shadow: inset 0px 0px 5px #000000;
   box-shadow: inset 0px 0px 5px #000000;
   background-color: rgba(84, 87, 79, 0.25);
-  margin: 0;
+  margin: 0 5px;
   padding: 0;
-  width: 100%;
+  width: auto;
+  height: auto;
 }
 .example:before,
 .example:after {
@@ -179,18 +181,14 @@ p {
 .example:after {
   clear: both;
 }
-.information {
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  border-radius: 5px;
+.informationContainer {
+  background-color: rgba(255, 249, 0, 0.25);
   position: relative;
   float: left;
-  background-color: rgba(84, 87, 79, 0.25);
-  margin: 10px;
+  display: block;
+  margin: 0;
   padding: 0;
-  width: 45%;
+  width: 50%;
 }
 .method {
   font-family: Verdana, Geneva, sans-serif;
@@ -201,6 +199,7 @@ p {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
+  width: auto;
   margin: 10px;
   padding: 10px;
   background-color: #54574f;
@@ -221,17 +220,30 @@ p {
   padding: 10px;
 }
 .exampleContainer {
+  background-color: rgba(255, 38, 0, 0.25);
+  display: block;
+  position: relative;
+  float: right;
+  margin: 0px;
+  padding: 0px;
+  width: 50%;
+}
+.exampleCodeContainer {
+  background-color: rgba(0, 190, 255, 0.25);
+  position: relative;
+  float: left;
+  display: block;
+  width: 100%;
+}
+.exampleCode {
+  margin: 0 10px 10px 10px;
+}
+.prettyprint {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
-  background-color: rgba(84, 87, 79, 0.25);
-  position: relative;
-  float: right;
-  margin: 10px;
-  padding: 10px;
-  width: 45%;
 }
 .testDiv {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;

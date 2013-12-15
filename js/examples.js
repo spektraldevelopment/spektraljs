@@ -37,6 +37,8 @@
         jsonObject = e;
         Spektral.removeElement(listLoading);
         buildGlossary();
+
+        //Spektral.attachEventListener(window, "resize", onWindowResize);
     };
 
     ////////////////////
@@ -106,6 +108,14 @@
             num = Spektral.stripString(targetID, "item");
     };
 
+    ////////////////////
+    ////ON WINDOW RESIZE
+    ////////////////////
+    function onWindowResize(evt) {
+
+        //Spektral.log("onWindowResize");
+    };
+
     ////////////////////////////////////////////////
     ////**************TESTING**********************
     ////////////////////////////////////////////////
@@ -123,10 +133,8 @@
             geTestOneResult = testMethod("getElement()", geTestOne, "div"),
             geTestTwo = Spektral.getElement("geTestTwo"),
             geTestTwoResult = testMethod("getElement()", geTestTwo, "div");
-//            geTestThree = Spektral.getElement("getTestThree"),
+//            geTestThree = Spektral.getElement("geTestThree"),
 //            geTestThreeResult = testMethod("getElement()", geTestThree, "input");
-//        var gtt = Spektral.getElementByClass("geTestTwo");
-//        console.log("gtt is: " + gtt);
     };
 
 
@@ -175,6 +183,19 @@
 
         return info;
     };
+
+    ////////////////////
+    ////ADJUST HEIGHTS
+    ////////////////////
+    function adjustHeights(elem) {
+        var fontstep = 2;
+        if ($(elem).height()>$(elem).parent().height() || $(elem).width()>$(elem).parent().width()) {
+            $(elem).css('font-size',(($(elem).css('font-size').substr(0,2)-fontstep)) + 'px').css('line-height',(($(elem).css('font-size').substr(0,2))) + 'px');
+            adjustHeights(elem);
+        }
+    };
+
+
 
 
 }(window));

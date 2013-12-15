@@ -121,9 +121,9 @@ h1, h2, h3, h4, p {
   .rounded-corners(5px);
   .shadow();
   .transparentBG(@white, 0.75);
+  display:none;
   margin: 10px auto;
   padding: 60px 10px;
-  //padding: 10px;
   width: 80%;
   height: 100%;
 }
@@ -140,7 +140,6 @@ h1, h2, h3, h4, p {
   .header();
   .textShadow(0, 0, 10px, @black);
   position:relative;
-//  margin: 0 auto;
   top: -50px;
   background-color: @green;
   text-align: center;
@@ -219,32 +218,40 @@ h1, h2, h3, h4, p {
   color: @cream;
 }
 
+///////////////////////
+////EXAMPLE PRIMARY CONTAINER
+///////////////////////
 .example {
   .clearFix();
   .rounded-corners(5px);
   .shadow();
   .transparentBG(@green, 0.25);
-  margin: 0;
+  margin: 0 5px;
   padding: 0;
-  width:100%;
+  width: auto;
+  height: auto;
 }
 
-.information {
-  .rounded-corners(5px);
-  //.shadow();
+///////////////////////
+////INFORMATION CONTAINER
+///////////////////////
+.informationContainer {
+//  .rounded-corners(5px);
+//  .transparentBG(@green, 0.25);
+  .transparentBG(#fff900, 0.25);
   position: relative;
   float: left;
-  //background-color: @green;
-  .transparentBG(@green, 0.25);
-  margin: 10px;
+  display: block;
+  margin: 0;//10px 5px 10px 10px
   padding: 0;
-  width: 45%;
+  width: 50%;
 }
 
 .method {
   .header(30px);
   .textShadow(1px, 1px, 2px, @black);
   .rounded-corners(5px);
+  width: auto;
   margin: 10px;
   padding: 10px;
   background-color: @green;
@@ -259,18 +266,44 @@ h1, h2, h3, h4, p {
   padding: 10px;
 }
 
+///////////////////////
+////EXAMPLE CONTAINER
+///////////////////////
 .exampleContainer {
-  .rounded-corners(5px);
-  .transparentBG(@green, 0.25);
+//  .rounded-corners(5px);
+//  .transparentBG(@green, 0.25);
+  .transparentBG(#ff2600, 0.25);
+  display: block;
   position: relative;
   float: right;
-  margin: 10px;
-  padding: 10px;//10
-  width: 45%;
+  margin: 0px;
+  padding: 0px;
+  width: 50%;
 }
 
-.prettyCode {
+///////////////////////
+////EXAMPLE CODE CONTAINER
+///////////////////////
+.exampleCodeContainer {
+  .transparentBG(#00beff, 0.25);
+  position: relative;
+  float: left;
+  display: block;
+  width: 100%;
+}
 
+.exampleCode {
+//  .rounded-corners(5px);
+//  position: relative;
+//  float: left;
+//  display:block;
+  margin: 0 10px 10px 10px;
+}
+
+//This is building off of the class
+//found in desert.css
+.prettyprint {
+  .rounded-corners(5px);
 }
 
 //////////////////

@@ -648,7 +648,10 @@
     ////IS HTML NAME
     //////////////////
     Spektral.isHTMLName = function (name) {
-        var list = Spektral.listElements("name"), isName = null, i;
+        var 
+            list = Spektral.listElements("name"), 
+            isName = null, i;
+
         for (i = 0; i < list.length; i++) {
             if (name === list[i]) {
                 isName = true;
@@ -666,9 +669,10 @@
     //////////////////
     Spektral.createNewElement = function (element, id, parent) {
 
-        var newElementID, parentNode, newElement, body = Spektral.getElement("body"), errorString;
-
-        //Spektral.log("createNewElement: parent type: " + Spektral.getType(parent));
+        var 
+            newElementID, parentNode, 
+            newElement, body = Spektral.getElement("body"), 
+            errorString;
 
         newElementID = id || null;
 
