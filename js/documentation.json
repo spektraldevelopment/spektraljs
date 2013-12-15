@@ -9,8 +9,21 @@
                 {"element (required, expects: String)" : "You can search for an element by it's node type, id, or name (in the case of an input element). If multiple instances of the element are found (ex. elements sharing the same node type or name), will return a nodeList of elements. </br>Note: Currently getElement does not retrieve nodes by their class name, I am in the process of enabling this functionality."},
                 {"index (optional, expects: Number)" : "Use this to target an element that shares the same node type or name with other elements. Ex. The third list item in an unordered list."}
             ],
-            "returns" : "Element",
+            "returns" : "Element or NodeList if multiple instances are found.",
             "dependencies" : "isHTMLElement(), isHTMLID(), isHTMLName(), query(), throwError(), getType(), log(), listArrayElements()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["DOM, selector"],
+            "title" : "getElementByClass()",
+            "description" : "Returns an element from the DOM based on its class name.",
+            "code" : "Spektral.getElementByClass(className, index);",
+            "params" : [
+                {"className (required, expects: String)" : "The element you wish to locate via its assigned class."},
+                {"index (optional, expects: Number)" : "Use this to target an specific element among elements that share the same class name."}
+            ],
+            "returns" : "Element or NodeList if multiple instances are found.",
+            "dependencies" : "listElements(), checkForWhiteSpace(), splitString()",
             "compatibility" : "Currently in testing."
         },
         {
@@ -369,9 +382,21 @@
             "code" : "Spektral.splitString(request, character);",
             "params" : [
                 {"request (required, expects: String)" : "The string you want split."},
-                {"character (optional, default: comma" : "The character used to separate words in the string. Commonly a comma, but can be set to anything."}
+                {"character (optional, default: comma" : "The character used to separate words in the string. Commonly a comma, but can be set to anything. Using \" \" will split the string by its single spaces."}
             ],
             "returns" : "Array",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["string, utils"],
+            "title" : "checkForWhiteSpace()",
+            "description" : "Checks a string for white space.",
+            "code" : "Spektral.checkForWhiteSpace(request);",
+            "params" : [
+                {"request (required, expects: String)" : "The string you want to check for white space."}
+            ],
+            "returns" : "Boolean",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },

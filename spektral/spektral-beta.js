@@ -488,18 +488,48 @@
     ////GET ELEMENT BY CLASS
     //////////////////
     Spektral.getElementByClass = function (className, index) {
-        var el, elLength;
+        var 
+            el, elLength, 
+            elList = Spektral.listElements("class"), i, j, k,
+            potentialMatch, checkForSpace, multiClasses, nameArray = [];
 
-        if(index === undefined) {
-            el = document.getElementsByClassName(className);
-        } else {
-            el = document.getElementsByClassName(className)[index];
+        //Cycle through elList to search for multiple classes and separate them
+        for (i = 0; i < elList.length; i += 1) {
+            potentialMatch = elList[i];
+
+            checkForSpace = Spektral.checkForWhiteSpace(potentialMatch);
+
+            if(checkForSpace === true) {
+                //Multiple classes in use.
+                //Using split string to separate them by their white space.
+                multiClasses = Spektral.splitString(potentialMatch, " ");
+
+                for (j = 0; j < multiClasses.length; j += 1) {
+                    nameArray.push(multiClasses[j]);
+                }
+            } else {
+                nameArray.push(potentialMatch);
+            }
         }
-        elLength = el.length;
-        if(elLength === 1) {
-            return el[0];
-        } else {
-            return el;
+
+        //Cycle through name array, searching for a match
+        for (k = 0; k < nameArray.length; k += 1) {
+            if(className === nameArray[k]) {
+                //A match has been found
+                if(index === undefined) {
+                    el = document.getElementsByClassName(className);
+
+                    elLength = el.length;
+                    if(elLength === 1) {
+                        return el[0];
+                    } else {
+                        return el;
+                    }
+                } else {
+                    el = document.getElementsByClassName(className)[index];
+                    return el[index]
+                }
+            }
         }
     };
 
@@ -517,9 +547,7 @@
             isName = Spektral.isHTMLName(element), 
             el, elType, nList;
         if(element === "geTestTwo") {
-            //Spektral.log(element + " is HTMLElement?: " + isHTML + " is ID?: " + isID + " is Class?: " + isClass + " is Name: " + isName);
-            var list = Spektral.listElements("class");
-            Spektral.log("geTestTwo: " + Spektral.listArrayObjects(list));
+            Spektral.log(element + " is HTMLElement?: " + isHTML + " is ID?: " + isID + " is Class?: " + isClass + " is Name: " + isName);
         }
 
         if (isHTML === true) {
@@ -1277,11 +1305,21 @@
 
         character = character || ",";
 
-        var splitArray = [], split = request.split(character), i, detectCharacter = Spektral.detectCharacter(request, character), stripped;
+        var 
+            splitArray = [], split, 
+            i, detectCharacter = Spektral.detectCharacter(request, character), 
+            stripped;
 
-        if(detectCharacter === false) {
-            Spektral.throwError("splitString: Could not split string because character [" + character + "] was not in string.")
+        if(detectCharacter === false && character !== " ") {
+            Spektral.throwError("splitString: Could not split string because character [" + character + "] was not in string.");
+        } else {
+            if(character !== " ") {
+                split = request.split(character);
+            } else {
+                split = request.split(/[ ,]+/);
+            }
         }
+
         for (i = 0; i < split.length; i += 1) {
             if(split[i] !== "") {
                 stripped = Spektral.stripWhiteSpace(split[i]);
@@ -1292,11 +1330,18 @@
     };
 
     //////////////////
+    ////CHECK FOR WHITE SPACE
+    //////////////////
+    Spektral.checkForWhiteSpace = function (request) {
+        return request.indexOf(' ') >= 0;
+    };
+
+    //////////////////
     ////STRIP STRING
     //////////////////
     Spektral.stripString = function (request, chars) {
         return request.replace(chars, '');
-    }
+    };
 
 
     //////////////////
@@ -1337,7 +1382,7 @@
                 }
             } else if (attribute === "class") {
                 //Works but if you use multiple classes it doesn't find the class properly
-                //In this case getElementByClass is used instead.
+                //In this case getElementByClass should be used.
                 node = all[i].className;
                 if (node !== "") {
                     elementArray.push(node);
