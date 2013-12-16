@@ -356,6 +356,16 @@ p {
 .testImg {
   border: 5px solid #ffffff;
 }
+.pass:before {
+  content: 'PASS: ';
+  color: green;
+  font-weight: bold;
+}
+.fail:before {
+  content: 'FAIL: ';
+  color: red;
+  font-weight: bold;
+}
 #mainFooter {
   *zoom: 1;
   background-color: #54574f;

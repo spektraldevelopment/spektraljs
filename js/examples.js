@@ -149,9 +149,12 @@
             geTestOne = Spektral.getElement("geTestOne"),
             geTestOneResult = testMethod("getElement()", geTestOne, "div"),
             geTestTwo = Spektral.getElement("geTestTwo"),
-            geTestTwoResult = testMethod("getElement()", geTestTwo, "div");
-//            geTestThree = Spektral.getElement("geTestThree"),
-//            geTestThreeResult = testMethod("getElement()", geTestThree, "input");
+            geTestTwoResult = testMethod("getElement()", geTestTwo, "div"),
+            geTestThree = Spektral.getElement("geTestThree"),
+            geTestThreeResult = testMethod("getElement()", geTestThree, "input"),
+            testingDiv;
+
+
     };
 
 
