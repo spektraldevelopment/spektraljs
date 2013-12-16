@@ -21,6 +21,8 @@
         else {
             Spektral.attachEventListener(window, 'load', loadJSON);
         }
+        adjustExamples();
+        Spektral.attachEventListener(window, "resize", onWindowResize);
     }
 
     ////////////////////
@@ -37,8 +39,6 @@
         jsonObject = e;
         Spektral.removeElement(listLoading);
         buildGlossary();
-        adjustExamples();
-        Spektral.attachEventListener(window, "resize", onWindowResize);
     };
 
     ////////////////////

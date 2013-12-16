@@ -137,7 +137,7 @@ p {
   position: relative;
   margin: 10px auto;
   padding: 5px;
-  width: 50%;
+  width: 80%;
   min-height: 100%;
   height: auto;
 }
@@ -169,7 +169,7 @@ p {
   box-shadow: inset 0px 0px 5px #000000;
   background-color: rgba(84, 87, 79, 0.25);
   margin: 10px;
-  padding: 0;
+  padding: 10px;
   width: auto;
   height: auto;
 }
@@ -187,7 +187,7 @@ p {
   display: block;
   margin: 0;
   padding: 0;
-  width: 50%;
+  width: 60%;
 }
 .innerInfoHolder {
   -webkit-border-radius: 5px;
@@ -210,7 +210,7 @@ p {
   -o-border-radius: 5px;
   border-radius: 5px;
   width: auto;
-  margin: 10px;
+  margin: 0 10px 10px 10px;
   padding: 5px 10px 10px;
   background-color: #54574f;
   color: #f1d7b2;
@@ -236,7 +236,7 @@ p {
   float: right;
   margin: 0px;
   padding: 0px;
-  width: 50%;
+  width: 40%;
 }
 .innerElementHolder {
   -webkit-border-radius: 5px;
@@ -259,7 +259,7 @@ p {
   text-shadow: 1px 1px 2px #000000;
   background-color: #54574f;
   color: #f1d7b2;
-  padding: 5px;
+  padding: 10px;
 }
 .exampleCodeContainer {
   position: relative;
@@ -277,17 +277,22 @@ p {
   border-radius: 5px;
   background-color: rgba(84, 87, 79, 0.5);
   margin: 10px;
+  padding-top: 1px;
   padding-bottom: 1px;
 }
 .exampleCodeHeader {
   font-family: Verdana, Geneva, sans-serif;
   font-size: 20px;
   text-shadow: 1px 1px 2px #000000;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  background-color: #54574f;
   color: #f1d7b2;
-  padding: 10px 0 0 10px;
-}
-.exampleCode {
-  margin: 0 10px 10px 10px;
+  margin: 10px;
+  padding: 10px;
 }
 .testDiv {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
