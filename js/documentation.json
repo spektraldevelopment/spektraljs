@@ -592,6 +592,20 @@
             "returns" : "Nothing",
             "dependencies" : "getStyle(), toggleVisibility(), appendStyle()",
             "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["style"],
+            "title" : "matchHeight()",
+            "description" : "Sets the height of an element to the same height of a referenced element.",
+            "code" : "Spektral.matchHeight(reference, target, type);",
+            "params" : [
+                {"reference (required, expects: Element)" : "The element you want to use as a height reference."},
+                {"target (required, expects: Element)" : "The element you want to set the height of."},
+                {"type (optional, default: \"normal\")" : "You can target a specific height. The default, \"normal\" is just the height of the element itself. You can also use \"inner\" for innerHeight, and \"total\" for total height (margin, border, padding, and element height combined)."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "getDimensions(), setStyle()",
+            "compatibility" : "Currently in testing."
         }
     ],
     "ajax" : [

@@ -1080,16 +1080,8 @@
 
         type = type || "normal";
 
-        Spektral.log("type: " + type);
-
         var refDim = Spektral.getDimensions(reference), refHeight,
             targetDim = Spektral.getDimensions(target);
-
-        Spektral.log("*****");
-        Spektral.log("refDim: " + Spektral.getInfo(refDim));
-        Spektral.log("*****");
-        Spektral.log("targetDim: " + Spektral.getInfo(targetDim));
-
         if(type === "normal") {
             refHeight = refDim.height;
         } else if (type === "inner") {
@@ -1097,9 +1089,6 @@
         } else if (type === "total") {
             refHeight = refDim.totalHeight;
         }
-
-        Spektral.log("SETTING HEIGHT: " + refHeight);
-
         Spektral.setStyle(target, "height:" + refHeight + "px");
     };
 
