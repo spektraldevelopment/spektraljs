@@ -37,8 +37,8 @@
         jsonObject = e;
         Spektral.removeElement(listLoading);
         buildGlossary();
-
-        //Spektral.attachEventListener(window, "resize", onWindowResize);
+        adjustExamples();
+        Spektral.attachEventListener(window, "resize", onWindowResize);
     };
 
     ////////////////////
@@ -113,7 +113,24 @@
     ////////////////////
     function onWindowResize(evt) {
 
-        //Spektral.log("onWindowResize");
+        adjustExamples();
+    };
+
+    ////////////////////
+    ////ADJUST EXAMPLES
+    ////////////////////
+    function adjustExamples() {
+        var
+            infoHolder = Spektral.getElement("innerInfoHolder"),
+            elHolder = Spektral.getElement("innerElementHolder"),
+            infoHeight = Spektral.getDimensions(infoHolder).height,
+            elHeight = Spektral.getDimensions(elHolder).height;
+
+        if(infoHeight >= elHeight) {
+            Spektral.matchHeight(infoHolder, elHolder);
+        } else {
+            Spektral.matchHeight(elHolder, infoHolder);
+        }
     };
 
     ////////////////////////////////////////////////

@@ -546,9 +546,8 @@
             isClass = Spektral.isHTMLClass(element),
             isName = Spektral.isHTMLName(element), 
             el, elType, nList;
-        if(element === "geTestTwo") {
-            Spektral.log(element + " is HTMLElement?: " + isHTML + " is ID?: " + isID + " is Class?: " + isClass + " is Name: " + isName);
-        }
+            
+        //Spektral.log(element + " is HTMLElement?: " + isHTML + " is ID?: " + isID + " is Class?: " + isClass + " is Name: " + isName);
 
         if (isHTML === true) {
             if (index === undefined) {
@@ -567,10 +566,10 @@
         } else {
             //Try query
             el = Spektral.query(element);
-            Spektral.log(element + " tried query.")
+            //Spektral.log(element + " tried query.")
             if(el === undefined) {
                 el = Spektral.getElementByClass(element);
-                Spektral.log(element + " tried getElementByClass.")
+                //Spektral.log(element + " tried getElementByClass.")
                 if (el === undefined) {
                     Spektral.throwError("Element: " + element + " Not Found. Ensure you are calling an existing element.");
                 }
@@ -1075,6 +1074,36 @@
     };
 
     //////////////////////
+    ////MATCH HEIGHT
+    //////////////////////
+    Spektral.matchHeight = function(reference, target, type) {
+
+        type = type || "normal";
+
+        Spektral.log("type: " + type);
+
+        var refDim = Spektral.getDimensions(reference), refHeight,
+            targetDim = Spektral.getDimensions(target);
+
+        Spektral.log("*****");
+        Spektral.log("refDim: " + Spektral.getInfo(refDim));
+        Spektral.log("*****");
+        Spektral.log("targetDim: " + Spektral.getInfo(targetDim));
+
+        if(type === "normal") {
+            refHeight = refDim.height;
+        } else if (type === "inner") {
+            refHeight = refDim.innerHeight;
+        } else if (type === "total") {
+            refHeight = refDim.totalHeight;
+        }
+
+        Spektral.log("SETTING HEIGHT: " + refHeight);
+
+        Spektral.setStyle(target, "height:" + refHeight + "px");
+    };
+
+    //////////////////////
     ////LIST NODE ATTRIBUTES
     //////////////////////
     Spektral.listNodeAttributes = function (node) {
@@ -1162,8 +1191,11 @@
     Spektral.getDimensions = function (element) {
         var 
             dimensions = {},
-            innerWidth = Spektral.getStyle(element, "width"),
-            innerHeight = Spektral.getStyle(element, "height"),
+            width = Spektral.getStyle(element, "width"),
+            height = Spektral.getStyle(element, "height"),
+
+            // innerWidth = Spektral.getStyle(element, "width"),
+            // innerHeight = Spektral.getStyle(element, "height"),
 
             padding = Spektral.getStyle(element, "padding"),
             paddingTop = Spektral.getStyle(element, "padding-top"),
@@ -1182,10 +1214,23 @@
             marginRight = Spektral.getStyle(element, "margin-right"),
             marginBottom = Spektral.getStyle(element, "margin-bottom"),
             marginLeft = Spektral.getStyle(element, "margin-left"),
+            innerWidth, innerHeight,
             totalWidth, totalHeight;
 
-        dimensions["innerWidth"] = Spektral.stringToNum(innerWidth);
-        dimensions["innerHeight"] = Spektral.stringToNum(innerHeight);
+        dimensions["width"] = Spektral.stringToNum(width);
+        dimensions["height"] = Spektral.stringToNum(height);
+
+        innerWidth = Spektral.stringToNum(paddingLeft) + 
+        Spektral.stringToNum(width) + 
+        Spektral.stringToNum(paddingRight);
+
+        dimensions["innerWidth"] = innerWidth;
+
+        innerHeight = Spektral.stringToNum(paddingTop) + 
+        Spektral.stringToNum(height) +
+        Spektral.stringToNum(paddingBottom);
+
+        dimensions["innerHeight"] = innerHeight;
 
         dimensions["padding"] = Spektral.stringToNum(padding);
         dimensions["paddingTop"] = Spektral.stringToNum(paddingTop);

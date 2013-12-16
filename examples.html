@@ -12,7 +12,7 @@
 
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/prettify.css">
-        <link rel="stylesheet" href="css/desert.css" />
+        <!--<link rel="stylesheet" href="css/desertExample.css" />-->
         <link rel="stylesheet" href="css/example.css">
 
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
@@ -38,21 +38,29 @@
 
             <div class="example">
                 <div class="informationContainer">
-                    <h3 class="method">getElement()</h3>
-                    <div class="description">Returns an element from the DOM.</div>
+                    <div class="innerInfoHolder">
+                        <h3 class="method">getElement()</h3>
+                        <div class="description">Returns an element from the DOM.</div>
+                    </div>
                 </div>
-                <div class="exampleContainer">
-                    <h3 class="exampleContainerTitle">Test Elements</h3>
-                    <div id="geTestOne" class="testDiv">A div with an id of #geTestOne</div>
-                    <div class="geTestTwo testDiv">A div with a class of .geTestTwo</div>
-                    <input name="geTestThree" class="testInput" type="button" value="An input with a name of geTestThree."/>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <div id="geTestOne" class="testDiv">div - id="geTestOne"</div>
+                        <div class="geTestTwo testDiv">div - class="geTestTwo"</div>
+                        <textarea name="geTestThree" class="testTextArea" wrap="soft" rows="2" cols="30">textarea - name="geTestThree"</textarea>
+                    </div>
                 </div>
                 <div class="exampleCodeContainer">
-                    <pre class="prettyprint">
-Spektral.getElement("geTestOne");
-Spektral.getElement("geTestTwo");
-Spektral.getElement("geTestThree");
-                    </pre>
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    gtOne = Spektral.getElement("geTestOne"),
+    gtTwo = Spektral.getElement("geTestTwo"),
+    gtThree = Spektral.getElement("geTestThree");
+                        </pre>
+                     </div>
                 </div>
             </div>
 

@@ -151,7 +151,7 @@ p {
   font-size: 25px;
   text-shadow: 0 0 10px #000000;
   position: relative;
-  margin: 5px;
+  margin: 10px;
   background-color: #54574f;
   text-align: center;
   padding: 5px;
@@ -168,7 +168,7 @@ p {
   -webkit-box-shadow: inset 0px 0px 5px #000000;
   box-shadow: inset 0px 0px 5px #000000;
   background-color: rgba(84, 87, 79, 0.25);
-  margin: 0 5px;
+  margin: 10px;
   padding: 0;
   width: auto;
   height: auto;
@@ -182,13 +182,23 @@ p {
   clear: both;
 }
 .informationContainer {
-  background-color: rgba(255, 249, 0, 0.25);
   position: relative;
   float: left;
   display: block;
   margin: 0;
   padding: 0;
   width: 50%;
+}
+.innerInfoHolder {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  background-color: rgba(84, 87, 79, 0.5);
+  margin: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .method {
   font-family: Verdana, Geneva, sans-serif;
@@ -201,7 +211,7 @@ p {
   border-radius: 5px;
   width: auto;
   margin: 10px;
-  padding: 10px;
+  padding: 5px 10px 10px;
   background-color: #54574f;
   color: #f1d7b2;
 }
@@ -215,12 +225,12 @@ p {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
-  background-color: rgba(84, 87, 79, 0.25);
+  background-color: rgba(84, 87, 79, 0.5);
+  color: #ffffff;
   margin: 10px;
   padding: 10px;
 }
-.exampleContainer {
-  background-color: rgba(255, 38, 0, 0.25);
+.elementContainer {
   display: block;
   position: relative;
   float: right;
@@ -228,22 +238,56 @@ p {
   padding: 0px;
   width: 50%;
 }
-.exampleCodeContainer {
-  background-color: rgba(0, 190, 255, 0.25);
-  position: relative;
-  float: left;
-  display: block;
-  width: 100%;
-}
-.exampleCode {
-  margin: 0 10px 10px 10px;
-}
-.prettyprint {
+.innerElementHolder {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
+  background-color: rgba(84, 87, 79, 0.5);
+  margin: 10px;
+  padding: 10px;
+}
+.elementContainerTitle {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 20px;
+  text-shadow: 1px 1px 2px #000000;
+  background-color: #54574f;
+  color: #f1d7b2;
+  padding: 5px;
+}
+.exampleCodeContainer {
+  position: relative;
+  float: left;
+  display: block;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+.innerExampleCodeHolder {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  background-color: rgba(84, 87, 79, 0.5);
+  margin: 10px;
+  padding-bottom: 1px;
+}
+.exampleCodeHeader {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 20px;
+  text-shadow: 1px 1px 2px #000000;
+  color: #f1d7b2;
+  padding: 10px 0 0 10px;
+}
+.exampleCode {
+  margin: 0 10px 10px 10px;
 }
 .testDiv {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -256,11 +300,12 @@ p {
   -o-border-radius: 5px;
   border-radius: 5px;
   text-shadow: 1px 1px 2px #000000;
+  border: 1px solid #f1d7b2;
   text-align: center;
-  margin: 5px;
+  margin: 10px;
   padding: 5px;
   color: #f1d7b2;
-  background-color: #54574f;
+  background-color: #352f2f;
 }
 .testInput {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -280,7 +325,28 @@ p {
   width: auto;
   padding: 5px 10px;
   color: #f1d7b2;
-  background-color: #54574f;
+  background-color: #352f2f;
+}
+.testTextArea {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  font-size: 14px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  text-shadow: 1px 1px 2px #000000;
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+  width: auto;
+  resize: none;
+  padding: 5px 10px;
+  color: #f1d7b2;
+  background-color: #352f2f;
 }
 .testImg {
   border: 5px solid #ffffff;
@@ -308,4 +374,134 @@ p {
   color: #f1d7b2;
   float: right;
   padding: 0 10px;
+}
+/* desert scheme ported from vim to google prettify */
+pre.prettyprint {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid #352f2f;
+  background-color: #000000;
+  margin: 10px;
+  padding: 10px;
+  font-size: 14px;
+}
+pre .nocode {
+  background-color: transparent;
+  color: #000000;
+}
+pre .str {
+  color: #f1d7b2;
+}
+/* string  - pink */
+pre .kwd {
+  color: #A3681C;
+  font-weight: bold;
+}
+pre .com {
+  color: #87ceeb;
+}
+/* comment - skyblue */
+pre .typ {
+  color: #d7af67;
+}
+/* type    - lightgreen */
+pre .lit {
+  color: #cd5c5c;
+}
+/* literal - darkred */
+pre .pun {
+  color: #d7af67;
+}
+/* punctuation */
+pre .pln {
+  color: #ffffff;
+}
+/* plaintext */
+pre .tag {
+  color: #f0e68c;
+  font-weight: bold;
+}
+/* html/xml tag    - lightyellow */
+pre .atn {
+  color: #bdb76b;
+  font-weight: bold;
+}
+/* attribute name  - khaki */
+pre .atv {
+  color: #ffa0a0;
+}
+/* attribute value - pink */
+pre .dec {
+  color: #98fb98;
+}
+/* decimal         - lightgreen */
+/* Specify class=linenums on a pre to get line numbering */
+ol.linenums {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #aeaeae;
+}
+/* IE indents via margin-left */
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L5,
+li.L6,
+li.L7,
+li.L8 {
+  list-style-type: none;
+}
+/* Alternate shading for lines */
+@media print {
+  pre.prettyprint {
+    background-color: transparent;
+  }
+  pre .str,
+  code .str {
+    color: #006600;
+  }
+  pre .kwd,
+  code .kwd {
+    color: #006;
+    font-weight: bold;
+  }
+  pre .com,
+  code .com {
+    color: #600;
+    font-style: italic;
+  }
+  pre .typ,
+  code .typ {
+    color: #404;
+    font-weight: bold;
+  }
+  pre .lit,
+  code .lit {
+    color: #004444;
+  }
+  pre .pun,
+  code .pun {
+    color: #444400;
+  }
+  pre .pln,
+  code .pln {
+    color: #000000;
+  }
+  pre .tag,
+  code .tag {
+    color: #006;
+    font-weight: bold;
+  }
+  pre .atn,
+  code .atn {
+    color: #440044;
+  }
+  pre .atv,
+  code .atv {
+    color: #006600;
+  }
 }
