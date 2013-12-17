@@ -78,11 +78,11 @@
             "category" : ["DOM"],
             "title" : "createNewElement()",
             "description" : "Created a new element and adds it to the parent of your choosing.",
-            "code" : "Spektral.createNewElement(element, id, parent);",
+            "code" : "Spektral.createNewElement(element, parent, id);",
             "params" : [
                 {"element (required, expects: String)" : "Accepts an valid HTML element."},
-                {"id (optional, expects: String)" : "If not defined, an id will not be assigned to element."},
-                {"parent (optional, expects: String or Element)" : "If not defined, will add new element to the body element."}
+                {"parent (optional, expects: String or Element)" : "If not defined, will add new element to the body element."},
+                {"id (optional, expects: String)" : "If not defined, an id will not be assigned to element."}
             ],
             "returns" : "Element",
             "dependencies" : "getElement(), getType(), throwError()",
@@ -774,7 +774,7 @@
         {
             "category" : ["utils"],
             "title" : "getDimensions()",
-            "description" : "Returns an object with all dimensional properties. The object contains the following properties:</br>innerWidth, innerHeight, padding, paddingTop, paddingRight, paddingBottom, paddingLeft, border, borderTop, borderRight, borderBottom, borderLeft, margin, marginTop, marginRight, marginBottom, marginLeft, totalWidth, totalHeight",
+            "description" : "Returns an object with all dimensional properties. The object contains the following properties:</br>width, height, innerWidth, innerHeight, padding, paddingTop, paddingRight, paddingBottom, paddingLeft, border, borderTop, borderRight, borderBottom, borderLeft, margin, marginTop, marginRight, marginBottom, marginLeft, totalWidth (the combination of margin, border, padding, and innerWidth), totalHeight (the combination of margin, border, padding, and innerHeight)",
             "code" : "Spektral.getDimensions(element);",
             "params" : [
                 {"element (required, expects: Element)" : "The element you want retrieve the dimensions from."}

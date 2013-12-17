@@ -666,7 +666,7 @@
     //////////////////
     ////CREATE ELEMENT
     //////////////////
-    Spektral.createNewElement = function (element, id, parent) {
+    Spektral.createNewElement = function (element, parent, id) {
 
         var 
             newElementID, parentNode, 

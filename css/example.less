@@ -384,17 +384,28 @@ h1, h2, h3, h4, p {
 //////////////////
 ///JAVASCRIPT TESTING
 ///////////////////
+
+
 .pass:before {
-  content: 'PASS: ';
-  color:  green;
+  //content: "";
+}
+
+.pass {
+  content: "PASS";
+  color: green;
   font-weight: bold;
 }
 
 .fail:before {
-  content: 'FAIL: ';
+//  content: 'FAIL: ';
+//  color: red;
+//  font-weight: bold;
+}
+
+.fail {
+  content: "FAIL";
   color: red;
   font-weight: bold;
-
 }
 
 ////////////////////
