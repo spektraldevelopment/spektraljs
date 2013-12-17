@@ -357,12 +357,20 @@ p {
   border: 5px solid #ffffff;
 }
 .pass {
-  content: "PASS";
+  color: #f1d7b2;
+  background-color: #54574f;
+}
+.pass:after {
+  content: "PASSED";
   color: green;
   font-weight: bold;
 }
 .fail {
-  content: "FAIL";
+  color: #f1d7b2;
+  background-color: #54574f;
+}
+.fail:after {
+  content: "FAILED";
   color: red;
   font-weight: bold;
 }

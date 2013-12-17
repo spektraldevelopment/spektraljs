@@ -49,10 +49,10 @@
         var key, catSection, catTitle;
         for (key in jsonObject) {
 
-            catSection = Spektral.createNewElement("div", key + "Section", glossary);
+            catSection = Spektral.createNewElement("div", glossary, key + "Section");
             Spektral.createSetAttribute(catSection, "class", "glossSection");
 
-            catTitle = Spektral.createNewElement("h2", "", catSection);
+            catTitle = Spektral.createNewElement("h2", catSection);
             catTitle.innerHTML = key;
             populateCategories(key, jsonObject[key], catSection);
         }
@@ -83,12 +83,12 @@
 
         var key, catList, item, listItem, itemNum = 0;
 
-        catList = Spektral.createNewElement("ul", cat, section);
+        catList = Spektral.createNewElement("ul", section, cat);
 
         for (key in catObject) {
 
             item = catObject[key];
-            listItem = Spektral.createNewElement("li", "item" + itemNum, catList);
+            listItem = Spektral.createNewElement("li", catList, "item" + itemNum);
             listItem.innerHTML = item.title;
             Spektral.attachEventListener(listItem, "click", onListItemClick);
             itemNum += 1;
@@ -155,9 +155,9 @@
             geTestThree = Spektral.getElement("geTestThree"),
             geTestThreeResult = testMethod("getElement()", geTestThree, "input");
 
-        addTestResultToContainer(geTestOneResult);
-        addTestResultToContainer(geTestTwoResult);
-        addTestResultToContainer(geTestThreeResult);
+        addTestResultToContainer("getElement by ID: ", geTestOneResult);
+        addTestResultToContainer("getElement by Class: ", geTestTwoResult);
+        addTestResultToContainer("getElement by Name: ", geTestThreeResult);
     };
 
 
@@ -210,11 +210,19 @@
     ////////////////////
     ////ADD TEST RESULT TO CONTAINER
     ////////////////////
-    function addTestResultToContainer() {
+    function addTestResultToContainer(desc, result) {
 
         var
-            testContainer = Spektral.getElement("testContainer"),
-            test = Spektral.createNewElement("div")
+            testContainer = Spektral.getElement("testingContainer"),
+            test = Spektral.createNewElement("div", testContainer);
+
+        Spektral.setTextContent(test, desc);
+
+        if(result === true) {
+            Spektral.createSetAttribute(test, "class", "pass");
+        } else {
+            Spektral.createSetAttribute(test, "class", "fail");
+        }
     };
 
     ////////////////////

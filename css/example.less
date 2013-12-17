@@ -384,29 +384,49 @@ h1, h2, h3, h4, p {
 //////////////////
 ///JAVASCRIPT TESTING
 ///////////////////
-
-
-.pass:before {
-  //content: "";
+.pass {
+  color: @cream;
+  background-color: @green;
 }
 
-.pass {
-  content: "PASS";
+.pass:after {
+  content: "PASSED";
   color: green;
   font-weight: bold;
 }
 
-.fail:before {
-//  content: 'FAIL: ';
-//  color: red;
-//  font-weight: bold;
+.fail {
+  color: @cream;
+  background-color: @green;
 }
 
-.fail {
-  content: "FAIL";
+.fail:after {
+  content: "FAILED";
   color: red;
   font-weight: bold;
 }
+
+//.pass:before {
+//  //content: "";
+//}
+//
+//.pass {
+//  content: "PASS";
+//  color: green;
+//  font-weight: bold;
+//}
+//
+//.fail:before {
+////  content: 'FAIL: ';
+////  color: red;
+////  font-weight: bold;
+//}
+//
+//.fail {
+//  content: "FAIL";
+//  color: red;
+//  font-weight: bold;
+//}
 
 ////////////////////
 ////FOOTER

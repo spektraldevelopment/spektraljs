@@ -953,6 +953,14 @@
         return content;
     };
 
+    ////////////////////
+    ////SET TEXT CONTENT
+    ///////////////////
+    Spektral.setTextContent = function (element, textContent) {
+
+        element.innerHTML = textContent;
+    };
+
     //////////////////////
     ////GET NODE ATTRIBUTES - possible duplicate of listNodeAttributes - might want to merge
     //////////////////////
