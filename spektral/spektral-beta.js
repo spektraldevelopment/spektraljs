@@ -527,7 +527,7 @@
                     }
                 } else {
                     el = document.getElementsByClassName(className)[index];
-                    return el[index]
+                    return el;
                 }
             }
         }

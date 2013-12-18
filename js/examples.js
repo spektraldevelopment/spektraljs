@@ -178,14 +178,29 @@
 
             var
                 testDivs = Spektral.getElementByClass("gebc"),
-                testDivsResult = testMethod("getElementByClass()", testDivs, "nodeList"),
+                testDivsResult = testMethod("getElementByClass()", testDivs, "nodelist"),
 
-                testDivTwo = Spektral.getElementByClass("gebc", [1]);
-//                testDivTwoResult = testMethod("getElementByClass()", testDivTwo, "div");
+                testDivTwo = Spektral.getElementByClass("gebc", 1),
+                testDivTwoResult = testMethod("getElementByClass()", testDivTwo, "div");
 
-            console.log("testDivTwo:  " + testDivTwo);
+            Spektral.setStyle(testDivTwo, "border-color:green");
 
             addTestResultToContainer("getElementByClass", "A node list with all elements with the class of gebc: ", testDivsResult);
+            addTestResultToContainer("getElementByClass", "The second div with the class of gebc: ", testDivTwoResult);
+        };
+
+        ////////////////////
+        ////QUERY
+        ////////////////////
+        query();
+
+        function query() {
+
+            var
+                testDiv = Spektral.query("#queryDiv"),
+                testDivResult = testMethod("query", testDiv, "div");
+
+            addTestResultToContainer("query", "A div with the id of queryDiv: ", testDivResult);
         };
     };
 
@@ -197,6 +212,8 @@
         var
             resultType = checkType(result),
             pass = false;
+
+        console.log("desc: " + desc + " resultType: " + resultType);
 
         if(resultType === expected) {
             pass = true;
@@ -220,6 +237,7 @@
             type = ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1]
         }
         type = type.toLowerCase();
+
         return type;
     };
 

@@ -85,7 +85,7 @@ var
                     <div class="innerElementHolder">
                         <h3 class="elementContainerTitle">Test Elements</h3>
                         <div class="testDiv gebc">div1 - class="gebc"</div>
-                        <div class="testDiv gebc">div2 - class="gebc"</div>
+                        <div id="gebcDivTwo" class="testDiv gebc">div2 - class="gebc"</div>
                         <div class="testDiv gebc">div3- class="gebc"</div>
                     </div>
                 </div>
@@ -94,8 +94,41 @@ var
                         <h3 class="exampleCodeHeader">Example Code</h3>
                         <pre class="prettyprint">
 var
-    testDivs = Spektral.getElementByClass("gebcClass"),
-    testDivTwo = Spektral.getElementByClass("gebcClass", [1]);
+    testDivs = Spektral.getElementByClass("gebc"),
+    testDivTwo = Spektral.getElementByClass("gebc", 1);
+
+//Confirm testDivTwo has been properly targeted
+Spektral.setStyle(testDivTwo, "border-color:green");
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+            <!--******************-->
+            <!--QUERY-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">query()</h3>
+                        <div class="description">Uses querySelectorAll to locate and return an element.</div>
+                        <div id="query" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <div id="queryDiv" class="testDiv">div - id="queryDiv"</div>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    testDiv = Spektral.query("queryDiv");
                         </pre>
                     </div>
                 </div>

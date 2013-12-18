@@ -410,14 +410,14 @@ h1, h2, h3, h4, p {
 .pass:before {
   content: "Expected: ";
   color: @gold;
-  margin: 10px;
+  margin: 10px 10px 10px 0;
 }
 
 .pass:after {
   content: "PASSED";
   color: green;
   font-weight: bold;
-  margin: 10px;
+  margin: 0;
 }
 
 .fail {
@@ -432,13 +432,14 @@ h1, h2, h3, h4, p {
 .fail:before {
   content: "Expected: ";
   color: @gold;
-  margin: 10px;
+  margin: 10px 10px 10px 0;
 }
 
 .fail:after {
   content: "FAILED";
   color: red;
   font-weight: bold;
+  margin: 0;
 }
 
 ////////////////////

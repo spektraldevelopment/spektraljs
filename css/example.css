@@ -393,13 +393,13 @@ p {
 .pass:before {
   content: "Expected: ";
   color: #a3681c;
-  margin: 10px;
+  margin: 10px 10px 10px 0;
 }
 .pass:after {
   content: "PASSED";
   color: green;
   font-weight: bold;
-  margin: 10px;
+  margin: 0;
 }
 .fail {
   -webkit-border-radius: 5px;
@@ -416,12 +416,13 @@ p {
 .fail:before {
   content: "Expected: ";
   color: #a3681c;
-  margin: 10px;
+  margin: 10px 10px 10px 0;
 }
 .fail:after {
   content: "FAILED";
   color: red;
   font-weight: bold;
+  margin: 0;
 }
 #mainFooter {
   *zoom: 1;
