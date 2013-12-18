@@ -21,7 +21,6 @@
         else {
             Spektral.attachEventListener(window, 'load', loadJSON);
         }
-        adjustExamples();
         Spektral.attachEventListener(window, "resize", onWindowResize);
     }
 
@@ -39,6 +38,7 @@
         jsonObject = e;
         Spektral.removeElement(listLoading);
         buildGlossary();
+        initExamples();
     };
 
     ////////////////////
@@ -113,7 +113,7 @@
     ////////////////////
     function onWindowResize(evt) {
 
-        adjustExamples();
+        //adjustExamples();
     };
 
     ////////////////////
@@ -123,13 +123,19 @@
         var
             infoHolder = Spektral.getElement("innerInfoHolder"),
             elHolder = Spektral.getElement("innerElementHolder"),
-            infoHeight = Spektral.getDimensions(infoHolder).height,
-            elHeight = Spektral.getDimensions(elHolder).height;
+            infoHeight,
+            elHeight, i;
 
-        if(infoHeight >= elHeight) {
-            Spektral.matchHeight(infoHolder, elHolder);
-        } else {
-            Spektral.matchHeight(elHolder, infoHolder);
+        for (i = 0; i < infoHolder.length; i += 1) {
+
+            infoHeight = Spektral.getDimensions(infoHolder[i]).height
+            elHeight = Spektral.getDimensions(elHolder[i]).height
+
+            if(infoHeight >= elHeight) {
+                Spektral.matchHeight(infoHolder[i], elHolder[i]);
+            } else {
+                Spektral.matchHeight(elHolder[i], infoHolder[i]);
+            }
         }
     };
 
@@ -137,29 +143,51 @@
     ////**************TESTING**********************
     ////////////////////////////////////////////////
 
+    function initExamples() {
 
-    ////////////////////
-    ////GET ELEMENT
-    ////////////////////
-    getElement();
+        ////////////////////
+        ////GET ELEMENT
+        ////////////////////
+        getElement();
 
-    function getElement() {
+        function getElement() {
 
-        var
-            geTestOne = Spektral.getElement("geTestOne"),
-            geTestOneResult = testMethod("getElement()", geTestOne, "div"),
+            var
+                testDivOne = Spektral.getElement("geTestOne"),
+                testDivOneResult = testMethod("getElement()", testDivOne, "div"),
 
-            geTestTwo = Spektral.getElement("geTestTwo"),
-            geTestTwoResult = testMethod("getElement()", geTestTwo, "div"),
+                testDivTwo = Spektral.getElement("geTestTwo"),
+                testDivTwoResult = testMethod("getElement()", testDivTwo, "div"),
 
-            geTestThree = Spektral.getElement("geTestThree"),
-            geTestThreeResult = testMethod("getElement()", geTestThree, "input");
+                testDivThree = Spektral.getElement("geTestThree"),
+                testDivThreeResult = testMethod("getElement()", testDivThree, "textarea");
 
-        addTestResultToContainer("getElement by ID: ", geTestOneResult);
-        addTestResultToContainer("getElement by Class: ", geTestTwoResult);
-        addTestResultToContainer("getElement by Name: ", geTestThreeResult);
+            addTestResultToContainer("getElement", "A div with the id of geTestOne: ", testDivOneResult);
+            addTestResultToContainer("getElement", "A div with the class of Class: ", testDivTwoResult);
+            addTestResultToContainer("getElement", "Name: ", testDivThreeResult);
+
+            adjustExamples();
+        };
+
+        ////////////////////
+        ////GET ELEMENT BY CLASS
+        ////////////////////
+        getElementByClass();
+
+        function getElementByClass() {
+
+            var
+                testDivs = Spektral.getElementByClass("gebc"),
+                testDivsResult = testMethod("getElementByClass()", testDivs, "nodeList"),
+
+                testDivTwo = Spektral.getElementByClass("gebc", [1]);
+//                testDivTwoResult = testMethod("getElementByClass()", testDivTwo, "div");
+
+            console.log("testDivTwo:  " + testDivTwo);
+
+            addTestResultToContainer("getElementByClass", "A node list with all elements with the class of gebc: ", testDivsResult);
+        };
     };
-
 
     ////////////////////
     ////TEST METHOD
@@ -210,10 +238,10 @@
     ////////////////////
     ////ADD TEST RESULT TO CONTAINER
     ////////////////////
-    function addTestResultToContainer(desc, result) {
+    function addTestResultToContainer(testID, desc, result) {
 
         var
-            testContainer = Spektral.getElement("testingContainer"),
+            testContainer = Spektral.getElement(testID),
             test = Spektral.createNewElement("div", testContainer);
 
         Spektral.setTextContent(test, desc);
@@ -235,8 +263,5 @@
             adjustHeights(elem);
         }
     };
-
-
-
 
 }(window));

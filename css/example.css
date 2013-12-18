@@ -226,7 +226,8 @@ p {
   -o-border-radius: 5px;
   border-radius: 5px;
   background-color: rgba(84, 87, 79, 0.5);
-  color: #ffffff;
+  text-shadow: 1px 1px 3px #000000;
+  color: #f1d7b2;
   margin: 10px;
   padding: 10px;
 }
@@ -356,18 +357,66 @@ p {
 .testImg {
   border: 5px solid #ffffff;
 }
-.pass {
-  color: #f1d7b2;
+.testingContainer {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  background-color: rgba(84, 87, 79, 0.5);
+  margin: 10px;
+  padding: 10px;
+}
+.results {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  text-shadow: 1px 1px 3px #000000;
   background-color: #54574f;
+  color: #f1d7b2;
+  padding: 10px;
+}
+.pass {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  text-shadow: 1px 1px 3px #000000;
+  background-color: rgba(84, 87, 79, 0.5);
+  margin: 10px;
+  padding: 5px 10px;
+  color: #f1d7b2;
+}
+.pass:before {
+  content: "Expected: ";
+  color: #a3681c;
+  margin: 10px;
 }
 .pass:after {
   content: "PASSED";
   color: green;
   font-weight: bold;
+  margin: 10px;
 }
 .fail {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  text-shadow: 1px 1px 3px #000000;
+  background-color: rgba(84, 87, 79, 0.5);
+  margin: 10px;
+  padding: 5px 10px;
   color: #f1d7b2;
-  background-color: #54574f;
+}
+.fail:before {
+  content: "Expected: ";
+  color: #a3681c;
+  margin: 10px;
 }
 .fail:after {
   content: "FAILED";

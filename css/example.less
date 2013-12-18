@@ -236,7 +236,6 @@ h1, h2, h3, h4, p {
 ////INFORMATION CONTAINER
 ///////////////////////
 .informationContainer {
-  //.transparentBG(#fff900, 0.25);
   position: relative;
   float: left;
   display: block;
@@ -268,7 +267,8 @@ h1, h2, h3, h4, p {
   .paragraph(16px);
   .rounded-corners(5px);
   .transparentBG(@green, 0.5);
-  color: @white;
+  .textShadow(1px, 1px, 3px, @black);
+  color: @cream;
   margin: 10px;
   padding: 10px;
 }
@@ -277,7 +277,6 @@ h1, h2, h3, h4, p {
 ////ELEMENT CONTAINER
 ///////////////////////
 .elementContainer {
-  //.transparentBG(#ff2600, 0.25);
   display: block;
   position: relative;
   float: right;
@@ -384,20 +383,56 @@ h1, h2, h3, h4, p {
 //////////////////
 ///JAVASCRIPT TESTING
 ///////////////////
-.pass {
-  color: @cream;
+.testingContainer {
+  .rounded-corners(5px);
+  .transparentBG(@green, 0.5);
+  margin: 10px;
+  padding: 10px;
+}
+
+.results {
+  .rounded-corners(5px);
+  .textShadow(1px, 1px, 3px, @black);
   background-color: @green;
+  color: @cream;
+  padding: 10px;
+}
+
+.pass {
+  .rounded-corners(5px);
+  .textShadow(1px, 1px, 3px, @black);
+  .transparentBG(@green, 0.5);
+  margin: 10px;
+  padding: 5px 10px;
+  color: @cream;
+}
+
+.pass:before {
+  content: "Expected: ";
+  color: @gold;
+  margin: 10px;
 }
 
 .pass:after {
   content: "PASSED";
   color: green;
   font-weight: bold;
+  margin: 10px;
 }
 
 .fail {
+  .rounded-corners(5px);
+  .textShadow(1px, 1px, 3px, @black);
+  .transparentBG(@green, 0.5);
+  margin: 10px;
+  padding: 5px 10px;
   color: @cream;
-  background-color: @green;
+}
+
+.fail:before {
+  content: "Expected: ";
+  color: @gold;
+  margin: 10px;
 }
 
 .fail:after {
@@ -405,28 +440,6 @@ h1, h2, h3, h4, p {
   color: red;
   font-weight: bold;
 }
-
-//.pass:before {
-//  //content: "";
-//}
-//
-//.pass {
-//  content: "PASS";
-//  color: green;
-//  font-weight: bold;
-//}
-//
-//.fail:before {
-////  content: 'FAIL: ';
-////  color: red;
-////  font-weight: bold;
-//}
-//
-//.fail {
-//  content: "FAIL";
-//  color: red;
-//  font-weight: bold;
-//}
 
 ////////////////////
 ////FOOTER

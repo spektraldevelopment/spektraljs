@@ -42,7 +42,9 @@
                     <div class="innerInfoHolder">
                         <h3 class="method">getElement()</h3>
                         <div class="description">Returns an element from the DOM.</div>
-                        <div class="testingContainer"></div>
+                        <div id="getElement" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
                     </div>
                 </div>
                 <div class="elementContainer">
@@ -58,11 +60,44 @@
                         <h3 class="exampleCodeHeader">Example Code</h3>
                         <pre class="prettyprint">
 var
-    gtOne = Spektral.getElement("geTestOne"),
-    gtTwo = Spektral.getElement("geTestTwo"),
-    gtThree = Spektral.getElement("geTestThree");
+    testDivOne = Spektral.getElement("geTestOne"),
+    testDivTwo = Spektral.getElement("geTestTwo"),
+    testDivThree = Spektral.getElement("geTestThree");
                         </pre>
                      </div>
+                </div>
+            </div>
+
+            <!--******************-->
+            <!--GET ELEMENT BY CLASS-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">getElementByClass()</h3>
+                        <div class="description">Returns an element from the DOM based</br>on its class name.</div>
+                        <div id="getElementByClass" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <div class="testDiv gebc">div1 - class="gebc"</div>
+                        <div class="testDiv gebc">div2 - class="gebc"</div>
+                        <div class="testDiv gebc">div3- class="gebc"</div>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    testDivs = Spektral.getElementByClass("gebcClass"),
+    testDivTwo = Spektral.getElementByClass("gebcClass", [1]);
+                        </pre>
+                    </div>
                 </div>
             </div>
 
