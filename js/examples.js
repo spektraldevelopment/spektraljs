@@ -187,6 +187,8 @@
 
             addTestResultToContainer("getElementByClass", "A node list with all elements with the class of gebc: ", testDivsResult);
             addTestResultToContainer("getElementByClass", "The second div with the class of gebc: ", testDivTwoResult);
+
+            adjustExamples();
         };
 
         ////////////////////
@@ -201,6 +203,34 @@
                 testDivResult = testMethod("query", testDiv, "div");
 
             addTestResultToContainer("query", "A div with the id of queryDiv: ", testDivResult);
+
+            adjustExamples();
+        };
+
+        ////////////////////
+        ////GET TARGET
+        ////////////////////
+        getTarget();
+
+        function getTarget() {
+
+            var
+                testEvt = Spektral.createEvent("testEvent"),
+                getTargetDiv = Spektral.getElement("getTargetDiv"),
+                eventTarget, testEventResult;
+
+            Spektral.attachEventListener(getTargetDiv, "testEvent", onTestEvent);
+
+            getTargetDiv.dispatchEvent(testEvt);
+
+            function onTestEvent(evt) {
+
+                eventTarget = Spektral.getTarget(evt);
+                testEventResult = testMethod("getTarget", eventTarget, "div");
+                addTestResultToContainer("getTarget", "A div with the id of getTargetDiv: ", testEventResult);
+            };
+
+            adjustExamples();
         };
     };
 

@@ -134,9 +134,53 @@ var
                 </div>
             </div>
 
+            <!--******************-->
+            <!--GET TARGET-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">getTarget()</h3>
+                        <div class="description">Returns the target element that is attached to the triggered event.</div>
+                        <div id="getTarget" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <div id="getTargetDiv" class="testDiv">div - id="getTargetDiv</div>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    testEvt = Spektral.createEvent("testEvent"),
+    getTargetDiv = Spektral.getElement("getTargetDiv"),
+    eventTarget;
 
+    Spektral.attachEventListener(getTargetDiv, "testEvent", onTestEvent);
+
+    getTargetDiv.dispatchEvent(testEvt);
+
+    function onTestEvent(evt) {
+
+        eventTarget = Spektral.getTarget(evt);
+    };
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+        <!--END OF MAIN CONTENT-->
         </section>
 
+        <!--******************-->
+        <!--FOOTER-->
+        <!--******************-->
         <footer id="mainFooter">
             <small id="statement">This examples page was created using Spektral.js</small>
             <small id="copyright">&#169; Spektral Development 2013</small>

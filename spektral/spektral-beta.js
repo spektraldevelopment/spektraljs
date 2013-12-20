@@ -136,6 +136,18 @@
     };
 
     //////////////////
+    ////TRIGGER EVENT
+    //////////////////
+    Spektral.triggerEvent = function (obj, evt) {
+
+        //I plan to allow event to be a string or object
+        //If a string, I'll have to find a way to find the event by it's name
+        //in order to trigger it
+        //I'm also going to look into making this method as cross compatible as possible
+        obj.dispatchEvent(evt);
+    };
+
+    //////////////////
     ////CANCEL EVENT
     //////////////////
     Spektral.cancelEvent = function (evt) {
@@ -566,10 +578,10 @@
         } else {
             //Try query
             el = Spektral.query(element);
-            //Spektral.log(element + " tried query.")
+            //Spektral.log(element + " tried query.");
             if(el === undefined) {
                 el = Spektral.getElementByClass(element);
-                //Spektral.log(element + " tried getElementByClass.")
+                //Spektral.log(element + " tried getElementByClass.");
                 if (el === undefined) {
                     Spektral.throwError("Element: " + element + " Not Found. Ensure you are calling an existing element.");
                 }
@@ -578,7 +590,7 @@
         elType = Spektral.getType(el);
         if (elType === "nodelist") {
             Spektral.log("getElement: More than one element was found.");
-            Spektral.listArrayObjects(el)
+            //Spektral.listArrayObjects(el);
         }
         return el;
     };
