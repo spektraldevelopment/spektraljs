@@ -344,6 +344,36 @@
             addTestResultToContainer("moveToBefore", "A div with the id of mtbDivThree: ", mtbResult);
         };
 
+        //////////////////////
+        ////REMOVE ELEMENT
+        //////////////////////
+        removeElement();
+
+        function removeElement() {
+
+            var
+                container = Spektral.getElement("reContainer"),
+                divToRemove = Spektral.getElement("reDivTwo"),
+                childNodes, i, divID, divRemoved = true, reResult;
+
+            Spektral.removeElement(divToRemove);
+
+            childNodes = Spektral.getChildNodes(container);
+
+            for(i = 0; i < childNodes.length; i += 1) {
+
+                divID = Spektral.getElementIdentifiers(childNodes[i]).id;
+
+                if(divID === "reDivTwo") {
+                    divRemoved = false;
+                }
+            }
+
+            reResult = testReturnedValue("removeElement", divRemoved, true);
+
+            addTestResultToContainer("removeElement", "The div with id of reDivTwo is removed: ", reResult);
+        };
+
         adjustExamples();
     };
 

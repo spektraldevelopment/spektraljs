@@ -369,6 +369,42 @@ Spektral.moveToBefore(divThree, divOne);
                 </div>
             </div>
 
+            <!--******************-->
+            <!--REMOVE ELEMENT-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">removeElement()</h3>
+                        <div class="description">Removes an element from the DOM.</div>
+                        <div id="removeElement" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <div id="reContainer" class="testDiv">
+                            <div id="reDivOne" class="testDiv">div - id="reDivOne"</div>
+                            <div id="reDivTwo" class="testDiv">div - id="reDivTwo"</div>
+                            <div id="reDivThree" class="testDiv">div - id="reDivThree"</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    divToRemove = Spektral.getElement("reDivTwo");
+
+Spektral.removeElement(divToRemove);
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
         <!--END OF MAIN CONTENT-->
         </section>
 

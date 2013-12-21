@@ -141,6 +141,7 @@
     Spektral.triggerEvent = function (obj, evt) {
 
         //I plan to allow event to be a string or object
+        //as well as work with standard events
         //If a string, I'll have to find a way to find the event by it's name
         //in order to trigger it
         //I'm also going to look into making this method as cross compatible as possible
@@ -584,6 +585,7 @@
                 //Spektral.log(element + " tried getElementByClass.");
                 if (el === undefined) {
                     Spektral.throwError("Element: " + element + " Not Found. Ensure you are calling an existing element.");
+                    //Spektral.log("!Error: Element: " + element + " Not Found. Ensure you are calling an existing element.");
                 }
             }
         }
