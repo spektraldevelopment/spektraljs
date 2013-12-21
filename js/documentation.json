@@ -191,6 +191,19 @@
             "compatibility" : "Currently in testing."
         },
         {
+            "category" : ["DOM, string"],
+            "title" : "setTextContent()",
+            "description" : "Sets the inner text inside an element.",
+            "code" : "Spektral.setTextContent(element, textContent);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you wish to retrieve the text from."},
+                {"textContent (required, expects: String)" : "The text you want to set."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
             "category" : ["DOM"],
             "title" : "getNodeAttributes()",
             "description" : "Returns an object with all the attribute of a node.",
