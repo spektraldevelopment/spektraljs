@@ -232,6 +232,31 @@
 
             adjustExamples();
         };
+
+        ////////////////////
+        ////GET TARGET ID
+        ////////////////////
+        getTargetID();
+
+        function getTargetID() {
+
+            var
+                testEvt = Spektral.createEvent("testEvent"),
+                testDiv = Spektral.getElement("gtIDTest"),
+                targetID, gtIDResult;
+
+            Spektral.attachEventListener(testDiv, "testEvent", onTestEvent);
+
+            testDiv.dispatchEvent(testEvt);
+
+            function onTestEvent(evt) {
+
+                targetID = Spektral.getTargetID(evt);
+                gtIDResult = testReturnedValue("getTargetID", targetID, "gtIDTest");
+                addTestResultToContainer("getTargetID", "The id of the test div (gtIDTest): ", gtIDResult);
+                Spektral.log("targetID: " + targetID);
+            };
+        };
     };
 
     ////////////////////
@@ -269,6 +294,22 @@
         type = type.toLowerCase();
 
         return type;
+    };
+
+    ////////////////////
+    ////TEST RETURNED VALUE
+    ////////////////////
+    function testReturnedValue(desc, result, expected) {
+
+        var pass = false;
+
+        if(result === expected) {
+            pass = true;
+        } else {
+            console.log("!" + desc + " test failed. expected: " + expected + ", result: " + result + ".");
+        }
+
+        return pass;
     };
 
     ////////////////////

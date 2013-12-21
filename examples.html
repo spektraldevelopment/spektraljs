@@ -150,7 +150,7 @@ var
                 <div class="elementContainer">
                     <div class="innerElementHolder">
                         <h3 class="elementContainerTitle">Test Elements</h3>
-                        <div id="getTargetDiv" class="testDiv">div - id="getTargetDiv</div>
+                        <div id="getTargetDiv" class="testDiv">div - id="getTargetDiv"</div>
                     </div>
                 </div>
                 <div class="exampleCodeContainer">
@@ -169,6 +169,47 @@ var
     function onTestEvent(evt) {
 
         eventTarget = Spektral.getTarget(evt);
+    };
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+            <!--******************-->
+            <!--GET TARGET ID-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">getTargetID()</h3>
+                        <div class="description">Returns the id of the element, or the id of an element that triggered an event.</div>
+                        <div id="getTargetID" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <div id="gtIDTest" class="testDiv">div - id="gtIDTest"</div>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    testEvt = Spektral.createEvent("testEvent"),
+    testDiv = Spektral.getElement("gtIDTest"),
+    targetID;
+
+    Spektral.attachEventListener(testDiv, "testEvent", onTestEvent);
+
+    testDiv.dispatchEvent(testEvt);
+
+    function onTestEvent(evt) {
+
+        targetID = Spektral.getTargetID(evt);
     };
                         </pre>
                     </div>
