@@ -374,6 +374,26 @@
             addTestResultToContainer("removeElement", "The div with id of reDivTwo is removed: ", reResult);
         };
 
+        //////////////////////
+        ////CLEAR ALL CHILDREN
+        //////////////////////
+        clearAllChildren();
+
+        function clearAllChildren() {
+
+            var
+                container = Spektral.getElement("cacContainer"),
+                childNodes, isParentEmpty, cacResult;
+
+            Spektral.clearAllChildren(container);
+            childNodes = Spektral.getChildNodes(container);
+            isParentEmpty = Spektral.isObjectEmpty(childNodes);
+            Spektral.setTextContent(container, "div - parent container");
+
+            cacResult = testReturnedValue("clearAllChildren", isParentEmpty, true);
+            addTestResultToContainer("clearAllChildren", "The parent node is empty: ", cacResult);
+        };
+
         adjustExamples();
     };
 

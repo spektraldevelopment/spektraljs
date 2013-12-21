@@ -1490,7 +1490,9 @@
     ////GET CHILD NODES
     /////////////////
     Spektral.getChildNodes = function (parent) {
-        var children = parent.childNodes, childArr = [], i, isElement;
+        var 
+            children = parent.childNodes, 
+            childArr = [], i, isElement;
         for (i = 0; i < children.length; i += 1) {
             isElement = Spektral.isElement(children[i]);
             if(isElement === true) {

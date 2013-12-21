@@ -405,6 +405,41 @@ Spektral.removeElement(divToRemove);
                 </div>
             </div>
 
+            <!--******************-->
+            <!--CLEAR ALL CHILDREN-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">clearAllChildren()</h3>
+                        <div class="description">Clears all child nodes from a parent node.</div>
+                        <div id="clearAllChildren" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <div id="cacContainer" class="testDiv">
+                            <div class="testDiv">div</div>
+                            <div class="testDiv">div</div>
+                            <div class="testDiv">div</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var container = Spektral.getElement("cacContainer");
+
+Spektral.clearAllChildren(container);
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
         <!--END OF MAIN CONTENT-->
         </section>
 
