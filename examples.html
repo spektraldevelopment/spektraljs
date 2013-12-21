@@ -162,14 +162,14 @@ var
     getTargetDiv = Spektral.getElement("getTargetDiv"),
     eventTarget;
 
-    Spektral.attachEventListener(getTargetDiv, "testEvent", onTestEvent);
+Spektral.attachEventListener(getTargetDiv, "testEvent", onTestEvent);
 
-    getTargetDiv.dispatchEvent(testEvt);
+getTargetDiv.dispatchEvent(testEvt);
 
-    function onTestEvent(evt) {
+function onTestEvent(evt) {
 
-        eventTarget = Spektral.getTarget(evt);
-    };
+    eventTarget = Spektral.getTarget(evt);
+};
                         </pre>
                     </div>
                 </div>
@@ -203,14 +203,14 @@ var
     testDiv = Spektral.getElement("gtIDTest"),
     targetID;
 
-    Spektral.attachEventListener(testDiv, "testEvent", onTestEvent);
+Spektral.attachEventListener(testDiv, "testEvent", onTestEvent);
 
-    testDiv.dispatchEvent(testEvt);
+testDiv.dispatchEvent(testEvt);
 
-    function onTestEvent(evt) {
+function onTestEvent(evt) {
 
-        targetID = Spektral.getTargetID(evt);
-    };
+    targetID = Spektral.getTargetID(evt);
+};
                         </pre>
                     </div>
                 </div>
@@ -245,7 +245,7 @@ var
     cDiv = Spektral.getElement("childDiv"),
     pDiv = Spektral.getParent(cDiv);
 
-    Spektral.setStyle(pDiv, "border: 1px solid green");
+Spektral.setStyle(pDiv, "border: 1px solid green");
                         </pre>
                     </div>
                 </div>
@@ -278,14 +278,92 @@ var
     createdDiv = Spektral.createNewElement("div", container, "newlyCreatedDiv"),
     createdImg = Spektral.createNewElement("img", container, "newlyCreatedImg");
 
-    //Set class for div and text for div
-    Spektral.createSetAttribute(createdDiv, "class", "testDiv");
-    Spektral.setTextContent(createdDiv, "div - id=\"newlyCreatedDiv\"");
+//Set class for div and text for div
+Spektral.createSetAttribute(createdDiv, "class", "testDiv");
+Spektral.setTextContent(createdDiv, "div - id=\"newlyCreatedDiv\"");
 
-    //Set class/image/alt for img
-    Spektral.createSetAttribute(createdImg, "class", "testImg");
-    Spektral.createSetAttribute(createdImg, "src", "img/spektraljs.jpg");
-    Spektral.createSetAttribute(createdImg, "alt", "An img created by the createNewElement method.");
+//Set class/image/alt for img
+Spektral.createSetAttribute(createdImg, "class", "testImg");
+Spektral.createSetAttribute(createdImg, "src", "img/spektraljs.jpg");
+Spektral.createSetAttribute(createdImg, "alt", "An img created by the createNewElement method.");
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+            <!--******************-->
+            <!--MOVE TO AFTER-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">moveToAfter()</h3>
+                        <div class="description">Moves an element to after another element in the same parent node.</div>
+                        <div id="moveToAfter" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <div id="mtaContainer" class="testDiv">
+                            <div id="mtaDivOne" class="testDiv">div - id="mtaDivOne"</div>
+                            <div id="mtaDivTwo" class="testDiv">div - id="mtaDivTwo"</div>
+                            <div id="mtaDivThree" class="testDiv">div - id="mtaDivThree"</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    container = Spektral.getElement("mtaContainer"),
+    divOne = Spektral.getElement("mtaDivOne"),
+    divTwo = Spektral.getElement("mtaDivTwo"),
+    divThree = Spektral.getElement("mtaDivThree");
+
+Spektral.moveToAfter(divOne, divThree);
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+            <!--******************-->
+            <!--MOVE TO BEFORE-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">moveToBefore()</h3>
+                        <div class="description">Moves an element to before another element in the same parent node.</div>
+                        <div id="moveToBefore" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <div id="mtbContainer" class="testDiv">
+                            <div id="mtbDivOne" class="testDiv">div - id="mtbDivOne"</div>
+                            <div id="mtbDivTwo" class="testDiv">div - id="mtbDivTwo"</div>
+                            <div id="mtbDivThree" class="testDiv">div - id="mtbDivThree"</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    container = Spektral.getElement("mtbContainer"),
+    divOne = Spektral.getElement("mtbDivOne"),
+    divTwo = Spektral.getElement("mtbDivTwo"),
+    divThree = Spektral.getElement("mtbDivThree");
+
+Spektral.moveToBefore(divThree, divOne);
                         </pre>
                     </div>
                 </div>

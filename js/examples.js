@@ -165,8 +165,6 @@
             addTestResultToContainer("getElement", "A div with the id of geTestOne: ", testDivOneResult);
             addTestResultToContainer("getElement", "A div with the class of Class: ", testDivTwoResult);
             addTestResultToContainer("getElement", "Name: ", testDivThreeResult);
-
-            adjustExamples();
         };
 
         ////////////////////
@@ -187,8 +185,6 @@
 
             addTestResultToContainer("getElementByClass", "A node list with all elements with the class of gebc: ", testDivsResult);
             addTestResultToContainer("getElementByClass", "The second div with the class of gebc: ", testDivTwoResult);
-
-            adjustExamples();
         };
 
         ////////////////////
@@ -203,8 +199,6 @@
                 testDivResult = testMethod("query", testDiv, "div");
 
             addTestResultToContainer("query", "A div with the id of queryDiv: ", testDivResult);
-
-            adjustExamples();
         };
 
         ////////////////////
@@ -229,8 +223,6 @@
                 testEventResult = testMethod("getTarget", eventTarget, "div");
                 addTestResultToContainer("getTarget", "A div with the id of getTargetDiv: ", testEventResult);
             };
-
-            adjustExamples();
         };
 
         ////////////////////
@@ -255,8 +247,6 @@
                 gtIDResult = testReturnedValue("getTargetID", targetID, "gtIDTest");
                 addTestResultToContainer("getTargetID", "The id of the test div (gtIDTest): ", gtIDResult);
             };
-
-            adjustExamples();
         };
 
         ///////////////////////
@@ -275,8 +265,6 @@
             Spektral.setStyle(pDiv, "border: 1px solid green");
 
             addTestResultToContainer("getParent", "A div with the id of parentDiv: ", getParentResult);
-
-            adjustExamples();
         };
 
         ///////////////////////
@@ -304,9 +292,59 @@
 
             addTestResultToContainer("createNewElement", "A newly created div: ", createdDivResult);
             addTestResultToContainer("createNewElement", "A newly created img: ", createdImgResult);
-
-            adjustExamples();
         };
+
+        ///////////////////////
+        ////MOVE TO AFTER
+        //////////////////////
+        moveToAfter();
+
+        function moveToAfter() {
+
+            var
+                container = Spektral.getElement("mtaContainer"),
+                divOne = Spektral.getElement("mtaDivOne"),
+                divTwo = Spektral.getElement("mtaDivTwo"),
+                divThree = Spektral.getElement("mtaDivThree"), childNodes,
+                affectedDivID, mtaResult;
+
+            Spektral.moveToAfter(divOne, divThree);
+
+            childNodes = Spektral.getChildNodes(container);
+
+            affectedDivID = Spektral.getElementIdentifiers(childNodes[2]).id;
+
+            mtaResult = testReturnedValue("moveToAfter", affectedDivID, "mtaDivOne");
+
+            addTestResultToContainer("moveToAfter", "A div with the id of mtaDivOne: ", mtaResult);
+        };
+
+        //////////////////////
+        ////MOVE TO BEFORE
+        //////////////////////
+        moveToBefore();
+
+        function moveToBefore() {
+
+            var
+                container = Spektral.getElement("mtbContainer"),
+                divOne = Spektral.getElement("mtbDivOne"),
+                divTwo = Spektral.getElement("mtbDivTwo"),
+                divThree = Spektral.getElement("mtbDivThree"), childNodes,
+                affectedDivID, mtbResult;
+
+            Spektral.moveToBefore(divThree, divOne);
+
+            childNodes = Spektral.getChildNodes(container);
+
+            affectedDivID = Spektral.getElementIdentifiers(childNodes[0]).id;
+
+            mtbResult = testReturnedValue("moveToBefore", affectedDivID, "mtbDivThree");
+
+            addTestResultToContainer("moveToBefore", "A div with the id of mtbDivThree: ", mtbResult);
+        };
+
+        adjustExamples();
     };
 
     /////////////////////////////////////////////////////////////////
