@@ -355,6 +355,9 @@ p {
   background-color: #352f2f;
 }
 .testImg {
+  display: block;
+  position: relative;
+  margin: 10px auto;
   border: 5px solid #ffffff;
 }
 .testingContainer {

@@ -216,6 +216,81 @@ var
                 </div>
             </div>
 
+            <!--******************-->
+            <!--GET PARENT-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">getParent()</h3>
+                        <div class="description">Returns the parent of the requested element.</div>
+                        <div id="getParent" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <div id="parentDiv" class="testDiv">div - id="parentDiv"
+                            <div id="childDiv" class="testDiv">div - child</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    cDiv = Spektral.getElement("childDiv"),
+    pDiv = Spektral.getParent(cDiv);
+
+    Spektral.setStyle(pDiv, "border: 1px solid green");
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+            <!--******************-->
+            <!--CREATE NEW ELEMENT-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">createNewElement()</h3>
+                        <div class="description">Creates a new element and adds it to the parent of your choosing.</div>
+                        <div id="createNewElement" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div id="cNEContainer" class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    container = Spektral.getElement("cNEContainer"),
+    createdDiv = Spektral.createNewElement("div", container, "newlyCreatedDiv"),
+    createdImg = Spektral.createNewElement("img", container, "newlyCreatedImg");
+
+    //Set class for div and text for div
+    Spektral.createSetAttribute(createdDiv, "class", "testDiv");
+    Spektral.setTextContent(createdDiv, "div - id=\"newlyCreatedDiv\"");
+
+    //Set class/image/alt for img
+    Spektral.createSetAttribute(createdImg, "class", "testImg");
+    Spektral.createSetAttribute(createdImg, "src", "img/spektraljs.jpg");
+    Spektral.createSetAttribute(createdImg, "alt", "An img created by the createNewElement method.");
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
         <!--END OF MAIN CONTENT-->
         </section>
 

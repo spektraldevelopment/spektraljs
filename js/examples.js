@@ -139,9 +139,9 @@
         }
     };
 
-    ////////////////////////////////////////////////
-    ////**************TESTING**********************
-    ////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////
+    ////TESTING EXAMPLES************************************
+    /////////////////////////////////////////////////////////
 
     function initExamples() {
 
@@ -254,10 +254,64 @@
                 targetID = Spektral.getTargetID(evt);
                 gtIDResult = testReturnedValue("getTargetID", targetID, "gtIDTest");
                 addTestResultToContainer("getTargetID", "The id of the test div (gtIDTest): ", gtIDResult);
-                Spektral.log("targetID: " + targetID);
             };
+
+            adjustExamples();
+        };
+
+        ///////////////////////
+        ////GET PARENT
+        //////////////////////
+        getParent();
+
+        function getParent() {
+
+            var
+                cDiv = Spektral.getElement("childDiv"),
+                pDiv = Spektral.getParent(cDiv),
+                pID = Spektral.getElementIdentifiers(pDiv).id,
+                getParentResult = testReturnedValue("getParent", pID, "parentDiv");
+
+            Spektral.setStyle(pDiv, "border: 1px solid green");
+
+            addTestResultToContainer("getParent", "A div with the id of parentDiv: ", getParentResult);
+
+            adjustExamples();
+        };
+
+        ///////////////////////
+        ////CREATE NEW ELEMENT
+        //////////////////////
+        createNewElement();
+
+        function createNewElement() {
+
+            var
+                container = Spektral.getElement("cNEContainer"),
+                createdDiv = Spektral.createNewElement("div", container, "newlyCreatedDiv"),
+                createdImg = Spektral.createNewElement("img", container, "newlyCreatedImg"),
+                createdDivResult = testMethod("createNewElement", createdDiv, "div"),
+                createdImgResult = testMethod("createNewElement", createdImg, "img");
+
+            //Set class for div and text for div
+            Spektral.createSetAttribute(createdDiv, "class", "testDiv");
+            Spektral.setTextContent(createdDiv, "div - id=\"newlyCreatedDiv\"");
+
+            //Set class/image/alt for img
+            Spektral.createSetAttribute(createdImg, "class", "testImg");
+            Spektral.createSetAttribute(createdImg, "src", "img/spektraljs.jpg");
+            Spektral.createSetAttribute(createdImg, "alt", "An img tag created by the createNewElement method.");
+
+            addTestResultToContainer("createNewElement", "A newly created div: ", createdDivResult);
+            addTestResultToContainer("createNewElement", "A newly created img: ", createdImgResult);
+
+            adjustExamples();
         };
     };
+
+    /////////////////////////////////////////////////////////////////
+    ////TESTING**************************************************
+    /////////////////////////////////////////////////////////////////
 
     ////////////////////
     ////TEST METHOD
@@ -339,17 +393,6 @@
             Spektral.createSetAttribute(test, "class", "pass");
         } else {
             Spektral.createSetAttribute(test, "class", "fail");
-        }
-    };
-
-    ////////////////////
-    ////ADJUST HEIGHTS
-    ////////////////////
-    function adjustHeights(elem) {
-        var fontstep = 2;
-        if ($(elem).height()>$(elem).parent().height() || $(elem).width()>$(elem).parent().width()) {
-            $(elem).css('font-size',(($(elem).css('font-size').substr(0,2)-fontstep)) + 'px').css('line-height',(($(elem).css('font-size').substr(0,2))) + 'px');
-            adjustHeights(elem);
         }
     };
 

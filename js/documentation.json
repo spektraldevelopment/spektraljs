@@ -77,7 +77,7 @@
         {
             "category" : ["DOM"],
             "title" : "createNewElement()",
-            "description" : "Created a new element and adds it to the parent of your choosing.",
+            "description" : "Creates a new element and adds it to the parent of your choosing.",
             "code" : "Spektral.createNewElement(element, parent, id);",
             "params" : [
                 {"element (required, expects: String)" : "Accepts an valid HTML element."},
