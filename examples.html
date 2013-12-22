@@ -505,6 +505,37 @@ var
                 </div>
             </div>
 
+            <!--******************-->
+            <!--DESTROY ATTRIBUTE-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">destroyAttribute()</h3>
+                        <div class="description">Remove an attribute from an element.</div>
+                        <div id="destroyAttribute" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <img id="daImg" class="testImg" src="img/spektraljs.jpg" alt="Alt tag for destroyAttribute test image. This will be removed."/>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var testImg = Spektral.getElement("daImg");
+
+Spektral.destroyAttribute(testImg, "alt");
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
         <!--END OF MAIN CONTENT-->
         </section>
 

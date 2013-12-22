@@ -434,6 +434,25 @@
             addTestResultToContainer("getAttributeValue", "Value of attribute returned as string: ", srcValueResult)
         };
 
+        //////////////////////
+        ////DESTROY ATTRIBUTE
+        //////////////////////
+        destroyAttribute();
+
+        function destroyAttribute() {
+
+            var testImg = Spektral.getElement("daImg"),
+                checkForAlt, daResult;
+
+            Spektral.destroyAttribute(testImg, "alt");
+
+            checkForAlt = Spektral.checkForAttribute(testImg, "alt");
+
+            daResult = testReturnedValue("destroyAttribute", checkForAlt, false);
+
+            addTestResultToContainer("destroyAttribute", "The alt attribute has been removed: ", daResult);
+        };
+
         adjustExamples();
     };
 
