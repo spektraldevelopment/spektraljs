@@ -179,31 +179,6 @@
             "compatibility" : "Currently in testing."
         },
         {
-            "category" : ["DOM, string"],
-            "title" : "getTextContent()",
-            "description" : "Returns the inner text inside an element.",
-            "code" : "Spektral.getTextContent(element);",
-            "params" : [
-                {"element (required, expects: Element)" : "The element you wish to retrieve the text from."}
-            ],
-            "returns" : "String",
-            "dependencies" : "None",
-            "compatibility" : "Currently in testing."
-        },
-        {
-            "category" : ["DOM, string"],
-            "title" : "setTextContent()",
-            "description" : "Sets the inner text inside an element.",
-            "code" : "Spektral.setTextContent(element, textContent);",
-            "params" : [
-                {"element (required, expects: Element)" : "The element you wish to retrieve the text from."},
-                {"textContent (required, expects: String)" : "The text you want to set."}
-            ],
-            "returns" : "Nothing",
-            "dependencies" : "None",
-            "compatibility" : "Currently in testing."
-        },
-        {
             "category" : ["DOM"],
             "title" : "getNodeAttributes()",
             "description" : "Returns an object with all the attribute of a node.",
@@ -237,6 +212,31 @@
                 {"node (required, expects: Element or XML node)" : "The node you want to get attributes from."}
             ],
             "returns" : "Array",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["DOM, string"],
+            "title" : "getTextContent()",
+            "description" : "Returns the inner text inside an element.",
+            "code" : "Spektral.getTextContent(element);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you wish to retrieve the text from."}
+            ],
+            "returns" : "String",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["DOM, string"],
+            "title" : "setTextContent()",
+            "description" : "Sets the inner text inside an element.",
+            "code" : "Spektral.setTextContent(element, textContent);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you wish to retrieve the text from."},
+                {"textContent (required, expects: String)" : "The text you want to set."}
+            ],
+            "returns" : "Nothing",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
@@ -812,10 +812,10 @@
         {
             "category" : ["utils, object"],
             "title" : "isObjectEmpty()",
-            "description" : "Determines whether an object is empty and returns a boolean.",
+            "description" : "Determines whether an object or array is empty and returns a boolean.",
             "code" : "Spektral.isObjectEmpty(obj);",
             "params" : [
-                {"obj (required, expects: Object)" : "The object you wish to test."}
+                {"obj (required, expects: Object or Array)" : "The object you wish to test."}
             ],
             "returns" : "Boolean",
             "dependencies" : "None",

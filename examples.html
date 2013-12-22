@@ -440,6 +440,38 @@ Spektral.clearAllChildren(container);
                 </div>
             </div>
 
+            <!--******************-->
+            <!--CREATE SET ATTRRIBUTE-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">createSetAttribute()</h3>
+                        <div class="description">Adds any valid attribute to an element.</div>
+                        <div id="createSetAttribute" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <img id="csaImg" class="testImg"/>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var testImg = Spektral.getElement("csaImg");
+
+Spektral.createSetAttribute(testImg, "src", "img/spektraljs.jpg");
+Spektral.createSetAttribute(testImg, "alt", "Alt tag for example test image.");
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
         <!--END OF MAIN CONTENT-->
         </section>
 

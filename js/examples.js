@@ -163,8 +163,8 @@
                 testDivThreeResult = testMethod("getElement()", testDivThree, "textarea");
 
             addTestResultToContainer("getElement", "A div with the id of geTestOne: ", testDivOneResult);
-            addTestResultToContainer("getElement", "A div with the class of Class: ", testDivTwoResult);
-            addTestResultToContainer("getElement", "Name: ", testDivThreeResult);
+            addTestResultToContainer("getElement", "A div with the class of geTestTwo: ", testDivTwoResult);
+            addTestResultToContainer("getElement", "A textarea with the name of geTestThree: ", testDivThreeResult);
         };
 
         ////////////////////
@@ -392,6 +392,31 @@
 
             cacResult = testReturnedValue("clearAllChildren", isParentEmpty, true);
             addTestResultToContainer("clearAllChildren", "The parent node is empty: ", cacResult);
+        };
+
+        //////////////////////
+        ////CREATE SET ATTRIBUTE
+        //////////////////////
+        createSetAttribute();
+
+        function createSetAttribute() {
+
+            var testImg = Spektral.getElement("csaImg"),
+            checkForSrc, checkForAlt,
+            srcTestResult, altTestResult;
+
+            Spektral.createSetAttribute(testImg, "src", "img/spektraljs.jpg");
+            Spektral.createSetAttribute(testImg, "alt", "Alt tag for example test image.");
+
+            checkForSrc = Spektral.checkForAttribute(testImg, "src");
+            checkForAlt = Spektral.checkForAttribute(testImg, "alt");
+
+            srcTestResult = testReturnedValue("createSetAttribute", checkForSrc, true);
+            altTestResult = testReturnedValue("createSetAttribute", checkForAlt, true);
+
+            addTestResultToContainer("createSetAttribute", "The img has a src tag: ", srcTestResult);
+            addTestResultToContainer("createSetAttribute", "The img has an alt tag: ", altTestResult);
+
         };
 
         adjustExamples();
