@@ -154,11 +154,11 @@
         },
         {
             "category" : ["DOM"],
-            "title" : "retrieveAttribute()",
-            "description" : "Retrieves an attribute from an element.",
-            "code" : "Spektral.retrieveAttribute(element, attribute);",
+            "title" : "getAttributeValue()",
+            "description" : "Retrieves the value of an attribute in an element.",
+            "code" : "Spektral.getAttributeValue(element, attribute);",
             "params" : [
-                {"element (required, expects: Element)" : "The element you want to retrieve the attribute from."},
+                {"element (required, expects: Element)" : "The element you want to retrieve the attribute value from."},
                 {"attribute (required, expects: String)" : "The name of the attribute."}
             ],
             "returns" : "String",

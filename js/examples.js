@@ -419,6 +419,21 @@
 
         };
 
+        /////////////////////////////
+        ////GET ATTRIBUTE VALUE
+        /////////////////////////////
+        getAttributeValue();
+
+        function getAttributeValue() {
+
+            var
+                testImg = Spektral.getElement("gavImg"),
+                srcValue = Spektral.getAttributeValue(testImg, "src"),
+                srcValueResult = testMethod("getAttributeValue", srcValue, "string");
+
+            addTestResultToContainer("getAttributeValue", "Value of attribute returned as string: ", srcValueResult)
+        };
+
         adjustExamples();
     };
 

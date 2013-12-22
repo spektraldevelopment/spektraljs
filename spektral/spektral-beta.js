@@ -913,7 +913,7 @@
     //***ATTRIBUTES************************************************************
 
     ///////////////////
-    ////CREATE SET ATTRIBUTE - check if this works on existing attributes
+    ////CREATE SET ATTRIBUTE
     //////////////////
     Spektral.createSetAttribute = function (element, attribute, value) {
 
@@ -923,7 +923,7 @@
     //////////////////
     ////RETRIEVE ATTRIBUTE
     //////////////////
-    Spektral.retrieveAttribute = function (element, attribute) {
+    Spektral.getAttributeValue = function (element, attribute) {
 
         var attr, nodeAttrs;
         attr = element.getAttribute(attribute);
@@ -934,7 +934,7 @@
             attr = nodeAttrs[attribute];
             if (attr === undefined) {
                 attr = null;
-                Spektral.throwError("retrieveAttribute: Attribute does not exist. Are you calling its name correctly?");
+                Spektral.throwError("getAttributeValue: Attribute does not exist. Are you calling its name correctly?");
             }
         }
         return attr;

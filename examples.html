@@ -466,7 +466,40 @@ Spektral.clearAllChildren(container);
 var testImg = Spektral.getElement("csaImg");
 
 Spektral.createSetAttribute(testImg, "src", "img/spektraljs.jpg");
-Spektral.createSetAttribute(testImg, "alt", "Alt tag for example test image.");
+Spektral.createSetAttribute(testImg, "alt", "Alt tag for createSetAttribute test image.");
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+            <!--******************-->
+            <!--GET ATTRIBUTE VALUE-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">getAttributeValue()</h3>
+                        <div class="description">Retrieves the value of an attribute in an element.</div>
+                        <div id="getAttributeValue" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <img id="gavImg" class="testImg" src="img/spektraljs.jpg" alt="Alt tag for retrieveAttribute test image."/>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    testImg = Spektral.getElement("gavImg"),
+    srcValue = Spektral.getAttributeValue(testImg, "src");
+
+//Returns the source path of the image: "img/spektraljs.jpg".
                         </pre>
                     </div>
                 </div>
