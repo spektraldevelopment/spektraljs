@@ -499,6 +499,22 @@
             addTestResultToContainer("checkForAttribute", "The div has an id attribute: ", cfaResult);
         };
 
+        //////////////////////
+        ////LIST NODE ATTRIBUTES
+        //////////////////////
+        listNodeAttributes();
+
+        function listNodeAttributes() {
+
+            var
+                testDiv = Spektral.getElement("lnaDiv"),
+                attributeArray = Spektral.listNodeAttributes(testDiv),
+                lndResult = testMethod("listNodeAttributes", attributeArray, "array");
+
+            addTestResultToContainer("listNodeAttributes", "A array: ", lndResult);
+
+        };
+
         adjustExamples();
     };
 
@@ -557,6 +573,33 @@
         }
 
         return pass;
+    };
+
+    ////////////////////
+    ////TEST ARRAY
+    ////////////////////
+    function testArray(desc, result, length, testArray) {
+
+        testArray = testArray || null;
+
+        var
+            pass = false,
+            lengthMatch = false,
+            arrayMatch = false;
+
+        if(testArray === null) {
+            //Just check length
+
+        } else {
+            //Check if result matches testArray
+        }
+
+        if(pass !== true) {
+            //if testArray ==== null and if it doesn't
+            //console.log("!" + desc + " test failed. expected: " + expected + ", result: " + result + ".");
+        } else {
+            return pass;
+        }
     };
 
     ////////////////////

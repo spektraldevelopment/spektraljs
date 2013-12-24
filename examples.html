@@ -604,6 +604,37 @@ var
                 </div>
             </div>
 
+            <!--******************-->
+            <!--LIST NODE ATTRIBUTES-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">listNodeAttributes()</h3>
+                        <div class="description">Returns attributes of a node as an array.</div>
+                        <div id="listNodeAttributes" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <div id="lnaDiv" class="testDiv" data-test="Test data">div - id="lnaDiv"</div>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    testDiv = Spektral.getElement("lnaDiv"),
+    attributeArray = Spektral.listNodeAttributes(testDiv);
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
         <!--END OF MAIN CONTENT-->
         </section>
 
