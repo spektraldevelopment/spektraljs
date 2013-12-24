@@ -591,7 +591,7 @@
         }
         elType = Spektral.getType(el);
         if (elType === "nodelist") {
-            Spektral.log("getElement: More than one element was found.");
+            //Spektral.log("getElement: More than one element was found.");
             //Spektral.listArrayObjects(el);
         }
         return el;

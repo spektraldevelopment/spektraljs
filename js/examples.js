@@ -154,13 +154,13 @@
 
             var
                 testDivOne = Spektral.getElement("geTestOne"),
-                testDivOneResult = testMethod("getElement()", testDivOne, "div"),
+                testDivOneResult = testMethod("getElement", testDivOne, "div"),
 
                 testDivTwo = Spektral.getElement("geTestTwo"),
-                testDivTwoResult = testMethod("getElement()", testDivTwo, "div"),
+                testDivTwoResult = testMethod("getElement", testDivTwo, "div"),
 
                 testDivThree = Spektral.getElement("geTestThree"),
-                testDivThreeResult = testMethod("getElement()", testDivThree, "textarea");
+                testDivThreeResult = testMethod("getElement", testDivThree, "textarea");
 
             addTestResultToContainer("getElement", "A div with the id of geTestOne: ", testDivOneResult);
             addTestResultToContainer("getElement", "A div with the class of geTestTwo: ", testDivTwoResult);
@@ -176,10 +176,10 @@
 
             var
                 testDivs = Spektral.getElementByClass("gebc"),
-                testDivsResult = testMethod("getElementByClass()", testDivs, "nodelist"),
+                testDivsResult = testMethod("getElementByClass", testDivs, "nodelist"),
 
                 testDivTwo = Spektral.getElementByClass("gebc", 1),
-                testDivTwoResult = testMethod("getElementByClass()", testDivTwo, "div");
+                testDivTwoResult = testMethod("getElementByClass", testDivTwo, "div");
 
             Spektral.setStyle(testDivTwo, "border-color:green");
 
@@ -509,10 +509,12 @@
             var
                 testDiv = Spektral.getElement("lnaDiv"),
                 attributeArray = Spektral.listNodeAttributes(testDiv),
-                lndResult = testMethod("listNodeAttributes", attributeArray, "array");
+                lndResult = testMethod("listNodeAttributes", attributeArray, "array"),
+                isArrEmpty = Spektral.isObjectEmpty(attributeArray),
+                arrEmptyResult = testReturnedValue("listNodeAttributes", isArrEmpty, false);
 
             addTestResultToContainer("listNodeAttributes", "A array: ", lndResult);
-
+            addTestResultToContainer("listNodeAttributes", "Array isn't empty: ", arrEmptyResult);
         };
 
         adjustExamples();
@@ -578,28 +580,39 @@
     ////////////////////
     ////TEST ARRAY
     ////////////////////
-    function testArray(desc, result, length, testArray) {
+    function testArray(desc, resultArray, expectedLength, compareArray) {
 
-        testArray = testArray || null;
+        compareArray = compareArray || null;
 
         var
-            pass = false,
-            lengthMatch = false,
-            arrayMatch = false;
+            pass = false, i,
+            resLength = resultArray.length;
 
-        if(testArray === null) {
+        if(compareArray === null) {
             //Just check length
-
+            if(resLength === expectedLength) {
+                pass = true;
+            } else {
+                console.log("!" + desc + " test failed. Array length: " + resLength + " did not match expected length: " + expectedLength);
+            }
         } else {
             //Check if result matches testArray
+            if (resLength === compareArray.length) {
+
+                for(i = 0; i < resLength; i += 1) {
+                   if(resultArray[i] === compareArray[i]) {
+                       console.log("MATCH! resultArray: " + resultArray[i] + " compareArray: " + compareArray[i]);
+                   } else {
+                       console.log("NO MATCH! resultArray: " + resultArray[i] + " compareArray: " + compareArray[i]);
+                   }
+                }
+
+            } else {
+                console.log("!" + desc + " test failed.");
+            }
         }
 
-        if(pass !== true) {
-            //if testArray ==== null and if it doesn't
-            //console.log("!" + desc + " test failed. expected: " + expected + ", result: " + result + ".");
-        } else {
-            return pass;
-        }
+        return pass;
     };
 
     ////////////////////

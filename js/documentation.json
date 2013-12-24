@@ -206,7 +206,7 @@
         {
             "category" : ["DOM, array"],
             "title" : "listNodeAttributes()",
-            "description" : "Returns attributes of a node as an array.",
+            "description" : "Returns all available attributes of a node as an array.",
             "code" : "Spektral.listNodeAttributes(node);",
             "params" : [
                 {"node (required, expects: Element or XML node)" : "The node you want to retrieve attributes from."}
