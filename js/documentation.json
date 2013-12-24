@@ -193,7 +193,7 @@
         {
             "category" : ["DOM"],
             "title" : "checkForAttribute()",
-            "description" : "Checks if an attribute exists within an element.",
+            "description" : "Checks if an attribute exists in an element.",
             "code" : "Spektral.checkForAttribute(element, attribute);",
             "params" : [
                 {"element (required, expects: Element)" : "The element you want to check."},

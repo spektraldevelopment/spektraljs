@@ -484,6 +484,21 @@
             addTestResultToContainer("getNodeAttributes", "alt attribute is Alt tag: ", altResult);
         };
 
+        //////////////////////
+        ////CHECK FOR ATTRIBUTE
+        //////////////////////
+        checkForAttribute();
+
+        function checkForAttribute() {
+
+            var
+                testDiv = Spektral.getElement("cfaDiv"),
+                hasID = Spektral.checkForAttribute(testDiv, "id"),
+                cfaResult = testReturnedValue("checkForAttribute", hasID, true);
+
+            addTestResultToContainer("checkForAttribute", "The div has an id attribute: ", cfaResult);
+        };
+
         adjustExamples();
     };
 

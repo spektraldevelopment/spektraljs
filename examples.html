@@ -573,6 +573,37 @@ nodeAlt = attrs.alt;
                 </div>
             </div>
 
+            <!--******************-->
+            <!--CHECK FOR ATTRIBUTE-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">checkForAttribute()</h3>
+                        <div class="description">Checks if an attribute exists in an element.</div>
+                        <div id="checkForAttribute" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <div id="cfaDiv" class="testDiv">div - id="cfaDiv"</div>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    testDiv = Spektral.getElement("cfaDiv"),
+    hasID = Spektral.checkForAttribute(testDiv, "id");
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
         <!--END OF MAIN CONTENT-->
         </section>
 
