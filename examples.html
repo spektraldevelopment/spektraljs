@@ -536,6 +536,43 @@ Spektral.destroyAttribute(testImg, "alt");
                 </div>
             </div>
 
+            <!--******************-->
+            <!--GET NODE ATTRIBUTES-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">getNodeAttributes()</h3>
+                        <div class="description">Returns an object with all the attribute of a node.</div>
+                        <div id="getNodeAttributes" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <img id="gnaImg" class="testImg" src="img/spektraljs.jpg" alt="Alt tag"/>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    testImg = Spektral.getElement("gnaImg"),
+    attrs  = Spektral.getNodeAttributes(testImg),
+    nodeID, nodeClass, nodeSrc, nodeAlt;
+
+nodeID = attrs.id;
+nodeClass = attrs.class;
+nodeSrc = attrs.src;
+nodeAlt = attrs.alt;
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
         <!--END OF MAIN CONTENT-->
         </section>
 

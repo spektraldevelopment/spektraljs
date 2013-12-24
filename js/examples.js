@@ -453,6 +453,37 @@
             addTestResultToContainer("destroyAttribute", "The alt attribute has been removed: ", daResult);
         };
 
+        //////////////////////
+        ////GET NODE ATTRIBUTES
+        //////////////////////
+        getNodeAttributes();
+
+        function getNodeAttributes() {
+
+            var
+                testImg = Spektral.getElement("gnaImg"),
+                attrs  = Spektral.getNodeAttributes(testImg),
+                nodeID, nodeClass, nodeSrc, nodeAlt, gnaResult,
+                idResult, classResult, srcResult, altResult;
+
+            nodeID = attrs.id;
+            nodeClass = attrs.class;
+            nodeSrc = attrs.src;
+            nodeAlt = attrs.alt;
+
+            gnaResult = testMethod("getNodeAttributes", attrs, "object");
+            idResult = testReturnedValue("getNodeAttributes", attrs.id, "gnaImg");
+            classResult = testReturnedValue("getNodeAttributes", attrs.class, "testImg");
+            srcResult = testReturnedValue("getNodeAttributes", attrs.src, "img/spektraljs.jpg");
+            altResult = testReturnedValue("getNodeAttributes", attrs.alt, "Alt tag")
+
+            addTestResultToContainer("getNodeAttributes", "An object with node attributes: ", gnaResult);
+            addTestResultToContainer("getNodeAttributes", "id attribute is gnaImg: ", idResult);
+            addTestResultToContainer("getNodeAttributes", "class attribute is testImg: ", classResult);
+            addTestResultToContainer("getNodeAttributes", "src attribute is img/spektraljs.jpg: ", srcResult);
+            addTestResultToContainer("getNodeAttributes", "alt attribute is Alt tag: ", altResult);
+        };
+
         adjustExamples();
     };
 
