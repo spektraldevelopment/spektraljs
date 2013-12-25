@@ -283,7 +283,7 @@
 
             //Set class for div and text for div
             Spektral.createSetAttribute(createdDiv, "class", "testDiv");
-            Spektral.setTextContent(createdDiv, "div - id=\"newlyCreatedDiv\"");
+            Spektral.setInnerText(createdDiv, "div - id=\"newlyCreatedDiv\"");
 
             //Set class/image/alt for img
             Spektral.createSetAttribute(createdImg, "class", "testImg");
@@ -388,7 +388,7 @@
             Spektral.clearAllChildren(container);
             childNodes = Spektral.getChildNodes(container);
             isParentEmpty = Spektral.isObjectEmpty(childNodes);
-            Spektral.setTextContent(container, "div - parent container");
+            Spektral.setInnerText(container, "div - parent container");
 
             cacResult = testReturnedValue("clearAllChildren", isParentEmpty, true);
             addTestResultToContainer("clearAllChildren", "The parent node is empty: ", cacResult);
@@ -517,6 +517,41 @@
             addTestResultToContainer("listNodeAttributes", "A array: ", lndResult);
             addTestResultToContainer("listNodeAttributes", "Array isn't empty: ", arrEmptyResult);
             addTestResultToContainer("listNodeAttributes", "Array contains value nodeName: ", arrTest);
+        };
+
+        //////////////////////
+        ////GET INNER TEXT
+        //////////////////////
+        getInnerText();
+
+        function getInnerText() {
+
+            var
+                testDiv = Spektral.getElement("gitDiv"),
+                textContent = Spektral.getInnerText(testDiv),
+                gitResult = testReturnedValue("getInnerText", textContent, "This is the inner text for gitDiv");
+
+            addTestResultToContainer("getInnerText", "This is the inner text for gitDiv: ", gitResult);
+        };
+
+        //////////////////////
+        ////SET INNER TEXT
+        //////////////////////
+        setInnerText();
+
+        function setInnerText() {
+
+            var
+                testDiv = Spektral.getElement("sitDiv"),
+                newInnerText, sitResult;
+
+            Spektral.setInnerText(testDiv, "This string was set using setInnerText");
+
+            newInnerText = Spektral.getInnerText(testDiv);
+
+            sitResult = testReturnedValue("setInnerText", newInnerText, "This string was set using setInnerText");
+
+            addTestResultToContainer("setInnerText", "This string was set using setInnerText: ", sitResult);
         };
 
         adjustExamples();
@@ -654,7 +689,7 @@
             testContainer = Spektral.getElement(testID),
             test = Spektral.createNewElement("div", testContainer);
 
-        Spektral.setTextContent(test, desc);
+        Spektral.setInnerText(test, desc);
 
         if(result === true) {
             Spektral.createSetAttribute(test, "class", "pass");
