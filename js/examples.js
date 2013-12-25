@@ -275,7 +275,7 @@
         function createNewElement() {
 
             var
-                container = Spektral.getElement("cNEContainer"),
+                container = Spektral.getElement("cneContainer"),
                 createdDiv = Spektral.createNewElement("div", container, "newlyCreatedDiv"),
                 createdImg = Spektral.createNewElement("img", container, "newlyCreatedImg"),
                 createdDivResult = testMethod("createNewElement", createdDiv, "div"),
@@ -552,6 +552,25 @@
             sitResult = testReturnedValue("setInnerText", newInnerText, "This string was set using setInnerText");
 
             addTestResultToContainer("setInnerText", "This string was set using setInnerText: ", sitResult);
+        };
+
+        //////////////////////
+        ////LIST ELEMENTS
+        //////////////////////
+        listElements();
+
+        function listElements() {
+
+            var
+                domElements = Spektral.listElements(),
+                domElementIDs = Spektral.listElements("id"),
+                leResult = testMethod("listElements", domElements, "array"),
+                hasDivResult = testArrayForValue("listElements", domElements, "div"),
+                hasIDResult = testArrayForValue("listElements", domElementIDs, "leDiv");
+
+            addTestResultToContainer("listElements", "An array: ", leResult);
+            addTestResultToContainer("listElements", "domElements contains divs: ", hasDivResult);
+            addTestResultToContainer("listElements", "domElementIDs contains id of leDiv: ", hasIDResult);
         };
 
         adjustExamples();

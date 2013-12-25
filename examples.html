@@ -265,7 +265,7 @@ Spektral.setStyle(pDiv, "border: 1px solid green");
                     </div>
                 </div>
                 <div class="elementContainer">
-                    <div id="cNEContainer" class="innerElementHolder">
+                    <div id="cneContainer" class="innerElementHolder">
                         <h3 class="elementContainerTitle">Test Elements</h3>
                     </div>
                 </div>
@@ -693,6 +693,37 @@ var
     testDiv = Spektral.getElement("sitDiv");
 
 Spektral.setInnerText(testDiv, "This string was set using setInnerText");
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+            <!--******************-->
+            <!--LIST ELEMENTS-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">listElements()</h3>
+                        <div class="description">Returns an array with all the elements currently in use in the DOM.</div>
+                        <div id="listElements" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <div id="leDiv" class="testDiv">div - id="leDiv"</div>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    domElements = Spektral.listElements(),
+    domElementIDs = Spektral.listElements("id");
                         </pre>
                     </div>
                 </div>
