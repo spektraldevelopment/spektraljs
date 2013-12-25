@@ -217,7 +217,7 @@
         },
         {
             "category" : ["DOM, string"],
-            "title" : "getTextContent()",
+            "title" : "getInnerText()",
             "description" : "Returns the inner text inside an element.",
             "code" : "Spektral.getTextContent(element);",
             "params" : [
@@ -229,11 +229,11 @@
         },
         {
             "category" : ["DOM, string"],
-            "title" : "setTextContent()",
+            "title" : "setInnerText()",
             "description" : "Sets the inner text inside an element.",
             "code" : "Spektral.setTextContent(element, textContent);",
             "params" : [
-                {"element (required, expects: Element)" : "The element you wish to retrieve the text from."},
+                {"element (required, expects: Element)" : "The element you want to target."},
                 {"textContent (required, expects: String)" : "The text you want to set."}
             ],
             "returns" : "Nothing",
