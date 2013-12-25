@@ -65,13 +65,25 @@
         {
             "category" : ["DOM, event"],
             "title" : "getParent()",
-            "description" : "Returns the parent of the requested element.",
+            "description" : "Returns the parent of the requested child element.",
             "code" : "Spektral.getParent(element);",
             "params" : [
                 {"element (required, expects: Element)" : "The child you want to find the parent of."}
             ],
             "returns" : "Element",
             "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["array, utils"],
+            "title" : "getChildNodes()",
+            "description" : "Retrieves the children of a parent element.",
+            "code" : "Spektral.getChildNodes(parent);",
+            "params" : [
+                {"parent (required, expects: Element)" : "The element you wish to get the children of."}
+            ],
+            "returns" : "Array",
+            "dependencies" : "isElement()",
             "compatibility" : "Currently in testing."
         },
         {
@@ -250,18 +262,6 @@
             ],
             "returns" : "Array",
             "dependencies" : "convertCase()",
-            "compatibility" : "Currently in testing."
-        },
-        {
-            "category" : ["array, utils"],
-            "title" : "getChildNodes()",
-            "description" : "Retrieves the children of a node.",
-            "code" : "Spektral.getChildNodes(parent);",
-            "params" : [
-                {"parent (required, expects: Element)" : "The element you wish to get the children of."}
-            ],
-            "returns" : "Array",
-            "dependencies" : "isElement()",
             "compatibility" : "Currently in testing."
         }
     ],

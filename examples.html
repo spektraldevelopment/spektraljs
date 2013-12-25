@@ -223,7 +223,7 @@ function onTestEvent(evt) {
                 <div class="informationContainer">
                     <div class="innerInfoHolder">
                         <h3 class="method">getParent()</h3>
-                        <div class="description">Returns the parent of the requested element.</div>
+                        <div class="description">Returns the parent of the requested child element.</div>
                         <div id="getParent" class="testingContainer">
                             <h3 class="results">Testing Results</h3>
                         </div>
@@ -246,6 +246,41 @@ var
     pDiv = Spektral.getParent(cDiv);
 
 Spektral.setStyle(pDiv, "border: 1px solid green");
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+            <!--******************-->
+            <!--GET CHILD NODES-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">getChildNodes()</h3>
+                        <div class="description">Retrieves the children of a parent element.</div>
+                        <div id="getChildNodes" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <div id="gcnParent" class="testDiv">div - id="gcnParent"
+                            <div id="gcnOne" class="testDiv">div - id="gcnOne"</div>
+                            <div id="gcnTwo" class="testDiv">div - id="gcnTwo"</div>
+                            <div id="gcnThree" class="testDiv">div - id="gcnThree"</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    parent = Spektral.getElement("gcnParent"),
+    childNodes = Spektral.getChildNodes(parent);
                         </pre>
                     </div>
                 </div>
@@ -729,40 +764,6 @@ var
                 </div>
             </div>
 
-            <!--******************-->
-            <!--GET CHILD NODES-->
-            <!--******************-->
-            <div class="example">
-                <div class="informationContainer">
-                    <div class="innerInfoHolder">
-                        <h3 class="method">getChildNodes()</h3>
-                        <div class="description">Retrieves the children of a node.</div>
-                        <div id="getChildNodes" class="testingContainer">
-                            <h3 class="results">Testing Results</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="elementContainer">
-                    <div class="innerElementHolder">
-                        <h3 class="elementContainerTitle">Test Elements</h3>
-                        <div id="gcnParent" class="testDiv">div - id="gcnParent"
-                            <div id="gcnOne" class="testDiv">div - id="gcnOne"</div>
-                            <div id="gcnTwo" class="testDiv">div - id="gcnTwo"</div>
-                            <div id="gcnThree" class="testDiv">div - id="gcnThree"</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="exampleCodeContainer">
-                    <div class="innerExampleCodeHolder">
-                        <h3 class="exampleCodeHeader">Example Code</h3>
-                        <pre class="prettyprint">
-var
-    parent = Spektral.getElement("gcnParent"),
-    childNodes = Spektral.getChildNodes(parent);
-                        </pre>
-                    </div>
-                </div>
-            </div>
 
         <!--END OF MAIN CONTENT-->
         </section>
