@@ -573,6 +573,24 @@
             addTestResultToContainer("listElements", "domElementIDs contains id of leDiv: ", hasIDResult);
         };
 
+        //////////////////////
+        ////GET CHILD NODES
+        //////////////////////
+        getChildNodes();
+
+        function getChildNodes() {
+
+            var
+                parent = Spektral.getElement("gcnParent"),
+                childNodes = Spektral.getChildNodes(parent),
+                gcnResult = testMethod("getChildNodes", childNodes, "array"),
+                testDivTwo = childNodes[1].id,
+                hasIDResult = testReturnedValue("getChildNodes", testDivTwo, "gcnTwo");
+
+            addTestResultToContainer("getChildNodes", "An array: ", gcnResult);
+            addTestResultToContainer("getChildNodes", "Second item in array has id gcnTwo: ", hasIDResult);
+        };
+
         adjustExamples();
     };
 
