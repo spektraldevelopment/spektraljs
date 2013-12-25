@@ -956,9 +956,9 @@
     };
 
     ////////////////////
-    ////GET TEXT CONTENT
+    ////GET INNER TEXT
     ///////////////////
-    Spektral.getTextContent = function (element) {
+    Spektral.getInnerText = function (element) {
 
         var content = element.textContent;
         if (content === "undefined") {
@@ -968,9 +968,9 @@
     };
 
     ////////////////////
-    ////SET TEXT CONTENT
+    ////SET INNER TEXT
     ///////////////////
-    Spektral.setTextContent = function (element, textContent) {
+    Spektral.setInnerText = function (element, textContent) {
 
         element.innerHTML = textContent;
     };
