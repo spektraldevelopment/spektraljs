@@ -449,7 +449,7 @@
                 srcValue = Spektral.getAttributeValue(testImg, "src"),
                 srcValueResult = testMethod("getAttributeValue", srcValue, "string");
 
-            addTestResultToContainer("getAttributeValue", "Value of attribute returned as string: ", srcValueResult)
+            addTestResultToContainer("getAttributeValue", "Value of attribute returned as string: ", srcValueResult);
         };
 
         //////////////////////
@@ -490,10 +490,10 @@
             nodeAlt = attrs.alt;
 
             gnaResult = testMethod("getNodeAttributes", attrs, "object");
-            idResult = testReturnedValue("getNodeAttributes", attrs.id, "gnaImg");
-            classResult = testReturnedValue("getNodeAttributes", attrs.class, "testImg");
-            srcResult = testReturnedValue("getNodeAttributes", attrs.src, "img/spektraljs.jpg");
-            altResult = testReturnedValue("getNodeAttributes", attrs.alt, "Alt tag")
+            idResult = testReturnedValue("getNodeAttributes", nodeID, "gnaImg");
+            classResult = testReturnedValue("getNodeAttributes", nodeClass, "testImg");
+            srcResult = testReturnedValue("getNodeAttributes", nodeSrc, "img/spektraljs.jpg");
+            altResult = testReturnedValue("getNodeAttributes", nodeAlt, "Alt tag")
 
             addTestResultToContainer("getNodeAttributes", "An object with node attributes: ", gnaResult);
             addTestResultToContainer("getNodeAttributes", "id attribute is gnaImg: ", idResult);
