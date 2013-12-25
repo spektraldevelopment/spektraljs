@@ -787,7 +787,8 @@ var
                     <div class="innerExampleCodeHolder">
                         <h3 class="exampleCodeHeader">Example Code</h3>
                         <pre class="prettyprint">
-var testDiv = Spektral.getElement("aelDiv"),
+var
+    testDiv = Spektral.getElement("aelDiv"),
     customEvent = Spektral.createEvent("testEvent");
 
 Spektral.attachEventListener(testDiv, "testEvent", onTestEvent);
@@ -802,6 +803,48 @@ function onTestEvent(evt) {
                 </div>
             </div>
 
+            <!--******************-->
+            <!--DETACH EVENT LISTENER-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">detachEventListener()</h3>
+                        <div class="description">Detaches an event listener from any element. If a mouse event, the hand cursor is automatically set back to default.</div>
+                        <div id="detachEventListener" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <div id="delDiv" class="testDiv">div - id="delDiv"</div>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    testDiv = Spektral.getElement("delDiv"),
+    customEvent = Spektral.createEvent("testEvent");
+
+//Attaching event listener to prove detachEventListener
+//is functioning properly
+Spektral.attachEventListener(testDiv, "testEvent", onTestEvent);
+
+Spektral.detachEventListener(testDiv, "testEvent", onTestEvent);
+
+Spektral.triggerEvent(testDiv, customEvent);
+
+function onTestEvent(evt) {
+    //Event is triggered
+};
+                        </pre>
+                    </div>
+                </div>
+            </div>
 
         <!--END OF MAIN CONTENT-->
         </section>

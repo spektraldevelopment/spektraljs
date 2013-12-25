@@ -604,7 +604,8 @@
 
         function attachEventListener() {
 
-            var testDiv = Spektral.getElement("aelDiv"),
+            var
+                testDiv = Spektral.getElement("aelDiv"),
                 customEvent = Spektral.createEvent("testEvent"),
                 evtTriggered = false, aelResult;
 
@@ -620,6 +621,36 @@
             aelResult = testReturnedValue("attachEventListener", evtTriggered, true);
 
             addTestResultToContainer("attachEventListener", "Event has fired: ", aelResult);
+        };
+
+        //////////////////////
+        ////DETACH EVENT LISTENER
+        //////////////////////
+        detachEventListener();
+
+        function detachEventListener() {
+
+            var
+                testDiv = Spektral.getElement("delDiv"),
+                customEvent = Spektral.createEvent("testEvent"),
+                evtTriggered = false, delResult;
+
+            //Attaching event listener to prove detachEventListener
+            //is functioning properly
+            Spektral.attachEventListener(testDiv, "testEvent", onTestEvent);
+
+            Spektral.detachEventListener(testDiv, "testEvent", onTestEvent);
+
+            Spektral.triggerEvent(testDiv, customEvent);
+
+            function onTestEvent(evt) {
+                //Event is triggered
+                evtTriggered = true;
+            };
+
+            delResult = testReturnedValue("detachEventListener", evtTriggered, false);
+
+            addTestResultToContainer("detachEventListener", "The evt was not triggered: ", delResult);
         };
 
         adjustExamples();
