@@ -145,6 +145,8 @@
 
     function initExamples() {
 
+        ////DOM****START**************************************************
+
         ////////////////////
         ////GET ELEMENT
         ////////////////////
@@ -589,6 +591,35 @@
             addTestResultToContainer("listElements", "An array: ", leResult);
             addTestResultToContainer("listElements", "domElements contains divs: ", hasDivResult);
             addTestResultToContainer("listElements", "domElementIDs contains id of leDiv: ", hasIDResult);
+        };
+
+        ////DOM****END**************************************************
+
+        ////EVENT****START**************************************************
+
+        //////////////////////
+        ////ATTACH EVENT LISTENER
+        //////////////////////
+        attachEventListener();
+
+        function attachEventListener() {
+
+            var testDiv = Spektral.getElement("aelDiv"),
+                customEvent = Spektral.createEvent("testEvent"),
+                evtTriggered = false, aelResult;
+
+            Spektral.attachEventListener(testDiv, "testEvent", onTestEvent);
+
+            Spektral.triggerEvent(testDiv, customEvent);
+
+            function onTestEvent(evt) {
+                //Event is triggered
+                evtTriggered = true;
+            };
+
+            aelResult = testReturnedValue("attachEventListener", evtTriggered, true);
+
+            addTestResultToContainer("attachEventListener", "Event has fired: ", aelResult);
         };
 
         adjustExamples();

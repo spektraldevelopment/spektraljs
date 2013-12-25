@@ -476,7 +476,7 @@ Spektral.clearAllChildren(container);
             </div>
 
             <!--******************-->
-            <!--CREATE SET ATTRRIBUTE-->
+            <!--CREATE SET ATTRIBUTE-->
             <!--******************-->
             <div class="example">
                 <div class="informationContainer">
@@ -759,6 +759,44 @@ Spektral.setInnerText(testDiv, "This string was set using setInnerText");
 var
     domElements = Spektral.listElements(),
     domElementIDs = Spektral.listElements("id");
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+            <!--******************-->
+            <!--ATTACH EVENT LISTENER-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">attachEventListener()</h3>
+                        <div class="description">Attaches an event listener to any element. If a mouse event, the hand (pointer) cursor is automatically applied.</div>
+                        <div id="attachEventListener" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <div id="aelDiv" class="testDiv">div - id="aelDiv"</div>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var testDiv = Spektral.getElement("aelDiv"),
+    customEvent = Spektral.createEvent("testEvent");
+
+Spektral.attachEventListener(testDiv, "testEvent", onTestEvent);
+
+Spektral.triggerEvent(testDiv, customEvent);
+
+function onTestEvent(evt) {
+    //Event is triggered
+};
                         </pre>
                     </div>
                 </div>
