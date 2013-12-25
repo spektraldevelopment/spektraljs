@@ -511,10 +511,12 @@
                 attributeArray = Spektral.listNodeAttributes(testDiv),
                 lndResult = testMethod("listNodeAttributes", attributeArray, "array"),
                 isArrEmpty = Spektral.isObjectEmpty(attributeArray),
-                arrEmptyResult = testReturnedValue("listNodeAttributes", isArrEmpty, false);
+                arrEmptyResult = testReturnedValue("listNodeAttributes", isArrEmpty, false),
+                arrTest = testArrayForValue("listNodeAttributes", attributeArray, "nodeName");
 
             addTestResultToContainer("listNodeAttributes", "A array: ", lndResult);
             addTestResultToContainer("listNodeAttributes", "Array isn't empty: ", arrEmptyResult);
+            addTestResultToContainer("listNodeAttributes", "Array contains value nodeName: ", arrTest);
         };
 
         adjustExamples();
@@ -609,6 +611,22 @@
 
             } else {
                 console.log("!" + desc + " test failed.");
+            }
+        }
+
+        return pass;
+    };
+
+    ////////////////////
+    ////TEST ARRAY FOR VALUE
+    ////////////////////
+    function testArrayForValue(desc, testArray, expectedValue) {
+
+        var i, pass = false;
+
+        for(i = 0; i < testArray.length; i += 1) {
+            if(testArray[i] === expectedValue) {
+                pass = true;
             }
         }
 
