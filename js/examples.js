@@ -724,6 +724,25 @@
             addTestResultToContainer("triggerEvent", "Default event was triggered: ", defaultResult);
         };
 
+        //////////////////////
+        ////CANCEL EVENT
+        //////////////////////
+        cancelEvent();
+
+        function cancelEvent() {
+
+            var
+                testAnchor = Spektral.getElement("ceAnchor");
+
+            Spektral.attachEventListener(testAnchor, "click", onClickEvent);
+
+            function onClickEvent(evt) {
+
+                //Stops browser from navigating to href
+                Spektral.cancelEvent(evt);
+            }
+        };
+
         adjustExamples();
     };
 
@@ -740,7 +759,7 @@
             resultType = checkType(result),
             pass = false;
 
-        console.log("desc: " + desc + " resultType: " + resultType);
+        //console.log("desc: " + desc + " resultType: " + resultType);
 
         if(resultType === expected) {
             pass = true;

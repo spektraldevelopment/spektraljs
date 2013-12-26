@@ -93,6 +93,19 @@
         }
     };
 
+    //////////////////
+    ////HAS EVENT LISTENER
+    //////////////////
+    //Spektral.hasEventListener = function (target, evt) {
+
+        //My understanding is the only way to do this is by
+        //storing all event attachments in an object and 
+        //checking that object for pre-existing events
+        //that have already been attached
+
+        //Not sure if this is worth it
+    //};
+
     //////////////////////////////////////
     ////GET KEY
     //////////////////////////////////////
