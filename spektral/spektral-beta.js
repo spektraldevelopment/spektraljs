@@ -1596,7 +1596,7 @@
     ////////////////////
     ////NAVIGATE TO URL
     ////////////////////
-    Spektral.navigateToURL = function(url, newWindow, focusOnNew) {
+    Spektral.navigateToURL = function (url, newWindow, focusOnNew) {
 
         //Still have to test this, also I might allow for multiple window names:
         //ex. _self, _parent etc.
@@ -1621,26 +1621,61 @@
     ////////////////////
     ////GET URL PATH
     ////////////////////
-    Spektral.getURLPath = function() {
+    Spektral.getURLPath = function () {
 
         var 
-            protocol = location.protocol, hostName = location.hostname, 
-            pathName = location.pathname, pathArray = Spektral.splitString(pathName, "/"),  
-            fullPath = "", fullURL, urlObj = {}, i;
+            protocol = window.location.protocol, hostName = window.location.hostname, 
+            pathName = window.location.pathname, pathArray = Spektral.splitString(pathName, "/"),  
+            hashTag = window.location.hash, fullPath = "", fullURL, urlObj = {}, i;
 
         for(i = 0; i < pathArray.length; i += 1) {
             fullPath += "/" + pathArray[i];
         }
 
-        fullURL = protocol + "//" + hostName + fullPath; 
+        fullURL = protocol + "//" + hostName + fullPath + hashTag; 
         
         urlObj["protocol"] = protocol;
         urlObj["host"] = hostName;
         urlObj["path"] = fullPath;
         urlObj["pathArray"] = pathArray;
-        urlObj["url"] = fullURL;
+        urlObj["hash"] = hashTag;
+        urlObj["fullURL"] = fullURL;
+
+        Spektral.log("urlObj: " + Spektral.getInfo(urlObj));
 
         return urlObj;
+    };
+
+    ////////////////////
+    ////CREATE TIMER
+    ////////////////////
+    Spektral.createTimer = function (handler, time) {
+
+        var convertedTime = time * 1000;
+        setInterval(handler, convertedTime);
+    };
+
+    ////////////////////
+    ////CLEAR TIMER
+    ////////////////////
+    Spektral.clearTimer = function (timer) {
+        clearInterval(timer);
+    };
+
+    ////////////////////
+    ////CREATE TIME OUT
+    ////////////////////
+    Spektral.createTimeOut = function (handler, time) {
+
+        var convertedTime = time * 1000;
+        setTimeout(handler, convertedTime);
+    };
+
+    ////////////////////
+    ////CLEAR TIME OUT
+    ////////////////////
+    Spektral.clearTimeOut = function (timeout) {
+        clearTimeOut(timeout);
     };
 
     ///////////////////

@@ -896,15 +896,64 @@
         {
             "category" : ["utils"],
             "title" : "getURLPath()",
-            "description" : "Returns an object containing protocol, host, path, pathArray (contains the path split using its backslashes)",
+            "description" : "Returns an object containing protocol, host, path, pathArray (contains the path split using its backslashes), and fullURL.",
             "code" : "Spektral.getURLPath();",
             "params" : [
             ],
             "returns" : "Object",
             "dependencies" : "splitString",
             "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
+            "title" : "createTimer()",
+            "description" : "Sets a timer.",
+            "code" : "Spektral.createTimer(handler, time);",
+            "params" : [
+                {"handler (required, expects: Function)" : "The function that will be called when the timer is triggered."},
+                {"time (required, expects: Number" : "The interval (seconds)."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
+            "title" : "clearTimer()",
+            "description" : "Clears a timer.",
+            "code" : "Spektral.clearTimer(timer);",
+            "params" : [
+                {"timer" : "The timer you want to clear."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
+            "title" : "createTimeOut()",
+            "description" : "Sets a time out.",
+            "code" : "Spektral.createTimeOut(handler, time);",
+            "params" : [
+                {"handler (required, expects: Function)" : "The function that will be called when the time out is triggered."},
+                {"time (required, expects: Number" : "The interval (seconds)."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
+            "title" : "clearTimeOut()",
+            "description" : "Clears a time out.",
+            "code" : "Spektral.clearTimeOut(timeout);",
+            "params" : [
+                {"timeout" : "The timeout you want to clear."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
         }
-
     ],
     "debug" : [
         {

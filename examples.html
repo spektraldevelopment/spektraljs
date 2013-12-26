@@ -953,7 +953,7 @@ function onClickEvent(evt) {
                 <div class="elementContainer">
                     <div class="innerElementHolder">
                         <h3 class="elementContainerTitle">Test Elements</h3>
-                        <a id="ceAnchor" href="http://www.spektraldevelopment.com" class="testAnchor">a - href="spektraldevelopment.com"</a>
+                        <a id="ceAnchor" href="#ceHash" class="testAnchor">a - href="spektraldevelopment.com"</a>
                     </div>
                 </div>
                 <div class="exampleCodeContainer">
@@ -961,12 +961,11 @@ function onClickEvent(evt) {
                         <h3 class="exampleCodeHeader">Example Code</h3>
                         <pre class="prettyprint">
 var
-    testAnchor = Spektral.getElement("ceAnchor"),
-    clickEvent = Spektral.createEvent("click");
+    testAnchor = Spektral.getElement("ceAnchor");
 
 Spektral.attachEventListener(testAnchor, "click", onClickEvent);
 
-Spektral.triggerEvent(testAnchor, clickEvent);
+Spektral.triggerEvent(testAnchor, "click");
 
 function onClickEvent(evt) {
 

@@ -733,18 +733,20 @@
 
             var
                 testAnchor = Spektral.getElement("ceAnchor"),
-                clickEvent = Spektral.createEvent("click"),
-                ceResult, canCancel, canBubble, currentURL = Spektral.getURLPath();
+                //clickEvent = Spektral.createEvent("click"),
+                ceResult, canCancel, canBubble, hash;
 
             Spektral.attachEventListener(testAnchor, "click", onClickEvent);
-
-            Spektral.triggerEvent(testAnchor, clickEvent);
 
             function onClickEvent(evt) {
 
                 //Stops browser from navigating to href
-                Spektral.cancelEvent(evt);
+                hash = Spektral.getURLPath().hash;
+                Spektral.log("HASH!!!!: " + hash);
+                //Spektral.cancelEvent(evt);
             }
+
+            Spektral.triggerEvent(testAnchor, "click");
         };
 
         adjustExamples();
