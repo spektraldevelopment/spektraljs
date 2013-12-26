@@ -313,14 +313,14 @@
         {
             "category" : ["event"],
             "title" : "triggerEvent()",
-            "description" : "Triggers a custom event.",
+            "description" : "Triggers a default or custom event.",
             "code" : "Spektral.triggerEvent(obj, evt);",
             "params" : [
                 {"obj (required, expects: Element, Object, or DOM)" : "The name of the object you want to fire the event from."},
-                {"evt (optional, expects: Object)" : "The event that was defined using Spektral.createEvent. Working on allowing default events such as click, load etc."}
+                {"evt (optional, expects: Object or String)" : "Accepts default and custom events."}
             ],
             "returns" : "Nothing",
-            "dependencies" : "None",
+            "dependencies" : "createEvent",
             "compatibility" : "Currently in testing."
         },
         {

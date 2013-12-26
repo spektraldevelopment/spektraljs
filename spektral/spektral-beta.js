@@ -140,12 +140,18 @@
     //////////////////
     Spektral.triggerEvent = function (obj, evt) {
 
-        //I plan to allow event to be a string or object
-        //as well as work with standard events
-        //If a string, I'll have to find a way to find the event by it's name
-        //in order to trigger it
-        //I'm also going to look into making this method as cross compatible as possible
-        obj.dispatchEvent(evt);
+        var 
+            theEvent = evt, newEvent,
+            evtType = Spektral.getType(theEvent);
+        //Spektral.log("triggerEvent: evt: " + evtType);
+
+        if(evtType === "event" || evtType === "customevent") {
+            obj.dispatchEvent(theEvent);
+        } else if (evtType === "string") {
+            //Spektral.log("evt is a string. Will handle.");
+            newEvent = Spektral.createEvent(theEvent);
+            obj.dispatchEvent(newEvent);
+        }
     };
 
     //////////////////

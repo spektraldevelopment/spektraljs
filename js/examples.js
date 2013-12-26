@@ -686,6 +686,44 @@
             addTestResultToContainer("createEvent", "Returned event has a parameter spektral that returns the value js: ", hasSpektral);
         };
 
+        //////////////////////
+        ////TRIGGER EVENT
+        //////////////////////
+        triggerEvent();
+
+        function triggerEvent() {
+
+            var
+                testDiv = Spektral.getElement("teDiv"),
+                customEvent = Spektral.createEvent("testEvent"),
+                customTriggered = false, defaultTriggered = false,
+                customResult, defaultResult;
+
+            //Custom Event
+            Spektral.attachEventListener(testDiv, "testEvent", onCustomEvent);
+            //Default Event
+            Spektral.attachEventListener(testDiv, "click", onClickEvent);
+
+            Spektral.triggerEvent(testDiv, customEvent);
+            Spektral.triggerEvent(testDiv, "click");
+
+            function onCustomEvent(evt) {
+                //Custom event triggered
+                customTriggered = true;
+            };
+
+            function onClickEvent(evt) {
+                //Click event triggered
+                defaultTriggered = true;
+            };
+
+            customResult = testReturnedValue("triggerEvent", customTriggered, true);
+            defaultResult = testReturnedValue("triggerEvent", defaultTriggered, true);
+
+            addTestResultToContainer("triggerEvent", "Custom event was triggered: ", customResult);
+            addTestResultToContainer("triggerEvent", "Default event was triggered: ", defaultResult);
+        };
+
         adjustExamples();
     };
 

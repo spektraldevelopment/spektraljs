@@ -890,6 +890,53 @@ function onTestEvent(evt) {
                 </div>
             </div>
 
+            <!--******************-->
+            <!--TRIGGER EVENT-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">triggerEvent()</h3>
+                        <div class="description">Triggers a custom event.</div>
+                        <div id="triggerEvent" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <div id="teDiv" class="testDiv">div - id="teDiv"</div>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    testDiv = Spektral.getElement("teDiv"),
+    customEvent = Spektral.createEvent("testEvent");
+
+//Custom Event
+Spektral.attachEventListener(testDiv, "testEvent", onCustomEvent);
+//Default Event
+Spektral.attachEventListener(testDiv, "click", onClickEvent);
+
+Spektral.triggerEvent(testDiv, customEvent);
+Spektral.triggerEvent(testDiv, "click");
+
+function onCustomEvent(evt) {
+    //Custom event triggered
+};
+
+function onClickEvent(evt) {
+    //Click event triggered
+};
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
         <!--END OF MAIN CONTENT-->
         </section>
 
