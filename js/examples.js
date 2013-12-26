@@ -732,9 +732,13 @@
         function cancelEvent() {
 
             var
-                testAnchor = Spektral.getElement("ceAnchor");
+                testAnchor = Spektral.getElement("ceAnchor"),
+                clickEvent = Spektral.createEvent("click"),
+                ceResult, canCancel, canBubble, currentURL = Spektral.getURLPath();
 
             Spektral.attachEventListener(testAnchor, "click", onClickEvent);
+
+            Spektral.triggerEvent(testAnchor, clickEvent);
 
             function onClickEvent(evt) {
 

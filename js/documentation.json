@@ -892,6 +892,17 @@
             "returns" : "Nothing",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
+            "title" : "getURLPath()",
+            "description" : "Returns an object containing protocol, host, path, pathArray (contains the path split using its backslashes)",
+            "code" : "Spektral.getURLPath();",
+            "params" : [
+            ],
+            "returns" : "Object",
+            "dependencies" : "splitString",
+            "compatibility" : "Currently in testing."
         }
 
     ],

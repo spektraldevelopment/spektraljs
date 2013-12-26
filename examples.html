@@ -960,6 +960,19 @@ function onClickEvent(evt) {
                     <div class="innerExampleCodeHolder">
                         <h3 class="exampleCodeHeader">Example Code</h3>
                         <pre class="prettyprint">
+var
+    testAnchor = Spektral.getElement("ceAnchor"),
+    clickEvent = Spektral.createEvent("click");
+
+Spektral.attachEventListener(testAnchor, "click", onClickEvent);
+
+Spektral.triggerEvent(testAnchor, clickEvent);
+
+function onClickEvent(evt) {
+
+    //Stops browser from navigating to href
+    Spektral.cancelEvent(evt);
+}
                         </pre>
                     </div>
                 </div>

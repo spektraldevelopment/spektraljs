@@ -138,14 +138,16 @@
         bub = bub || true;
         can = can || true;
 
-        var event, key;
+        var evt;
 
-        if (detail === null) {
-            event = new Event(eventName);
-        } else {
-            event = new CustomEvent(eventName, { 'detail': detail, bubbles: bub, cancelable: can });
+        evt = new CustomEvent(eventName, { detail: detail, bubbles: bub, cancelable: can });
+
+        if(evt === undefined) {
+            Spektral.log("createEvent: CustomEvent not available. Using Event instead.")
+            evt = new Event(eventName);
         }
-        return event;
+
+        return evt;
     };
 
     //////////////////
@@ -1614,6 +1616,31 @@
                 window.focus();
             }
         }
+    };
+
+    ////////////////////
+    ////GET URL PATH
+    ////////////////////
+    Spektral.getURLPath = function() {
+
+        var 
+            protocol = location.protocol, hostName = location.hostname, 
+            pathName = location.pathname, pathArray = Spektral.splitString(pathName, "/"),  
+            fullPath = "", fullURL, urlObj = {}, i;
+
+        for(i = 0; i < pathArray.length; i += 1) {
+            fullPath += "/" + pathArray[i];
+        }
+
+        fullURL = protocol + "//" + hostName + fullPath; 
+        
+        urlObj["protocol"] = protocol;
+        urlObj["host"] = hostName;
+        urlObj["path"] = fullPath;
+        urlObj["pathArray"] = pathArray;
+        urlObj["url"] = fullURL;
+
+        return urlObj;
     };
 
     ///////////////////
