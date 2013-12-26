@@ -754,6 +754,37 @@
             };
         };
 
+        //////////////////////
+        ////CANCEL PROPAGATION
+        //////////////////////
+        cancelPropagation();
+
+        function cancelPropagation() {
+
+            var
+                testDiv = Spektral.getElement("cpDiv"),
+                testEvent = Spektral.createEvent("testEvent"), callCount = 0,
+                cpResult;
+
+            Spektral.attachEventListener(document, "testEvent", onTestEvent);
+            Spektral.attachEventListener(testDiv, "testEvent", onTestEvent);
+
+            Spektral.triggerEvent(testDiv, testEvent);
+
+            function onTestEvent(evt) {
+
+                callCount += 1;
+                //Without cancelPropagation this function
+                //is called twice due to the event
+                //bubbling up from testDiv to the document
+                Spektral.cancelPropagation(evt);
+            };
+
+            cpResult = testReturnedValue("cancelPropagation", callCount, 1);
+
+            addTestResultToContainer("cancelPropagation", "The function called only once: ", cpResult);
+        };
+
         adjustExamples();
     };
 

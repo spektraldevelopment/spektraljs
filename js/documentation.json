@@ -329,7 +329,7 @@
             "description" : "Prevents default action triggered by event.",
             "code" : "Spektral.cancelEvent(evt);",
             "params" : [
-                {"evt (required, expects: Returned event value)" : "The returned value event from the function assigned to the event."}
+                {"evt (required, expects: Event object)" : "The returned event object from the function assigned to the event."}
             ],
             "returns" : "Nothing",
             "dependencies" : "None",
@@ -338,10 +338,10 @@
         {
             "category" : ["event"],
             "title" : "cancelPropagation()",
-            "description" : "Stops the event from bubbling up to parent elements.",
+            "description" : "Stops event from bubbling up into parent elements.",
             "code" : "Spektral.stopPropagation(evt);",
             "params" : [
-                {"evt (required, expects: Returned event value)" : "The returned value event from the function assigned to the event."}
+                {"evt (required, expects: Event object)" : "The returned event object from the function assigned to the event."}
             ],
             "returns" : "Nothing",
             "dependencies" : "None",

@@ -986,6 +986,50 @@ function checkForHash() {
                 </div>
             </div>
 
+            <!--******************-->
+            <!--CANCEL PROPAGATION-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">stopPropagation()</h3>
+                        <div class="description">Stops event from bubbling up into parent elements.</div>
+                        <div id="cancelPropagation" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <div id="cpDiv" class="testDiv">div - id="cpDiv"</div>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    testDiv = Spektral.getElement("spDiv"),
+    testEvent = Spektral.createEvent("testEvent"), evtTarget;
+
+Spektral.attachEventListener(document, "testEvent", onTestEvent);
+Spektral.attachEventListener(testDiv, "testEvent", onTestEvent);
+
+Spektral.triggerEvent(testDiv, testEvent);
+
+function onTestEvent(evt) {
+
+    //Without cancelPropagation this function
+    //is called twice due to the event
+    //bubbling up from testDiv to the document
+    Spektral.cancelPropagation(evt);
+};
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
         <!--END OF MAIN CONTENT-->
         </section>
 
