@@ -119,18 +119,18 @@
     //////////////////
     ////CREATE EVENT
     //////////////////
-    Spektral.createEvent = function (eventName, details, bub, can) {
+    Spektral.createEvent = function (eventName, detail, bub, can) {
 
-        details = details || null;
+        detail = detail || null;
         bub = bub || true;
         can = can || true;
 
         var event, key;
 
-        if (details === null) {
+        if (detail === null) {
             event = new Event(eventName);
         } else {
-            event = new CustomEvent(eventName, { 'detail': details, bubbles: bub, cancelable: can });
+            event = new CustomEvent(eventName, { 'detail': detail, bubbles: bub, cancelable: can });
         }
         return event;
     };

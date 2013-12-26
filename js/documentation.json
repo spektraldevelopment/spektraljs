@@ -299,10 +299,10 @@
             "category" : ["event"],
             "title" : "createEvent()",
             "description" : "Creates a custom event.",
-            "code" : "Spektral.createEvent(eventName, details, bub, can);",
+            "code" : "Spektral.createEvent(eventName, detail, bub, can);",
             "params" : [
                 {"eventName (required, expects: String)" : "The name of the custom event you wish to create."},
-                {"details (optional, expects: Object)" : "Allows you to pass custom properties to the event."},
+                {"detail (optional, expects: Object)" : "Allows you to pass custom properties to the event. Accessed through the <i>detail</i> object."},
                 {"bub (optional, expects: Boolean, default: true)" : "Determines whether event can bubble."},
                 {"can (optional, expects: Boolean, default: true)" : "Determines whether event can be canceled."}
             ],

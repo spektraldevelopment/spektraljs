@@ -653,6 +653,39 @@
             addTestResultToContainer("detachEventListener", "The evt was not triggered: ", delResult);
         };
 
+        //////////////////////
+        ////CREATE EVENT
+        //////////////////////
+        createEvent();
+
+        function createEvent() {
+
+            var
+                testDiv = Spektral.getElement("ceDiv"),
+                customEvent = Spektral.createEvent("testEvent", {foo : "bar", spektral : "js"}),
+                foo, spektral, evtTriggered = false, ceResult, hasFoo, hasSpektral;
+
+            Spektral.attachEventListener(testDiv, "testEvent", onTestEvent);
+
+            Spektral.triggerEvent(testDiv, customEvent);
+
+            function onTestEvent(evt) {
+
+                //test event
+                foo = evt.detail.foo;
+                spektral = evt.detail.spektral;
+                evtTriggered = true;
+            };
+
+            ceResult = testReturnedValue("createEvent", evtTriggered, true);
+            hasFoo = testReturnedValue("createEvent", foo, "bar");
+            hasSpektral = testReturnedValue("createEvent", spektral, "js");
+
+            addTestResultToContainer("createEvent", "Event was created and triggered: ", ceResult);
+            addTestResultToContainer("createEvent", "Returned event has a parameter foo that returns the value bar: ", hasFoo);
+            addTestResultToContainer("createEvent", "Returned event has a parameter spektral that returns the value js: ", hasSpektral);
+        };
+
         adjustExamples();
     };
 
