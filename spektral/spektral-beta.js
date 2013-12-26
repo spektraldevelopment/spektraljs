@@ -1641,15 +1641,29 @@
         urlObj["hash"] = hashTag;
         urlObj["fullURL"] = fullURL;
 
-        Spektral.log("urlObj: " + Spektral.getInfo(urlObj));
+        //Spektral.log("urlObj: " + Spektral.getInfo(urlObj));
 
         return urlObj;
     };
 
     ////////////////////
+    ////HASH DETECTED
+    ////////////////////
+    Spektral.hashDetected = function () {
+
+        var 
+            detected = false, 
+            hash = window.location.hash;
+        if(hash !== "") {
+            detected = true;
+        }
+        return detected;
+    };
+
+    ////////////////////
     ////CREATE TIMER
     ////////////////////
-    Spektral.createTimer = function (handler, time) {
+    Spektral.createTimer = function (time, handler) {
 
         var convertedTime = time * 1000;
         setInterval(handler, convertedTime);
@@ -1665,17 +1679,17 @@
     ////////////////////
     ////CREATE TIME OUT
     ////////////////////
-    Spektral.createTimeOut = function (handler, time) {
+    Spektral.createTimeOut = function (time, handler) {
 
         var convertedTime = time * 1000;
         setTimeout(handler, convertedTime);
     };
 
     ////////////////////
-    ////CLEAR TIME OUT
+    ////STOP TIME OUT
     ////////////////////
-    Spektral.clearTimeOut = function (timeout) {
-        clearTimeOut(timeout);
+    Spektral.stopTimeOut = function (timeout) {
+        clearTimeout(timeout);
     };
 
     ///////////////////

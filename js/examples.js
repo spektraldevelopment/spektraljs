@@ -733,20 +733,25 @@
 
             var
                 testAnchor = Spektral.getElement("ceAnchor"),
-                //clickEvent = Spektral.createEvent("click"),
-                ceResult, canCancel, canBubble, hash;
+                ceResult, canCancel, canBubble, hash, hashCheck;
 
             Spektral.attachEventListener(testAnchor, "click", onClickEvent);
+
+            Spektral.triggerEvent(testAnchor, "click");
 
             function onClickEvent(evt) {
 
                 //Stops browser from navigating to href
-                hash = Spektral.getURLPath().hash;
-                Spektral.log("HASH!!!!: " + hash);
-                //Spektral.cancelEvent(evt);
-            }
+                hashCheck = Spektral.createTimeOut(3, checkForHash);
+                Spektral.cancelEvent(evt);
+            };
 
-            Spektral.triggerEvent(testAnchor, "click");
+            function checkForHash() {
+                hash = Spektral.hashDetected();
+                ceResult = testReturnedValue("cancelEvent", hash, false);
+
+                addTestResultToContainer("cancelEvent", "No hash #ceHash: ", ceResult);
+            };
         };
 
         adjustExamples();

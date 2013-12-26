@@ -906,12 +906,23 @@
         },
         {
             "category" : ["utils"],
+            "title" : "hashDetected()",
+            "description" : "Detects if a hash tag is in the url bar.",
+            "code" : "Spektral.hashDetected();",
+            "params" : [
+            ],
+            "returns" : "Boolean",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
             "title" : "createTimer()",
             "description" : "Sets a timer.",
-            "code" : "Spektral.createTimer(handler, time);",
+            "code" : "Spektral.createTimer(time, handler);",
             "params" : [
-                {"handler (required, expects: Function)" : "The function that will be called when the timer is triggered."},
-                {"time (required, expects: Number" : "The interval (seconds)."}
+                {"time (required, expects: Number" : "The interval (seconds)."},
+                {"handler (required, expects: Function)" : "The function that will be called when the timer is triggered."}
             ],
             "returns" : "Nothing",
             "dependencies" : "None",
@@ -933,10 +944,10 @@
             "category" : ["utils"],
             "title" : "createTimeOut()",
             "description" : "Sets a time out.",
-            "code" : "Spektral.createTimeOut(handler, time);",
+            "code" : "Spektral.createTimeOut(time, handler);",
             "params" : [
-                {"handler (required, expects: Function)" : "The function that will be called when the time out is triggered."},
-                {"time (required, expects: Number" : "The interval (seconds)."}
+                {"time (required, expects: Number" : "The interval (seconds)."},
+                {"handler (required, expects: Function)" : "The function that will be called when the time out is triggered."}
             ],
             "returns" : "Nothing",
             "dependencies" : "None",
@@ -944,11 +955,11 @@
         },
         {
             "category" : ["utils"],
-            "title" : "clearTimeOut()",
-            "description" : "Clears a time out.",
-            "code" : "Spektral.clearTimeOut(timeout);",
+            "title" : "stopTimeOut()",
+            "description" : "Stops a time out from completing.",
+            "code" : "Spektral.stopTimeOut(timeout);",
             "params" : [
-                {"timeout" : "The timeout you want to clear."}
+                {"timeout" : "The timeout you want to stop."}
             ],
             "returns" : "Nothing",
             "dependencies" : "None",
