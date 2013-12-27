@@ -44,7 +44,7 @@
             "description" : "Returns the target element that is attached to the triggered event.",
             "code" : "Spektral.getTarget(element);",
             "params" : [
-                {"evt (required, expects: Returned event value)" : "The returned event object from the function assigned to the event."}
+                {"evt (required, expects: Returned event object)" : "The returned event object from the function assigned to the event."}
             ],
             "returns" : "Element",
             "dependencies" : "None",
@@ -352,10 +352,10 @@
         {
             "category" : ["event, utils"],
             "title" : "getMousePos()",
-            "description" : "Returns the mouses X/Y co-ordinates either with an element or window.",
+            "description" : "Returns the mouses X/Y co-ordinates either with an element or window. Returns parameters x, y, mouseX (X position relative to target elements X position), mouseY (Y position relative to target elements Y position).",
             "code" : "Spektral.getMousePos(evt);",
             "params" : [
-                {"evt (required, expects: Returned event value)" : "The returned value event from the function assigned to the event."}
+                {"evt (required, expects: Returned event object)" : "The returned event object from the function assigned to the event."}
             ],
             "returns" : "Object",
             "dependencies" : "throwError(), getTarget(), getPos()",
@@ -706,7 +706,7 @@
             "code" : "Spektral.roundNum(num, type);",
             "params" : [
                 {"num (required, expects: Number)" : ""},
-                {"type (optional, default: \"regular\")" : "\"regular\" will use Math.round, but you could also pass \"up\" (Math.ceil) or \"down\" (Math.floor)."}
+                {"type (optional, expects: String, default: \"regular\")" : "\"regular\" will use Math.round, but you could also pass \"up\" (Math.ceil) or \"down\" (Math.floor)."}
             ],
             "returns" : "Number",
             "dependencies" : "None",
@@ -788,7 +788,7 @@
         {
             "category" : ["utils"],
             "title" : "getPos()",
-            "description" : "Returns an object containing the x, y, left, top, right, bottom properties of an element.",
+            "description" : "Returns an object containing x, y, left, top, right, bottom (position relative to browser viewport), and relX, relY, relLeft, relTop, relRight, relBottom (position relative to parent) properties of an element.",
             "code" : "Spektral.getPos(element);",
             "params" : [
                 {"element (required, expects: Element)" : "The element you want get the position data from."}

@@ -785,6 +785,54 @@
             addTestResultToContainer("cancelPropagation", "The function called only once: ", cpResult);
         };
 
+        //////////////////////
+        ////GET MOUSE POS
+        //////////////////////
+        getMousePos();
+
+        function getMousePos() {
+
+            var
+                testDiv = Spektral.getElement("gmpDiv"),
+                mousePos, divX, divY, winX, winY, targetID;
+
+            Spektral.attachEventListener(window, "mousemove", onMouseMove);
+            Spektral.attachEventListener(testDiv, "mousemove", onMouseMove);
+
+            function onMouseMove(evt) {
+
+                targetID = Spektral.getTargetID(evt);
+                mousePos = Spektral.getMousePos2(evt);
+
+                if(targetID === "gmpDiv") {
+//                    divX = mousePos.mouseX;
+//                    divY = mousePos.mouseY;
+//                    console.log("divX: " + divX + " divY: " + divY);
+                } else {
+//                    winX = mousePos.x;
+//                    winY = mousePos.y;
+                    //console.log("winX: " + winX + " winY: " + winY);
+                }
+            };
+        };
+
+        //////////////////////
+        ////GET POS
+        //////////////////////
+//        getPos();
+//
+//        function getPos() {
+//
+//            var
+//                testDiv = Spektral.getElement("gpDiv"), pos, posX, posY;
+//
+//            pos = Spektral.getPos(testDiv);
+//            posX = pos.x;
+//            posY = pos.y;
+//
+//            console.log("getPos: posX: " + posX + " posY: " + posY);
+//        };
+
         adjustExamples();
     };
 

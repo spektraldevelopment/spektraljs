@@ -240,20 +240,20 @@
     ///GET MOUSE POS - In the midst of getting mouseX/Y within the element
     ///////////////////
     Spektral.getMousePos = function (evt) {
-        //evt = evt || window.event;
 
         if (evt === undefined) {
             Spektral.throwError("getMousePos: Event is undefined. If not targeting a specific element, use [window].");
         }
 
         var 
-            mouse = {}, 
-            x = 0, 
-            y = 0, 
+            mouse = {}, x = 0, y = 0, 
             offsetX = 0, offsetY = 0, 
             mouseX = 0, mouseY = 0, 
             target = Spektral.getTarget(evt), 
-            targetX = Spektral.getPos(target).x, targetY = Spektral.getPos(target).y;
+            targetX = Spektral.getPos(target).x, 
+            targetY = Spektral.getPos(target).y,
+            cY = evt.clientY,
+            docElem = document.documentElement;
 
         // if event object has pageX property
         // get position using pageX, pageY
@@ -285,9 +285,50 @@
         mouse["x"] = Spektral.roundNum(x);
         mouse["y"] = Spektral.roundNum(y);
         mouse["mouseX"] = Spektral.roundNum(x - targetX);
-        mouse["mouseY"] = Spektral.roundNum(y - targetY);//Appears to work, but try on inline elements to be sure.
+        mouse["mouseY"] = Spektral.roundNum(cY - targetY);//Appears to work, but try on inline elements to be sure.
 
         return mouse;
+    };
+
+    ///////////////////
+    ///GET MOUSE POS 2
+    ///////////////////
+    Spektral.getMousePos2 = function (evt) {
+
+        var 
+            mousePos = {}, 
+            pageX = evt.pageX, pageY = evt.pageY,
+            screenX = evt.screenX, screenY = evt.screenY,
+            clientX = evt.clientX, clientY = evt.clientY,
+            offsetX, offsetY,
+            docElem = document.documentElement;
+
+        // if documentElement.scrollLeft supported
+        if (docElem.scrollLeft) {
+
+            offsetX = docElem.scrollLeft;
+            offsetY = docElem.scrollTop;
+        } else if (document.body) {
+
+            offsetX = document.body.scrollLeft;
+            offsetY = document.body.scrollTop;
+        }
+
+        mousePos["pageX"] = Spektral.roundNum(pageX);
+        mousePos["pageY"] = Spektral.roundNum(pageY;
+
+        mousePos["screenX"] = Spektral.roundNum(screenX);
+        mousePos["screenY"] = Spektral.roundNum(screenY);
+
+        mousePos["clientX"] = Spektral.roundNum(clientX);
+        mousePos["clientY"] = Spektral.roundNum(clientY);
+
+        mousePos["offsetX"] = Spektral.roundNum(offsetX);
+        mousePos["offsetY"] = Spektral.roundNum(offsetY);
+
+        Spektral.log("mousePos: " + Spektral.getInfo(mousePos));
+
+        return mousePos;
     };
 
     ///////////////////
@@ -1180,39 +1221,44 @@
     ////////////////////
     Spektral.getPos = function (element, rel) {
 
-        Spektral.log("relative after: " + rel);
+        rel = rel || true;
 
         var 
             pos = {}, 
             parent = Spektral.getParent(element),
             el = element.getBoundingClientRect(),
             par = parent.getBoundingClientRect(),
-            left, top,
-            right, bottom;
+            left, top, right, bottom, 
+            relLeft, relTop, relRight, relBottom;
 
-        if(rel === true) {
             //Position relative to parent
-            top = (el.top - par.top);
-            right = (par.right - el.right);
-            bottom = (par.bottom - el.bottom);
-            left = (el.left - par.left);
-        } else {
-            //Position relative to browser
+            relTop = (el.top - par.top);
+            relRight = (par.right - el.right);
+            relBottom = (par.bottom - el.bottom);
+            relLeft = (el.left - par.left);
+
+            //position relative to viewport
             top = el.top;
             right = el.right;
             bottom = el.bottom;
             left = el.left;
-        }
 
         //Spektral.log("getPos top: " + top + " right: " + right + " bottom: " + bottom + " left: " + left);    
 
         pos["x"] = left;
         pos["y"] = top;
+        pos["relX"] = relLeft;
+        pos["relY"] = relTop;
         
         pos["top"] = top;
         pos["right"] = right;
         pos["bottom"] = bottom;
         pos["left"] = left;
+
+        pos["relTop"] = relTop;
+        pos["relRight"] = relRight;
+        pos["relBottom"] = relBottom;
+        pos["relLeft"] = relLeft;
 
         return pos;
     };
