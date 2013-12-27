@@ -795,7 +795,10 @@
             var
                 testDiv = Spektral.getElement("gmpDiv"),
                 mousePos, divX, divY, pageX, pageY,
-                targetID, viewX, viewY, screenX, screenY;
+                targetID, viewX, viewY, screenX, screenY,
+                objectReceived = false, gmpResult, hasInnerX, hasInnerY,
+                hasViewX, hasViewY, hasScreenX, hasScreenY, hasPageX, hasPageY,
+                hasOffsetX, hasOffsetY;
 
             Spektral.attachEventListener(window, "mousemove", onMouseMove);
             Spektral.attachEventListener(testDiv, "mousemove", onMouseMove);
@@ -805,25 +808,59 @@
                 targetID = Spektral.getTargetID(evt);
                 mousePos = Spektral.getMousePos(evt);
 
+                if(objectReceived === false) {
+                    gmpResult = testMethod("getMousePos", mousePos, "object");
+                    addTestResultToContainer("getMousePos", "Returns an object: ", gmpResult);
+                    objectReceived = true;
+                }
+
                 if(targetID === "gmpDiv") {
                     divX = mousePos.innerX;
                     divY = mousePos.innerY;
-                    console.log("divX: " + divX + " divY: " + divY);
+                    //console.log("divX: " + divX + " divY: " + divY);
+
+                    hasInnerX = testMethod("getMousePos", divX, "number");
+                    hasInnerY = testMethod("getMousePos", divY, "number");
+
+                    addTestResultToContainer("getMousePos", "Object returns innerX: ", hasInnerX);
+                    addTestResultToContainer("getMousePos", "Object returns innerY: ", hasInnerY);
+
+                    Spektral.detachEventListener(testDiv, "mousemove", onMouseMove);
                 } else {
-                    console.log("****VIEWPORT******************");
+                    //console.log("****VIEWPORT******************");
                     viewX = mousePos.viewportX;
                     viewY = mousePos.viewportY;
-                    console.log("viewX: " + viewX + " viewY: " + viewY);
+                    //console.log("viewX: " + viewX + " viewY: " + viewY);
 
-                    console.log("****SCREEN******************");
+                    hasViewX = testMethod("getMousePos", viewX, "number");
+                    hasViewY = testMethod("getMousePos", viewY, "number");
+
+                    addTestResultToContainer("getMousePos", "Object returns viewX: ", hasViewX);
+                    addTestResultToContainer("getMousePos", "Object returns viewY: ", hasViewY);
+
+                    //console.log("****SCREEN******************");
                     screenX = mousePos.screenX;
                     screenY = mousePos.screenY;
-                    console.log("screenX: " + screenX + " screenY: " + screenY);
+                    //console.log("screenX: " + screenX + " screenY: " + screenY);
 
-                    console.log("****PAGE******************");
+                    hasScreenX = testMethod("getMousePos", screenX, "number");
+                    hasScreenY = testMethod("getMousePos", screenY, "number");
+
+                    addTestResultToContainer("getMousePos", "Object returns screenX: ", hasScreenX);
+                    addTestResultToContainer("getMousePos", "Object returns screenY: ", hasScreenY);
+
+                    //console.log("****PAGE******************");
                     pageX = mousePos.pageX;
                     pageY = mousePos.pageY;
-                    console.log("pageX: " + pageX + " pageY: " + pageY);
+                    //console.log("pageX: " + pageX + " pageY: " + pageY);
+
+                    hasPageX = testMethod("getMousePos", pageX, "number");
+                    hasPageY = testMethod("getMousePos", pageY, "number");
+
+                    addTestResultToContainer("getMousePos", "Object returns pageX: ", hasPageX);
+                    addTestResultToContainer("getMousePos", "Object returns pageY: ", hasPageY);
+
+                    Spektral.detachEventListener(window, "mousemove", onMouseMove);
                 }
             };
         };
