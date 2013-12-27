@@ -873,6 +873,47 @@
                     Spektral.detachEventListener(window, "mousemove", onMouseMove);
                 }
             };
+
+            //////////////////////
+            ////USE HAND CURSOR
+            //////////////////////
+            useHandCursor();
+
+            function useHandCursor() {
+
+                var
+                    testDiv = Spektral.getElement("uhcDiv"),
+                    cursorType, uhcResult;
+
+                Spektral.useHandCursor(testDiv);
+                cursorType = Spektral.getStyle(testDiv, "cursor");
+
+                uhcResult = testReturnedValue("useHandCursor", cursorType, "pointer");
+                addTestResultToContainer("useHandCursor", "Cursor has been set to pointer: ", uhcResult);
+            };
+
+            //////////////////////
+            ////USE DEFAULT CURSOR
+            //////////////////////
+            useDefaultCursor();
+
+            function useDefaultCursor() {
+
+                var
+                    testDiv = Spektral.getElement("udcDiv"),
+                    cursorType, udcResult;
+
+                //Set cursor to pointer
+                Spektral.useHandCursor(testDiv);
+
+                //Switch cursor back to default
+                Spektral.useDefaultCursor(testDiv);
+
+                cursorType = Spektral.getStyle(testDiv, "cursor");
+
+                udcResult = testReturnedValue("useDefaultCursor", cursorType, "default");
+                addTestResultToContainer("useDefaultCursor", "Cursor is set to default: ", udcResult);
+            };
         };
 
         //////////////////////
