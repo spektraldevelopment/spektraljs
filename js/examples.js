@@ -794,7 +794,7 @@
 
             var
                 testDiv = Spektral.getElement("gmpDiv"),
-                mousePos, divX, divY, pageX, pageY,
+                mousePos, divX, divY, pageX, pageY, offsetX, offsetY,
                 targetID, viewX, viewY, screenX, screenY,
                 objectReceived = false, gmpResult, hasInnerX, hasInnerY,
                 hasViewX, hasViewY, hasScreenX, hasScreenY, hasPageX, hasPageY,
@@ -859,6 +859,16 @@
 
                     addTestResultToContainer("getMousePos", "Object returns pageX: ", hasPageX);
                     addTestResultToContainer("getMousePos", "Object returns pageY: ", hasPageY);
+
+                    //OFFSET
+                    offsetX = mousePos.offsetX;
+                    offsetY = mousePos.offsetY;
+
+                    hasOffsetX = testMethod("getMousePos", offsetX, "number");
+                    hasOffsetY = testMethod("getMousePos", offsetY, "number");
+
+                    addTestResultToContainer("getMousePos", "Object returns offsetX: ", hasOffsetX);
+                    addTestResultToContainer("getMousePos", "Object returns offsetY: ", hasOffsetY);
 
                     Spektral.detachEventListener(window, "mousemove", onMouseMove);
                 }

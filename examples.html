@@ -1056,7 +1056,8 @@ function onTestEvent(evt) {
 var
     testDiv = Spektral.getElement("gmpDiv"),
     mousePos, divX, divY, pageX, pageY,
-    targetID, viewX, viewY, screenX, screenY;
+    targetID, viewX, viewY, screenX, screenY,
+    offsetX, offsetY;
 
 Spektral.attachEventListener(window, "mousemove", onMouseMove);
 Spektral.attachEventListener(testDiv, "mousemove", onMouseMove);
@@ -1081,7 +1082,10 @@ function onMouseMove(evt) {
         //Page
         pageX = mousePos.pageX;
         pageY = mousePos.pageY;
-        console.log("pageX: " + pageX + " pageY: " + pageY);
+
+        //Offset
+        offsetX = mousePos.offsetX;
+        offsetY = mousePos.offsetY;
     }
 };
                         </pre>
