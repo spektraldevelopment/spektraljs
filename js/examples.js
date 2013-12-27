@@ -914,6 +914,32 @@
                 udcResult = testReturnedValue("useDefaultCursor", cursorType, "default");
                 addTestResultToContainer("useDefaultCursor", "Cursor is set to default: ", udcResult);
             };
+
+            //////////////////////
+            ////CONVERT CASE
+            //////////////////////
+            convertCase();
+
+            function convertCase() {
+
+                var
+                    toUpper = "upper text", toLower = "LOWER TEXT",
+                    upper, lower, upperResult, lowerResult,
+                    utDiv = Spektral.getElement("utDiv"),
+                    ltDiv = Spektral.getElement("ltDiv");
+
+                upper = Spektral.convertCase(toUpper, "upper");
+                lower = Spektral.convertCase(toLower);
+
+                Spektral.setInnerText(utDiv, upper);
+                Spektral.setInnerText(ltDiv, lower);
+
+                upperResult = testReturnedValue("convertCase", upper, "UPPER TEXT");
+                lowerResult = testReturnedValue("convertCase", lower, "lower text");
+
+                addTestResultToContainer("convertCase", "String is \"UPPER TEXT\": ", upperResult);
+                addTestResultToContainer("convertCase", "String is \"lower text\": ", lowerResult);
+            };
         };
 
         //////////////////////

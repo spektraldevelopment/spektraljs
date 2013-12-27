@@ -1160,6 +1160,44 @@ Spektral.useDefaultCursor(testDiv);
             </div>
 
             <!--******************-->
+            <!--CONVERT CASE-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">convertCase()</h3>
+                        <div class="description">Converts a string to either all upper or all lower case.</div>
+                        <div id="convertCase" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <div id="utDiv" class="testDiv"></div>
+                        <div id="ltDiv" class="testDiv"></div>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    toUpper = "upper text", toLower = "LOWER TEXT",
+    upper, lower;
+
+//Convert text to upper case
+upper = Spektral.convertCase(toUpper, "upper");
+
+//Convert text to lower case
+lower = Spektral.convertCase(toLower);
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+            <!--******************-->
             <!--GET POS-->
             <!--******************-->
             <!--<div class="example">-->
