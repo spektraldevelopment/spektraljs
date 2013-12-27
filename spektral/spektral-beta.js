@@ -237,66 +237,69 @@
     };
 
     ///////////////////
-    ///GET MOUSE POS - In the midst of getting mouseX/Y within the element
+    ///GET MOUSE POS - OLD
+    ///////////////////
+    // Spektral.getMousePos = function (evt) {
+
+    //     if (evt === undefined) {
+    //         Spektral.throwError("getMousePos: Event is undefined. If not targeting a specific element, use [window].");
+    //     }
+
+    //     var 
+    //         mouse = {}, x = 0, y = 0, 
+    //         offsetX = 0, offsetY = 0, 
+    //         mouseX = 0, mouseY = 0, 
+    //         target = Spektral.getTarget(evt), 
+    //         targetX = Spektral.getPos(target).x, 
+    //         targetY = Spektral.getPos(target).y,
+    //         cY = evt.clientY,
+    //         docElem = document.documentElement;
+
+    //     // if event object has pageX property
+    //     // get position using pageX, pageY
+    //     if (evt.pageX) {
+
+    //         x = evt.pageX;
+    //         y = evt.pageY;
+    //         //Spektral.log("PageX/Y available.");
+    //     } else if (evt.clientX) {
+                
+    //         // if documentElement.scrollLeft supported
+    //         if (docElem.scrollLeft) {
+
+    //             offsetX = docElem.scrollLeft;
+    //             offsetY = docElem.scrollTop;
+    //         } else if (document.body) {
+
+    //             offsetX = document.body.scrollLeft;
+    //             offsetY = document.body.scrollTop;
+    //         }
+
+    //         x = evt.clientX + offsetX;
+    //         y = evt.clientY + offsetY;  
+    //         //Spektral.log("ClientX/Y available.");
+    //     } else {
+    //         Spektral.throwError("getMousePos: pageX/Y and clientX/Y could not be found.");
+    //     }
+
+    //     mouse["x"] = Spektral.roundNum(x);
+    //     mouse["y"] = Spektral.roundNum(y);
+    //     mouse["mouseX"] = Spektral.roundNum(x - targetX);
+    //     mouse["mouseY"] = Spektral.roundNum(cY - targetY);//Appears to work, but try on inline elements to be sure.
+
+    //     return mouse;
+    // };
+
+    ///////////////////
+    ///GET MOUSE POS 
     ///////////////////
     Spektral.getMousePos = function (evt) {
 
-        if (evt === undefined) {
-            Spektral.throwError("getMousePos: Event is undefined. If not targeting a specific element, use [window].");
-        }
-
         var 
-            mouse = {}, x = 0, y = 0, 
-            offsetX = 0, offsetY = 0, 
-            mouseX = 0, mouseY = 0, 
+            mousePos = {}, 
             target = Spektral.getTarget(evt), 
             targetX = Spektral.getPos(target).x, 
             targetY = Spektral.getPos(target).y,
-            cY = evt.clientY,
-            docElem = document.documentElement;
-
-        // if event object has pageX property
-        // get position using pageX, pageY
-        if (evt.pageX) {
-
-            x = evt.pageX;
-            y = evt.pageY;
-            //Spektral.log("PageX/Y available.");
-        } else if (evt.clientX) {
-                
-            // if documentElement.scrollLeft supported
-            if (docElem.scrollLeft) {
-
-                offsetX = docElem.scrollLeft;
-                offsetY = docElem.scrollTop;
-            } else if (document.body) {
-
-                offsetX = document.body.scrollLeft;
-                offsetY = document.body.scrollTop;
-            }
-
-            x = evt.clientX + offsetX;
-            y = evt.clientY + offsetY;  
-            //Spektral.log("ClientX/Y available.");
-        } else {
-            Spektral.throwError("getMousePos: pageX/Y and clientX/Y could not be found.");
-        }
-
-        mouse["x"] = Spektral.roundNum(x);
-        mouse["y"] = Spektral.roundNum(y);
-        mouse["mouseX"] = Spektral.roundNum(x - targetX);
-        mouse["mouseY"] = Spektral.roundNum(cY - targetY);//Appears to work, but try on inline elements to be sure.
-
-        return mouse;
-    };
-
-    ///////////////////
-    ///GET MOUSE POS 2
-    ///////////////////
-    Spektral.getMousePos2 = function (evt) {
-
-        var 
-            mousePos = {}, 
             pageX = evt.pageX, pageY = evt.pageY,
             screenX = evt.screenX, screenY = evt.screenY,
             clientX = evt.clientX, clientY = evt.clientY,
@@ -314,19 +317,24 @@
             offsetY = document.body.scrollTop;
         }
 
-        mousePos["pageX"] = Spektral.roundNum(pageX);
-        mousePos["pageY"] = Spektral.roundNum(pageY;
+        //pageX/Y = documentX/Y
+        //screenX/Y = screenX/Y
+        //clientX/Y = viewportX/Y
+
+        mousePos["innerX"] = Spektral.roundNum(clientX - targetX);
+        mousePos["innerY"] = Spektral.roundNum(clientY - targetY);
+
+        mousePos["documentX"] = Spektral.roundNum(pageX);
+        mousePos["documentY"] = Spektral.roundNum(pageY);
 
         mousePos["screenX"] = Spektral.roundNum(screenX);
         mousePos["screenY"] = Spektral.roundNum(screenY);
 
-        mousePos["clientX"] = Spektral.roundNum(clientX);
-        mousePos["clientY"] = Spektral.roundNum(clientY);
+        mousePos["viewportX"] = Spektral.roundNum(clientX);
+        mousePos["viewportY"] = Spektral.roundNum(clientY);
 
         mousePos["offsetX"] = Spektral.roundNum(offsetX);
         mousePos["offsetY"] = Spektral.roundNum(offsetY);
-
-        Spektral.log("mousePos: " + Spektral.getInfo(mousePos));
 
         return mousePos;
     };

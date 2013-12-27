@@ -1053,6 +1053,37 @@ function onTestEvent(evt) {
                     <div class="innerExampleCodeHolder">
                         <h3 class="exampleCodeHeader">Example Code</h3>
                         <pre class="prettyprint">
+var
+    testDiv = Spektral.getElement("gmpDiv"),
+    mousePos, divX, divY, documentX, documentY,
+    targetID, viewX, viewY, screenX, screenY;
+
+Spektral.attachEventListener(window, "mousemove", onMouseMove);
+Spektral.attachEventListener(testDiv, "mousemove", onMouseMove);
+
+function onMouseMove(evt) {
+
+    targetID = Spektral.getTargetID(evt);
+    mousePos = Spektral.getMousePos2(evt);
+
+    if(targetID === "gmpDiv") {
+        divX = mousePos.innerX;
+        divY = mousePos.innerY;
+    } else {
+        //Viewport
+        viewX = mousePos.viewportX;
+        viewY = mousePos.viewportY;
+
+        //Screen
+        screenX = mousePos.screenX;
+        screenY = mousePos.screenY;
+
+        //Document
+        documentX = mousePos.documentX;
+        documentY = mousePos.documentY;
+        console.log("documentX: " + documentX + " documentY: " + documentY);
+    }
+};
                         </pre>
                     </div>
                 </div>

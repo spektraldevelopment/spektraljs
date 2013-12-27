@@ -794,7 +794,8 @@
 
             var
                 testDiv = Spektral.getElement("gmpDiv"),
-                mousePos, divX, divY, winX, winY, targetID;
+                mousePos, divX, divY, browserX, browserY,
+                targetID, viewX, viewY, screenX, screenY;
 
             Spektral.attachEventListener(window, "mousemove", onMouseMove);
             Spektral.attachEventListener(testDiv, "mousemove", onMouseMove);
@@ -805,13 +806,24 @@
                 mousePos = Spektral.getMousePos2(evt);
 
                 if(targetID === "gmpDiv") {
-//                    divX = mousePos.mouseX;
-//                    divY = mousePos.mouseY;
-//                    console.log("divX: " + divX + " divY: " + divY);
+                    divX = mousePos.innerX;
+                    divY = mousePos.innerY;
+                    console.log("divX: " + divX + " divY: " + divY);
                 } else {
-//                    winX = mousePos.x;
-//                    winY = mousePos.y;
-                    //console.log("winX: " + winX + " winY: " + winY);
+                    console.log("****VIEWPORT******************");
+                    viewX = mousePos.viewportX;
+                    viewY = mousePos.viewportY;
+                    console.log("viewX: " + viewX + " viewY: " + viewY);
+
+                    console.log("****SCREEN******************");
+                    screenX = mousePos.screenX;
+                    screenY = mousePos.screenY;
+                    console.log("screenX: " + screenX + " screenY: " + screenY);
+
+                    console.log("****DOCUMENT******************");
+                    browserX = mousePos.documentX;
+                    browserY = mousePos.documentY;
+                    console.log("documentX: " + documentX + " documentY: " + documentY);
                 }
             };
         };
