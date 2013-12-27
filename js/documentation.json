@@ -352,7 +352,7 @@
         {
             "category" : ["event, utils"],
             "title" : "getMousePos()",
-            "description" : "Returns the mouses X/Y co-ordinates either with an element or window. Returns parameters x, y, mouseX (X position relative to target elements X position), mouseY (Y position relative to target elements Y position).",
+            "description" : "Returns and object containing:</br>innerX, innerY - (The x and y positions inside the target element),</br>pageX, pageY - (The x and y positions on the entire page/document),</br>screenX, screenY - (The x and y positions on the screen/monitor itself),</br>viewportX, viewportY - (The x and y positions in the visible</br>display area in the browser),</br>offsetX (scrollLeft), offsetY(scrollTop)",
             "code" : "Spektral.getMousePos(evt);",
             "params" : [
                 {"evt (required, expects: Returned event object)" : "The returned event object from the function assigned to the event."}

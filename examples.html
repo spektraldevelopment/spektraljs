@@ -1037,7 +1037,7 @@ function onTestEvent(evt) {
                 <div class="informationContainer">
                     <div class="innerInfoHolder">
                         <h3 class="method">getMousePos()</h3>
-                        <div class="description">Returns the mouses X/Y co-ordinates either with an element or window. Returns parameters x, y, mouseX (X position relative to target element X position), mouseY (Y position relative to target element Y position).</div>
+                        <div class="description">Returns and object containing:</br>innerX, innerY - (The x and y positions inside the target element),</br>pageX, pageY - (The x and y positions on the entire page/document),</br>screenX, screenY - (The x and y positions on the screen/monitor itself),</br>viewportX, viewportY - (The x and y positions in the visible</br>display area in the browser),</br>offsetX (scrollLeft), offsetY(scrollTop)</div>
                         <div id="getMousePos" class="testingContainer">
                             <h3 class="results">Testing Results</h3>
                         </div>
@@ -1055,7 +1055,7 @@ function onTestEvent(evt) {
                         <pre class="prettyprint">
 var
     testDiv = Spektral.getElement("gmpDiv"),
-    mousePos, divX, divY, documentX, documentY,
+    mousePos, divX, divY, pageX, pageY,
     targetID, viewX, viewY, screenX, screenY;
 
 Spektral.attachEventListener(window, "mousemove", onMouseMove);
@@ -1064,7 +1064,7 @@ Spektral.attachEventListener(testDiv, "mousemove", onMouseMove);
 function onMouseMove(evt) {
 
     targetID = Spektral.getTargetID(evt);
-    mousePos = Spektral.getMousePos2(evt);
+    mousePos = Spektral.getMousePos(evt);
 
     if(targetID === "gmpDiv") {
         divX = mousePos.innerX;
@@ -1078,10 +1078,10 @@ function onMouseMove(evt) {
         screenX = mousePos.screenX;
         screenY = mousePos.screenY;
 
-        //Document
-        documentX = mousePos.documentX;
-        documentY = mousePos.documentY;
-        console.log("documentX: " + documentX + " documentY: " + documentY);
+        //Page
+        pageX = mousePos.pageX;
+        pageY = mousePos.pageY;
+        console.log("pageX: " + pageX + " pageY: " + pageY);
     }
 };
                         </pre>

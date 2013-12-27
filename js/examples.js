@@ -794,7 +794,7 @@
 
             var
                 testDiv = Spektral.getElement("gmpDiv"),
-                mousePos, divX, divY, browserX, browserY,
+                mousePos, divX, divY, pageX, pageY,
                 targetID, viewX, viewY, screenX, screenY;
 
             Spektral.attachEventListener(window, "mousemove", onMouseMove);
@@ -803,7 +803,7 @@
             function onMouseMove(evt) {
 
                 targetID = Spektral.getTargetID(evt);
-                mousePos = Spektral.getMousePos2(evt);
+                mousePos = Spektral.getMousePos(evt);
 
                 if(targetID === "gmpDiv") {
                     divX = mousePos.innerX;
@@ -820,10 +820,10 @@
                     screenY = mousePos.screenY;
                     console.log("screenX: " + screenX + " screenY: " + screenY);
 
-                    console.log("****DOCUMENT******************");
-                    browserX = mousePos.documentX;
-                    browserY = mousePos.documentY;
-                    console.log("documentX: " + documentX + " documentY: " + documentY);
+                    console.log("****PAGE******************");
+                    pageX = mousePos.pageX;
+                    pageY = mousePos.pageY;
+                    console.log("pageX: " + pageX + " pageY: " + pageY);
                 }
             };
         };

@@ -324,8 +324,8 @@
         mousePos["innerX"] = Spektral.roundNum(clientX - targetX);
         mousePos["innerY"] = Spektral.roundNum(clientY - targetY);
 
-        mousePos["documentX"] = Spektral.roundNum(pageX);
-        mousePos["documentY"] = Spektral.roundNum(pageY);
+        mousePos["pageX"] = Spektral.roundNum(pageX);
+        mousePos["pageY"] = Spektral.roundNum(pageY);
 
         mousePos["screenX"] = Spektral.roundNum(screenX);
         mousePos["screenY"] = Spektral.roundNum(screenY);
