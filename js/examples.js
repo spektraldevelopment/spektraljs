@@ -940,6 +940,29 @@
                 addTestResultToContainer("convertCase", "String is \"UPPER TEXT\": ", upperResult);
                 addTestResultToContainer("convertCase", "String is \"lower text\": ", lowerResult);
             };
+
+            //////////////////////
+            ////SPLIT STRING
+            //////////////////////
+            splitString();
+
+            function splitString() {
+
+                var
+                    testComma = "One, Two, Three, Four",
+                    testHyphen = "Alpha-Bravo-Charlie-Delta",
+                    commaArray = Spektral.splitString(testComma),
+                    hyphenArray = Spektral.splitString(testHyphen, "-"),
+                    commaResult = testMethod("splitString", commaArray, "array"),
+                    hyphenResult = testMethod("splitString", hyphenArray, "array"),
+                    hasThree = testArrayForValue("splitString", commaArray, "Three"),
+                    hasBravo = testArrayForValue("splitString", hyphenArray, "Bravo");
+
+                addTestResultToContainer("splitString", "testComma was converted to array: ", commaResult);
+                addTestResultToContainer("splitString", "testHyphen was converted to array: ", hyphenResult);
+                addTestResultToContainer("splitString", "commaArray has value Three: ", hasThree);
+                addTestResultToContainer("splitString", "hyphenArray has value Bravo: ", hasBravo);
+            };
         };
 
         //////////////////////
