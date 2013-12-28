@@ -1302,6 +1302,38 @@ var
             </div>
 
             <!--******************-->
+            <!--STRIP WHITE SPACE-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">stripWhiteSpace()</h3>
+                        <div class="description">Removes the whitespace from the start and end of a string. It can all strip all whitespace if specified.</div>
+                        <div id="stripWhiteSpace" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    testStringOne = "    Strip the white space on the end.    ",
+    startEndStripped = Spektral.stripWhiteSpace(testStringOne),
+    testStringTwo = "No white spaces.",
+    noWhite = Spektral.stripWhiteSpace(testStringTwo, true);
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+            <!--******************-->
             <!--GET POS-->
             <!--******************-->
             <!--<div class="example">-->

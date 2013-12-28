@@ -987,6 +987,7 @@
             function stripString() {
 
                 var
+                    stripStringResult, stripFirstResult, stripSecondResult,
                     testString = "T#hi@s #is a@ #te#s@t.",
                     stripHash = Spektral.stripString(testString, "#"),
                     stripAt = Spektral.stripString(stripHash, "@"),
@@ -997,9 +998,32 @@
                     testStringThree = "#Remove this #hash tag.#",
                     stripSecondHash = Spektral.stripString(testStringThree, "#", 1);
 
-                console.log("stripAt: " + stripAt);
-                console.log("stripFirst: " + stripFirst);
-                console.log("stripSecondHash: " + stripSecondHash);
+                stripStringResult = testReturnedValue("stripString", stripAt, "This is a test.");
+                stripFirstResult = testReturnedValue("stripString", stripFirst, "First @ symbol is stripped.");
+                stripSecondResult = testReturnedValue("stripString", stripSecondHash, "#Remove this hash tag.#");
+
+                addTestResultToContainer("stripString", "String = \"This is a test.\": ", stripStringResult);
+                addTestResultToContainer("stripString", "String = \"First @ symbol is stripped.\": ", stripFirstResult);
+                addTestResultToContainer("stripString", "String = \"#Remove this hash tag,#\": ", stripSecondResult);
+            };
+
+            //////////////////////
+            ////STRIP WHITE SPACE
+            //////////////////////
+            stripWhiteSpace();
+
+            function stripWhiteSpace() {
+
+                var
+                    testStringOne = "    Strip the white space on the end.    ",
+                    startEndStripped = Spektral.stripWhiteSpace(testStringOne),
+                    testStringTwo = "No white spaces.",
+                    noWhite = Spektral.stripWhiteSpace(testStringTwo, true),
+                    sesResult = testReturnedValue("stripWhiteSpace", startEndStripped, "Strip the white space on the end."),
+                    nwResult = testReturnedValue("stripWhiteSpace", noWhite, "Nowhitespaces.");
+
+                addTestResultToContainer("stripWhiteSpace", "String = \"Strip the white space on the end.\": ", sesResult);
+                addTestResultToContainer("stripWhiteSpace", "String = \"Nowhitespaces.\": ", nwResult);
             };
         };
 
