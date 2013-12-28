@@ -989,9 +989,17 @@
                 var
                     testString = "T#hi@s #is a@ #te#s@t.",
                     stripHash = Spektral.stripString(testString, "#"),
-                    stripAt = Spektral.stripString(stripHash, "@");
+                    stripAt = Spektral.stripString(stripHash, "@"),
 
-                console.log("stripHash: " + stripHash);
+                    testStringTwo = "@First @ symbol is stripped.",
+                    stripFirst = Spektral.stripString(testStringTwo, "@", "first"),
+
+                    testStringThree = "#Remove this #hash tag.#",
+                    stripSecondHash = Spektral.stripString(testStringThree, "#", 1);
+
+                console.log("stripAt: " + stripAt);
+                console.log("stripFirst: " + stripFirst);
+                console.log("stripSecondHash: " + stripSecondHash);
             };
         };
 

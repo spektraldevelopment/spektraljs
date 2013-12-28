@@ -1286,7 +1286,16 @@ var
                     <div class="innerExampleCodeHolder">
                         <h3 class="exampleCodeHeader">Example Code</h3>
                         <pre class="prettyprint">
+var
+    testString = "T#hi@s #is a@ #te#s@t.",
+    stripHash = Spektral.stripString(testString, "#"),
+    stripAt = Spektral.stripString(stripHash, "@"),
 
+    testStringTwo = "@First @ symbol is stripped.",
+    stripFirst = Spektral.stripString(testStringTwo, "@", "first"),
+
+    testStringThree = "#Remove this #hash tag.#",
+    stripSecondHash = Spektral.stripString(testStringThree, "#", 1);
                         </pre>
                     </div>
                 </div>

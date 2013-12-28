@@ -1015,7 +1015,7 @@
     //////////////////
     Spektral.destroyAttribute = function (element, attribute) {
 
-        if(element.hasAttribute(attribute)) {
+        if (element.hasAttribute(attribute)) {
             element.removeAttribute(attribute);
             if(element.getAttribute(attribute) !== null) {
                 Spektral.throwError("destroyElement: Attribute was unable to be removed for some reason.")
@@ -1474,27 +1474,37 @@
     //////////////////
     ////STRIP STRING
     //////////////////
-    Spektral.stripString = function (request, character, all) {
+    Spektral.stripString = function (request, character, mode) {
 
-        all = all || true;
-
-        console.log("stripString: request: " + request);
+        mode = mode || "all";
 
         var 
-            newString = request.replace(character, ''),
-            hasChar = Spektral.detectCharacter(newString, character);
-        //In the midst of getting stripString to strip more than just the first character
-        console.log("stripString: request: " + request + " hasChar: " + hasChar);
+            first = new RegExp(character, ""),
+            all = new RegExp(character, "g"),
+            newString = "", characterFound = 0, letter, i;
 
-        if(hasChar === true) {
-            Spektral.stripString(newString, character);
+        if(mode === "all") {
+            newString = request.replace(all, "");
+        } else if (mode === "first") {
+            newString = request.replace(first, "");
         } else {
-            return newString;
-        }    
+            //Target index
+            for(i = 0; i < request.length; i += 1) {
 
-        //return request.replace(chars, '');
+                letter = request[i];
+
+                if(letter === character) {
+                    if(characterFound === mode) {
+                        letter = letter.replace(character, "");
+                    }
+                    characterFound ++;
+                }
+                newString += letter;
+            }
+        }
+
+        return newString;
     };
-
 
     //////////////////
     ////STRIP WHITE SPACE
