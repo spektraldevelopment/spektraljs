@@ -978,6 +978,21 @@
 
                 addTestResultToContainer("checkForWhiteSpace", "testString has white space: ", cfwsResult);
             };
+
+            //////////////////////
+            ////STRIP STRING
+            //////////////////////
+            stripString();
+
+            function stripString() {
+
+                var
+                    testString = "T#hi@s #is a@ #te#s@t.",
+                    stripHash = Spektral.stripString(testString, "#"),
+                    stripAt = Spektral.stripString(stripHash, "@");
+
+                console.log("stripHash: " + stripHash);
+            };
         };
 
         //////////////////////

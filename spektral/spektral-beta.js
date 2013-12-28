@@ -1474,8 +1474,25 @@
     //////////////////
     ////STRIP STRING
     //////////////////
-    Spektral.stripString = function (request, chars) {
-        return request.replace(chars, '');
+    Spektral.stripString = function (request, character, all) {
+
+        all = all || true;
+
+        console.log("stripString: request: " + request);
+
+        var 
+            newString = request.replace(character, ''),
+            hasChar = Spektral.detectCharacter(newString, character);
+        //In the midst of getting stripString to strip more than just the first character
+        console.log("stripString: request: " + request + " hasChar: " + hasChar);
+
+        if(hasChar === true) {
+            Spektral.stripString(newString, character);
+        } else {
+            return newString;
+        }    
+
+        //return request.replace(chars, '');
     };
 
 
