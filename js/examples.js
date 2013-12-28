@@ -963,6 +963,21 @@
                 addTestResultToContainer("splitString", "commaArray has value Three: ", hasThree);
                 addTestResultToContainer("splitString", "hyphenArray has value Bravo: ", hasBravo);
             };
+
+            //////////////////////
+            ////CHECK FOR WHITE SPACE
+            //////////////////////
+            checkForWhiteSpace();
+
+            function checkForWhiteSpace() {
+
+                var
+                    testString = "White space",
+                    hasWhiteSpace = Spektral.checkForWhiteSpace(testString),
+                    cfwsResult = testReturnedValue("checkForWhiteSpace", hasWhiteSpace, true);
+
+                addTestResultToContainer("checkForWhiteSpace", "testString has white space: ", cfwsResult);
+            };
         };
 
         //////////////////////
