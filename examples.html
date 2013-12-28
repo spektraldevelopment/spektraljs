@@ -1334,6 +1334,40 @@ var
             </div>
 
             <!--******************-->
+            <!--STRIP BRACKETS-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">stripBrackets()</h3>
+                        <div class="description">Strip square, curly, and rounded brackets from around a string.</div>
+                        <div id="stripBrackets" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    squareString = "[Strip square brackets.]",
+    strippedSquare = Spektral.stripBrackets(squareString),
+    curlyString = "{Strip curly brackets.}",
+    strippedCurly = Spektral.stripBrackets(curlyString),
+    roundedString = "(Strip round brackets.)",
+    strippedRound = Spektral.stripBrackets(roundedString);
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+            <!--******************-->
             <!--GET POS-->
             <!--******************-->
             <!--<div class="example">-->

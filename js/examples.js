@@ -1028,6 +1028,33 @@
         };
 
         //////////////////////
+        ////STRIP BRACKETS
+        //////////////////////
+        stripBrackets();
+
+        function stripBrackets() {
+
+            var
+                squareString = "[Strip square brackets.]",
+                strippedSquare = Spektral.stripBrackets(squareString),
+                curlyString = "{Strip curly brackets.}",
+                strippedCurly = Spektral.stripBrackets(curlyString),
+                roundedString = "(Strip round brackets.)",
+                strippedRound = Spektral.stripBrackets(roundedString),
+                ssResult = testReturnedValue("stripBrackets", strippedSquare, "Strip square brackets."),
+                scResult = testReturnedValue("stripBrackets", strippedCurly, "Strip curly brackets."),
+                srResult = testReturnedValue("stripBrackets", strippedRound, "Strip round brackets.");
+
+            addTestResultToContainer("stripBrackets", "String = \"Strip square brackets.\": ", ssResult);
+            addTestResultToContainer("stripBrackets", "String = \"Strip curly brackets.\": ", scResult);
+            addTestResultToContainer("stripBrackets", "String = \"Strip round brackets.\": ", srResult);
+        };
+
+        //////////////////////
+        ////STRIP BRACKETS
+        //////////////////////
+
+        //////////////////////
         ////GET POS
         //////////////////////
 //        getPos();
