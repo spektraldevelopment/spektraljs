@@ -1148,6 +1148,24 @@
         };
 
         //////////////////////
+        ////GET STYLE
+        //////////////////////
+        getStyle();
+
+        function getStyle() {
+
+            var
+                testDiv = Spektral.getElement("gsDiv"),
+                pad = Spektral.getStyle(testDiv, "padding"),
+                border = Spektral.getStyle(testDiv, "border"),
+                hasPad = testReturnedValue("getStyle", pad, "20px"),
+                hasBorder = testReturnedValue("getStyle", border, "1px solid rgb(0, 128, 0)");
+
+            addTestResultToContainer("getStyle", "Padding is 20px: ", hasPad);
+            addTestResultToContainer("getStyle", "Border is 1px solid green: ", hasBorder);
+        };
+
+        //////////////////////
         ////GET POS
         //////////////////////
 //        getPos();

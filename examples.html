@@ -1527,6 +1527,38 @@ Spektral.setStyle(testDiv, "padding: 20px");
             </div>
 
             <!--******************-->
+            <!--GET STYLE-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">getStyle()</h3>
+                        <div class="description">Gets the current inline style of an element. Returns false is</br>no inline style found.</div>
+                        <div id="getStyle" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <div id="gsDiv" class="testDiv" style="padding: 20px; border: 1px solid #008000">div - id="gsDiv"</div>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    testDiv = Spektral.getElement("gsDiv"),
+    pad = Spektral.getStyle(testDiv, "padding"),
+    border = Spektral.getStyle(testDiv, "border");
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+            <!--******************-->
             <!--GET POS-->
             <!--******************-->
             <!--<div class="example">-->
