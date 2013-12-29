@@ -1130,6 +1130,24 @@
         };
 
         //////////////////////
+        ////SET STYLE
+        //////////////////////
+        setStyle();
+
+        function setStyle() {
+
+            var
+                testDiv = Spektral.getElement("ssDiv"),
+                pad, ssResult;
+
+            Spektral.setStyle(testDiv, "padding: 20px");
+            pad = Spektral.getStyle(testDiv, "padding");
+
+            ssResult = testReturnedValue("setStyle", pad, "20px");
+            addTestResultToContainer("setStyle", "Padding is set to 20px: ", ssResult);
+        };
+
+        //////////////////////
         ////GET POS
         //////////////////////
 //        getPos();
