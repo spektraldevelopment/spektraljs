@@ -19,7 +19,8 @@
         document = window.document,
         docElem = document.documentElement,
         debug = false,
-        mouseEvents = ["click", "dblclick", "mousedown", "mousemove", "mouseup", "mouseover", "mouseout"];
+        mouseEvents = ["click", "dblclick", "mousedown", "mousemove", "mouseup", "mouseover", "mouseout"],
+        spektralArray = new Array();
 
     //////////////////
     ////DEBUG
@@ -32,14 +33,15 @@
     ////ABOUT
     /////////////////
     Spektral.about = function () {
-        var mode, message;
+
+        var mode;
         if (debug) {
             mode = "debug";
         } else {
             mode = "release";
         }
-        message = "Spektral.js V.01 mode: " + mode;
-        Spektral.log(message);
+
+        Spektral.log("Spektral.js V.01 mode: " + mode);
         return message;
     };
 
@@ -1585,6 +1587,20 @@
     };
 
     //////////////////
+    ////ARRAY HAS VALUE
+    /////////////////
+    Spektral.arrayHasValue = function (array, value) {
+
+        var i, found = false;
+        for(i = 0; i < array.length; i += 1) {
+            if(array[i] === value) {
+                found = true;
+            }
+        }
+        return found;
+    };
+
+    //////////////////
     ////LIST CHILD NODES
     /////////////////
     Spektral.listChildNodes = function (parent) {
@@ -1789,9 +1805,18 @@
     ////LOG
     ///////////////////
     Spektral.log = function (message) {
+
         if (debug) {
             console.log("Spektraljs: " + message);
+            spektralArray.push(message);
         }
+    };
+
+    ///////////////////
+    ////GET SPEKTRAL ARRAY
+    ///////////////////
+    Spektral.getSpektralArray = function () {
+        return spektralArray;
     };
 
     window.Spektral =  Spektral;

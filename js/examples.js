@@ -1097,9 +1097,18 @@
 
         function listArrayObjects() {
 
-            var testArray = ["One", "Two", "Three", "Four"];
+            var testArray = ["One", "Two", "Three", "Four"],
+                consoleLog, hasValue, laoResult;
 
             Spektral.listArrayObjects(testArray);
+
+            consoleLog = Spektral.getSpektralArray();
+
+            hasValue = Spektral.arrayHasValue(consoleLog, "Array: listArrayElement: item0: One");
+
+            laoResult = testReturnedValue("listArrayObjects", hasValue, true);
+
+            addTestResultToContainer("listArrayObjects", "Test array was logged in console: ", laoResult);
         };
 
         //////////////////////
