@@ -265,7 +265,6 @@
             "compatibility" : "Currently in testing."
         }
     ],
-
     "event" : [
         {
             "category" : ["event"],
@@ -501,6 +500,19 @@
             ],
             "returns" : "Nothing",
             "dependencies" : "getType(), throwError(), log()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["array, object"],
+            "title" : "arrayHasValue()",
+            "description" : "Checks an array for a particular value, and returns a Boolean.",
+            "code" : "Spektral.arrayHasValue(array, value);",
+            "params" : [
+                {"array (required, expects: Array)" : "The array you want to check."},
+                {"value" : "The value you want to check for."}
+            ],
+            "returns" : "Boolean",
+            "dependencies" : "None",
             "compatibility" : "Currently in testing."
         }
     ],
@@ -1020,6 +1032,17 @@
                 {"message (required, expects: String)" : "The data you wish to log."}
             ],
             "returns" : "Nothing",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["debugging"],
+            "title" : "getConsoleLog()",
+            "description" : "Returns an array containing all the messages logged to the console through Spektral.log().",
+            "code" : "Spektral.getConsoleLog();",
+            "params" : [
+            ],
+            "returns" : "Array",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         }

@@ -1102,7 +1102,7 @@
 
             Spektral.listArrayObjects(testArray);
 
-            consoleLog = Spektral.getSpektralArray();
+            consoleLog = Spektral.getConsoleLog();
 
             hasValue = Spektral.arrayHasValue(consoleLog, "Array: listArrayElement: item0: One");
 

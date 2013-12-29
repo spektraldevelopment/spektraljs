@@ -20,7 +20,7 @@
         docElem = document.documentElement,
         debug = false,
         mouseEvents = ["click", "dblclick", "mousedown", "mousemove", "mouseup", "mouseover", "mouseout"],
-        spektralArray = new Array();
+        consoleLog = new Array();
 
     //////////////////
     ////DEBUG
@@ -1808,15 +1808,15 @@
 
         if (debug) {
             console.log("Spektraljs: " + message);
-            spektralArray.push(message);
+            consoleLog.push(message);
         }
     };
 
     ///////////////////
-    ////GET SPEKTRAL ARRAY
+    ////GET CONSOLE LOG
     ///////////////////
-    Spektral.getSpektralArray = function () {
-        return spektralArray;
+    Spektral.getConsoleLog = function () {
+        return consoleLog;
     };
 
     window.Spektral =  Spektral;
