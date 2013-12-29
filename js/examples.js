@@ -1112,6 +1112,24 @@
         };
 
         //////////////////////
+        ////ARRAY HAS VALUE
+        //////////////////////
+        arrayHasValue();
+
+        function arrayHasValue() {
+
+            var
+                testArray = ["Item", "Item", "Spektral", "Item"],
+                hasSpektral = Spektral.arrayHasValue(testArray, "Spektral"),
+                hasFoo = Spektral.arrayHasValue(testArray, "Foo"),
+                hsResult = testReturnedValue("arrayHasValue", hasSpektral, true),
+                hfResult = testReturnedValue("arrayHasValue", hasFoo, false);
+
+            addTestResultToContainer("arrayHasValue", "Array has value \"Spektral\": ", hsResult);
+            addTestResultToContainer("arrayHasValue", "Array doesn't have value \"Foo\": ", hfResult);
+        };
+
+        //////////////////////
         ////GET POS
         //////////////////////
 //        getPos();
