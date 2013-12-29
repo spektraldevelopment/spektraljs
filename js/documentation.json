@@ -478,17 +478,17 @@
             "compatibility" : "Currently in testing."
         }
     ],
-    "object" : [
+    "array" : [
         {
             "category" : ["object"],
-            "title" : "createObject()",
-            "description" : "Takes a nodeList and converts it into an array containing objects, returning the result.",
-            "code" : "Spektral.createObject(list);",
+            "title" : "createArray()",
+            "description" : "Takes a nodeList and converts it into an array containing nodes, returning the result.",
+            "code" : "Spektral.createArray(list);",
             "params" : [
                 {"list (required, expects: nodeList) " : "A nodeList of elements."}
             ],
             "returns" : "Array",
-            "dependencies" : "getType(), getTextContent(), createObject()",
+            "dependencies" : "getType(), getTextContent()",
             "compatibility" : "Currently in testing."
         },
         {

@@ -491,7 +491,9 @@
         node = node || xml.firstChild.nodeName;
         index = index || 0;
 
-        var parentNode = xml.getElementsByTagName(node)[index], child, type, xmlObject = {};
+        var 
+            parentNode = xml.getElementsByTagName(node)[index], 
+            child, type, xmlObject = {};
 
         for (child = parentNode.firstChild; child !== null; child = child.nextSibling) {
             type = Spektral.getType(child);
@@ -501,7 +503,7 @@
                 //nodeArray.push(child.nodeValue);//Remember to code this to handle if the main node has textContent
                 //Spektral.log("Going to handle text in here someday.");
             } else if (type === "element") {
-                xmlObject[child.tagName] = Spektral.createObject(child.childNodes);
+                xmlObject[child.tagName] = Spektral.createArray(child.childNodes);
             }
         }
 
@@ -509,11 +511,14 @@
     };
 
     /////////////////////////
-    ////CREATE OBJECT
+    ////CREATE ARRAY
     ///////////////////////////
-    Spektral.createObject = function (list) {
+    Spektral.createArray = function (list) {
 
-        var child, type, listArray = [], listObject, attributes, attrLength, hasChildren, length, i, j;
+        var 
+            child, type, listArray = [], 
+            listObject, attributes, attrLength, 
+            hasChildren, length, i, j;
 
         for (i = 0; i < list.length; i++) {
             child = list[i];
@@ -538,7 +543,7 @@
                 listObject[child.tagName] = Spektral.getTextContent(child);
 
                 if (hasChildren && length > 1) {
-                    listObject[child.tagName] = Spektral.createObject(child.childNodes);
+                    listObject[child.tagName] = Spektral.createArray(child.childNodes);
                 }
 
                 listArray.push(listObject);

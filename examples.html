@@ -1368,6 +1368,103 @@ var
             </div>
 
             <!--******************-->
+            <!--DETECT CHARACTER-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">detectCharacter()</h3>
+                        <div class="description">Detects if a certain character exists in a string. Returns a boolean.</div>
+                        <div id="detectCharacter" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    hashTest = "#spektral",
+    hasHash = Spektral.detectCharacter(hashTest, "#"),
+    dollarTest = "$999.99",
+    hasDollar = Spektral.detectCharacter(dollarTest, "$");
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+            <!--******************-->
+            <!--CREATE ARRAY-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">createArray()</h3>
+                        <div class="description">Takes a nodeList and converts it into an array containing nodes, returning the result.</div>
+                        <div id="createArray" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var xmlArray;
+
+Spektral.loadXML("xml/createobject.xml", onXMLLoaded);
+
+function onXMLLoaded(e) {
+
+    xmlArray = Spektral.createArray(e.firstChild.childNodes);
+};
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+            <!--******************-->
+            <!--LIST ARRAY OBJECTS-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">listArrayObjects()</h3>
+                        <div class="description">A debugging function. Logs the objects in an array in the console.</div>
+                        <div id="listArrayObjects" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var testArray = ["One", "Two", "Three", "Four"];
+
+Spektral.listArrayObjects(testArray);
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+            <!--******************-->
             <!--GET POS-->
             <!--******************-->
             <!--<div class="example">-->

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<data>
+    <basic>
+        <item id="Item One">This is the inner content for item one.</item>
+        <item id="Item Two">This is the inner content for item two.</item>
+        <item id="Item Three">This is the inner content for item three.</item>
+        <item id="Item Four">This is the inner content for item four.</item>
+    </basic>
+</data>

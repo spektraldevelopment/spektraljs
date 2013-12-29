@@ -128,8 +128,8 @@
 
         for (i = 0; i < infoHolder.length; i += 1) {
 
-            infoHeight = Spektral.getDimensions(infoHolder[i]).height
-            elHeight = Spektral.getDimensions(elHolder[i]).height
+            infoHeight = Spektral.getDimensions(infoHolder[i]).height;
+            elHeight = Spektral.getDimensions(elHolder[i]).height;
 
             if(infoHeight >= elHeight) {
                 Spektral.matchHeight(infoHolder[i], elHolder[i]);
@@ -1051,8 +1051,56 @@
         };
 
         //////////////////////
-        ////STRIP BRACKETS
+        ////DETECT CHARACTER
         //////////////////////
+        detectCharacter();
+
+        function detectCharacter() {
+
+            var
+                hashTest = "#spektral",
+                hasHash = Spektral.detectCharacter(hashTest, "#"),
+                dollarTest = "$999.99",
+                hasDollar = Spektral.detectCharacter(dollarTest, "$"),
+                hashResult = testReturnedValue("detectCharacter", hasHash, true),
+                dollarResult = testReturnedValue("detectCharacter", hasDollar, true);
+
+            addTestResultToContainer("detectCharacter", "Has hash character: ", hashResult);
+            addTestResultToContainer("detectCharacter", "Has dollar character: ", dollarResult);
+        };
+
+        //////////////////////
+        ////CREATE ARRAY
+        //////////////////////
+        createArray();
+
+        function createArray() {
+
+            var
+                xmlArray, caResult;
+
+            Spektral.loadXML("xml/createarray.xml", onXMLLoaded);
+
+            function onXMLLoaded(e) {
+
+                xmlArray = Spektral.createArray(e.firstChild.childNodes);
+                caResult = testMethod("createArray", xmlArray, "array");
+
+                addTestResultToContainer("createArray", "An array: ", caResult);
+            };
+        };
+
+        //////////////////////
+        ////LIST ARRAY OBJECTS
+        //////////////////////
+        listArrayObjects();
+
+        function listArrayObjects() {
+
+            var testArray = ["One", "Two", "Three", "Four"];
+
+            Spektral.listArrayObjects(testArray);
+        };
 
         //////////////////////
         ////GET POS
