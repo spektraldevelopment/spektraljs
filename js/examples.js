@@ -1331,6 +1331,46 @@
         };
 
         //////////////////////
+        ////TOGGLE DISPLAY
+        //////////////////////
+        toggleDisplay();
+
+        function toggleDisplay() {
+
+            var
+                displayNone = Spektral.getElement("tdDivOne"),
+                displayBlock = Spektral.getElement("tdDivTwo"),
+                displayIB = Spektral.getElement("tdDivThree"),
+                isNone, isBlock, isIB,
+                noneResult, blockResult, ibResult;
+
+            //Show displayNone
+            Spektral.toggleDisplay(displayNone);
+            //Hide displayNone
+            Spektral.toggleDisplay(displayNone);
+
+            //Hide displayBlock
+            Spektral.toggleDisplay(displayBlock);
+            //Show displayBlock
+            Spektral.toggleDisplay(displayBlock);
+
+            //Show displayIB
+            Spektral.toggleDisplay(displayIB, "inline-block");
+
+            isNone = Spektral.getStyle(displayNone, "display");
+            isBlock = Spektral.getStyle(displayBlock, "display");
+            isIB = Spektral.getStyle(displayIB, "display");
+
+            noneResult = testReturnedValue("toggleDisplay", isNone, "none");
+            blockResult = testReturnedValue("toggleDisplay", isBlock, "block");
+            ibResult = testReturnedValue("toggleDisplay", isIB, "inline-block");
+
+            addTestResultToContainer("toggleDisplay", "tdDivOne has its display set to none: ", noneResult);
+            addTestResultToContainer("toggleDisplay", "tdDivTwo has its display set to block: ", blockResult);
+            addTestResultToContainer("toggleDisplay", "tdDivThree has its display set to inline-block: ", ibResult);
+        };
+
+        //////////////////////
         ////GET POS
         //////////////////////
 //        getPos();
