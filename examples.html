@@ -1757,6 +1757,48 @@ Spektral.hideElement(visibilityDiv);
             </div>
 
             <!--******************-->
+            <!--TOGGLE VISIBILITY-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">toggleVisibility()</h3>
+                        <div class="description">Toggles the visibility property of an element.</div>
+                        <div id="toggleVisibility" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <div id="tvDivOne" class="testDiv" style="visibility: hidden">div - visibility="hidden"</div>
+                        <div id="tvDivTwo" class="testDiv">div - visibility="visible"</div>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    hiddenDiv = Spektral.getElement("tvDivOne"),
+    visibleDiv = Spektral.getElement("tvDivTwo");
+
+//Show tvDivOne
+Spektral.toggleVisibility(hiddenDiv);
+//Hide tvDiveOne
+Spektral.toggleVisibility(hiddenDiv);
+
+//Hide tvDivTwo
+Spektral.toggleVisibility(visibleDiv);
+//Show tvDivTwo
+Spektral.toggleVisibility(visibleDiv);
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+            <!--******************-->
             <!--GET POS-->
             <!--******************-->
             <!--<div class="example">-->

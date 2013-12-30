@@ -1076,8 +1076,7 @@
 
         function createArray() {
 
-            var
-                xmlArray, caResult;
+            var xmlArray, caResult;
 
             Spektral.loadXML("xml/createarray.xml", onXMLLoaded);
 
@@ -1087,6 +1086,8 @@
                 caResult = testMethod("createArray", xmlArray, "array");
 
                 addTestResultToContainer("createArray", "An array: ", caResult);
+
+                adjustExamples();
             };
         };
 
@@ -1244,8 +1245,6 @@
             addTestResultToContainer("getInlineStyle", "Function returned an object: ", gisResult);
             addTestResultToContainer("getInlineStyle", "Padding value is 20px: ", hasPadding);
             addTestResultToContainer("getInlineStyle", "Border value is 1px solid rgb(0, 128, 0): ", hasBorder);
-
-            Spektral.log("inlineStyleObj: " + Spektral.getInfo(inlineStyleObj));
         };
 
         //////////////////////
@@ -1297,6 +1296,38 @@
 
             addTestResultToContainer("hideElement", "heDivOne display property is set to none: ", disResult);
             addTestResultToContainer("hideElement", "heDivTwo visibility property is set to hidden: ", visResult);
+        };
+
+        //////////////////////
+        ////TOGGLE VISIBILITY
+        //////////////////////
+        toggleVisibility();
+
+        function toggleVisibility() {
+
+            var
+                hiddenDiv = Spektral.getElement("tvDivOne"),
+                visibleDiv = Spektral.getElement("tvDivTwo"),
+                hdVis, vdVis, hdResult, vdResult;
+
+            //Show tvDivOne
+            Spektral.toggleVisibility(hiddenDiv);
+            //Hide tvDiveOne
+            Spektral.toggleVisibility(hiddenDiv);
+
+            //Hide tvDivTwo
+            Spektral.toggleVisibility(visibleDiv);
+            //Show tvDivTwo
+            Spektral.toggleVisibility(visibleDiv);
+
+            hdVis = Spektral.getStyle(hiddenDiv, "visibility");
+            vdVis = Spektral.getStyle(visibleDiv, "visibility");
+
+            hdResult = testReturnedValue("toggleVisibility", hdVis, "hidden");
+            vdResult = testReturnedValue("toggleVisibility", vdVis, "visible");
+
+            addTestResultToContainer("toggleVisibility", "tvDivOne's visibility property is set to hidden: ", hdResult);
+            addTestResultToContainer("toggleVisibility", "tvDivTwo's visibility property is set to visible: ", vdResult);
         };
 
         //////////////////////
