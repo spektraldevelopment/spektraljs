@@ -1249,6 +1249,32 @@
         };
 
         //////////////////////
+        ////SHOW ELEMENT
+        //////////////////////
+        showElement();
+
+        function showElement () {
+
+            var
+                displayDiv = Spektral.getElement("seDivOne"),
+                visibilityDiv = Spektral.getElement("seDivTwo"),
+                hasBlock, hasVis,
+                displayResult, visResult;
+
+            Spektral.showElement(displayDiv);
+            Spektral.showElement(visibilityDiv);
+
+            hasBlock = Spektral.getStyle(displayDiv, "display");
+            hasVis = Spektral.getStyle(visibilityDiv, "visibility");
+
+            displayResult = testReturnedValue("showElement", hasBlock, "block");
+            visResult = testReturnedValue("showElement", hasVis, "visible");
+
+            addTestResultToContainer("showElement", "seDivOne is visible: ", displayResult);
+            addTestResultToContainer("showElement", "seDivTwo is visible: ", visResult);
+        };
+
+        //////////////////////
         ////GET POS
         //////////////////////
 //        getPos();
