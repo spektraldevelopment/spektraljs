@@ -584,7 +584,7 @@
         {
             "category" : ["style"],
             "title" : "getInlineStyle()",
-            "description" : "Gets the entire inline style of an element. Returns false is no inline style found. Unlike getStyle(), you cannot specify individual style properties.",
+            "description" : "Gets the entire inline style of an element. Returns false if no inline style is found.",
             "code" : "Spektral.getInlineStyle(element);",
             "params" : [
                 {"element (required, expects: Element)" : "The element you want to get the inline style from."}

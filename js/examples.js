@@ -1227,6 +1227,28 @@
         };
 
         //////////////////////
+        ////GET INLINE STYLE
+        //////////////////////
+        getInlineStyle();
+
+        function getInlineStyle() {
+
+            var
+                testDiv = Spektral.getElement("gisDiv"),
+                inlineStyleObj = Spektral.getInlineStyle(testDiv),
+                padding = inlineStyleObj.padding, border = inlineStyleObj.border,
+                gisResult = testMethod("getInlineStyle", inlineStyleObj, "object"),
+                hasPadding = testReturnedValue("getInlineStyle", padding, "20px"),
+                hasBorder = testReturnedValue("getInlineStyle", border, "1px solid rgb(0, 128, 0)");
+
+            addTestResultToContainer("getInlineStyle", "Function returned an object: ", gisResult);
+            addTestResultToContainer("getInlineStyle", "Padding value is 20px: ", hasPadding);
+            addTestResultToContainer("getInlineStyle", "Border value is 1px solid rgb(0, 128, 0): ", hasBorder);
+
+            Spektral.log("inlineStyleObj: " + Spektral.getInfo(inlineStyleObj));
+        };
+
+        //////////////////////
         ////GET POS
         //////////////////////
 //        getPos();
