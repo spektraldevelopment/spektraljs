@@ -509,7 +509,7 @@
             "code" : "Spektral.arrayHasValue(array, value);",
             "params" : [
                 {"array (required, expects: Array)" : "The array you want to check."},
-                {"value" : "The value you want to check for."}
+                {"value (required, expects: Anything)" : "The value you want to check for."}
             ],
             "returns" : "Boolean",
             "dependencies" : "None",
@@ -522,7 +522,7 @@
             "code" : "Spektral.queryArray(array, query);",
             "params" : [
                 {"array (required, expects: Array)" : "The array you want to check."},
-                {"query" : "The value you want to get."}
+                {"query (required, expects: Anything)" : "The value you want to get."}
             ],
             "returns" : "Array",
             "dependencies" : "None",

@@ -1191,7 +1191,8 @@
 
         function appendStyle() {
 
-            var testDiv = Spektral.getElement("asDiv"),
+            var
+                testDiv = Spektral.getElement("asDiv"),
                 pad, border, padResult, borderResult;
 
             Spektral.appendStyle(testDiv, "padding:10px");
@@ -1208,8 +1209,22 @@
         };
 
         //////////////////////
-        ////APPEND STYLE
+        ////CLEAR STYLE
         //////////////////////
+        clearStyle();
+
+        function clearStyle() {
+
+            var
+                testDiv = Spektral.getElement("csDiv"),
+                hasStyle, csResult;
+
+            Spektral.clearStyle(testDiv);
+            hasStyle = Spektral.checkForAttribute(testDiv, "style");
+
+            csResult = testReturnedValue("clearStyle", hasStyle, false);
+            addTestResultToContainer("clearStyle", "Style attribute has been removed: ", csResult);
+        };
 
         //////////////////////
         ////GET POS
