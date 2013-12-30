@@ -1166,6 +1166,29 @@
         };
 
         //////////////////////
+        ////APPEND STYLE
+        //////////////////////
+        appendStyle();
+
+        function appendStyle() {
+
+            var testDiv = Spektral.getElement("asDiv"),
+                pad, border, padResult, borderResult;
+
+            Spektral.appendStyle(testDiv, "padding:10px");
+            Spektral.appendStyle(testDiv, "border:2px solid red");
+
+            pad = Spektral.getStyle(testDiv, "padding");
+            border = Spektral.getStyle(testDiv, "border");
+
+            padResult = testReturnedValue(testDiv, pad, "10px");
+            borderResult = testReturnedValue(testDiv, border, "2px solid rgb(255, 0, 0)");
+
+            addTestResultToContainer("appendStyle", "Padding is now 10px: ", padResult);
+            addTestResultToContainer("appendStyle", "Border is 2px solid rgb(255, 0, 0): ", borderResult);
+        };
+
+        //////////////////////
         ////GET POS
         //////////////////////
 //        getPos();

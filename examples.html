@@ -1559,6 +1559,38 @@ var
             </div>
 
             <!--******************-->
+            <!--APPEND STYLE-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">appendStyle()</h3>
+                        <div class="description">Changes the inline style of an element, while preserving the existing inline style.</div>
+                        <div id="appendStyle" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <div id="asDiv" class="testDiv" style="padding: 20px; border: 1px solid #008000">div - id="asDiv"</div>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var testDiv = Spektral.getElement("asDiv");
+
+Spektral.appendStyle(testDiv, "padding:10px");
+Spektral.appendStyle(testDiv, "border:2px solid red");
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+            <!--******************-->
             <!--GET POS-->
             <!--******************-->
             <!--<div class="example">-->
