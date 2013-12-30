@@ -514,6 +514,19 @@
             "returns" : "Boolean",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["array, object"],
+            "title" : "queryArray()",
+            "description" : "Queries an array, and returns matched results in an array.",
+            "code" : "Spektral.queryArray(array, query);",
+            "params" : [
+                {"array (required, expects: Array)" : "The array you want to check."},
+                {"query" : "The value you want to get."}
+            ],
+            "returns" : "Array",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
         }
     ],
     "style" : [

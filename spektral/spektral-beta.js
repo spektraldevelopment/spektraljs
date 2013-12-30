@@ -1603,14 +1603,14 @@
     //////////////////
     ////QUERY ARRAY
     /////////////////
-    Spektral.queryArray = function(array, val) {
+    Spektral.queryArray = function(array, query) {
 
         var i, resultArray = [];
 
         for (i = 0; i < array.length; i += 1) {
-            if(array[i] === val) {
+            if(array[i] === query) {
                 resultArray.push(array[i]);
-                console.log("queryArray: array[i]: " + array[i] + " val: " + val);
+                //console.log("queryArray: array[i]: " + array[i] + " query: " + query);
             }
         }
 
