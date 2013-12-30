@@ -1130,6 +1130,25 @@
         };
 
         //////////////////////
+        ////QUERY ARRAY
+        //////////////////////
+        queryArray();
+
+        function queryArray() {
+
+            var
+                singleMatchArray = ["Bar", "Spektral", "Foo", "Bar"],
+                multiMatchArray = ["Foo", "Spektral", "Bar", "Foo", "Spektral"],
+                singleMatchResult = Spektral.queryArray(singleMatchArray, "Spektral"),
+                multiMatchResult = Spektral.queryArray(multiMatchArray, "Spektral"),
+                smResult = testMethod("queryArray", singleMatchResult, "string"),
+                mmResult = testMethod("queryArray", multiMatchResult, "array");
+
+            addTestResultToContainer("queryArray", "Single match query returns string: ", smResult);
+            addTestResultToContainer("queryArray", "Multiple match query returns array: ", mmResult);
+        };
+
+        //////////////////////
         ////SET STYLE
         //////////////////////
         setStyle();

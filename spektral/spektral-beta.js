@@ -1601,6 +1601,27 @@
     };
 
     //////////////////
+    ////QUERY ARRAY
+    /////////////////
+    Spektral.queryArray = function(array, val) {
+
+        var i, resultArray = [];
+
+        for (i = 0; i < array.length; i += 1) {
+            if(array[i] === val) {
+                resultArray.push(array[i]);
+                console.log("queryArray: array[i]: " + array[i] + " val: " + val);
+            }
+        }
+
+        if(resultArray.length === 1) {
+            return resultArray[0];
+        } else {
+            return resultArray;
+        }
+    };
+
+    //////////////////
     ////LIST CHILD NODES
     /////////////////
     Spektral.listChildNodes = function (parent) {
