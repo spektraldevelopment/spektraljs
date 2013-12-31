@@ -39,7 +39,7 @@
         Spektral.removeElement(listLoading);
         buildGlossary();
         initExamples();
-    };
+    }
 
     ////////////////////
     ////BUILD GLOSSARY
@@ -74,7 +74,7 @@
 
             msnry.layout();
         });
-    };
+    }
 
     ////////////////////
     ////POPULATE CATEGORIES
@@ -93,7 +93,7 @@
             Spektral.attachEventListener(listItem, "click", onListItemClick);
             itemNum += 1;
         }
-    };
+    }
 
     ////////////////////
     ////ON LIST ITEM CLICK
@@ -106,7 +106,7 @@
             targetID = Spektral.getTargetID(e),
             cat = Spektral.getParent(target).id,
             num = Spektral.stripString(targetID, "item");
-    };
+    }
 
     ////////////////////
     ////ON WINDOW RESIZE
@@ -114,7 +114,7 @@
     function onWindowResize(evt) {
 
         //adjustExamples();
-    };
+    }
 
     ////////////////////
     ////ADJUST EXAMPLES
@@ -137,7 +137,7 @@
                 Spektral.matchHeight(elHolder[i], infoHolder[i]);
             }
         }
-    };
+    }
 
     /////////////////////////////////////////////////////////
     ////TESTING EXAMPLES************************************
@@ -167,7 +167,7 @@
             addTestResultToContainer("getElement", "A div with the id of geTestOne: ", testDivOneResult);
             addTestResultToContainer("getElement", "A div with the class of geTestTwo: ", testDivTwoResult);
             addTestResultToContainer("getElement", "A textarea with the name of geTestThree: ", testDivThreeResult);
-        };
+        }
 
         ////////////////////
         ////GET ELEMENT BY CLASS
@@ -187,7 +187,7 @@
 
             addTestResultToContainer("getElementByClass", "A node list with all elements with the class of gebc: ", testDivsResult);
             addTestResultToContainer("getElementByClass", "The second div with the class of gebc: ", testDivTwoResult);
-        };
+        }
 
         ////////////////////
         ////QUERY
@@ -201,7 +201,7 @@
                 testDivResult = testMethod("query", testDiv, "div");
 
             addTestResultToContainer("query", "A div with the id of queryDiv: ", testDivResult);
-        };
+        }
 
         ////////////////////
         ////GET TARGET
@@ -224,8 +224,8 @@
                 eventTarget = Spektral.getTarget(evt);
                 testEventResult = testMethod("getTarget", eventTarget, "div");
                 addTestResultToContainer("getTarget", "A div with the id of getTargetDiv: ", testEventResult);
-            };
-        };
+            }
+        }
 
         ////////////////////
         ////GET TARGET ID
@@ -248,8 +248,8 @@
                 targetID = Spektral.getTargetID(evt);
                 gtIDResult = testReturnedValue("getTargetID", targetID, "gtIDTest");
                 addTestResultToContainer("getTargetID", "The id of the test div (gtIDTest): ", gtIDResult);
-            };
-        };
+            }
+        }
 
         ///////////////////////
         ////GET PARENT
@@ -267,7 +267,7 @@
             Spektral.setStyle(pDiv, "border: 1px solid green");
 
             addTestResultToContainer("getParent", "A div with the id of parentDiv: ", getParentResult);
-        };
+        }
 
         //////////////////////
         ////GET CHILD NODES
@@ -285,7 +285,7 @@
 
             addTestResultToContainer("getChildNodes", "An array: ", gcnResult);
             addTestResultToContainer("getChildNodes", "Second item in array has id gcnTwo: ", hasIDResult);
-        };
+        }
 
         ///////////////////////
         ////CREATE NEW ELEMENT
@@ -312,7 +312,7 @@
 
             addTestResultToContainer("createNewElement", "A newly created div: ", createdDivResult);
             addTestResultToContainer("createNewElement", "A newly created img: ", createdImgResult);
-        };
+        }
 
         ///////////////////////
         ////MOVE TO AFTER
@@ -337,7 +337,7 @@
             mtaResult = testReturnedValue("moveToAfter", affectedDivID, "mtaDivOne");
 
             addTestResultToContainer("moveToAfter", "A div with the id of mtaDivOne: ", mtaResult);
-        };
+        }
 
         //////////////////////
         ////MOVE TO BEFORE
@@ -362,7 +362,7 @@
             mtbResult = testReturnedValue("moveToBefore", affectedDivID, "mtbDivThree");
 
             addTestResultToContainer("moveToBefore", "A div with the id of mtbDivThree: ", mtbResult);
-        };
+        }
 
         //////////////////////
         ////REMOVE ELEMENT
@@ -392,7 +392,7 @@
             reResult = testReturnedValue("removeElement", divRemoved, true);
 
             addTestResultToContainer("removeElement", "The div with id of reDivTwo is removed: ", reResult);
-        };
+        }
 
         //////////////////////
         ////CLEAR ALL CHILDREN
@@ -412,7 +412,7 @@
 
             cacResult = testReturnedValue("clearAllChildren", isParentEmpty, true);
             addTestResultToContainer("clearAllChildren", "The parent node is empty: ", cacResult);
-        };
+        }
 
         //////////////////////
         ////CREATE SET ATTRIBUTE
@@ -437,7 +437,7 @@
             addTestResultToContainer("createSetAttribute", "The img has a src tag: ", srcTestResult);
             addTestResultToContainer("createSetAttribute", "The img has an alt tag: ", altTestResult);
 
-        };
+        }
 
         /////////////////////////////
         ////GET ATTRIBUTE VALUE
@@ -452,7 +452,7 @@
                 srcValueResult = testMethod("getAttributeValue", srcValue, "string");
 
             addTestResultToContainer("getAttributeValue", "Value of attribute returned as string: ", srcValueResult);
-        };
+        }
 
         //////////////////////
         ////DESTROY ATTRIBUTE
@@ -471,7 +471,7 @@
             daResult = testReturnedValue("destroyAttribute", checkForAlt, false);
 
             addTestResultToContainer("destroyAttribute", "The alt attribute has been removed: ", daResult);
-        };
+        }
 
         //////////////////////
         ////GET NODE ATTRIBUTES
@@ -502,7 +502,7 @@
             addTestResultToContainer("getNodeAttributes", "class attribute is testImg: ", classResult);
             addTestResultToContainer("getNodeAttributes", "src attribute is img/spektraljs.jpg: ", srcResult);
             addTestResultToContainer("getNodeAttributes", "alt attribute is Alt tag: ", altResult);
-        };
+        }
 
         //////////////////////
         ////CHECK FOR ATTRIBUTE
@@ -517,7 +517,7 @@
                 cfaResult = testReturnedValue("checkForAttribute", hasID, true);
 
             addTestResultToContainer("checkForAttribute", "The div has an id attribute: ", cfaResult);
-        };
+        }
 
         //////////////////////
         ////LIST NODE ATTRIBUTES
@@ -537,7 +537,7 @@
             addTestResultToContainer("listNodeAttributes", "A array: ", lndResult);
             addTestResultToContainer("listNodeAttributes", "Array isn't empty: ", arrEmptyResult);
             addTestResultToContainer("listNodeAttributes", "Array contains value nodeName: ", arrTest);
-        };
+        }
 
         //////////////////////
         ////GET INNER TEXT
@@ -552,7 +552,7 @@
                 gitResult = testReturnedValue("getInnerText", textContent, "This is the inner text for gitDiv");
 
             addTestResultToContainer("getInnerText", "This is the inner text for gitDiv: ", gitResult);
-        };
+        }
 
         //////////////////////
         ////SET INNER TEXT
@@ -572,7 +572,7 @@
             sitResult = testReturnedValue("setInnerText", newInnerText, "This string was set using setInnerText");
 
             addTestResultToContainer("setInnerText", "This string was set using setInnerText: ", sitResult);
-        };
+        }
 
         //////////////////////
         ////LIST ELEMENTS
@@ -591,7 +591,7 @@
             addTestResultToContainer("listElements", "An array: ", leResult);
             addTestResultToContainer("listElements", "domElements contains divs: ", hasDivResult);
             addTestResultToContainer("listElements", "domElementIDs contains id of leDiv: ", hasIDResult);
-        };
+        }
 
         ////DOM****END**************************************************
 
@@ -616,12 +616,12 @@
             function onTestEvent(evt) {
                 //Event is triggered
                 evtTriggered = true;
-            };
+            }
 
             aelResult = testReturnedValue("attachEventListener", evtTriggered, true);
 
             addTestResultToContainer("attachEventListener", "Event has fired: ", aelResult);
-        };
+        }
 
         //////////////////////
         ////DETACH EVENT LISTENER
@@ -646,12 +646,12 @@
             function onTestEvent(evt) {
                 //Event is triggered
                 evtTriggered = true;
-            };
+            }
 
             delResult = testReturnedValue("detachEventListener", evtTriggered, false);
 
             addTestResultToContainer("detachEventListener", "The evt was not triggered: ", delResult);
-        };
+        }
 
         //////////////////////
         ////CREATE EVENT
@@ -675,7 +675,7 @@
                 foo = evt.detail.foo;
                 spektral = evt.detail.spektral;
                 evtTriggered = true;
-            };
+            }
 
             ceResult = testReturnedValue("createEvent", evtTriggered, true);
             hasFoo = testReturnedValue("createEvent", foo, "bar");
@@ -684,7 +684,7 @@
             addTestResultToContainer("createEvent", "Event was created and triggered: ", ceResult);
             addTestResultToContainer("createEvent", "Returned event has a parameter foo that returns the value bar: ", hasFoo);
             addTestResultToContainer("createEvent", "Returned event has a parameter spektral that returns the value js: ", hasSpektral);
-        };
+        }
 
         //////////////////////
         ////TRIGGER EVENT
@@ -710,19 +710,19 @@
             function onCustomEvent(evt) {
                 //Custom event triggered
                 customTriggered = true;
-            };
+            }
 
             function onClickEvent(evt) {
                 //Click event triggered
                 defaultTriggered = true;
-            };
+            }
 
             customResult = testReturnedValue("triggerEvent", customTriggered, true);
             defaultResult = testReturnedValue("triggerEvent", defaultTriggered, true);
 
             addTestResultToContainer("triggerEvent", "Custom event was triggered: ", customResult);
             addTestResultToContainer("triggerEvent", "Default event was triggered: ", defaultResult);
-        };
+        }
 
         //////////////////////
         ////CANCEL EVENT
@@ -744,15 +744,15 @@
                 //Stops browser from navigating to href
                 hashCheck = Spektral.createTimeOut(3, checkForHash);
                 Spektral.cancelEvent(evt);
-            };
+            }
 
             function checkForHash() {
                 hash = Spektral.hashDetected();
                 ceResult = testReturnedValue("cancelEvent", hash, false);
 
                 addTestResultToContainer("cancelEvent", "No hash #ceHash: ", ceResult);
-            };
-        };
+            }
+        }
 
         //////////////////////
         ////CANCEL PROPAGATION
@@ -778,12 +778,12 @@
                 //is called twice due to the event
                 //bubbling up from testDiv to the document
                 Spektral.cancelPropagation(evt);
-            };
+            }
 
             cpResult = testReturnedValue("cancelPropagation", callCount, 1);
 
             addTestResultToContainer("cancelPropagation", "The function called only once: ", cpResult);
-        };
+        }
 
         //////////////////////
         ////GET MOUSE POS
@@ -872,7 +872,7 @@
 
                     Spektral.detachEventListener(window, "mousemove", onMouseMove);
                 }
-            };
+            }
 
             //////////////////////
             ////USE HAND CURSOR
@@ -890,7 +890,7 @@
 
                 uhcResult = testReturnedValue("useHandCursor", cursorType, "pointer");
                 addTestResultToContainer("useHandCursor", "Cursor has been set to pointer: ", uhcResult);
-            };
+            }
 
             //////////////////////
             ////USE DEFAULT CURSOR
@@ -913,7 +913,7 @@
 
                 udcResult = testReturnedValue("useDefaultCursor", cursorType, "default");
                 addTestResultToContainer("useDefaultCursor", "Cursor is set to default: ", udcResult);
-            };
+            }
 
             //////////////////////
             ////CONVERT CASE
@@ -939,7 +939,7 @@
 
                 addTestResultToContainer("convertCase", "String is \"UPPER TEXT\": ", upperResult);
                 addTestResultToContainer("convertCase", "String is \"lower text\": ", lowerResult);
-            };
+            }
 
             //////////////////////
             ////SPLIT STRING
@@ -962,7 +962,7 @@
                 addTestResultToContainer("splitString", "testHyphen was converted to array: ", hyphenResult);
                 addTestResultToContainer("splitString", "commaArray has value Three: ", hasThree);
                 addTestResultToContainer("splitString", "hyphenArray has value Bravo: ", hasBravo);
-            };
+            }
 
             //////////////////////
             ////CHECK FOR WHITE SPACE
@@ -977,7 +977,7 @@
                     cfwsResult = testReturnedValue("checkForWhiteSpace", hasWhiteSpace, true);
 
                 addTestResultToContainer("checkForWhiteSpace", "testString has white space: ", cfwsResult);
-            };
+            }
 
             //////////////////////
             ////STRIP STRING
@@ -1005,7 +1005,7 @@
                 addTestResultToContainer("stripString", "String = \"This is a test.\": ", stripStringResult);
                 addTestResultToContainer("stripString", "String = \"First @ symbol is stripped.\": ", stripFirstResult);
                 addTestResultToContainer("stripString", "String = \"#Remove this hash tag,#\": ", stripSecondResult);
-            };
+            }
 
             //////////////////////
             ////STRIP WHITE SPACE
@@ -1024,8 +1024,8 @@
 
                 addTestResultToContainer("stripWhiteSpace", "String = \"Strip the white space on the end.\": ", sesResult);
                 addTestResultToContainer("stripWhiteSpace", "String = \"Nowhitespaces.\": ", nwResult);
-            };
-        };
+            }
+        }
 
         //////////////////////
         ////STRIP BRACKETS
@@ -1048,7 +1048,7 @@
             addTestResultToContainer("stripBrackets", "String = \"Strip square brackets.\": ", ssResult);
             addTestResultToContainer("stripBrackets", "String = \"Strip curly brackets.\": ", scResult);
             addTestResultToContainer("stripBrackets", "String = \"Strip round brackets.\": ", srResult);
-        };
+        }
 
         //////////////////////
         ////DETECT CHARACTER
@@ -1067,7 +1067,7 @@
 
             addTestResultToContainer("detectCharacter", "Has hash character: ", hashResult);
             addTestResultToContainer("detectCharacter", "Has dollar character: ", dollarResult);
-        };
+        }
 
         //////////////////////
         ////CREATE ARRAY
@@ -1088,8 +1088,8 @@
                 addTestResultToContainer("createArray", "An array: ", caResult);
 
                 adjustExamples();
-            };
-        };
+            }
+        }
 
         //////////////////////
         ////LIST ARRAY OBJECTS
@@ -1110,7 +1110,7 @@
             laoResult = testReturnedValue("listArrayObjects", hasValue, true);
 
             addTestResultToContainer("listArrayObjects", "Test array was logged in console: ", laoResult);
-        };
+        }
 
         //////////////////////
         ////ARRAY HAS VALUE
@@ -1128,7 +1128,7 @@
 
             addTestResultToContainer("arrayHasValue", "Array has value \"Spektral\": ", hsResult);
             addTestResultToContainer("arrayHasValue", "Array doesn't have value \"Foo\": ", hfResult);
-        };
+        }
 
         //////////////////////
         ////QUERY ARRAY
@@ -1147,7 +1147,7 @@
 
             addTestResultToContainer("queryArray", "Single match query returns string: ", smResult);
             addTestResultToContainer("queryArray", "Multiple match query returns array: ", mmResult);
-        };
+        }
 
         //////////////////////
         ////SET STYLE
@@ -1165,7 +1165,7 @@
 
             ssResult = testReturnedValue("setStyle", pad, "20px");
             addTestResultToContainer("setStyle", "Padding is set to 20px: ", ssResult);
-        };
+        }
 
         //////////////////////
         ////GET STYLE
@@ -1183,7 +1183,7 @@
 
             addTestResultToContainer("getStyle", "Padding is 20px: ", hasPad);
             addTestResultToContainer("getStyle", "Border is 1px solid green: ", hasBorder);
-        };
+        }
 
         //////////////////////
         ////APPEND STYLE
@@ -1207,7 +1207,7 @@
 
             addTestResultToContainer("appendStyle", "Padding is now 10px: ", padResult);
             addTestResultToContainer("appendStyle", "Border is 2px solid rgb(255, 0, 0): ", borderResult);
-        };
+        }
 
         //////////////////////
         ////CLEAR STYLE
@@ -1225,7 +1225,7 @@
 
             csResult = testReturnedValue("clearStyle", hasStyle, false);
             addTestResultToContainer("clearStyle", "Style attribute has been removed: ", csResult);
-        };
+        }
 
         //////////////////////
         ////GET INLINE STYLE
@@ -1245,7 +1245,7 @@
             addTestResultToContainer("getInlineStyle", "Function returned an object: ", gisResult);
             addTestResultToContainer("getInlineStyle", "Padding value is 20px: ", hasPadding);
             addTestResultToContainer("getInlineStyle", "Border value is 1px solid rgb(0, 128, 0): ", hasBorder);
-        };
+        }
 
         //////////////////////
         ////SHOW ELEMENT
@@ -1271,7 +1271,7 @@
 
             addTestResultToContainer("showElement", "seDivOne is visible: ", displayResult);
             addTestResultToContainer("showElement", "seDivTwo is visible: ", visResult);
-        };
+        }
 
         //////////////////////
         ////HIDE ELEMENT
@@ -1296,7 +1296,7 @@
 
             addTestResultToContainer("hideElement", "heDivOne display property is set to none: ", disResult);
             addTestResultToContainer("hideElement", "heDivTwo visibility property is set to hidden: ", visResult);
-        };
+        }
 
         //////////////////////
         ////TOGGLE VISIBILITY
@@ -1328,7 +1328,7 @@
 
             addTestResultToContainer("toggleVisibility", "tvDivOne's visibility property is set to hidden: ", hdResult);
             addTestResultToContainer("toggleVisibility", "tvDivTwo's visibility property is set to visible: ", vdResult);
-        };
+        }
 
         //////////////////////
         ////TOGGLE DISPLAY
@@ -1368,7 +1368,7 @@
             addTestResultToContainer("toggleDisplay", "tdDivOne has its display set to none: ", noneResult);
             addTestResultToContainer("toggleDisplay", "tdDivTwo has its display set to block: ", blockResult);
             addTestResultToContainer("toggleDisplay", "tdDivThree has its display set to inline-block: ", ibResult);
-        };
+        }
 
         //////////////////////
         ////MATCH HEIGHT
@@ -1400,7 +1400,7 @@
             addTestResultToContainer("matchHeight", "mhDivTwo height is 100px: ", targetResult);
             addTestResultToContainer("matchHeight", "mhDivThree height is 110px: ", innerResult);
             addTestResultToContainer("matchHeight", "mhDivFour height is 132px: ", totalResult);
-        };
+        }
 
         //////////////////////
         ////LOAD JSON
@@ -1441,8 +1441,8 @@
                 }
 
                 adjustExamples();
-            };
-        };
+            }
+        }
 
         //////////////////////
         ////GET POS
@@ -1459,10 +1459,10 @@
 //            posY = pos.y;
 //
 //            console.log("getPos: posX: " + posX + " posY: " + posY);
-//        };
+//        }
 
         adjustExamples();
-    };
+    }
 
     /////////////////////////////////////////////////////////////////
     ////TESTING**************************************************
@@ -1486,7 +1486,7 @@
         }
 
         return pass;
-    };
+    }
 
     ////////////////////
     ////CHECK TYPE
@@ -1503,7 +1503,7 @@
         type = type.toLowerCase();
 
         return type;
-    };
+    }
 
     ////////////////////
     ////TEST RETURNED VALUE
@@ -1519,7 +1519,7 @@
         }
 
         return pass;
-    };
+    }
 
     ////////////////////
     ////TEST ARRAY
@@ -1557,7 +1557,7 @@
         }
 
         return pass;
-    };
+    }
 
     ////////////////////
     ////TEST ARRAY FOR VALUE
@@ -1573,7 +1573,7 @@
         }
 
         return pass;
-    };
+    }
 
     ////////////////////
     ////STRINGIFY OBJ
@@ -1585,7 +1585,7 @@
         } catch (err) {}
 
         return info;
-    };
+    }
 
     ////////////////////
     ////ADD TEST RESULT TO CONTAINER
@@ -1603,6 +1603,6 @@
         } else {
             Spektral.createSetAttribute(test, "class", "fail");
         }
-    };
+    }
 
 }(window));
