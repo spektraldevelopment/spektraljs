@@ -1,9 +1,7 @@
 <?xml version="1.0"?>
 <data>
     <basic>
-        <item id="Item One">This is the inner content for item one.</item>
-        <item id="Item Two">This is the inner content for item two.</item>
-        <item id="Item Three">This is the inner content for item three.</item>
-        <item id="Item Four">This is the inner content for item four.</item>
+        <item id="Item1">Inner content for item1</item>
+        <item id="Item2">Inner content for item2</item>
     </basic>
 </data>

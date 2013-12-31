@@ -1451,22 +1451,36 @@
 
         function loadXML() {
 
-            var items, i;
+            var
+                items, i, name, id, val,
+                lxResult, hasName, hasID, hasVal, num;
 
             Spektral.loadXML("xml/test.xml", onXMLLoaded);
 
             function onXMLLoaded(xmlDoc) {
 
+                lxResult = testMethod("loadXML", xmlDoc, "document");
+
+                addTestResultToContainer("loadXML", "XML document was returned: ", lxResult);
+
                 items = Spektral.getChildNodes(xmlDoc.firstChild.childNodes[1]);
 
-                console.log("items: " + items);
-
                 for(i = 0; i < items.length; i += 1) {
-                    console.log("nodeName: " + items[i].nodeName);
-                    console.log("id: " + Spektral.getAttributeValue(items[i], "id"));
-                    console.log("nodeValue: " + Spektral.getInnerText(items[i]));
-                }
 
+                    name = items[i].nodeName;
+                    id = Spektral.getAttributeValue(items[i], "id");
+                    val = Spektral.getInnerText(items[i]);
+
+                    num = (i + 1);
+
+                    hasName = testReturnedValue("loadXML", name, "item");
+                    hasID = testReturnedValue("loadXML", id, "Item" + num);
+                    hasVal = testReturnedValue("loadXML", val, ("Inner content for item" + num));
+
+                    addTestResultToContainer("loadXML", "Document has item node: ", hasName);
+                    addTestResultToContainer("loadXML", ("Node has id of Item" + num + ": "), hasID);
+                    addTestResultToContainer("loadXML", ("Node has value of \"Inner content for item" + num + "\": "), hasVal);
+                }
             }
         }
 
@@ -1527,6 +1541,11 @@
             type = ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1]
         }
         type = type.toLowerCase();
+
+        //If type is XML
+        if (Spektral.detectCharacter(type, "#") === true) {
+            type = Spektral.stripString(type, "#");
+        }
 
         return type;
     }

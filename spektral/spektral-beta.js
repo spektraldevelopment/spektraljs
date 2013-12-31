@@ -1688,6 +1688,11 @@
             type = ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1]
         }
         type = type.toLowerCase();
+
+        //If type is XML
+        if (Spektral.detectCharacter(type, "#") === true) {
+            type = Spektral.stripString(type, "#");
+        }
         return type;
     };
 

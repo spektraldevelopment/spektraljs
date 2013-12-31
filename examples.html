@@ -1952,6 +1952,21 @@ function onJSONLoaded(data) {
                     <div class="innerExampleCodeHolder">
                         <h3 class="exampleCodeHeader">Example Code</h3>
                         <pre class="prettyprint">
+var items, i, name, id, val;
+
+Spektral.loadXML("xml/test.xml", onXMLLoaded);
+
+function onXMLLoaded(xmlDoc) {
+
+    items = Spektral.getChildNodes(xmlDoc.firstChild.childNodes[1]);
+
+    for(i = 0; i < items.length; i += 1) {
+
+        name = items[i].nodeName;
+        id = Spektral.getAttributeValue(items[i], "id");
+        val = Spektral.getInnerText(items[i]);
+    }
+}
                         </pre>
                     </div>
                 </div>
