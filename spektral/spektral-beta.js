@@ -1346,7 +1346,7 @@
         totalWidth = Spektral.stringToNum(marginLeft) + 
         Spektral.stringToNum(borderLeft) + 
         Spektral.stringToNum(paddingLeft) + 
-        Spektral.stringToNum(innerWidth) + 
+        Spektral.stringToNum(width) + 
         Spektral.stringToNum(paddingRight) + 
         Spektral.stringToNum(borderRight) + 
         Spektral.stringToNum(marginRight);
@@ -1355,7 +1355,7 @@
         totalHeight = Spektral.stringToNum(marginTop) + 
         Spektral.stringToNum(borderTop) + 
         Spektral.stringToNum(paddingTop) + 
-        Spektral.stringToNum(innerHeight) + 
+        Spektral.stringToNum(height) + 
         Spektral.stringToNum(paddingBottom) + 
         Spektral.stringToNum(borderBottom) + 
         Spektral.stringToNum(marginBottom);

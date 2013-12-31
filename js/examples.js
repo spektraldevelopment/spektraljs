@@ -1371,6 +1371,38 @@
         };
 
         //////////////////////
+        ////MATCH HEIGHT
+        //////////////////////
+        matchHeight();
+
+        function matchHeight() {
+
+            var
+                refElement = Spektral.getElement("mhDivOne"),
+                targetElement = Spektral.getElement("mhDivTwo"),
+                innerElement = Spektral.getElement("mhDivThree"),
+                totalElement = Spektral.getElement("mhDivFour"),
+                targetHeight, innerHeight, totalHeight,
+                targetResult, innerResult, totalResult;
+
+            Spektral.matchHeight(refElement, targetElement);
+            Spektral.matchHeight(refElement, innerElement, "inner");
+            Spektral.matchHeight(refElement, totalElement, "total");
+
+            targetHeight = Spektral.getDimensions(targetElement).height;
+            innerHeight = Spektral.getDimensions(innerElement).height;
+            totalHeight = Spektral.getDimensions(totalElement).height;
+
+            targetResult = testReturnedValue("matchHeight", targetHeight, 100);
+            innerResult = testReturnedValue("matchHeight", innerHeight, 110);
+            totalResult = testReturnedValue("matchHeight", totalHeight, 132);
+
+            addTestResultToContainer("matchHeight", "mhDivTwo height is 100px: ", targetResult);
+            addTestResultToContainer("matchHeight", "mhDivThree height is 110px: ", innerResult);
+            addTestResultToContainer("matchHeight", "mhDivFour height is 132px: ", totalResult);
+        };
+
+        //////////////////////
         ////GET POS
         //////////////////////
 //        getPos();
