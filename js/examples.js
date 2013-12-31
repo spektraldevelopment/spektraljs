@@ -1403,6 +1403,48 @@
         };
 
         //////////////////////
+        ////LOAD JSON
+        //////////////////////
+        loadJSON();
+
+        function loadJSON() {
+
+            var
+                jsonObj, itemObj, key,
+                item, value, num = 1,
+                ljResult, titleResult, valueResult;
+
+            Spektral.loadJSON("js/test.json", onJSONLoaded);
+
+            function onJSONLoaded(data) {
+
+                ljResult = testMethod("loadJSON", data, "object");
+
+                addTestResultToContainer("loadJSON", "An object was returned: ", ljResult);
+
+                jsonObj = data.items;
+
+                for (key in jsonObj) {
+
+                    itemObj = jsonObj[key];
+
+                    item = itemObj.item;
+                    value = itemObj.value;
+
+                    titleResult = testReturnedValue("loadJSON", item, ("item" + num));
+                    valueResult = testReturnedValue("loadJSON", value, ("value" + num));
+
+                    addTestResultToContainer("loadJSON", ("item" + num + " was returned: "), titleResult);
+                    addTestResultToContainer("loadJSON", ("value" + num + " was returned: "), valueResult);
+
+                    num += 1;
+                }
+
+                adjustExamples();
+            };
+        };
+
+        //////////////////////
         ////GET POS
         //////////////////////
 //        getPos();

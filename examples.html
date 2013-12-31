@@ -1886,6 +1886,51 @@ Spektral.matchHeight(refElement, totalElement, "total");
             </div>
 
             <!--******************-->
+            <!--LOAD JSON-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">loadJSON()</h3>
+                        <div class="description">Loads an external JSON file.</div>
+                        <div id="loadJSON" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    jsonObj, itemObj, key,
+    item, value;
+
+Spektral.loadJSON("js/test.json", onJSONLoaded);
+
+function onJSONLoaded(data) {
+
+    jsonObj = data.items;
+
+    for (key in jsonObj) {
+
+        itemObj = jsonObj[key];
+
+        item = itemObj.item;
+        value = itemObj.value;
+    }
+};
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+            <!--******************-->
             <!--GET POS-->
             <!--******************-->
             <!--<div class="example">-->
