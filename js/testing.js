@@ -104,7 +104,7 @@ Spektral.debug();
 //    {"item":"Group 2 Item 2 content","id":"Group 2 item 2 id"}]}
 //]};
 //
-//var xmlFile = Spektral.loadXML("xml/test.xml", onXMLLoaded);
+//var xmlFile = Spektral.loadXML("xml/sample.xml", onXMLLoaded);
 //
 //function onXMLLoaded(xmlDoc) {
 //

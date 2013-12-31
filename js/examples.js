@@ -1445,6 +1445,32 @@
         }
 
         //////////////////////
+        ////LOAD XML
+        //////////////////////
+        loadXML();
+
+        function loadXML() {
+
+            var items, i;
+
+            Spektral.loadXML("xml/test.xml", onXMLLoaded);
+
+            function onXMLLoaded(xmlDoc) {
+
+                items = Spektral.getChildNodes(xmlDoc.firstChild.childNodes[1]);
+
+                console.log("items: " + items);
+
+                for(i = 0; i < items.length; i += 1) {
+                    console.log("nodeName: " + items[i].nodeName);
+                    console.log("id: " + Spektral.getAttributeValue(items[i], "id"));
+                    console.log("nodeValue: " + Spektral.getInnerText(items[i]));
+                }
+
+            }
+        }
+
+        //////////////////////
         ////GET POS
         //////////////////////
 //        getPos();
