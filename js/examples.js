@@ -1485,6 +1485,29 @@
         }
 
         //////////////////////
+        ////LOAD FILE
+        //////////////////////
+        loadFile();
+
+        function loadFile() {
+
+            var loadedText, lfResult, returnedText;
+
+            Spektral.loadFile("txt/test.txt", onTxtLoaded);
+
+            function onTxtLoaded(txt) {
+
+                loadedText = txt;
+
+                lfResult = testMethod("loadFile", txt, "string");
+                returnedText = testReturnedValue("loadFile", loadedText, "Here is the text from test.txt");
+
+                addTestResultToContainer("loadFile", "A string was returned: ", lfResult);
+                addTestResultToContainer("loadFile", "String = \"Here is the text from test.txt\": ", returnedText);
+            }
+        }
+
+        //////////////////////
         ////GET POS
         //////////////////////
 //        getPos();
