@@ -1392,6 +1392,31 @@
         return detected;
     };
 
+    //////////////////
+    ////DETECT CHARACTER
+    //////////////////
+    Spektral.hasPattern = function (request, pattern) {
+
+        var 
+            regEx = new RegExp(pattern, "g"),
+            matches = request.match(regEx),
+            hasMatch = false;
+
+        if (matches !== null) {
+
+            hasMatch = true;
+        }
+
+        return hasMatch;
+    };
+
+    //////////////////
+    ////RETURN RANGE
+    //////////////////
+    Spektral.returnRange = function (request, startPattern, endPattern) {
+
+    };
+
     ///////////////////
     ////GET INFO 
     ///////////////////
@@ -1835,7 +1860,32 @@
     ///////////////////
     Spektral.getSystemInfo = function() {
 
-        var ua = window.navigator;
+        var 
+            nav = window.navigator,
+            info = {}, possibleBrowsers, 
+            ua = nav.userAgent, browser, browserMatch, i;
+
+        possibleBrowsers = ["MSIE", "Firefox", "Chrome", "Safari", "Opera"];
+
+        for(i = 0; i < possibleBrowsers.length; i += 1) {
+            browserMatch = Spektral.hasPattern(ua, possibleBrowsers[i]);
+
+            if(browserMatch === true) {
+                browser = possibleBrowsers[i];
+                if(browser === "MSIE") {
+                    browser = "IE";
+                }
+                break;
+            }
+        }
+
+        info["navigator"] = nav;
+        info["appName"] = nav.appName;
+        info["userAgent"] = ua;
+        info["browser"] = browser;
+
+        Spektral.log("getSystemInfo: nav: ", "dir", nav);
+        return info;
     };
 
     ///////////////////

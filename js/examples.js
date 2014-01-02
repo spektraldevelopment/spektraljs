@@ -1070,6 +1070,21 @@
         }
 
         //////////////////////
+        ////HAS PATTERN
+        //////////////////////
+        hasPattern();
+
+        function hasPattern() {
+
+            var
+                testString = "This is a test string that contains Spektral.",
+                hasSpektral = Spektral.hasPattern(testString, "Spektral"),
+                hpResult = testReturnedValue("hasPattern", hasSpektral, true);
+
+            addTestResultToContainer("hasPattern", "String has \"Spektral\": ", hpResult);
+        }
+
+        //////////////////////
         ////CREATE ARRAY
         //////////////////////
         createArray();
@@ -1514,9 +1529,15 @@
 
         function getXHR() {
 
-            var xhr = Spektral.getXHR();
+            var
+                xhr = Spektral.getXHR(),
+                sysInfo = Spektral.getSystemInfo(),
+                ua = sysInfo.userAgent,
+                browser = sysInfo.browser;
 
             console.log("xhr: " + xhr);
+            console.log("ua: " + ua);
+            console.log("browser: " + browser);
         }
 
         //////////////////////

@@ -475,6 +475,19 @@
             "returns" : "Boolean",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils, string"],
+            "title" : "hasPattern()",
+            "description" : "Detects if a pattern is present in a string. Returns a Boolean.",
+            "code" : "Spektral.hasPattern(request, pattern);",
+            "params" : [
+                {"request (required, expects: String)" : "The string you wish to search."},
+                {"pattern (required, expects: String)" : "The pattern you want to detect."}
+            ],
+            "returns" : "Boolean",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
         }
     ],
     "array" : [
@@ -988,6 +1001,17 @@
             ],
             "returns" : "Nothing",
             "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
+            "title" : "getSystemInfo()",
+            "description" : "Returns an object containing information about the users system.",
+            "code" : "Spektral.getSystemInfo();",
+            "params" : [
+            ],
+            "returns" : "Object",
+            "dependencies" : "hasPattern",
             "compatibility" : "Currently in testing."
         }
     ],
