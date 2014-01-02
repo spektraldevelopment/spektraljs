@@ -1508,6 +1508,18 @@
         }
 
         //////////////////////
+        ////GET XHR
+        //////////////////////
+        getXHR();
+
+        function getXHR() {
+
+            var xhr = Spektral.getXHR();
+
+            console.log("xhr: " + xhr);
+        }
+
+        //////////////////////
         ////GET POS
         //////////////////////
 //        getPos();

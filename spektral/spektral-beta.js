@@ -1399,7 +1399,10 @@
         var info;
         try {
             info = JSON.stringify(obj);
-        } catch (err) {}
+        } catch (err) {
+            Spektral.log("getInfo: could not stringify.");
+            Spektral.log(obj, "dir");
+        }
 
         return info;
     };
@@ -1828,13 +1831,31 @@
     };
 
     ///////////////////
+    ////GET SYSTEM INFO
+    ///////////////////
+    Spektral.getSystemInfo = function() {
+
+        var ua = window.navigator;
+    };
+
+    ///////////////////
     ////LOG
     ///////////////////
-    Spektral.log = function (message) {
+    Spektral.log = function (message, method, obj) {
+
+        method = method || "log";
 
         if (debug) {
-            console.log("Spektraljs: " + message);
-            consoleLog.push(message);
+            if(method === "dir") {
+                console.log(message);
+                console.dir(obj);
+                consoleLog.push(message);
+                consoleLog.push(obj);
+            } else {
+                //Use log
+                console.log("Spektraljs: " + message);
+                consoleLog.push(message);
+            }
         }
     };
 
