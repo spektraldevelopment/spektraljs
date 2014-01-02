@@ -1896,16 +1896,12 @@
         method = method || "log";
 
         if (debug) {
+            console.log("Spektraljs: " + message);
+            consoleLog.push(message);
             if(method === "dir") {
-                console.log(message);
                 console.dir(obj);
-                consoleLog.push(message);
                 consoleLog.push(obj);
-            } else {
-                //Use log
-                console.log("Spektraljs: " + message);
-                consoleLog.push(message);
-            }
+            } 
         }
     };
 

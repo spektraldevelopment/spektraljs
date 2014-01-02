@@ -1531,13 +1531,10 @@
 
             var
                 xhr = Spektral.getXHR(),
-                sysInfo = Spektral.getSystemInfo(),
-                ua = sysInfo.userAgent,
-                browser = sysInfo.browser;
+                xhrType = Spektral.getType(xhr),
+                xhrResult = testReturnedValue("getXHR", xhrType, ["xmlhttprequest", "activexobject"]);
 
-            console.log("xhr: " + xhr);
-            console.log("ua: " + ua);
-            console.log("browser: " + browser);
+            addTestResultToContainer("getXHR", "Returned type is either XMLHttpRequest or ActiveXObject: ", xhrResult);
         }
 
         //////////////////////
@@ -1589,7 +1586,7 @@
     ////////////////////
     function checkType(obj) {
         var type;
-        if(obj.nodeName !== undefined) {
+        if (obj.nodeName !== undefined) {
             //element
             type = (obj.nodeName);
         } else {
@@ -1611,19 +1608,30 @@
     ////////////////////
     function testReturnedValue(desc, result, expected) {
 
-        var pass = false;
+        var
+            pass = false,
+            expectedType = checkType(expected), i;
 
-        if(result === expected) {
-            pass = true;
+        if(expectedType === "array") {
+
+            for (i = 0; i < expected.length; i += 1) {
+                if (result === expected[i]) {
+                    pass = true;
+                }
+            }
         } else {
-            console.log("!" + desc + " test failed. expected: " + expected + ", result: " + result + ".");
-        }
 
+            if (result === expected) {
+                pass = true;
+            } else {
+                console.log("!" + desc + " test failed. expected: " + expected + ", result: " + result + ".");
+            }
+        }
         return pass;
     }
 
     ////////////////////
-    ////TEST ARRAY
+    ////TEST ARRAY - NOT IN USE!!!
     ////////////////////
     function testArray(desc, resultArray, expectedLength, compareArray) {
 
@@ -1633,9 +1641,9 @@
             pass = false, i,
             resLength = resultArray.length;
 
-        if(compareArray === null) {
+        if (compareArray === null) {
             //Just check length
-            if(resLength === expectedLength) {
+            if (resLength === expectedLength) {
                 pass = true;
             } else {
                 console.log("!" + desc + " test failed. Array length: " + resLength + " did not match expected length: " + expectedLength);
@@ -1644,8 +1652,8 @@
             //Check if result matches testArray
             if (resLength === compareArray.length) {
 
-                for(i = 0; i < resLength; i += 1) {
-                   if(resultArray[i] === compareArray[i]) {
+                for (i = 0; i < resLength; i += 1) {
+                   if (resultArray[i] === compareArray[i]) {
                        console.log("MATCH! resultArray: " + resultArray[i] + " compareArray: " + compareArray[i]);
                    } else {
                        console.log("NO MATCH! resultArray: " + resultArray[i] + " compareArray: " + compareArray[i]);
@@ -1667,7 +1675,7 @@
 
         var i, pass = false;
 
-        for(i = 0; i < testArray.length; i += 1) {
+        for (i = 0; i < testArray.length; i += 1) {
             if(testArray[i] === expectedValue) {
                 pass = true;
             }
@@ -1699,7 +1707,7 @@
 
         Spektral.setInnerText(test, desc);
 
-        if(result === true) {
+        if (result === true) {
             Spektral.createSetAttribute(test, "class", "pass");
         } else {
             Spektral.createSetAttribute(test, "class", "fail");
