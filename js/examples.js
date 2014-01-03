@@ -1589,6 +1589,31 @@
         }
 
         //////////////////////
+        ////STRING TO NUM
+        //////////////////////
+        stringToNum();
+
+        function stringToNum() {
+
+            var
+                tenPixels = "10px",
+                fiveEms = "5em",
+                twentyPoints = "20pt",
+                ten = Spektral.stringToNum(tenPixels),
+                five = Spektral.stringToNum(fiveEms),
+                twenty = Spektral.stringToNum(twentyPoints),
+                stnResult = testMethod("stringToNum", ten, "number"),
+                isTen = testReturnedValue("stringToNum", ten, 10),
+                isFive = testReturnedValue("stringToNum", five, 5),
+                isTwenty = testReturnedValue("stringToNum", twenty, 20);
+
+            addTestResultToContainer("stringToNum", "A number was returned: ", stnResult);
+            addTestResultToContainer("stringToNum", "10px = 10: ", isTen);
+            addTestResultToContainer("stringToNum", "5ems = 5: ", isFive);
+            addTestResultToContainer("stringToNum", "20pt = 20: ", isTwenty);
+        }
+
+        //////////////////////
         ////GET POS
         //////////////////////
 //        getPos();

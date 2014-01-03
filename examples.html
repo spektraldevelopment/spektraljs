@@ -2129,6 +2129,40 @@ var
             </div>
 
             <!--******************-->
+            <!--STRING TO NUM-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">stringToNum()</h3>
+                        <div class="description">Removes px or em from a string, and converts it to a number.</div>
+                        <div id="stringToNum" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    tenPixels = "10px",
+    fiveEms = "5em",
+    twentyPoints = "20pt",
+    ten = Spektral.stringToNum(tenPixels),
+    five = Spektral.stringToNum(fiveEms),
+    twenty = Spektral.stringToNum(twentyPoints);
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+            <!--******************-->
             <!--GET POS-->
             <!--******************-->
             <!--<div class="example">-->
