@@ -676,7 +676,7 @@
         } else {
             //Try query
             el = Spektral.query(element);
-            //Spektral.log(element + " tried query.");
+            Spektral.log(element + " tried query.", "warn");
             if(el === undefined) {
                 el = Spektral.getElementByClass(element);
                 //Spektral.log(element + " tried getElementByClass.");
@@ -688,7 +688,7 @@
         }
         elType = Spektral.getType(el);
         if (elType === "nodelist") {
-            //Spektral.log("getElement: More than one element was found.");
+            Spektral.log("getElement: More than one element was found: " + element, "warn");
             //Spektral.listArrayObjects(el);
         }
         return el;
@@ -698,8 +698,14 @@
     ////IS HTML ELEMENT
     //////////////////
     Spektral.isHTMLElement = function (element) {
-        var list = Spektral.listElements(), isHTML = null, i;
+        var 
+            list = Spektral.listElements(), 
+            isHTML = null, i;
         for (i = 0; i < list.length; i++) {
+            if(element === iheDiv) {
+                console.log("element: " + element + " list[i]: " + list[i]);
+            }
+            
             if (element === list[i]) {
                 isHTML = true;
                 break;

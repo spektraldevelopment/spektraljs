@@ -1683,6 +1683,20 @@
         }
 
         //////////////////////
+        ////IS HTML ELEMENT
+        //////////////////////
+        isHTMLElement();
+
+        function isHTMLElement() {
+
+            var
+                testDiv = Spektral.getElement("iheDiv"),
+                isEl = Spektral.isHTMLElement(testDiv);
+
+            console.log("isEl: " + isEl);
+        }
+
+        //////////////////////
         ////GET POS
         //////////////////////
 //        getPos();
