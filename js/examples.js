@@ -1565,6 +1565,30 @@
         }
 
         //////////////////////
+        ////ROUND NUM
+        //////////////////////
+        roundNum();
+
+        function roundNum() {
+
+            var
+                unroundedNum = 23.45,
+                roundDown = 27.8,
+                roundedNum = Spektral.roundNum(unroundedNum),
+                upRound = Spektral.roundNum(unroundedNum, "up"),
+                downRound = Spektral.roundNum(roundDown, "down"),
+                rnResult = testMethod("roundNum", roundedNum, "number"),
+                isRounded = testReturnedValue("roundNum", roundedNum, 23),
+                isUpRounded = testReturnedValue("roundNum", upRound, 24),
+                isDownRounded = testReturnedValue("roundNum", downRound, 27);
+
+            addTestResultToContainer("roundNum", "A number was returned: ", rnResult);
+            addTestResultToContainer("roundNum", "Number is rounded: ", isRounded);
+            addTestResultToContainer("roundNum", "Number is rounded up: ", isUpRounded);
+            addTestResultToContainer("roundNum", "Number is rounded down: ", isDownRounded);
+        }
+
+        //////////////////////
         ////GET POS
         //////////////////////
 //        getPos();
