@@ -1614,6 +1614,25 @@
         }
 
         //////////////////////
+        ////GET KEY
+        //////////////////////
+        getKey();
+
+        function getKey() {
+            var
+                enter = Spektral.getKey(13),
+                up = Spektral.getKey(38),
+                down = Spektral.getKey(40),
+                isEnter = testReturnedValue("getKey", enter, "ENTER"),
+                isUp = testReturnedValue("getKey", up, "UP"),
+                isDown = testReturnedValue("getKey", down, "DOWN");
+
+            addTestResultToContainer("getKey", "\"ENTER\" was returned: ", isEnter);
+            addTestResultToContainer("getKey", "\"UP\" was returned: ", isUp);
+            addTestResultToContainer("getKey", "\"DOWN\" was returned: ", isDown);
+        }
+
+        //////////////////////
         ////GET POS
         //////////////////////
 //        getPos();
