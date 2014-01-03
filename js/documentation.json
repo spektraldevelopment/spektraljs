@@ -729,9 +729,9 @@
     "utils" : [
         {
             "category" : ["utils"],
-            "title" : "getViewPortSize()",
+            "title" : "getViewportSize()",
             "description" : "Returns the height and width of the browser viewport.",
-            "code" : "Spektral.getViewPortSize();",
+            "code" : "Spektral.getViewportSize();",
             "params" : [],
             "returns" : "Object",
             "dependencies" : "None",

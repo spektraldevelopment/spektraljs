@@ -345,14 +345,14 @@
     ////GET VIEWPORT SIZE
     ///////////////////
     Spektral.getViewportSize = function () {
-        var w, h;
+        var w, h, vPort = {};
         //Width
         if (window.innerWidth) {
             w = window.innerWidth;
         } else if (document.body && document.body.offsetWidth) {
             w = document.body.offsetWidth;
         } else {
-            w = 0;
+            w = null;
         }
         //Height
         if (window.innerHeight) {
@@ -360,10 +360,13 @@
         } else if (document.body && document.body.offsetHeight) {
             h = document.body.offsetHeight;
         } else {
-            h = 0;
+            h = null;
         }
 
-        return { width: w, height: h };
+        vPort["width"] = w;
+        vPort["height"] = h;
+
+        return vPort;
     };
 
     ///////////////////
@@ -391,7 +394,8 @@
             //load file
             Spektral.loadFile(source, callback, async);
         } else {
-            Spektral.throwError("loadJSON: Invalid source type: " + sourceType + ". Source must be string or external json file.");
+            //Spektral.throwError("loadJSON: Invalid source type: " + sourceType + ". Source must be string or external json file.");
+            Spektral.log("loadJSON: Invalid source type: " + sourceType + ". Source must be string or external json file.", "warn")
         }
     };
 
@@ -407,7 +411,8 @@
             //load file
             Spektral.loadFile(source, callback, async);
         } else {
-            Spektral.throwError("loadXML: Invalid source type: " + sourceType + ". Source must be string or external json file.");
+            //Spektral.throwError("loadXML: Invalid source type: " + sourceType + ". Source must be string or external json file.");
+            Spektral.log("loadXML: Invalid source type: " + sourceType + ". Source must be string or external json file.", "warn");
         }
     };
 
@@ -445,7 +450,8 @@
         }
 
         function onLoadError(e) {
-            Spektral.throwError("loadError: There was a load error: " + e);
+            //Spektral.throwError("loadError: There was a load error: " + e);
+            Spektral.log("loadFile: loadError: There was a load error: " + e, "warn");
         }
 
         Spektral.attachEventListener(xhr, 'readystatechange', checkIfReady);
@@ -477,7 +483,10 @@
                 try {
                     result = new ActiveXObject(versions[i]);
                     return result;
-                } catch (err) { Spektral.throwError("loadFile: Couldn't find the proper XMLHttp version."); }
+                } catch (err) { 
+                    //Spektral.throwError("loadFile: Couldn't find the proper XMLHttp version."); 
+                    Spektral.log("getXHR: Couldn't find the proper XMLHttp version.", "warn");
+                }
             }
         }
         return result;
@@ -661,8 +670,8 @@
                 el = Spektral.getElementByClass(element);
                 //Spektral.log(element + " tried getElementByClass.");
                 if (el === undefined) {
-                    Spektral.throwError("Element: " + element + " Not Found. Ensure you are calling an existing element.");
-                    //Spektral.log("!Error: Element: " + element + " Not Found. Ensure you are calling an existing element.");
+                    //Spektral.throwError("Element: " + element + " Not Found. Ensure you are calling an existing element.");
+                    Spektral.log("getElement: " + element + " Not Found. Ensure you are calling an existing element.", "warn");
                 }
             }
         }
@@ -783,7 +792,8 @@
             } else {
                 errorString = "createElement: could not find parent target node.";
                 if (parentNode !== null) { errorString += " parentNode: " + parentNode; }
-                Spektral.throwError(errorString);
+                //Spektral.throwError(errorString);
+                Spektral.log("createNewElement: " + errorString);
             }
         }
 
@@ -850,7 +860,8 @@
                 }
             }
         } else {
-            Spektral.throwError("setStyle: Property must be a string or array.")
+            //Spektral.throwError("setStyle: Property must be a string or array.")
+            Spektral.log("setStyle: Property must be a string or array.", "warn");
         }
         Spektral.createSetAttribute(element, "style", propString);
     };
@@ -872,7 +883,8 @@
             try {
                 style =  Spektral.getInlineStyle(element);
             } catch (err) {
-                Spektral.throwError("getStyle: Could not get style.")
+                //Spektral.throwError("getStyle: Could not get style.")
+                Spektral.log("getStyle: Could not get style.", "warn");
             }
         }
         return style;
@@ -908,7 +920,8 @@
 
         //stringCheck is for if the user attempts to append multiple properties at the same time
         if(stringCheck === true) {
-            Spektral.throwError("appendStyle: Sorry, for now you can only append one value at a time. Don't include ; in your string.");
+            //Spektral.throwError("appendStyle: Sorry, for now you can only append one value at a time. Don't include ; in your string.");
+            Spektral.log("appendStyle: Sorry, for now you can only append one value at a time. Don't include ; in your string.", "warn");
         }
 
         if(currentStyle === false) {
@@ -1011,7 +1024,8 @@
             attr = nodeAttrs[attribute];
             if (attr === undefined) {
                 attr = null;
-                Spektral.throwError("getAttributeValue: Attribute does not exist. Are you calling its name correctly?");
+                //Spektral.throwError("getAttributeValue: Attribute does not exist. Are you calling its name correctly?");
+                Spektral.log("getAttributeValue: Attribute does not exist. Are you calling its name correctly?", "warn");
             }
         }
         return attr;
@@ -1025,7 +1039,8 @@
         if (element.hasAttribute(attribute)) {
             element.removeAttribute(attribute);
             if(element.getAttribute(attribute) !== null) {
-                Spektral.throwError("destroyElement: Attribute was unable to be removed for some reason.")
+                //Spektral.throwError("destroyElement: Attribute was unable to be removed for some reason.")
+                Spektral.log("destroyAttribute: Attribute was unable to be removed for some reason.", "warn");
             } else {
                 //Spektral.log("Attribute destroyed.");
             }
@@ -1425,10 +1440,8 @@
         try {
             info = JSON.stringify(obj);
         } catch (err) {
-            Spektral.log("getInfo: could not stringify.");
-            Spektral.log(obj, "dir");
+            Spektral.log("getInfo: could not stringify.", obj, "dir");
         }
-
         return info;
     };
 
@@ -1481,7 +1494,8 @@
             stripped;
 
         if(detectCharacter === false && character !== " ") {
-            Spektral.throwError("splitString: Could not split string because character [" + character + "] was not in string.");
+            //Spektral.throwError("splitString: Could not split string because character [" + character + "] was not in string.");
+            Spektral.log("splitString: Could not split string because character [" + character + "] was not in string.", "warn");
         } else {
             if(character !== " ") {
                 split = request.split(character);
@@ -1600,7 +1614,8 @@
         var type = Spektral.getType(array), i;
 
         if (type !== 'array' && type !== 'nodelist' && type !== "namednodemap") {
-            Spektral.throwError("listArrayObjects: You must pass either an array or nodelist to this function.")
+            //Spektral.throwError("listArrayObjects: You must pass either an array or nodelist to this function.")
+            Spektral.log("listArrayObjects: You must pass either an array or nodelist to this function.", "warn");
         } else {
             for (i = 0; i < array.length; i += 1) {
                 if (type === 'nodelist') {
@@ -1638,7 +1653,6 @@
         for (i = 0; i < array.length; i += 1) {
             if(array[i] === query) {
                 resultArray.push(array[i]);
-                //console.log("queryArray: array[i]: " + array[i] + " query: " + query);
             }
         }
 
@@ -1725,13 +1739,14 @@
     };
 
     ////////////////////
-    ////VALIDATE PARAMS
+    ////VALIDATE PARAMS - might rename to validateObject
     ////////////////////
     Spektral.validateParams = function (params) {
         var paramsType = Spektral.getType(params);
 
         if (paramsType !== "object") {
-            Spektral.throwError("validateParams: params must always be an object. Currently it is an " + params + ".")
+            //Spektral.throwError("validateParams: params must always be an object. Currently it is an " + params + ".")
+            Spektral.log("validateParams: params must always be an object. Currently it is an " + params + ".", "warn");
         }
     };
 
@@ -1742,9 +1757,11 @@
         var type = Spektral.getType(file);
 
         if (file === undefined) {
-            Spektral.throwError("getExtension: file is undefined. Did you pass a file name to this function?")
+            //Spektral.throwError("getExtension: file is undefined. Did you pass a file name to this function?")
+            Spektral.log("getExtension: file is undefined. Did you pass a file name to this function?", "warn");
         } else if (type !== "string") {
-            Spektral.throwError("getExtension: file needs to be string.")
+            //Spektral.throwError("getExtension: file needs to be string.")
+            Spektral.log("getExtension: file needs to be string.", "warn");
         }
         return file.split('.').pop();
     };
@@ -1896,12 +1913,18 @@
         method = method || "log";
 
         if (debug) {
-            console.log("Spektraljs: " + message);
-            consoleLog.push(message);
             if(method === "dir") {
+                console.log("Spektraljs: " + message);
+                consoleLog.push(message);
                 console.dir(obj);
                 consoleLog.push(obj);
-            } 
+            } else if (method === "warn") {
+                console.warn("Spektraljs: " + message);
+                consoleLog.push(message);
+            } else {
+                console.log("Spektraljs: " + message);
+                consoleLog.push(message);
+            }
         }
     };
 

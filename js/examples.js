@@ -1538,6 +1538,33 @@
         }
 
         //////////////////////
+        ////GET VIEWPORT SIZE
+        //////////////////////
+        getViewportSize();
+
+        function getViewportSize() {
+
+            var
+                viewportSize = Spektral.getViewportSize(),
+                vWidth = viewportSize.width,
+                vHeight = viewportSize.height,
+                winInnerWidth = window.innerWidth,
+                winInnerHeight = window.innerHeight,
+                gvsResult = testMethod("getViewportSize", viewportSize, "object"),
+                hasWidth = testMethod("getViewportSize", vWidth, "number"),
+                hasHeight = testMethod("getViewportSize", vHeight, "number"),
+                widthCorrect = testReturnedValue("getViewportSize", vWidth, winInnerWidth),
+                heightCorrect = testReturnedValue("getViewportSize", vHeight, winInnerHeight);
+
+
+            addTestResultToContainer("getViewportSize", "An object was returned: ", gvsResult);
+            addTestResultToContainer("getViewportSize", "Width is a number: ", hasWidth);
+            addTestResultToContainer("getViewportSize", "Height is number: ", hasHeight);
+            addTestResultToContainer("getViewportSize", "Width is correct: ", widthCorrect);
+            addTestResultToContainer("getViewportSize", "Height is correct: ", heightCorrect);
+        }
+
+        //////////////////////
         ////GET POS
         //////////////////////
 //        getPos();
