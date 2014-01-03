@@ -1066,7 +1066,9 @@
             "description" : "Logs debugging information in the console, if present. Primarily for internal use, can be used outside of Spektral.js.",
             "code" : "Spektral.log(message);",
             "params" : [
-                {"message (required, expects: String)" : "The data you wish to log."}
+                {"message (required, expects: String)" : "The data you wish to log."},
+                {"method (optional, expects: String)" : "Accepts:<br/>\"dir\"(Shows an interactive list of the properties of the specified object.)<br/>\"warn\"(Outputs a warning message to the console.)"},
+                {"obj (optional, expects: Object)" : "If the \"dir\" method is selected, obj is the item you want to view."}
             ],
             "returns" : "Nothing",
             "dependencies" : "None",
