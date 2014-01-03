@@ -2194,6 +2194,57 @@ var
             </div>
 
             <!--******************-->
+            <!--IS MATCH-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">isMatch()</h3>
+                        <div class="description">Compares to objects/elements to determine whether they are the same type.</div>
+                        <div id="isMatch" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    itemA = "A string",
+    itemB = 20,
+    itemC = true,
+    itemD = "Another string",
+    itemE = false,
+    itemF = 5,
+    stringMatch, numberMatch, booleanMatch,
+    badMatchOne, badMatchTwo;
+
+//String
+stringMatch = Spektral.isMatch(itemA, itemD, true);
+
+//Number
+numberMatch = Spektral.isMatch(itemB, itemF, true);
+
+//Boolean
+booleanMatch = Spektral.isMatch(itemC, itemE, true);
+
+//Compare a string with a number
+badMatchOne = Spektral.isMatch(itemA, itemB);
+
+//Compare a boolean with a string
+badMatchTwo = Spektral.isMatch(itemC, itemD);
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+            <!--******************-->
             <!--GET POS-->
             <!--******************-->
             <!--<div class="example">-->

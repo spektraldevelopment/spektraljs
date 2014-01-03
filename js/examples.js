@@ -1633,6 +1633,55 @@
         }
 
         //////////////////////
+        ////IS MATCH
+        //////////////////////
+        isMatch();
+
+        function isMatch() {
+
+            var
+                itemA = "A string",
+                itemB = 20,
+                itemC = true,
+                itemD = "Another string",
+                itemE = false,
+                itemF = 5,
+                stringMatch, numberMatch, booleanMatch,
+                badMatchOne, badMatchTwo,
+                imResult, isString, isNum, isBoolean,
+                isBadOne, isBadTwo;
+
+            //String
+            stringMatch = Spektral.isMatch(itemA, itemD, true);
+
+            //Number
+            numberMatch = Spektral.isMatch(itemB, itemF, true);
+
+            //Boolean
+            booleanMatch = Spektral.isMatch(itemC, itemE, true);
+
+            //Compare a string with a number
+            badMatchOne = Spektral.isMatch(itemA, itemB);
+
+            //Compare a boolean with a string
+            badMatchTwo = Spektral.isMatch(itemC, itemD);
+
+            imResult = testMethod("isMatch", stringMatch, "boolean");
+            isString = testReturnedValue("isMatch", stringMatch, true);
+            isNum = testReturnedValue("isMatch", numberMatch, true);
+            isBoolean = testReturnedValue("isMatch", booleanMatch, true);
+            isBadOne = testReturnedValue("isMatch", badMatchOne, false);
+            isBadTwo = testReturnedValue("isMatch", badMatchTwo, false);
+
+            addTestResultToContainer("isMatch", "A boolean was return: ", imResult);
+            addTestResultToContainer("isMatch", "stringMatch is true: ", isString);
+            addTestResultToContainer("isMatch", "numberMatch is true: ", isNum);
+            addTestResultToContainer("isMatch", "booleanMatch is true: ", isBoolean);
+            addTestResultToContainer("isMatch", "badMatchOne is false: ", isBadOne);
+            addTestResultToContainer("isMatch", "badMatchTwo is false: ", isBadTwo);
+        }
+
+        //////////////////////
         ////GET POS
         //////////////////////
 //        getPos();
@@ -1670,7 +1719,7 @@
         if(resultType === expected) {
             pass = true;
         } else {
-            console.log("!" + desc + " test failed. expected: " + expected + ", resultType: " + resultType + ".");
+            console.warn("!" + desc + " test failed. expected: " + expected + ", resultType: " + resultType + ".");
         }
 
         return pass;
@@ -1719,7 +1768,7 @@
             if (result === expected) {
                 pass = true;
             } else {
-                console.log("!" + desc + " test failed. expected: " + expected + ", result: " + result + ".");
+                console.warn("!" + desc + " test failed. expected: " + expected + ", result: " + result + ".");
             }
         }
         return pass;

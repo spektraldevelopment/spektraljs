@@ -372,12 +372,23 @@
     ///////////////////
     ////IS MATCH
     ///////////////////
-    Spektral.isMatch = function (itemA, itemB) {
+    Spektral.isMatch = function (itemA, itemB, useType) {
 
-        var isMatch = false;
-        if (itemA === itemB) {
-            isMatch = true;
-        }
+        useType = useType || false;
+
+        var 
+            isMatch = false,
+            itemAType = Spektral.getType(itemA),
+            itemBType = Spektral.getType(itemB);
+        if(useType === true) {
+            if(itemAType === itemBType) {
+                isMatch = true;
+            }
+        } else {
+            if (itemA === itemB) {
+                isMatch = true;
+            }
+        } 
         return isMatch;
     };
 

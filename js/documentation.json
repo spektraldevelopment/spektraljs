@@ -781,7 +781,8 @@
             "code" : "Spektral.isMatch(itemA, itemB);",
             "params" : [
                 {"itemA (required, expects: Anything)" : "The first item you want to compare."},
-                {"itemB (required, expects: Anything)" : "The item you want to compare against itemA."}
+                {"itemB (required, expects: Anything)" : "The item you want to compare against itemA."},
+                {"useType (optional, expects: Boolean, default: false)" : "If you want to match the types of the two items to true."}
             ],
             "returns" : "Boolean",
             "dependencies" : "None",
