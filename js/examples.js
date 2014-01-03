@@ -1646,25 +1646,26 @@
                 itemD = "Another string",
                 itemE = false,
                 itemF = 5,
+                itemG = 20,
                 stringMatch, numberMatch, booleanMatch,
                 badMatchOne, badMatchTwo,
                 imResult, isString, isNum, isBoolean,
                 isBadOne, isBadTwo;
 
-            //String
+            //String - Compare types
             stringMatch = Spektral.isMatch(itemA, itemD, true);
 
-            //Number
-            numberMatch = Spektral.isMatch(itemB, itemF, true);
+            //Number - Compare values
+            numberMatch = Spektral.isMatch(itemB, itemG);
 
-            //Boolean
+            //Boolean - Compare types
             booleanMatch = Spektral.isMatch(itemC, itemE, true);
 
             //Compare a string with a number
             badMatchOne = Spektral.isMatch(itemA, itemB);
 
-            //Compare a boolean with a string
-            badMatchTwo = Spektral.isMatch(itemC, itemD);
+            //Compare a boolean type with a string type
+            badMatchTwo = Spektral.isMatch(itemC, itemD, true);
 
             imResult = testMethod("isMatch", stringMatch, "boolean");
             isString = testReturnedValue("isMatch", stringMatch, true);
