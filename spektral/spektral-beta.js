@@ -18,6 +18,7 @@
         location = window.location,
         document = window.document,
         docElem = document.documentElement,
+        docBody = document.body,
         debug = false,
         mouseEvents = ["click", "dblclick", "mousedown", "mousemove", "mouseup", "mouseover", "mouseout"],
         consoleLog = new Array();
@@ -1261,48 +1262,97 @@
 
         var 
             pos = {}, 
+            viewport = Spektral.getViewportSize(),
             parent = Spektral.getParent(element),
-            el = element.getBoundingClientRect(),
             par = parent.getBoundingClientRect(),
+            el = element.getBoundingClientRect(),
             left, top, right, bottom, 
-            relLeft, relTop, relRight, relBottom;
+            dLeft, dTop, dRight, dBottom,
+            viewWidth = viewport.width,
+            viewHeight = viewport.height;
+
+            //Spektral.log("viewport: " + Spektral.getInfo(viewport));
 
             //Position relative to parent
-            relTop = (el.top - par.top);
-            relRight = (par.right - el.right);
-            relBottom = (par.bottom - el.bottom);
-            relLeft = (el.left - par.left);
+            top = (el.top - par.top);
+            right = (par.right - el.right);
+            bottom = (par.bottom - el.bottom);
+            left = (el.left - par.left);
 
-            //position relative to viewport
-            top = el.top;
-            right = el.right;
-            bottom = el.bottom;
-            left = el.left;
+            //position relative to document
+            dTop = el.top;
+            dRight = el.right;
+            dBottom = el.bottom;
+            dLeft = el.left;
 
         //Spektral.log("getPos top: " + top + " right: " + right + " bottom: " + bottom + " left: " + left);    
 
         pos["x"] = left;
         pos["y"] = top;
-        pos["relX"] = relLeft;
-        pos["relY"] = relTop;
-        
         pos["top"] = top;
         pos["right"] = right;
         pos["bottom"] = bottom;
         pos["left"] = left;
 
-        pos["relTop"] = relTop;
-        pos["relRight"] = relRight;
-        pos["relBottom"] = relBottom;
-        pos["relLeft"] = relLeft;
+        pos["dX"] = dLeft;
+        pos["dY"] = dTop;
+        pos["dTop"] = dTop;
+        pos["dRight"] = dRight;
+        pos["dBottom"] = dBottom;
+        pos["dLeft"] = dLeft;
 
         return pos;
     };
+
+    // Spektral.getPos = function (element, rel) {
+
+    //     rel = rel || true;
+
+    //     var 
+    //         pos = {}, 
+    //         parent = Spektral.getParent(element),
+    //         el = element.getBoundingClientRect(),
+    //         par = parent.getBoundingClientRect(),
+    //         left, top, right, bottom, 
+    //         relLeft, relTop, relRight, relBottom;
+
+    //         //Position relative to parent
+    //         relTop = (el.top - par.top);
+    //         relRight = (par.right - el.right);
+    //         relBottom = (par.bottom - el.bottom);
+    //         relLeft = (el.left - par.left);
+
+    //         //position relative to viewport
+    //         top = el.top;
+    //         right = el.right;
+    //         bottom = el.bottom;
+    //         left = el.left;
+
+    //     //Spektral.log("getPos top: " + top + " right: " + right + " bottom: " + bottom + " left: " + left);    
+
+    //     pos["x"] = left;
+    //     pos["y"] = top;
+    //     pos["relX"] = relLeft;
+    //     pos["relY"] = relTop;
+        
+    //     pos["top"] = top;
+    //     pos["right"] = right;
+    //     pos["bottom"] = bottom;
+    //     pos["left"] = left;
+
+    //     pos["relTop"] = relTop;
+    //     pos["relRight"] = relRight;
+    //     pos["relBottom"] = relBottom;
+    //     pos["relLeft"] = relLeft;
+
+    //     return pos;
+    // };
 
     /////////////////////
     ////GET DIMENSIONS
     ////////////////////
     Spektral.getDimensions = function (element) {
+
         var 
             dimensions = {},
             width = Spektral.getStyle(element, "width"),
@@ -1385,6 +1435,35 @@
         dimensions["totalHeight"] = totalHeight;
 
         return dimensions;
+    };
+
+    /////////////////////
+    ////GET DOC DIMENSIONS
+    ////////////////////
+    Spektral.getDocDimensions = function () {
+
+        var docDim = {}, width, height;
+
+        width = Math.max(
+            docBody.scrollWidth, 
+            docBody.offsetWidth, 
+            docElem.clientWidth, 
+            docElem.scrollWidth, 
+            docElem.offsetWidth 
+        );
+
+        height = Math.max(
+            docBody.scrollHeight, 
+            docBody.offsetHeight, 
+            docElem.clientHeight, 
+            docElem.scrollHeight, 
+            docElem.offsetHeight 
+        );
+
+        docDim["width"] = width;
+        docDim["height"] = height;
+
+        return docDim;
     };
 
     /////////////////////

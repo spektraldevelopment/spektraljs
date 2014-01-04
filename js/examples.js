@@ -1770,16 +1770,71 @@
 
         function getPos() {
 
-            //I'm going to make x,y,top,right,bottom,left - relative to parent
-            //And relactive to viewport relX, relY, ..etc
             var
-                testDiv = Spektral.getElement("gpDiv"), pos, posX, posY;
+                testDiv = Spektral.getElement("gpDiv"), pos,
+                X, Y, top, right, bottom, left,
+                vX, vY, vTop, vRight, vBottom, vLeft,
+                gpResult, xResult, yResult, topResult, rightResult, bottomResult, leftResult,
+                vXResult, vYResult, vTopResult, vRightResult, vBottomResult, vLeftResult,
+                documentHeight;
 
-            pos = Spektral.getPos(testDiv);
-            posX = pos.x;
-            posY = pos.y;
+            //This delay is required to get the
+            //bottom property accurately since
+            //there is a lot of containers populating
+            //on this page
+            Spektral.createTimeOut(5, getDivPos);
 
-            console.log("getPos: posX: " + posX + " posY: " + posY);
+            function getDivPos() {
+
+                pos = Spektral.getPos(testDiv);
+
+                //position relative to parent
+                X = pos.x;
+                Y = pos.y;
+                top = pos.top;
+                right = pos.right;
+                bottom = pos.bottom;
+                left = pos.left;
+
+                //position relative to viewport
+                vX = pos.vX;
+                vY = pos.vY;
+                vTop = pos.vTop;
+                vRight = pos.vRight;
+                vBottom = pos.vBottom;
+                vLeft = pos.vLeft;
+
+                gpResult = testMethod("getPos", pos, "object");
+
+                xResult = testReturnedValue("getPos", X, 20);
+                yResult = testReturnedValue("getPos", Y, 64);
+
+                topResult = testReturnedValue("getPos", top, 64);
+                rightResult = testReturnedValue("getPos", right, 20);
+                bottomResult = testReturnedValue("getPos", bottom, 147);
+                leftResult = testReturnedValue("getPos", left, 20);
+
+
+
+                addTestResultToContainer("getPos", "Method returned an object: ", gpResult);
+
+                addTestResultToContainer("getPos", "Property X returned 20: ", xResult);
+                addTestResultToContainer("getPos", "Property Y returned 64: ", yResult);
+
+                addTestResultToContainer("getPos", "Property top returned 64: ", topResult);
+                addTestResultToContainer("getPos", "Property right returned 20: ", rightResult);
+                addTestResultToContainer("getPos", "Property bottom returned 147: ", bottomResult);
+                addTestResultToContainer("getPos", "Property left returned 20: ", leftResult);
+
+                documentHeight = Spektral.getDocDimensions().height;
+
+                console.log("documentHeight: " + documentHeight);
+
+                console.log("getPos: X: " + X + " Y: " + Y + " top: " + top + " right: " + right + " bottom: " + bottom + " left: " + left);
+                console.log("*");
+                console.log("getPos: vX: " + vX + " vY: " + vY + " vTop: " + vTop + " vRight: " + vRight + " vBottom: " + vBottom + " vLeft: " + vLeft);
+                adjustExamples();
+            }
         }
 
         adjustExamples();

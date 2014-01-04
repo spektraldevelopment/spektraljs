@@ -2361,6 +2361,28 @@ var
                     <div class="innerExampleCodeHolder">
                         <h3 class="exampleCodeHeader">Example Code</h3>
                         <pre class="prettyprint">
+var
+    testDiv = Spektral.getElement("gpDiv"), pos,
+    X, Y, top, right, bottom, left,
+    vX, vY, vTop, vRight, vBottom, vLeft;
+
+pos = Spektral.getPos(testDiv);
+
+//position relative to parent
+X = pos.x;
+Y = pos.y;
+top = pos.top;
+right = pos.right;
+bottom = pos.bottom;
+left = pos.left;
+
+//position relative to viewport
+vX = pos.vX;
+vY = pos.vY;
+vTop = pos.vTop;
+vRight = pos.vRight;
+vBottom = pos.vBottom;
+vLeft = pos.vLeft;
                         </pre>
                     </div>
                 </div>
