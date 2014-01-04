@@ -600,7 +600,7 @@
     Spektral.getElementByClass = function (className, index) {
         var 
             el, elLength, 
-            elList = Spektral.listElements("class"), i, j, k,
+            elList = Spektral.getAllElements("class"), i, j, k,
             potentialMatch, checkForSpace, multiClasses, nameArray = [];
 
         //Cycle through elList to search for multiple classes and separate them
@@ -676,7 +676,7 @@
         } else {
             //Try query
             el = Spektral.query(element);
-            Spektral.log(element + " tried query.", "warn");
+            //Spektral.log(element + " tried query.", "warn");
             if(el === undefined) {
                 el = Spektral.getElementByClass(element);
                 //Spektral.log(element + " tried getElementByClass.");
@@ -699,13 +699,15 @@
     //////////////////
     Spektral.isHTMLElement = function (element) {
         var 
-            list = Spektral.listElements(), 
+            list = Spektral.getAllElements(), 
             isHTML = null, i;
+
         for (i = 0; i < list.length; i++) {
-            if(element === iheDiv) {
-                console.log("element: " + element + " list[i]: " + list[i]);
+
+            if(list[i] === "iheDiv") {
+                Spektral.log("iheDiv found should be working");
             }
-            
+
             if (element === list[i]) {
                 isHTML = true;
                 break;
@@ -722,7 +724,7 @@
     //////////////////
     Spektral.isHTMLID = function (ID) {
         var 
-            list = Spektral.listElements("id"), 
+            list = Spektral.getAllElements("id"), 
             isID = null, i;
         for (i = 0; i < list.length; i++) {
             if (ID === list[i]) {
@@ -743,7 +745,7 @@
         //I will have to create a method that can retrieve a node with a class name 
         //that's cross compatible
         var 
-            list = Spektral.listElements("class"), 
+            list = Spektral.getAllElements("class"), 
             isClass = null, i;
             // if(cl === "geTestTwo") {
             //     Spektral.listArrayObjects(list);
@@ -765,7 +767,7 @@
     //////////////////
     Spektral.isHTMLName = function (name) {
         var 
-            list = Spektral.listElements("name"), 
+            list = Spektral.getAllElements("name"), 
             isName = null, i;
 
         for (i = 0; i < list.length; i++) {
@@ -1587,9 +1589,9 @@
     };
 
     ////////////////////
-    ////LIST ELEMENTS
+    ////GET ALL ELEMENTS
     ////////////////////
-    Spektral.listElements = function (attribute) {
+    Spektral.getAllElements = function (attribute) {
 
         attribute = attribute || null;
 

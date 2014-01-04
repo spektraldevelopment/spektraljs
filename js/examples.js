@@ -575,22 +575,22 @@
         }
 
         //////////////////////
-        ////LIST ELEMENTS
+        ////GET ALL ELEMENTS
         //////////////////////
-        listElements();
+        getAllElements();
 
-        function listElements() {
+        function getAllElements() {
 
             var
-                domElements = Spektral.listElements(),
-                domElementIDs = Spektral.listElements("id"),
-                leResult = testMethod("listElements", domElements, "array"),
-                hasDivResult = testArrayForValue("listElements", domElements, "div"),
-                hasIDResult = testArrayForValue("listElements", domElementIDs, "leDiv");
+                domElements = Spektral.getAllElements(),
+                domElementIDs = Spektral.getAllElements("id"),
+                leResult = testMethod("getAllElements", domElements, "array"),
+                hasDivResult = testArrayForValue("getAllElements", domElements, "div"),
+                hasIDResult = testArrayForValue("getAllElements", domElementIDs, "leDiv");
 
-            addTestResultToContainer("listElements", "An array: ", leResult);
-            addTestResultToContainer("listElements", "domElements contains divs: ", hasDivResult);
-            addTestResultToContainer("listElements", "domElementIDs contains id of leDiv: ", hasIDResult);
+            addTestResultToContainer("getAllElements", "An array: ", leResult);
+            addTestResultToContainer("getAllElements", "domElements contains divs: ", hasDivResult);
+            addTestResultToContainer("getAllElements", "domElementIDs contains id of leDiv: ", hasIDResult);
         }
 
         ////DOM****END**************************************************
@@ -1689,11 +1689,9 @@
 
         function isHTMLElement() {
 
-            var
-                testDiv = Spektral.getElement("iheDiv"),
-                isEl = Spektral.isHTMLElement(testDiv);
+            var isEl = Spektral.isHTMLElement("iheDiv");
 
-            console.log("isEl: " + isEl);
+            console.log("isEl!!!!: " + isEl);
         }
 
         //////////////////////
