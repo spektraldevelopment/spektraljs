@@ -1727,6 +1727,25 @@
         }
 
         //////////////////////
+        ////IS HTML ID
+        //////////////////////
+        isHTMLID();
+
+        function isHTMLID() {
+
+            var
+                isID = Spektral.isHTMLID("ihiDiv"),
+                notID = Spektral.isHTMLID("div"),
+                ihiResult = testMethod("isHTMLID", isID, "boolean"),
+                isIDResult = testReturnedValue("isHTMLID", isID, true),
+                notIDResult = testReturnedValue("isHTMLID", notID, false);
+
+            addTestResultToContainer("isHTMLID", "A boolean was returned: ", ihiResult);
+            addTestResultToContainer("isHTMLID", "ihiDiv is an id: ", isIDResult);
+            addTestResultToContainer("isHTMLID", "div is not an id: ", notIDResult);
+        }
+
+        //////////////////////
         ////GET POS
         //////////////////////
 //        getPos();

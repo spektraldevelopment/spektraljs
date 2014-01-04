@@ -679,16 +679,15 @@
             //Spektral.log(element + " tried query.", "warn");
             if(el === undefined) {
                 el = Spektral.getElementByClass(element);
-                //Spektral.log(element + " tried getElementByClass.");
+                //Spektral.log(element + " tried getElementByClass.", "warn");
                 if (el === undefined) {
-                    //Spektral.throwError("Element: " + element + " Not Found. Ensure you are calling an existing element.");
                     Spektral.log("getElement: " + element + " Not Found. Ensure you are calling an existing element.", "warn");
                 }
             }
         }
         elType = Spektral.getType(el);
         if (elType === "nodelist") {
-            Spektral.log("getElement: More than one element was found: " + element, "warn");
+            //Spektral.log("getElement: More than one element was found: " + element, "warn");
             //Spektral.listArrayObjects(el);
         }
         return el;
@@ -697,23 +696,6 @@
     //////////////////
     ////IS HTML ELEMENT
     //////////////////
-    // Spektral.isHTMLElement = function (element) {
-    //     var 
-    //         list = Spektral.getAllElements(), 
-    //         isHTML = null, i;
-
-    //     for (i = 0; i < list.length; i++) {
-
-    //         if (element === list[i]) {
-    //             isHTML = true;
-    //             break;
-    //         }
-    //     }
-    //     if (isHTML === null) {
-    //         isHTML = false;
-    //     }
-    //     return isHTML;
-    // };
     Spektral.isHTMLElement = function (element) {
         var 
             list = Spektral.getAllElements(), 
