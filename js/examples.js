@@ -1698,7 +1698,7 @@
             isBadOne = testReturnedValue("isMatch", badMatchOne, false);
             isBadTwo = testReturnedValue("isMatch", badMatchTwo, false);
 
-            addTestResultToContainer("isMatch", "A boolean was return: ", imResult);
+            addTestResultToContainer("isMatch", "Method returned a boolean: ", imResult);
             addTestResultToContainer("isMatch", "stringMatch is true: ", isString);
             addTestResultToContainer("isMatch", "numberMatch is true: ", isNum);
             addTestResultToContainer("isMatch", "booleanMatch is true: ", isBoolean);
@@ -1720,7 +1720,7 @@
                 isElResult = testReturnedValue("isHTMLElement", isEl, true),
                 notElResult = testReturnedValue("isHTMLElement", notEl, false);
 
-            addTestResultToContainer("isHTMLElement", "A boolean was resturned: ", iheResult);
+            addTestResultToContainer("isHTMLElement", "Method returned a boolean: ", iheResult);
             addTestResultToContainer("isHTMLElement", "div is element in DOM: ", isElResult);
             addTestResultToContainer("isHTMLElement", "iheDiv is not an element node name: ", notElResult);
 
@@ -1740,9 +1740,28 @@
                 isIDResult = testReturnedValue("isHTMLID", isID, true),
                 notIDResult = testReturnedValue("isHTMLID", notID, false);
 
-            addTestResultToContainer("isHTMLID", "A boolean was returned: ", ihiResult);
+            addTestResultToContainer("isHTMLID", "Method returned a boolean: ", ihiResult);
             addTestResultToContainer("isHTMLID", "ihiDiv is an id: ", isIDResult);
             addTestResultToContainer("isHTMLID", "div is not an id: ", notIDResult);
+        }
+
+        //////////////////////
+        ////IS HTML NAME
+        //////////////////////
+        isHTMLName();
+
+        function isHTMLName() {
+            var
+                isName = Spektral.isHTMLName("ihnTextArea"),
+                notName = Spektral.isHTMLName("div"),
+                ihnResult = testMethod("isHTMLName", isName, "boolean"),
+                isNameResult = testReturnedValue("isHTMLName", isName, true),
+                notNameResult = testReturnedValue("isHTMLName", notName, false);
+
+            addTestResultToContainer("isHTMLName", "Method returned a boolean: ", ihnResult);
+            addTestResultToContainer("isHTMLName", "ihnTextArea is a name: ", isNameResult);
+            addTestResultToContainer("isHTMLName", "div is not a name: ", notNameResult);
+
         }
 
         //////////////////////

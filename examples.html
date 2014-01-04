@@ -2282,7 +2282,7 @@ var
                 <div class="informationContainer">
                     <div class="innerInfoHolder">
                         <h3 class="method">isHTMLID()</h3>
-                        <div class="description">Used by getElement() to determine whether you are trying to find an element currently in use in the DOM.</div>
+                        <div class="description">Used by getElement() to determine whether you are trying to find an element by its id attribute.</div>
                         <div id="isHTMLID" class="testingContainer">
                             <h3 class="results">Testing Results</h3>
                         </div>
@@ -2302,6 +2302,37 @@ var
 var
     isID = Spektral.isHTMLID("ihiDiv"),
     notID = Spektral.isHTMLID("div");
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+            <!--******************-->
+            <!--IS HTML NAME-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">isHTMLName()</h3>
+                        <div class="description">Used by getElement() to determine whether you are trying to find an element by its name attribute.</div>
+                        <div id="isHTMLName" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <textarea name="ihnTextArea" class="testTextArea" wrap="soft" rows="2" cols="30">textarea - name="ihnTextArea"</textarea>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    isName = Spektral.isHTMLName("ihnTextArea"),
+    notName = Spektral.isHTMLName("div");
                         </pre>
                     </div>
                 </div>
