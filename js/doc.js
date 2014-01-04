@@ -29,7 +29,7 @@
     ////LOAD JSON
     ////////////////////
     function loadJSON(e) {
-        Spektral.loadJSON("js/documentation.json", onJSONLoaded);
+        Spektral.loadJSON("json/documentation.json", onJSONLoaded);
     }
 
     ////////////////////

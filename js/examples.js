@@ -28,7 +28,7 @@
     ////LOAD JSON
     ////////////////////
     function loadJSON(e) {
-        Spektral.loadJSON("js/documentation.json", onJSONLoaded);
+        Spektral.loadJSON("json/documentation.json", onJSONLoaded);
     }
 
     ////////////////////
@@ -1449,7 +1449,7 @@
                 item, value, num = 1,
                 ljResult, titleResult, valueResult;
 
-            Spektral.loadJSON("js/test.json", onJSONLoaded);
+            Spektral.loadJSON("json/test.json", onJSONLoaded);
 
             function onJSONLoaded(data) {
 
@@ -1761,25 +1761,26 @@
             addTestResultToContainer("isHTMLName", "Method returned a boolean: ", ihnResult);
             addTestResultToContainer("isHTMLName", "ihnTextArea is a name: ", isNameResult);
             addTestResultToContainer("isHTMLName", "div is not a name: ", notNameResult);
-
         }
 
         //////////////////////
         ////GET POS
         //////////////////////
-//        getPos();
-//
-//        function getPos() {
-//
-//            var
-//                testDiv = Spektral.getElement("gpDiv"), pos, posX, posY;
-//
-//            pos = Spektral.getPos(testDiv);
-//            posX = pos.x;
-//            posY = pos.y;
-//
-//            console.log("getPos: posX: " + posX + " posY: " + posY);
-//        }
+        getPos();
+
+        function getPos() {
+
+            //I'm going to make x,y,top,right,bottom,left - relative to parent
+            //And relactive to viewport relX, relY, ..etc
+            var
+                testDiv = Spektral.getElement("gpDiv"), pos, posX, posY;
+
+            pos = Spektral.getPos(testDiv);
+            posX = pos.x;
+            posY = pos.y;
+
+            console.log("getPos: posX: " + posX + " posY: " + posY);
+        }
 
         adjustExamples();
     }
