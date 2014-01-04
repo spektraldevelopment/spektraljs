@@ -1,0 +1,18 @@
+{
+    "items" : [
+
+        {
+            "item" : "item1",
+            "value" : "value1"
+        },
+        {
+            "item" : "item2",
+            "value" : "value2"
+        },
+        {
+            "item" : "item3",
+            "value" : "value3"
+        }
+
+    ]
+}

@@ -1,0 +1,1090 @@
+{
+    "dom" : [
+        {
+            "category" : ["DOM, selector"],
+            "title" : "getElement()",
+            "description" : "Returns an element from the DOM.",
+            "code" : "Spektral.getElement(element, index);",
+            "params" : [
+                {"element (required, expects: String)" : "You can search for an element by it's node type, id, or name (in the case of an input element). If multiple instances of the element are found (ex. elements sharing the same node type or name), will return a nodeList of elements. </br>Note: Currently getElement does not retrieve nodes by their class name, I am in the process of enabling this functionality."},
+                {"index (optional, expects: Number)" : "Use this to target an element that shares the same node type or name with other elements. Ex. The third list item in an unordered list."}
+            ],
+            "returns" : "Element or NodeList if multiple instances are found.",
+            "dependencies" : "isHTMLElement(), isHTMLID(), isHTMLName(), query(), throwError(), getType(), log(), listArrayElements()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["DOM, selector"],
+            "title" : "getElementByClass()",
+            "description" : "Returns an element from the DOM based on its class name.",
+            "code" : "Spektral.getElementByClass(className, index);",
+            "params" : [
+                {"className (required, expects: String)" : "The element you wish to locate via its assigned class."},
+                {"index (optional, expects: Number)" : "Use this to target an specific element among elements that share the same class name."}
+            ],
+            "returns" : "Element or NodeList if multiple instances are found.",
+            "dependencies" : "getAllElements(), checkForWhiteSpace(), splitString()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["DOM, selector"],
+            "title" : "query()",
+            "description" : "Uses querySelectorAll to locate and return an element.",
+            "code" : "Spektral.query(element)",
+            "params" : [
+                {"element (required, expects: String)" : "The element you wish to locate."}
+            ],
+            "returns" : "Element",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["event, utils"],
+            "title" : "getTarget()",
+            "description" : "Returns the target element that is attached to the triggered event.",
+            "code" : "Spektral.getTarget(element);",
+            "params" : [
+                {"evt (required, expects: Returned event object)" : "The returned event object from the function assigned to the event."}
+            ],
+            "returns" : "Element",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["event, utils"],
+            "title" : "getTargetID()",
+            "description" : "Returns the id of the element, or the id of an element that triggered an event.",
+            "code" : "Spektral.getTargetID(obj)",
+            "params" : [
+                {"obj (required, expects: Element or Returned Event)" : "The element or returned event you want to get the id from."}
+            ],
+            "returns" : "String",
+            "dependencies" : "getType(), isElement()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["DOM, event"],
+            "title" : "getParent()",
+            "description" : "Returns the parent of the requested child element.",
+            "code" : "Spektral.getParent(element);",
+            "params" : [
+                {"element (required, expects: Element)" : "The child you want to find the parent of."}
+            ],
+            "returns" : "Element",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["array, utils"],
+            "title" : "getChildNodes()",
+            "description" : "Retrieves the children of a parent element.",
+            "code" : "Spektral.getChildNodes(parent);",
+            "params" : [
+                {"parent (required, expects: Element)" : "The element you wish to get the children of."}
+            ],
+            "returns" : "Array",
+            "dependencies" : "isElement()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["DOM"],
+            "title" : "createNewElement()",
+            "description" : "Creates a new element and adds it to the parent of your choosing.",
+            "code" : "Spektral.createNewElement(element, parent, id);",
+            "params" : [
+                {"element (required, expects: String)" : "Accepts an valid HTML element."},
+                {"parent (optional, expects: String or Element)" : "If not defined, will add new element to the body element."},
+                {"id (optional, expects: String)" : "If not defined, an id will not be assigned to element."}
+            ],
+            "returns" : "Element",
+            "dependencies" : "getElement(), getType(), throwError()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["DOM"],
+            "title" : "moveToAfter()",
+            "description" : "Moves an element to after another element in the same parent node.",
+            "code" : "Spektral.moveToAfter(element, targetElement);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you wish to move."},
+                {"targetElement (required, expects: Element)" : "The target element in the same parent node."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["DOM"],
+            "title" : "moveToBefore()",
+            "description" : "Moves an element to before another element in the same parent node.",
+            "code" : "Spektral.moveToBefore(element, targetElement);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you wish to move."},
+                {"targetElement (required, expects: Element)" : "The target element in the same parent node."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["DOM"],
+            "title" : "removeElement()",
+            "description" : "Removes an element from the DOM.",
+            "code" : "Spektral.removeElement(element);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to remove from the DOM."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["DOM"],
+            "title" : "clearAllChildren()",
+            "description" : "Clears all child nodes from a parent node.",
+            "code" : "Spektral.clearAllChildren(parent);",
+            "params" : [
+                {"parent (required, expects: Element)" : "The parent you want to clear of all children."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["DOM"],
+            "title" : "createSetAttribute()",
+            "description" : "Adds any valid attribute to an element.",
+            "code" : "Spektral.createSetAttribute(element, attribute, value);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to add the attribute to."},
+                {"attribute (required, expects: String)" : "The attribute you wish to set."},
+                {"value (required, expects: String)" : "The value you want to assign to the new attribute."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["DOM"],
+            "title" : "getAttributeValue()",
+            "description" : "Retrieves the value of an attribute in an element.",
+            "code" : "Spektral.getAttributeValue(element, attribute);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to retrieve the attribute value from."},
+                {"attribute (required, expects: String)" : "The name of the attribute."}
+            ],
+            "returns" : "String",
+            "dependencies" : "getNodeAttributes(), throwError()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["DOM"],
+            "title" : "destroyAttribute()",
+            "description" : "Remove an attribute from an element.",
+            "code" : "Spektral.destroyAttribute(element, attribute);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to remove the attribute from."},
+                {"attribute (required, expects: String)" : "The attribute you want to remove."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "throwError()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["DOM"],
+            "title" : "getNodeAttributes()",
+            "description" : "Returns an object with all the attribute of a node.",
+            "code" : "Spektral.getNodeAttributes(element);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to get all attributes from."}
+            ],
+            "returns" : "Object",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["DOM"],
+            "title" : "checkForAttribute()",
+            "description" : "Checks if an attribute exists in an element.",
+            "code" : "Spektral.checkForAttribute(element, attribute);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to check."},
+                {"attribute (required, expects: String)" : "The attribute you want to check for."}
+            ],
+            "returns" : "Boolean",
+            "dependencies" : "None",
+            "compatibility" : "Not Available."
+        },
+        {
+            "category" : ["DOM, array"],
+            "title" : "listNodeAttributes()",
+            "description" : "Returns all available attributes of a node as an array.",
+            "code" : "Spektral.listNodeAttributes(node);",
+            "params" : [
+                {"node (required, expects: Element or XML node)" : "The node you want to retrieve attributes from."}
+            ],
+            "returns" : "Array",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["DOM, string"],
+            "title" : "getInnerText()",
+            "description" : "Returns the inner text inside an element.",
+            "code" : "Spektral.getTextContent(element);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you wish to retrieve the text from."}
+            ],
+            "returns" : "String",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["DOM, string"],
+            "title" : "setInnerText()",
+            "description" : "Sets the inner text inside an element.",
+            "code" : "Spektral.setTextContent(element, textContent);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to target."},
+                {"textContent (required, expects: String)" : "The text you want to set."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["DOM, array"],
+            "title" : "getAllElements()",
+            "description" : "Returns an array with all the elements currently in use in the DOM.",
+            "code" : "Spektral.getAllElements(attribute);",
+            "params" : [
+                {"attribute (optional, expects: String)" : "You can pass in either \"id\" or \"name\" to retrieve elements only by those attributes."}
+            ],
+            "returns" : "Array",
+            "dependencies" : "convertCase()",
+            "compatibility" : "Currently in testing."
+        }
+    ],
+    "event" : [
+        {
+            "category" : ["event"],
+            "title" : "attachEventListener()",
+            "description" : "Attaches an event listener to any element. If a mouse event, the hand (pointer) cursor is automatically applied.",
+            "code" : "Spektral.attachEventListener(eventTarget, eventType, eventHandler);",
+            "params" : [
+                { "eventTarget (required, expects: Element or String)" : "Will use getElement() if string." },
+                { "eventType (required, expects: String)" : "Any valid event type, ex. 'click', 'complete', 'load'. Also accepts custom event types." },
+                { "eventHandler (required, expects: Function)" : "The function you wish to use to handle the event when it is fired." }
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "getType(), getElement(), useHandCursor()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["event"],
+            "title" : "detachEventListener()",
+            "description" : "Detaches an event listener from any element. If a mouse event, the hand cursor is automatically set back to default.",
+            "code" : "Spektral.detachEventListener(eventTarget, eventType, eventHandler);",
+            "params" : [
+                { "eventTarget (required, expects: Element or String)" : "Will use getElement() if string." },
+                { "eventType (required), expects: String)" : "Any valid event type, ex. 'click', 'complete', 'load'. Also accepts custom event types." },
+                { "eventHandler (required, expects: Function)" : "The function that was assign to the event." }
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "getType(), getElement(), useDefaultCursor()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["event"],
+            "title" : "createEvent()",
+            "description" : "Creates a custom event.",
+            "code" : "Spektral.createEvent(eventName, detail, bub, can);",
+            "params" : [
+                {"eventName (required, expects: String)" : "The name of the custom event you wish to create."},
+                {"detail (optional, expects: Object)" : "Allows you to pass custom properties to the event. Accessed through the <i>detail</i> object."},
+                {"bub (optional, expects: Boolean, default: true)" : "Determines whether event can bubble."},
+                {"can (optional, expects: Boolean, default: true)" : "Determines whether event can be canceled."}
+            ],
+            "returns" : "Event",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["event"],
+            "title" : "triggerEvent()",
+            "description" : "Triggers a default or custom event.",
+            "code" : "Spektral.triggerEvent(obj, evt);",
+            "params" : [
+                {"obj (required, expects: Element, Object, or DOM)" : "The name of the object you want to fire the event from."},
+                {"evt (optional, expects: Object or String)" : "Accepts default and custom events."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "createEvent",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["event"],
+            "title" : "cancelEvent()",
+            "description" : "Prevents default action triggered by event.",
+            "code" : "Spektral.cancelEvent(evt);",
+            "params" : [
+                {"evt (required, expects: Event object)" : "The returned event object from the function assigned to the event."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["event"],
+            "title" : "cancelPropagation()",
+            "description" : "Stops event from bubbling up into parent elements.",
+            "code" : "Spektral.stopPropagation(evt);",
+            "params" : [
+                {"evt (required, expects: Event object)" : "The returned event object from the function assigned to the event."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        }
+    ],
+    "mouse" : [
+        {
+            "category" : ["event, utils"],
+            "title" : "getMousePos()",
+            "description" : "Returns and object containing:</br>innerX, innerY - (The x and y positions inside the target element),</br>pageX, pageY - (The x and y positions on the entire page/document),</br>screenX, screenY - (The x and y positions on the screen/monitor itself),</br>viewportX, viewportY - (The x and y positions in the visible</br>display area in the browser),</br>offsetX (scrollLeft), offsetY(scrollTop)",
+            "code" : "Spektral.getMousePos(evt);",
+            "params" : [
+                {"evt (required, expects: Returned event object)" : "The returned event object from the function assigned to the event."}
+            ],
+            "returns" : "Object",
+            "dependencies" : "throwError(), getTarget(), getPos()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["style"],
+            "title" : "useHandCursor()",
+            "description" : "Sets cursor style to hand (pointer).",
+            "code" : "Spektral.useHandCursor(element, cursorType);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to apply the hand cursor to."},
+                {"cursorType (optional, expects: String. default: \"pointer\")" : "The type of hand cursor you want to apply. Besides \"pointer\" you may also use any valid cursor style you want."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "getType(), appendStyle()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["style"],
+            "title" : "useDefaultCursor()",
+            "description" : "Simply sets the cursor to the browsers default style.",
+            "code" : "Spektral.useDefaultCursor(element);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to reset to the default cursor."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "appendStyle()",
+            "compatibility" : "Currently in testing."
+        }
+    ],
+    "string" : [
+        {
+            "category" : ["string, utils"],
+            "title" : "convertCase()",
+            "description" : "Converts a string to either all upper or all lower case.",
+            "code" : "Spektral.convertCase(request, newCase);",
+            "params" : [
+                {"request (required, expects: String)" : "The string you want to convert to upper/lower case."},
+                {"newCase (optional, default: \"lower\")" : "Use \"upper\" to convert to upper case. You can also use \"first\" to capitalize the first letter of the string."}
+            ],
+            "returns" : "",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["string, utils"],
+            "title" : "splitString()",
+            "description" : "Splits a string separated by common characters, and returns the separate pieces in an array. Ex. comma.",
+            "code" : "Spektral.splitString(request, character);",
+            "params" : [
+                {"request (required, expects: String)" : "The string you want split."},
+                {"character (optional, default: comma" : "The character used to separate words in the string. Commonly a comma, but can be set to anything. Using \" \" will split the string by its single spaces."}
+            ],
+            "returns" : "Array",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["string, utils"],
+            "title" : "checkForWhiteSpace()",
+            "description" : "Checks a string for white space.",
+            "code" : "Spektral.checkForWhiteSpace(request);",
+            "params" : [
+                {"request (required, expects: String)" : "The string you want to check for white space."}
+            ],
+            "returns" : "Boolean",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["string, utils"],
+            "title" : "stripString()",
+            "description" : "Strips a string of a character.",
+            "code" : "Spektral.stripString(request, chars);",
+            "params" : [
+                {"request (required, expects: String)" : "The string you want to strip the characters from."},
+                {"chars (required, expects: String)" : "The character you wish to strip from the string."}
+            ],
+            "returns" : "String",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["string, utils"],
+            "title" : "stripWhiteSpace()",
+            "description" : "Removes the whitespace from the start and end of a string. It can all strip all whitespace if specified.",
+            "code" : "Spektral.stripWhiteSpace(request, removeAll);",
+            "params" : [
+                {"request (required, expects: String)" : "The string you want to strip whitespace from."},
+                {"removeAll (optional, default: False)" : "When set to true, will return the string with all whitespace stripped."}
+            ],
+            "returns" : "String",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["string, utils"],
+            "title" : "stripBrackets()",
+            "description" : "Strip square, curly, and rounded brackets from around a string.",
+            "code" : "Spektral.stripBrackets(request);",
+            "params" : [
+                {"request (required, expects: String)" : "The string you wish to strip brackets from."}
+            ],
+            "returns" : "String",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils, string"],
+            "title" : "detectCharacter()",
+            "description" : "Detects if a certain character exists in a string. Returns a boolean.",
+            "code" : "Spektral.detectCharacter(request, character);",
+            "params" : [
+                {"request (required, expects: String)" : "The string you wish to search."},
+                {"character (required, expects: String)" : "The character you want to detect."}
+            ],
+            "returns" : "Boolean",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils, string"],
+            "title" : "hasPattern()",
+            "description" : "Detects if a pattern is present in a string. Returns a Boolean.",
+            "code" : "Spektral.hasPattern(request, pattern);",
+            "params" : [
+                {"request (required, expects: String)" : "The string you wish to search."},
+                {"pattern (required, expects: String)" : "The pattern you want to detect."}
+            ],
+            "returns" : "Boolean",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        }
+    ],
+    "array" : [
+        {
+            "category" : ["object"],
+            "title" : "createArray()",
+            "description" : "Takes a nodeList and converts it into an array containing nodes, returning the result.",
+            "code" : "Spektral.createArray(list);",
+            "params" : [
+                {"list (required, expects: nodeList) " : "A nodeList of elements."}
+            ],
+            "returns" : "Array",
+            "dependencies" : "getType(), getTextContent()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["array, object"],
+            "title" : "listArrayObjects()",
+            "description" : "A debugging function. Logs the objects in an array in the console.",
+            "code" : "Spektral.listArrayObjects(array);",
+            "params" : [
+                {"array (required, expects: Array, NodeList, NamedNodeMap)" : "The array you want to log."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "getType(), throwError(), log()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["array, object"],
+            "title" : "arrayHasValue()",
+            "description" : "Checks an array for a particular value, and returns a Boolean.",
+            "code" : "Spektral.arrayHasValue(array, value);",
+            "params" : [
+                {"array (required, expects: Array)" : "The array you want to check."},
+                {"value (required, expects: Anything)" : "The value you want to check for."}
+            ],
+            "returns" : "Boolean",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["array, object"],
+            "title" : "queryArray()",
+            "description" : "Queries an array, and returns matched results in an array.",
+            "code" : "Spektral.queryArray(array, query);",
+            "params" : [
+                {"array (required, expects: Array)" : "The array you want to check."},
+                {"query (required, expects: Anything)" : "The value you want to get."}
+            ],
+            "returns" : "Array",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        }
+    ],
+    "style" : [
+        {
+            "category" : ["style"],
+            "title" : "setStyle()",
+            "description" : "Sets the inline style of an element. Will overwrite current inline style, to avoid this, use appendStyle().",
+            "code" : "Spektral.setStyle(element, styleProperty);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to change the inline style of."},
+                {"styleProperty (required, expects: String)" : "The property you want to set and its value. Ex. \"display: block\".</br>Note: At the moment you can only change one property at a time, I hope to change this in a future release."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "getType(), throwError(), createSetAttribute()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["style"],
+            "title" : "getStyle()",
+            "description" : "Gets the current inline style of an element. Returns false is no inline style found.",
+            "code" : "Spektral.getStyle(element, styleProperty);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to get the inline style of."},
+                {"styleProperty (optional, expects: String)" : "Can be set to an individual style property, if left undefined getStyle() will return all style properties."}
+            ],
+            "returns" : "String",
+            "dependencies" : "getInlineStyle(), throwError()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["style"],
+            "title" : "appendStyle()",
+            "description" : "Changes the inline style of an element, while preserving the existing inline style.",
+            "code" : "Spektral.appendStyle(element, styleProperty);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to append the inline style of."},
+                {"styleProperty (required, expects: String)" : "The property you wish to add or modify to the current inline style.</br>Note: At the moment you can only add/modify one property at a time, I hope to change this in a future release."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "getInlineStyle(), detectCharacter(), throwError(), splitString(), setStyle()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["style"],
+            "title" : "clearStyle()",
+            "description" : "Clears all inline styling on an element.",
+            "code" : "Spektral.clearStyle(element);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you wish to clear the style of."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "destroyAttribute()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["style"],
+            "title" : "getInlineStyle()",
+            "description" : "Gets the entire inline style of an element. Returns false if no inline style is found.",
+            "code" : "Spektral.getInlineStyle(element);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to get the inline style from."}
+            ],
+            "returns" : "Object",
+            "dependencies" : "splitString()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["style"],
+            "title" : "showElement()",
+            "description" : "Shows an element that is hidden.",
+            "code" : "Spektral.showElement(element, displayType);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you wish to show."},
+                {"displayType (optional, default: \"block\")" : "The display type you want to use."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "getStyle(), appendStyle()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["style"],
+            "title" : "hideElement()",
+            "description" : "Hides an element.",
+            "code" : "Spektral.hideElement(element, useDisplay);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to hide."},
+                {"useDisplay (optional, default: false)" : "By setting to true you can hide the element by using the display property, by default the visibility property is used."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "getStyle(), appendStyle()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["style"],
+            "title" : "toggleVisibility()",
+            "description" : "Toggles the visibility property of an element.",
+            "code" : "Spektral.toggleVisibility(element);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to toggle the visibility of."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "getStyle(), toggleDisplay(), appendStyle()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["style"],
+            "title" : "toggleDisplay()",
+            "description" : "Toggles the display property of an element.",
+            "code" : "Spektral.toggleDisplay(element, displayType);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want to toggle the display of."},
+                {"displayType (optional, default: \"block\")" : "The type of display you want to use when the element is visible. Supports block, inline, inline-block, and inherit."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "getStyle(), toggleVisibility(), appendStyle()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["style"],
+            "title" : "matchHeight()",
+            "description" : "Sets the height of an element to the same height of a referenced element.",
+            "code" : "Spektral.matchHeight(reference, target, type);",
+            "params" : [
+                {"reference (required, expects: Element)" : "The element you want to use as a height reference."},
+                {"target (required, expects: Element)" : "The element you want to set the height of."},
+                {"type (optional, default: \"normal\")" : "You can target a specific height. The default, \"normal\" is just the height of the element itself. You can also use \"inner\" for innerHeight, and \"total\" for total height (margin, border, padding, and element height combined)."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "getDimensions(), setStyle()",
+            "compatibility" : "Currently in testing."
+        }
+    ],
+    "ajax" : [
+        {
+            "category" : ["ajax"],
+            "title" : "loadJSON()",
+            "description" : "Loads an external JSON file.",
+            "code" : "Spektral.loadJSON(source, callback, async);",
+            "params" : [
+                {"source (required, expects: String)" : "The location of the JSON file you wish to load."},
+                {"callback (required, expects: Function)" : "The function that will receive the results after load."},
+                {"async (optional, expects: Boolean, default: true)" : "You can set whether the file loads asynchronously or not."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "getType(), loadFile(), throwError()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["ajax"],
+            "title" : "loadXML()",
+            "description" : "Loads an external XML file.",
+            "code" : "Spektral.loadXML(source, callback, async);",
+            "params" : [
+                {"source (required, expects: String)" : "The location of the XML file you wish to load."},
+                {"callback (required, expects: Function)" : "The function that will receive the results after load."},
+                {"async (optional, expects: Boolean, default: true)" : "You can set whether the file loads asynchronously or not."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "getType(), loadFile(), throwError()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["ajax"],
+            "title" : "loadFile()",
+            "description" : "Loads an external file using XMLHttpRequest/ActiveXObject.</br>Ex. TEXT, XML, JSON",
+            "code" : "Spektral.loadFile(file, callback, async).",
+            "params" : [
+                {"source (required, expects: String)" : "The location of the file you wish to load."},
+                {"callback (required, expects: Function)" : "The function that will receive the results after load."},
+                {"async (optional, expects: Boolean, default: true)" : "You can set whether the file loads asynchronously or not."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "getExtension(), getXHR(), throwError(), attachEventListener()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["ajax"],
+            "title" : "getXHR()",
+            "description" : "Determines whether to use XMLHttpRequest or ActiveXObject when loading an external file, and returns the available xhr.",
+            "code" : "Spektral.getXHR();",
+            "params" : [],
+            "returns" : "XMLHttpRequest or ActiveXObject",
+            "dependencies" : "throwError()",
+            "compatibility" : "Currently in testing."
+        }
+    ],
+    "utils" : [
+        {
+            "category" : ["utils"],
+            "title" : "getViewportSize()",
+            "description" : "Returns the height and width of the browser viewport.",
+            "code" : "Spektral.getViewportSize();",
+            "params" : [],
+            "returns" : "Object",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["number, utils"],
+            "title" : "roundNum()",
+            "description" : "Returns a  rounded number.",
+            "code" : "Spektral.roundNum(num, type);",
+            "params" : [
+                {"num (required, expects: Number)" : ""},
+                {"type (optional, expects: String, default: \"regular\")" : "\"regular\" will use Math.round, but you could also pass \"up\" (Math.ceil) or \"down\" (Math.floor)."}
+            ],
+            "returns" : "Number",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["number, utils"],
+            "title" : "stringToNum()",
+            "description" : "Removes px or em from a string, and converts it to a number.",
+            "code" : "Spektral.stringToNum(str);",
+            "params" : [
+                {"str (required, expects: String)" : "Example: 10px or 4em."}
+            ],
+            "returns" : "Number",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["event, utils"],
+            "title" : "getKey()",
+            "description" : "Converts the key code returned from a keyboard event into a string. ex. key code 38 returns \"UP\". Currently supports directional arrows and enter button.",
+            "code" : "Spektral.getKey(code);",
+            "params" : [
+                {"code (required, expects: Number)" : "Key code returned from a keyboard event."}
+            ],
+            "returns" : "String",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
+            "title" : "isMatch()",
+            "description" : "Compares to objects/elements to determine whether they are the same.",
+            "code" : "Spektral.isMatch(itemA, itemB);",
+            "params" : [
+                {"itemA (required, expects: Anything)" : "The first item you want to compare."},
+                {"itemB (required, expects: Anything)" : "The item you want to compare against itemA."},
+                {"useType (optional, expects: Boolean, default: false)" : "If you want to match the types of the two items to true."}
+            ],
+            "returns" : "Boolean",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
+            "title" : "isHTMLElement()",
+            "description" : "Used by getElement() to determine whether you are trying to find an element currently in use in the DOM.",
+            "code" : "Spektral.isHTMLElement(element);",
+            "params" : [
+                {"element (required, expects: String)" : "Only accepts the tag name of the element you wish to check for. If you want to check if pre-defined variable is an element, use isElement()."}
+            ],
+            "returns" : "Boolean",
+            "dependencies" : "getAllElements()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
+            "title" : "isHTMLID()",
+            "description" : "Used by getElement() to determine whether you are trying to find an element by its id attribute.",
+            "code" : "Spektral.isHTMLID(id);",
+            "params" : [
+                {"id (required, expects: String)" : "Only accepts the id of the element you wish to check for."}
+            ],
+            "returns" : "Boolean",
+            "dependencies" : "getAllElements()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
+            "title" : "isHTMLName()",
+            "description" : "Used by getElement() to determine whether you are trying to find an element by its name attribute.",
+            "code" : "Spektral.isHTMLName(name);",
+            "params" : [
+                {"name" : "Only accepts the name of the element you wish to check for."}
+            ],
+            "returns" : "Boolean",
+            "dependencies" : "getAllElements()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
+            "title" : "getPos()",
+            "description" : "Returns an object containing x, y, left, top, right, bottom (position relative to browser viewport), and relX, relY, relLeft, relTop, relRight, relBottom (position relative to parent) properties of an element.",
+            "code" : "Spektral.getPos(element);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want get the position data from."}
+            ],
+            "returns" : "Object",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
+            "title" : "getDimensions()",
+            "description" : "Returns an object with all dimensional properties. The object contains the following properties:</br>width, height, innerWidth, innerHeight, padding, paddingTop, paddingRight, paddingBottom, paddingLeft, border, borderTop, borderRight, borderBottom, borderLeft, margin, marginTop, marginRight, marginBottom, marginLeft, totalWidth (the combination of margin, border, padding, and innerWidth), totalHeight (the combination of margin, border, padding, and innerHeight)",
+            "code" : "Spektral.getDimensions(element);",
+            "params" : [
+                {"element (required, expects: Element)" : "The element you want retrieve the dimensions from."}
+            ],
+            "returns" : "Object",
+            "dependencies" : "getStyle(), stringToNum()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils, object"],
+            "title" : "isObjectEmpty()",
+            "description" : "Determines whether an object or array is empty and returns a boolean.",
+            "code" : "Spektral.isObjectEmpty(obj);",
+            "params" : [
+                {"obj (required, expects: Object or Array)" : "The object you wish to test."}
+            ],
+            "returns" : "Boolean",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils, object"],
+            "title" : "getInfo()",
+            "description" : "Returns the data within an object as a string.",
+            "code" : "Spektral.getInfo(obj);",
+            "params" : [
+                {"obj (required, expects: Object)" : "The object you want to stringify."}
+            ],
+            "returns" : "String",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
+            "title" : "isElement()",
+            "description" : "Checks if an object is possibly an HTML element.",
+            "code" : "Spektral.isElement(possibleElement);",
+            "params" : [
+                {"possibleElement (required, expects: Anything)" : "The object you wish to check."}
+            ],
+            "returns" : "Boolean",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
+            "title" : "getElementIdentifiers()",
+            "description" : "Gets an elements id attributes and returns them as an object. Will return the following properties: id, name, class, nodeName.",
+            "code" : "Spektral.getElementIdentifiers(element);",
+            "params" : [
+                {"element (required, expects: Element" : "The element you want to get the identifiers from."}
+            ],
+            "returns" : "Object",
+            "dependencies" : "convertCase()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
+            "title" : "getType()",
+            "description" : "Returns the type of an object.",
+            "code" : "Spektral.getType(obj);",
+            "params" : [
+                {"obj (required, expects: Anything)" : "Usually object is either an element, variable, or object, but could be anything."}
+            ],
+            "returns" : "String",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
+            "title" : "getExtension()",
+            "description" : "Gets the extension of a file.",
+            "code" : "Spektral.getExtension(file);",
+            "params" : [
+                {"file (required, expects: String)" : "The full file name."}
+            ],
+            "returns" : "String",
+            "dependencies" : "getType(), throwError()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
+            "title" : "navigateToURL()",
+            "description" : "Navigates the browser to a url.",
+            "code" : "Spektral.navigateToURL(url);",
+            "params" : [
+                {"url (required, expects: String)" : "The url you want the browser to go to."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
+            "title" : "getURLPath()",
+            "description" : "Returns an object containing protocol, host, path, pathArray (contains the path split using its backslashes), and fullURL.",
+            "code" : "Spektral.getURLPath();",
+            "params" : [
+            ],
+            "returns" : "Object",
+            "dependencies" : "splitString",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
+            "title" : "hashDetected()",
+            "description" : "Detects if a hash tag is in the url bar.",
+            "code" : "Spektral.hashDetected();",
+            "params" : [
+            ],
+            "returns" : "Boolean",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
+            "title" : "createTimer()",
+            "description" : "Sets a timer.",
+            "code" : "Spektral.createTimer(time, handler);",
+            "params" : [
+                {"time (required, expects: Number" : "The interval (seconds)."},
+                {"handler (required, expects: Function)" : "The function that will be called when the timer is triggered."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
+            "title" : "clearTimer()",
+            "description" : "Clears a timer.",
+            "code" : "Spektral.clearTimer(timer);",
+            "params" : [
+                {"timer" : "The timer you want to clear."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
+            "title" : "createTimeOut()",
+            "description" : "Sets a time out.",
+            "code" : "Spektral.createTimeOut(time, handler);",
+            "params" : [
+                {"time (required, expects: Number" : "The interval (seconds)."},
+                {"handler (required, expects: Function)" : "The function that will be called when the time out is triggered."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
+            "title" : "stopTimeOut()",
+            "description" : "Stops a time out from completing.",
+            "code" : "Spektral.stopTimeOut(timeout);",
+            "params" : [
+                {"timeout" : "The timeout you want to stop."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
+            "title" : "getSystemInfo()",
+            "description" : "Returns an object containing information about the users system.",
+            "code" : "Spektral.getSystemInfo();",
+            "params" : [
+            ],
+            "returns" : "Object",
+            "dependencies" : "hasPattern",
+            "compatibility" : "Currently in testing."
+        }
+    ],
+    "debug" : [
+        {
+            "category" : ["debugging"],
+            "title" : "debug()",
+            "description" : "Allows for logging in Spektral.js. When not called, using Spektral.log() will not log in console. Can be used outside of Spektral.js instead of console.log.",
+            "code" : "Spektral.debug();",
+            "params" : [],
+            "returns" : "Nothing",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["debugging"],
+            "title" : "about()",
+            "description" : "Shows in the console which version of Spektral.js you are using, and what mode it is in. (debug or release)",
+            "code" : "Spektral.about();",
+            "params" : [],
+            "returns" : "Nothing",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["debugging, DOM"],
+            "title" : "listChildNodes()",
+            "description" : "A debugging function. Logs the children of a node.",
+            "code" : "Spektral.listChildNodes(parent);",
+            "params" : [
+                {"parent (required, expects: Element)" : "The element you wish to log the children of."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "log()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["debugging"],
+            "title" : "throwError()",
+            "description" : "Throws an error if encountered.",
+            "code" : "Spektral.throwError(message);",
+            "params" : [
+                {"message (required, expects: String)" : "The error message you wish to throw."}
+            ],
+            "returns" : "Error",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["debugging"],
+            "title" : "log()",
+            "description" : "Logs debugging information in the console, if present. Primarily for internal use, can be used outside of Spektral.js.",
+            "code" : "Spektral.log(message);",
+            "params" : [
+                {"message (required, expects: String)" : "The data you wish to log."},
+                {"method (optional, expects: String)" : "Accepts:<br/>\"dir\"(Shows an interactive list of the properties of the specified object.)<br/>\"warn\"(Outputs a warning message to the console.)"},
+                {"obj (optional, expects: Object)" : "If the \"dir\" method is selected, obj is the item you want to view."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["debugging"],
+            "title" : "getConsoleLog()",
+            "description" : "Returns an array containing all the messages logged to the console through Spektral.log().",
+            "code" : "Spektral.getConsoleLog();",
+            "params" : [
+            ],
+            "returns" : "Array",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        }
+    ]
+}
