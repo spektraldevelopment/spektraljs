@@ -785,6 +785,10 @@
             addTestResultToContainer("cancelPropagation", "The function called only once: ", cpResult);
         }
 
+        ////EVENT****END**************************************************
+
+        ////MOUSE****START**************************************************
+
         //////////////////////
         ////GET MOUSE POS
         //////////////////////
@@ -914,6 +918,10 @@
                 udcResult = testReturnedValue("useDefaultCursor", cursorType, "default");
                 addTestResultToContainer("useDefaultCursor", "Cursor is set to default: ", udcResult);
             }
+
+            ////MOUSE****END**************************************************
+
+            ////STRING****START**************************************************
 
             //////////////////////
             ////CONVERT CASE
@@ -1084,6 +1092,10 @@
             addTestResultToContainer("hasPattern", "String has \"Spektral\": ", hpResult);
         }
 
+        ////STRING****END**************************************************
+
+        ////ARRAY****START**************************************************
+
         //////////////////////
         ////CREATE ARRAY
         //////////////////////
@@ -1163,6 +1175,10 @@
             addTestResultToContainer("queryArray", "Single match query returns string: ", smResult);
             addTestResultToContainer("queryArray", "Multiple match query returns array: ", mmResult);
         }
+
+        ////ARRAY****END**************************************************
+
+        ////STYLE****START**************************************************
 
         //////////////////////
         ////SET STYLE
@@ -1417,6 +1433,10 @@
             addTestResultToContainer("matchHeight", "mhDivFour height is 132px: ", totalResult);
         }
 
+        ////STYLE****END**************************************************
+
+        ////AJAX****START**************************************************
+
         //////////////////////
         ////LOAD JSON
         //////////////////////
@@ -1536,6 +1556,10 @@
 
             addTestResultToContainer("getXHR", "Returned type is either XMLHttpRequest or ActiveXObject: ", xhrResult);
         }
+
+        ////AJAX****END**************************************************
+
+        ////UTILS****START**************************************************
 
         //////////////////////
         ////GET VIEWPORT SIZE
@@ -1689,9 +1713,17 @@
 
         function isHTMLElement() {
 
-            var isEl = Spektral.isHTMLElement("iheDiv");
+            var
+                isEl = Spektral.isHTMLElement("div"),
+                notEl = Spektral.isHTMLElement("iheDiv"),
+                iheResult = testMethod("isHTMLElement", isEl, "boolean"),
+                isElResult = testReturnedValue("isHTMLElement", isEl, true),
+                notElResult = testReturnedValue("isHTMLElement", notEl, false);
 
-            console.log("isEl!!!!: " + isEl);
+            addTestResultToContainer("isHTMLElement", "A boolean was resturned: ", iheResult);
+            addTestResultToContainer("isHTMLElement", "div is element in DOM: ", isElResult);
+            addTestResultToContainer("isHTMLElement", "iheDiv is not an element node name: ", notElResult);
+
         }
 
         //////////////////////

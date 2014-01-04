@@ -2250,7 +2250,7 @@ badMatchTwo = Spektral.isMatch(itemC, itemD, true);
                 <div class="informationContainer">
                     <div class="innerInfoHolder">
                         <h3 class="method">isHTMLElement()</h3>
-                        <div class="description">Used by getElement() to determine whether you are trying to find an element.</div>
+                        <div class="description">Used by getElement() to determine whether you are trying to find an element currently in use in the DOM.</div>
                         <div id="isHTMLElement" class="testingContainer">
                             <h3 class="results">Testing Results</h3>
                         </div>
@@ -2259,6 +2259,7 @@ badMatchTwo = Spektral.isMatch(itemC, itemD, true);
                 <div class="elementContainer">
                     <div class="innerElementHolder">
                         <h3 class="elementContainerTitle">Test Elements</h3>
+                        <div class="testDiv">div - no id</div>
                         <div id="iheDiv" class="testDiv">div - id="iheDiv"</div>
                     </div>
                 </div>
@@ -2266,6 +2267,9 @@ badMatchTwo = Spektral.isMatch(itemC, itemD, true);
                     <div class="innerExampleCodeHolder">
                         <h3 class="exampleCodeHeader">Example Code</h3>
                         <pre class="prettyprint">
+var
+    isEl = Spektral.isHTMLElement("div"),
+    notEl = Spektral.isHTMLElement("iheDiv");
                         </pre>
                     </div>
                 </div>

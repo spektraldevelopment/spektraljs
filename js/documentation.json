@@ -791,7 +791,7 @@
         {
             "category" : ["utils"],
             "title" : "isHTMLElement()",
-            "description" : "Used by getElement() to determine whether you are trying to find an element.",
+            "description" : "Used by getElement() to determine whether you are trying to find an element currently in use in the DOM.",
             "code" : "Spektral.isHTMLElement(element);",
             "params" : [
                 {"element (required, expects: String)" : "Only accepts the tag name of the element you wish to check for. If you want to check if pre-defined variable is an element, use isElement()."}

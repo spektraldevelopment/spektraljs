@@ -697,24 +697,34 @@
     //////////////////
     ////IS HTML ELEMENT
     //////////////////
+    // Spektral.isHTMLElement = function (element) {
+    //     var 
+    //         list = Spektral.getAllElements(), 
+    //         isHTML = null, i;
+
+    //     for (i = 0; i < list.length; i++) {
+
+    //         if (element === list[i]) {
+    //             isHTML = true;
+    //             break;
+    //         }
+    //     }
+    //     if (isHTML === null) {
+    //         isHTML = false;
+    //     }
+    //     return isHTML;
+    // };
     Spektral.isHTMLElement = function (element) {
         var 
             list = Spektral.getAllElements(), 
-            isHTML = null, i;
+            isHTML = false, i;
 
         for (i = 0; i < list.length; i++) {
 
-            if(list[i] === "iheDiv") {
-                Spektral.log("iheDiv found should be working");
-            }
-
             if (element === list[i]) {
                 isHTML = true;
-                break;
+                return isHTML;
             }
-        }
-        if (isHTML === null) {
-            isHTML = false;
         }
         return isHTML;
     };
