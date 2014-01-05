@@ -1916,40 +1916,40 @@
     ////////////////////
     ////TEST ARRAY - NOT IN USE!!!
     ////////////////////
-    function testArray(desc, resultArray, expectedLength, compareArray) {
-
-        compareArray = compareArray || null;
-
-        var
-            pass = false, i,
-            resLength = resultArray.length;
-
-        if (compareArray === null) {
-            //Just check length
-            if (resLength === expectedLength) {
-                pass = true;
-            } else {
-                console.log("!" + desc + " test failed. Array length: " + resLength + " did not match expected length: " + expectedLength);
-            }
-        } else {
-            //Check if result matches testArray
-            if (resLength === compareArray.length) {
-
-                for (i = 0; i < resLength; i += 1) {
-                   if (resultArray[i] === compareArray[i]) {
-                       console.log("MATCH! resultArray: " + resultArray[i] + " compareArray: " + compareArray[i]);
-                   } else {
-                       console.log("NO MATCH! resultArray: " + resultArray[i] + " compareArray: " + compareArray[i]);
-                   }
-                }
-
-            } else {
-                console.log("!" + desc + " test failed.");
-            }
-        }
-
-        return pass;
-    }
+//    function testArray(desc, resultArray, expectedLength, compareArray) {
+//
+//        compareArray = compareArray || null;
+//
+//        var
+//            pass = false, i,
+//            resLength = resultArray.length;
+//
+//        if (compareArray === null) {
+//            //Just check length
+//            if (resLength === expectedLength) {
+//                pass = true;
+//            } else {
+//                console.log("!" + desc + " test failed. Array length: " + resLength + " did not match expected length: " + expectedLength);
+//            }
+//        } else {
+//            //Check if result matches testArray
+//            if (resLength === compareArray.length) {
+//
+//                for (i = 0; i < resLength; i += 1) {
+//                   if (resultArray[i] === compareArray[i]) {
+//                       console.log("MATCH! resultArray: " + resultArray[i] + " compareArray: " + compareArray[i]);
+//                   } else {
+//                       console.log("NO MATCH! resultArray: " + resultArray[i] + " compareArray: " + compareArray[i]);
+//                   }
+//                }
+//
+//            } else {
+//                console.log("!" + desc + " test failed.");
+//            }
+//        }
+//
+//        return pass;
+//    }
 
     ////////////////////
     ////TEST ARRAY FOR VALUE

@@ -2020,6 +2020,116 @@
         return consoleLog;
     };
 
+    ////////////////////////////////////
+    //--------TESTING METHODS---------//
+    ////////////////////////////////////
+
+    ///////////////////
+    ////TEST TYPE
+    ///////////////////
+
+    //Gets the type of the result and compares it against
+    //what the expected type should be
+    //desc = required, expected: String
+    //result = required, expected: Anything
+    //expected = required, expected: String
+    Spektral.testType = function (desc, result, expected) {
+        
+        expected = Spektral.convertCase(expected);
+
+        Spektral.log("testReturnedType: expected: " + expected);
+
+        var
+            resultType = Spektral.getType(result),
+            pass = false;
+
+        if(resultType === expected) {
+            pass = true;
+        } else {
+            Spektral.log("!" + desc + " test failed. expected: " + expected + ", resultType: " + resultType + ".", "warn");
+        }
+        return pass;
+    };
+
+    ///////////////////
+    ////TEST VALUE
+    ///////////////////
+
+    //Compares the result value against the expected value
+    //If expected is an array, the array will be cycled through 
+    //until the result is found in the array
+    //desc = required, expected: String
+    //result = required, expected: Any value
+    //expected = required, expected: Any value
+    Spektral.testValue = function (desc, result, expected) {
+
+        var
+            pass = false,
+            expectedType = Spektral.getType(expected), i;
+
+        if(expectedType === "array") {
+            //Will check to confirm how this is supposed to work
+            for (i = 0; i < expected.length; i += 1) {
+                if (result === expected[i]) {
+                    pass = true;
+                }
+            }
+        } else {
+
+            if (result === expected) {
+                pass = true;
+            } else {
+                Spektral.log("!" + desc + " test failed. expected: " + expected + ", result: " + result + ".", "warn");
+            }
+        }
+        return pass;
+    };
+
+    ///////////////////
+    ////TEST ARRAY FOR VALUE
+    ///////////////////
+    //Cycles through an array searching for the expected value
+    //desc = required, expected: String
+    //testArray = required, expected: Array
+    //expectedValue = required, expected: Anything
+    Spektral.testArrayForValue = function (desc, testArray, expectedValue) {
+
+        var i, pass = false;
+
+        for (i = 0; i < testArray.length; i += 1) {
+            if(testArray[i] === expectedValue) {
+                pass = true;
+            }
+        }
+        return pass;
+    };
+
+    ///////////////////
+    ////ADD RESULT TO CONTAINER
+    ///////////////////
+    //Adds a test result to a container
+    //testID = required, expects: String - the id of the element you want to add the result to
+    //desc = required, expected: String - generally what you expect the result should be
+    //result = required, expected: Boolean - the result returned usually by using testType, testValue, testArrayForValue
+    Spektral.addResultToContainer = function (testID, desc, result) {
+
+        var
+            testContainer = Spektral.getElement(testID),
+            test = Spektral.createNewElement("div", testContainer);
+
+        Spektral.setInnerText(test, desc);
+
+        if (result === true) {
+            Spektral.createSetAttribute(test, "class", "pass");
+            Spektral.appendStyle(test, "color:green");
+        } else {
+            Spektral.createSetAttribute(test, "class", "fail");
+            Spektral.appendStyle(test, "color:red");
+        }
+    };
+
+
+    //Pass Spektral object to window
     window.Spektral =  Spektral;
 
 }(window));
