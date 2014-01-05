@@ -1771,68 +1771,82 @@
         function getPos() {
 
             var
-                testDiv = Spektral.getElement("gpDiv"), pos,
+                testDiv = Spektral.getElement("gpDiv"),
+                testDivPos, viewport, divDim, elRect,
+                dynTop, dynRight, dynBottom, dynLeft,
                 X, Y, top, right, bottom, left,
-                vX, vY, vTop, vRight, vBottom, vLeft,
-                gpResult, xResult, yResult, topResult, rightResult, bottomResult, leftResult,
-                vXResult, vYResult, vTopResult, vRightResult, vBottomResult, vLeftResult,
-                documentHeight;
+                dX, dY, dTop, dRight, dBottom, dLeft,
+                gpResult, XResult, YResult, topResult, rightResult, bottomResult, leftResult,
+                dXResult, dYResult, dTopResult, dRightResult, dBottomResult, dLeftResult;
 
-            //This delay is required to get the
-            //bottom property accurately since
-            //there is a lot of containers populating
-            //on this page
-            Spektral.createTimeOut(5, getDivPos);
+            //There is a lot of stuff populating on this page,
+            // proper values for this test can't be taken
+            //until the page completely loads
+            Spektral.createTimeOut(5, testGetPos);
 
-            function getDivPos() {
+            function testGetPos() {
 
-                pos = Spektral.getPos(testDiv);
+                testDivPos = Spektral.getPos(testDiv);
+                viewport = Spektral.getViewportSize();
+                divDim = Spektral.getDimensions(testDiv);
+                elRect = testDiv.getBoundingClientRect();
 
-                //position relative to parent
-                X = pos.x;
-                Y = pos.y;
-                top = pos.top;
-                right = pos.right;
-                bottom = pos.bottom;
-                left = pos.left;
+                gpResult = testMethod("getPos", testDivPos, "object");
 
-                //position relative to viewport
-                vX = pos.vX;
-                vY = pos.vY;
-                vTop = pos.vTop;
-                vRight = pos.vRight;
-                vBottom = pos.vBottom;
-                vLeft = pos.vLeft;
+                //Determine what the right, left, and bottom positions of
+                //the element should be relative to the document
+                dynTop = elRect.top;
+                dynRight = (elRect.right - divDim.borderWidth);
+                dynBottom = (viewport.height - elRect.bottom);
+                dynLeft = elRect.left;
 
-                gpResult = testMethod("getPos", pos, "object");
+                X = testDivPos.x;
+                Y = testDivPos.y;
+                top = testDivPos.top;
+                right = testDivPos.right;
+                bottom = testDivPos.bottom;
+                left = testDivPos.left;
 
-                xResult = testReturnedValue("getPos", X, 20);
-                yResult = testReturnedValue("getPos", Y, 64);
+                XResult = testReturnedValue("XResult test", X, 20);
+                YResult = testReturnedValue("YResult test", Y, 64);
+                topResult = testReturnedValue("top test", top, 64);
+                rightResult = testReturnedValue("right test", right, 20);
+                bottomResult = testReturnedValue("bottom test", bottom, 166);
+                leftResult = testReturnedValue("left test", left, 20);
 
-                topResult = testReturnedValue("getPos", top, 64);
-                rightResult = testReturnedValue("getPos", right, 20);
-                bottomResult = testReturnedValue("getPos", bottom, 147);
-                leftResult = testReturnedValue("getPos", left, 20);
+                dX = testDivPos.dX;
+                dY = testDivPos.dY;
+                dTop = testDivPos.dTop;
+                dRight = testDivPos.dRight;
+                dBottom = testDivPos.dBottom;
+                dLeft = testDivPos.dLeft;
 
+                dXResult = testReturnedValue("dX test", dX, dynLeft);
+                dYResult = testReturnedValue("dY test", dY, dynTop);
+                dTopResult = testReturnedValue("dTop test", dTop, dynTop);
+                dRightResult = testReturnedValue("dRight test", dRight, dynRight);
+                dBottomResult = testReturnedValue("dBottom test", dBottom, dynBottom);
+                dLeftResult = testReturnedValue("dLeft test", dLeft, dynLeft);
 
-
+                //Test result for returned type
                 addTestResultToContainer("getPos", "Method returned an object: ", gpResult);
 
-                addTestResultToContainer("getPos", "Property X returned 20: ", xResult);
-                addTestResultToContainer("getPos", "Property Y returned 64: ", yResult);
+                //Test result for x, y, top, right, bottom, left
+                addTestResultToContainer("getPos", "X is 20: ", XResult);
+                addTestResultToContainer("getPos", "Y is 64: ", YResult);
+                addTestResultToContainer("getPos", "top is 64: ", topResult);
+                addTestResultToContainer("getPos", "right is 20: ", rightResult);
+                addTestResultToContainer("getPos", "bottom is 147: ", bottomResult);
+                addTestResultToContainer("getPos", "left is 20: ", leftResult);
 
-                addTestResultToContainer("getPos", "Property top returned 64: ", topResult);
-                addTestResultToContainer("getPos", "Property right returned 20: ", rightResult);
-                addTestResultToContainer("getPos", "Property bottom returned 147: ", bottomResult);
-                addTestResultToContainer("getPos", "Property left returned 20: ", leftResult);
+                //Test result for dX, dY, dTop, dRight, dBottom, dLeft
+                addTestResultToContainer("getPos", "dX is " + Spektral.roundNum(dynLeft) + ": ", dXResult);
+                addTestResultToContainer("getPos", "dY is " + Spektral.roundNum(dynTop) + ": ", dYResult);
+                addTestResultToContainer("getPos", "dTop is " + Spektral.roundNum(dynTop) + ": ", dTopResult);
+                addTestResultToContainer("getPos", "dRight is " + Spektral.roundNum(dynRight) + ": ", dRightResult);
+                addTestResultToContainer("getPos", "dBottom is " + Spektral.roundNum(dynBottom) + ": ", dBottomResult);
+                addTestResultToContainer("getPos", "dLeft is " + Spektral.roundNum(dynLeft) + ": ", dLeftResult);
 
-                documentHeight = Spektral.getDocDimensions().height;
-
-                console.log("documentHeight: " + documentHeight);
-
-                console.log("getPos: X: " + X + " Y: " + Y + " top: " + top + " right: " + right + " bottom: " + bottom + " left: " + left);
-                console.log("*");
-                console.log("getPos: vX: " + vX + " vY: " + vY + " vTop: " + vTop + " vRight: " + vRight + " vBottom: " + vBottom + " vLeft: " + vLeft);
                 adjustExamples();
             }
         }

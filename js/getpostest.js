@@ -34,7 +34,7 @@
     XResult = Spektral.testValue("XResult test", X, 10, true);
     YResult = Spektral.testValue("YResult test", Y, 10, true);
     topResult = Spektral.testValue("top test", top, 10, true);
-    rightResult = Spektral.testValue("right test", right, 10, true);
+    rightResult = Spektral.testValue("right test", Spektral.roundNum(right), 861, true);
     bottomResult = Spektral.testValue("bottom test", bottom, 49, true);
     leftResult = Spektral.testValue("left test", left, 10, true);
 
@@ -44,6 +44,8 @@
     dRight = divOnePos.dRight;
     dBottom = divOnePos.dBottom;
     dLeft = divOnePos.dLeft;
+
+    console.log("dRight: " + dRight);
 
     dXResult = Spektral.testValue("dX test", dX, dynLeft, true);
     dYResult = Spektral.testValue("dY test", dY, 170, true);

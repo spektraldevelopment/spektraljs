@@ -1067,16 +1067,16 @@
         }
 
         if(content === "") {
-            Spektral.log("getInnerText: " + Spektral.getInfo(ids) + " ids.name: " + ids.name);
-            if(ids.id !== undefined) {
-                Spektral.log("getInnerText: " + ids.id + " is empty.", "warn");
-            } else if (ids.class !== undefined) {
-                Spektral.log("getInnerText: " + ids.class + " is empty.", "warn");
-            } else if (ids.name !== undefined) {
-                Spektral.log("getInnerText: " + ids.name + " is empty.", "warn");
-            } else {
-                Spektral.log("getInnerText: " + ids.nodeName + " is empty.", "warn");
-            }
+            // Spektral.log("getInnerText: " + Spektral.getInfo(ids) + " ids.name: " + ids.name);
+            // if(ids.id !== undefined) {
+            //     Spektral.log("getInnerText: " + ids.id + " is empty.", "warn");
+            // } else if (ids.class !== undefined) {
+            //     Spektral.log("getInnerText: " + ids.class + " is empty.", "warn");
+            // } else if (ids.name !== undefined) {
+            //     Spektral.log("getInnerText: " + ids.name + " is empty.", "warn");
+            // } else {
+            //     Spektral.log("getInnerText: " + ids.nodeName + " is empty.", "warn");
+            // }
         }
 
         return content;
@@ -1313,12 +1313,10 @@
             elLeft = el.left;
 
             //position relative to document
-            //top works/left works
-            //have to work out right/bottom
-            dTop = el.top;//good
-            dRight = (el.right - elDim.borderWidth);
+            dTop = el.top;
+            dRight = (viewWidth - el.right);
             dBottom = (viewHeight - el.bottom);
-            dLeft = el.left;//good
+            dLeft = el.left;
 
         //Spektral.log("getPos top: " + top + " right: " + right + " bottom: " + bottom + " left: " + left);    
 
@@ -1460,7 +1458,7 @@
         Spektral.stringToNum(paddingBottom) + 
         Spektral.stringToNum(borderBottom);
 
-        dimensions["borderHeight"] + borderHeight;
+        dimensions["borderHeight"] = borderHeight;
 
         dimensions["padding"] = Spektral.stringToNum(padding);
         dimensions["paddingTop"] = Spektral.stringToNum(paddingTop);
