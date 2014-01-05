@@ -1059,19 +1059,46 @@
     ///////////////////
     Spektral.getInnerText = function (element) {
 
-        var content = element.textContent;
+        var 
+            content = element.textContent,
+            ids = Spektral.getElementIdentifiers(element);
         if (content === "undefined") {
             content = element.innerText;
         }
+
+        if(content === "") {
+            Spektral.log("getInnerText: " + Spektral.getInfo(ids) + " ids.name: " + ids.name);
+            if(ids.id !== undefined) {
+                Spektral.log("getInnerText: " + ids.id + " is empty.", "warn");
+            } else if (ids.class !== undefined) {
+                Spektral.log("getInnerText: " + ids.class + " is empty.", "warn");
+            } else if (ids.name !== undefined) {
+                Spektral.log("getInnerText: " + ids.name + " is empty.", "warn");
+            } else {
+                Spektral.log("getInnerText: " + ids.nodeName + " is empty.", "warn");
+            }
+        }
+
         return content;
     };
 
     ////////////////////
     ////SET INNER TEXT
     ///////////////////
-    Spektral.setInnerText = function (element, textContent) {
+    Spektral.setInnerText = function (element, textContent, append) {
 
-        element.innerHTML = textContent;
+        append = append || false;
+
+        var 
+            currentContent = Spektral.getInnerText(element),
+            newContent;
+
+        if(append === true) {
+            newContent = currentContent + textContent;
+            element.innerHTML = newContent;
+        } else {
+            element.innerHTML = textContent;
+        }
     };
 
     //////////////////////
@@ -1266,13 +1293,14 @@
             parent = Spektral.getParent(element),
             par = parent.getBoundingClientRect(),
             el = element.getBoundingClientRect(),
+            elDim = Spektral.getDimensions(element),
             left, top, right, bottom, 
             dLeft, dTop, dRight, dBottom,
             elTop, elRight, elBottom, elLeft,
             viewWidth = viewport.width,
             viewHeight = viewport.height;
 
-            Spektral.log("el: " + Spektral.getInfo(el));
+            //Spektral.log("el: " + Spektral.getInfo(el));
 
             //Spektral.log("viewport: " + Spektral.getInfo(viewport));
 
@@ -1291,10 +1319,10 @@
             //position relative to document
             //top works/left works
             //have to work out right/bottom
-            dTop = el.top;
-            dRight = el.right;
-            dBottom = el.bottom;
-            dLeft = el.left;
+            dTop = el.top;//good
+            dRight = (el.right - elDim.borderWidth);
+            dBottom = (viewHeight - el.bottom);
+            dLeft = el.left;//good
 
         //Spektral.log("getPos top: " + top + " right: " + right + " bottom: " + bottom + " left: " + left);    
 
@@ -1403,6 +1431,7 @@
             marginBottom = Spektral.getStyle(element, "margin-bottom"),
             marginLeft = Spektral.getStyle(element, "margin-left"),
             innerWidth, innerHeight,
+            borderWidth, borderHeight,
             totalWidth, totalHeight;
 
         dimensions["width"] = Spektral.stringToNum(width);
@@ -1419,6 +1448,23 @@
         Spektral.stringToNum(paddingBottom);
 
         dimensions["innerHeight"] = innerHeight;
+
+        //Return border + padding + width
+        borderWidth = Spektral.stringToNum(borderLeft) + 
+        Spektral.stringToNum(paddingLeft) + 
+        Spektral.stringToNum(width) +
+        Spektral.stringToNum(paddingRight) +
+        Spektral.stringToNum(borderRight);
+
+        dimensions["borderWidth"] = borderWidth;
+
+        borderHeight = Spektral.stringToNum(borderTop) +
+        Spektral.stringToNum(paddingTop) +
+        Spektral.stringToNum(height) +
+        Spektral.stringToNum(paddingBottom) + 
+        Spektral.stringToNum(borderBottom);
+
+        dimensions["borderHeight"] + borderHeight;
 
         dimensions["padding"] = Spektral.stringToNum(padding);
         dimensions["paddingTop"] = Spektral.stringToNum(paddingTop);
