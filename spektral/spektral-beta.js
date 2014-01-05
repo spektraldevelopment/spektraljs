@@ -2033,8 +2033,11 @@
     //desc = required, expected: String
     //result = required, expected: Anything
     //expected = required, expected: String
-    Spektral.testType = function (desc, result, expected) {
+    //logResult = optional, expects: Boolean, default: false - If set to true logs to result to the console
+    Spektral.testType = function (desc, result, expected, logResult) {
         
+        logResult = logResult || false;
+
         expected = Spektral.convertCase(expected);
 
         Spektral.log("testReturnedType: expected: " + expected);
@@ -2043,10 +2046,13 @@
             resultType = Spektral.getType(result),
             pass = false;
 
-        if(resultType === expected) {
+        if (resultType === expected) {
             pass = true;
+            if (logResult === true) {
+                Spektral.log("testType: " + desc + " passed!");
+            }
         } else {
-            Spektral.log("!" + desc + " test failed. expected: " + expected + ", resultType: " + resultType + ".", "warn");
+            Spektral.log("testType: " + desc + " failed! expected: " + expected + ", result: " + result + ".", "warn");
         }
         return pass;
     };
@@ -2061,13 +2067,16 @@
     //desc = required, expected: String
     //result = required, expected: Any value
     //expected = required, expected: Any value
-    Spektral.testValue = function (desc, result, expected) {
+    //logResult = optional, expects: Boolean, default: false - If set to true logs to result to the console
+    Spektral.testValue = function (desc, result, expected, logResult) {
+
+        logResult = logResult || false;
 
         var
             pass = false,
             expectedType = Spektral.getType(expected), i;
 
-        if(expectedType === "array") {
+        if (expectedType === "array") {
             //Will check to confirm how this is supposed to work
             for (i = 0; i < expected.length; i += 1) {
                 if (result === expected[i]) {
@@ -2078,8 +2087,11 @@
 
             if (result === expected) {
                 pass = true;
+                if (logResult === true) {
+                    Spektral.log("testValue: " + desc + " passed!");
+                }   
             } else {
-                Spektral.log("!" + desc + " test failed. expected: " + expected + ", result: " + result + ".", "warn");
+                Spektral.log("testValue: " + desc + " failed! expected: " + expected + ", result: " + result + ".", "warn");
             }
         }
         return pass;
@@ -2092,15 +2104,26 @@
     //desc = required, expected: String
     //testArray = required, expected: Array
     //expectedValue = required, expected: Anything
-    Spektral.testArrayForValue = function (desc, testArray, expectedValue) {
+    //logResult = optional, expects: Boolean, default: false - If set to true logs to result to the console
+    Spektral.testArrayForValue = function (desc, testArray, expectedValue, logResult) {
+
+        logResult = logResult || false;
 
         var i, pass = false;
 
         for (i = 0; i < testArray.length; i += 1) {
-            if(testArray[i] === expectedValue) {
+            if (testArray[i] === expectedValue) {
                 pass = true;
+                if (logResult === true) {
+                    Spektral.log("testArrayForValue: " + desc + " passed!");
+                }   
             }
         }
+
+        if(pass === false) {
+            Spektral.log("testArrayForValue: " + desc + " failed! expected: " + expected + ", result: " + result + ".", "warn");
+        }
+
         return pass;
     };
 

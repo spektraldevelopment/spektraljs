@@ -1,5 +1,7 @@
 (function(){
 
+    Spektral.debug();
+
     var
         testDivOne = Spektral.getElement("testDivOne"),
         testDivTwo = Spektral.getElement("testDivTwo"),
@@ -15,7 +17,10 @@
     bottom = divOnePos.bottom;
     left = divOnePos.left;
 
-    //console.log("divOnePos: " + Spektral.getInfo(divOnePos));
+    XResult = Spektral.testValue("XResult test", X, 10, true);
+    YResult = Spektral.testValue("YResult test", Y, 9, true);
+
+    console.log("divOnePos: " + Spektral.getInfo(divOnePos));
 
     console.log("GET POS TEST");
 
