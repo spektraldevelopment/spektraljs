@@ -301,8 +301,8 @@
         var 
             mousePos = {}, 
             target = Spektral.getTarget(evt), 
-            targetX = Spektral.getPos(target).x, 
-            targetY = Spektral.getPos(target).y,
+            targetX = Spektral.getPos(target).elX, 
+            targetY = Spektral.getPos(target).elY,
             pageX = evt.pageX, pageY = evt.pageY,
             screenX = evt.screenX, screenY = evt.screenY,
             clientX = evt.clientX, clientY = evt.clientY,
@@ -1268,8 +1268,11 @@
             el = element.getBoundingClientRect(),
             left, top, right, bottom, 
             dLeft, dTop, dRight, dBottom,
+            elTop, elRight, elBottom, elLeft,
             viewWidth = viewport.width,
             viewHeight = viewport.height;
+
+            Spektral.log("el: " + Spektral.getInfo(el));
 
             //Spektral.log("viewport: " + Spektral.getInfo(viewport));
 
@@ -1279,7 +1282,15 @@
             bottom = (par.bottom - el.bottom);
             left = (el.left - par.left);
 
+            //The properties returned from getBoundingClientRect
+            elTop = el.top;
+            elRight = el.right;
+            elBottom = el.bottom;
+            elLeft = el.left;
+
             //position relative to document
+            //top works/left works
+            //have to work out right/bottom
             dTop = el.top;
             dRight = el.right;
             dBottom = el.bottom;
@@ -1287,15 +1298,28 @@
 
         //Spektral.log("getPos top: " + top + " right: " + right + " bottom: " + bottom + " left: " + left);    
 
+        //Relative to parent
         pos["x"] = left;
         pos["y"] = top;
+
         pos["top"] = top;
         pos["right"] = right;
         pos["bottom"] = bottom;
         pos["left"] = left;
 
+        //getBoundingClientRect
+        pos["elX"] = elLeft;
+        pos["elY"] = elTop;
+
+        pos["elTop"] = elTop;
+        pos["elRight"] = elRight;
+        pos["elBottom"] = elBottom;
+        pos["elLeft"] = elLeft;
+
+        //Relative to document
         pos["dX"] = dLeft;
         pos["dY"] = dTop;
+
         pos["dTop"] = dTop;
         pos["dRight"] = dRight;
         pos["dBottom"] = dBottom;
