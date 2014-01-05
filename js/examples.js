@@ -1796,7 +1796,7 @@
                 //Determine what the right, left, and bottom positions of
                 //the element should be relative to the document
                 dynTop = elRect.top;
-                dynRight = (elRect.right - divDim.borderWidth);
+                dynRight = (viewport.width - elRect.right);
                 dynBottom = (viewport.height - elRect.bottom);
                 dynLeft = elRect.left;
 
@@ -1811,7 +1811,7 @@
                 YResult = testReturnedValue("YResult test", Y, 64);
                 topResult = testReturnedValue("top test", top, 64);
                 rightResult = testReturnedValue("right test", right, 20);
-                bottomResult = testReturnedValue("bottom test", bottom, 166);
+                bottomResult = testReturnedValue("bottom test", bottom, 185);
                 leftResult = testReturnedValue("left test", left, 20);
 
                 dX = testDivPos.dX;
@@ -1820,6 +1820,10 @@
                 dRight = testDivPos.dRight;
                 dBottom = testDivPos.dBottom;
                 dLeft = testDivPos.dLeft;
+
+                //Note: dBottom is returning a negative number because of the
+                //populating of the examples list - will fix when I make a
+                //more user friendly version of examples
 
                 dXResult = testReturnedValue("dX test", dX, dynLeft);
                 dYResult = testReturnedValue("dY test", dY, dynTop);
@@ -1836,7 +1840,7 @@
                 addTestResultToContainer("getPos", "Y is 64: ", YResult);
                 addTestResultToContainer("getPos", "top is 64: ", topResult);
                 addTestResultToContainer("getPos", "right is 20: ", rightResult);
-                addTestResultToContainer("getPos", "bottom is 147: ", bottomResult);
+                addTestResultToContainer("getPos", "bottom is 185: ", bottomResult);
                 addTestResultToContainer("getPos", "left is 20: ", leftResult);
 
                 //Test result for dX, dY, dTop, dRight, dBottom, dLeft

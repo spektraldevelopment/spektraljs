@@ -2345,7 +2345,7 @@ var
                 <div class="informationContainer">
                     <div class="innerInfoHolder">
                         <h3 class="method">getPos()</h3>
-                        <div class="description">Returns an object containing x, y, left, top, right, bottom (position relative to browser viewport), and relX, relY, relLeft, relTop, relRight, relBottom (position relative to parent) properties of an element.<br/>getPos is invoked before test results are added.</div>
+                        <div class="description">Returns an object containing x, y, left, top, right, bottom (the elements position relative to its parent), dX, dY, dTop, dRight, dBottom, dLeft (the elements position relative to the document), also returns elX, elY, elTop, elRight, elBottom, elLeft (the raw values returned using element.getBoundingClientRect)<br/>Note: getPos is invoked before test results are added.</div>
                         <div id="getPos" class="testingContainer">
                             <h3 class="results">Testing Results</h3>
                         </div>
@@ -2361,6 +2361,27 @@ var
                     <div class="innerExampleCodeHolder">
                         <h3 class="exampleCodeHeader">Example Code</h3>
                         <pre class="prettyprint">
+var
+    testDiv = Spektral.getElement("gpDiv"),
+    testDivPos, dynTop, dynRight, dynBottom, dynLeft,
+    X, Y, top, right, bottom, left,
+    dX, dY, dTop, dRight, dBottom, dLeft;
+
+testDivPos = Spektral.getPos(testDiv);
+
+X = testDivPos.x;
+Y = testDivPos.y;
+top = testDivPos.top;
+right = testDivPos.right;
+bottom = testDivPos.bottom;
+left = testDivPos.left;
+
+dX = testDivPos.dX;
+dY = testDivPos.dY;
+dTop = testDivPos.dTop;
+dRight = testDivPos.dRight;
+dBottom = testDivPos.dBottom;
+dLeft = testDivPos.dLeft;
                         </pre>
                     </div>
                 </div>
