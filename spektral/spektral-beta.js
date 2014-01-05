@@ -1300,10 +1300,6 @@
             viewWidth = viewport.width,
             viewHeight = viewport.height;
 
-            //Spektral.log("el: " + Spektral.getInfo(el));
-
-            //Spektral.log("viewport: " + Spektral.getInfo(viewport));
-
             //Position relative to parent
             top = (el.top - par.top);
             right = (par.right - el.right);

@@ -2,16 +2,27 @@
 
     Spektral.debug();
 
+    //Problem! The dLeft, dRight, and dBottom change
+    //depending on sizing of browser
+
     var
-        testDivOne = Spektral.getElement("testDivOne"),
-        testDivTwo = Spektral.getElement("testDivTwo"),
-        outputDiv = Spektral.getElement("output"), outputInfo = "",
-        divOnePos = Spektral.getPos(testDivOne),
+        testDiv = Spektral.getElement("testDivOne"),
+        outputDiv = Spektral.getElement("output"),
+        divOnePos = Spektral.getPos(testDiv),
         viewport = Spektral.getViewportSize(),
+        divDim = Spektral.getDimensions(testDiv),
+        elRect = testDiv.getBoundingClientRect(),
+        dynLeft, dynRight, dynBottom,
         X, Y, top, right, bottom, left,
         dX, dY, dTop, dRight, dBottom, dLeft,
         XResult, YResult, topResult, rightResult, bottomResult, leftResult,
         dXResult, dYResult, dTopResult, dRightResult, dBottomResult, dLeftResult;
+
+    //Determine what the right, left, and bottom positions of
+    //the element should be relative to the document
+    dynLeft = elRect.left;
+    dynRight = (elRect.right - divDim.borderWidth);
+    dynBottom = (viewport.height - elRect.bottom);
 
     X = divOnePos.x;
     Y = divOnePos.y;
@@ -34,18 +45,15 @@
     dBottom = divOnePos.dBottom;
     dLeft = divOnePos.dLeft;
 
-    dXResult = Spektral.testValue("dX test", dX, 168, true);
+    dXResult = Spektral.testValue("dX test", dX, dynLeft, true);
     dYResult = Spektral.testValue("dY test", dY, 170, true);
-    dLeftResult = Spektral.testValue("dLeft test", dLeft, 168, true);
     dTopResult = Spektral.testValue("dTop test", dTop, 170, true);
-
-    //console.log("dRight: " + dRight);
-    console.log("dBottom: " + dBottom);
+    dRightResult = Spektral.testValue("dRight test", dRight, dynRight, true);
+    dBottomResult = Spektral.testValue("dBottom test", dBottom, dynBottom, true);
+    dLeftResult = Spektral.testValue("dLeft test", dLeft, dynLeft, true);
 
     Spektral.setInnerText(outputDiv, ": viewport: width: " + viewport.width + " height: " + viewport.height, true);
     Spektral.setInnerText(outputDiv, " | dBottom: " + dBottom, true);
-
-    console.log("viewport: width: " + viewport.width + " height: " + viewport.height);
 
     console.log("GET POS TEST");
 
