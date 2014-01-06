@@ -1085,11 +1085,17 @@
         function hasPattern() {
 
             var
-                testString = "This is a test string that contains Spektral.",
+                testString = "This is a test string that contains Spektral. This is a test string that contains Spektral.",
                 hasSpektral = Spektral.hasPattern(testString, "Spektral"),
-                hpResult = testReturnedValue("hasPattern", hasSpektral, true);
+                hpResult = testMethod("hasPattern", hasSpektral, "object"),
+                spektralMatch = hasSpektral.match,
+                spektralAmount = hasSpektral.amount,
+                matchResult = testReturnedValue("hasPattern", spektralMatch, true),
+                amountResult = testReturnedValue("hasPattern", spektralAmount, 2);
 
-            addTestResultToContainer("hasPattern", "String has \"Spektral\": ", hpResult);
+            addTestResultToContainer("hasPattern", "Method returned an object: ", hpResult);
+            addTestResultToContainer("hasPattern", "Match is true: ", matchResult);
+            addTestResultToContainer("hasPattern", "Amount is 2: ", amountResult);
         }
 
         ////STRING****END**************************************************
@@ -1811,7 +1817,7 @@
                 YResult = testReturnedValue("YResult test", Y, 64);
                 topResult = testReturnedValue("top test", top, 64);
                 rightResult = testReturnedValue("right test", right, 20);
-                bottomResult = testReturnedValue("bottom test", bottom, 185);
+                bottomResult = testReturnedValue("bottom test", bottom, 204);
                 leftResult = testReturnedValue("left test", left, 20);
 
                 dX = testDivPos.dX;
@@ -1840,7 +1846,7 @@
                 addTestResultToContainer("getPos", "Y is 64: ", YResult);
                 addTestResultToContainer("getPos", "top is 64: ", topResult);
                 addTestResultToContainer("getPos", "right is 20: ", rightResult);
-                addTestResultToContainer("getPos", "bottom is 185: ", bottomResult);
+                addTestResultToContainer("getPos", "bottom is 204: ", bottomResult);
                 addTestResultToContainer("getPos", "left is 20: ", leftResult);
 
                 //Test result for dX, dY, dTop, dRight, dBottom, dLeft
@@ -1852,6 +1858,142 @@
                 addTestResultToContainer("getPos", "dLeft is " + Spektral.roundNum(dynLeft) + ": ", dLeftResult);
 
                 adjustExamples();
+            }
+        }
+
+        //////////////////////
+        ////GET DIMENSIONS
+        //////////////////////
+        getDimensions();
+
+        function getDimensions() {
+
+            var
+                testDiv = Spektral.getElement("gdDiv"),
+                borderDiv = Spektral.getElement("gdBorderDiv"),
+                divDim = Spektral.getDimensions(testDiv),
+                borderDim = Spektral.getDimensions(borderDiv),
+
+                //width/height = width/height of element itself, no border/padding/margin
+                width = Spektral.roundNum(divDim.width),
+                height = divDim.height,
+
+                //innerWidth/innerHeight = element width/height + padding
+                innerWidth = divDim.innerWidth,
+                innerHeight = divDim.innerHeight,
+
+                //Padding
+                padding = divDim.padding,
+                paddingTop = divDim.paddingTop,
+                paddingRight = divDim.paddingRight,
+                paddingBottom = divDim.paddingBottom,
+                paddingLeft = divDim.paddingLeft,
+
+                //borderWidth/borderHeight = element width/height + border + padding
+                borderWidth = divDim.borderWidth,
+                borderHeight = divDim.borderHeight,
+
+                //Border
+                border = borderDim.border,
+                borderTop = divDim.borderTop,
+                borderRight = divDim.borderRight,
+                borderBottom = divDim.borderBottom,
+                borderLeft = divDim.borderLeft,
+
+                //Margin
+                margin = divDim.margin,
+                marginTop = divDim.marginTop,
+                marginRight = divDim.marginRight,
+                marginBottom = divDim.marginBottom,
+                marginLeft = divDim.marginLeft,
+
+                //totalWidth/totalHeight = element width/height + padding + border + margin
+                totalWidth = divDim.totalWidth,
+                totalHeight = divDim.totalHeight,
+
+                //testing
+                dynWidth = getDynamicWidth(testDiv),
+                gdResult = testMethod("getDimensions", divDim, "object"),
+
+                widthResult = testReturnedValue("getDimensions", width, dynWidth),
+                heightResult = testReturnedValue("getDimensions", height, 175),
+
+                iWidthResult = testReturnedValue("getDimensions", innerWidth, (dynWidth + 25)),
+                iHeightResult = testReturnedValue("getDimensions", innerHeight, 200),
+
+                paddingResult = testReturnedValue("getDimensions", padding, "5px 10px 20px 15px"),
+                padTopResult = testReturnedValue("getDimensions", paddingTop, 5),
+                padRightResult = testReturnedValue("getDimensions", paddingRight, 10),
+                padBottomResult = testReturnedValue("getDimensions", paddingBottom, 20),
+                padLeftResult = testReturnedValue("getDimesions", paddingLeft, 15),
+
+                bWidthResult = testReturnedValue("getDimensions", borderWidth, (dynWidth + 30)),
+                bHeightResult = testReturnedValue("getDimensions", borderHeight, 205),
+
+                borderResult = testReturnedValue("getDimensions", border, "1px solid rgb(241, 215, 178)"),
+                borderTopResult = testReturnedValue("getDimensions", borderTop, 1),
+                borderRightResult = testReturnedValue("getDimensions", borderRight, 2),
+                borderBottomResult = testReturnedValue("getDimensions", borderBottom, 4),
+                borderLeftResult = testReturnedValue("getDimensions", borderLeft, 3),
+
+                marginResult = testReturnedValue("getDimensions", margin, "10px 5px 15px 20px"),
+                marginTopResult = testReturnedValue("getDimensions", marginTop, 10),
+                marginRightResult = testReturnedValue("getDimensions", marginRight, 5),
+                marginBottomResult = testReturnedValue("getDimensions", marginBottom, 15),
+                marginLeftResult = testReturnedValue("getDimensions", marginLeft, 20),
+
+                totalWidthResult = testReturnedValue("getDimensions", totalWidth, (dynWidth + 55)),
+                totalHeightResult = testReturnedValue("getDimensions", totalHeight, 230);
+
+            addTestResultToContainer("getDimensions", "Method returned an object: ", gdResult);
+
+            addTestResultToContainer("getDimensions", "width = " + dynWidth + ": ", widthResult);
+            addTestResultToContainer("getDimensions", "height = 175: ", heightResult);
+
+            addTestResultToContainer("getDimensions", "innerWidth = " + (dynWidth + 25) + ": ", iWidthResult);
+            addTestResultToContainer("getDimensions", "innerHeight = 200: ", iHeightResult);
+
+            addTestResultToContainer("getDimensions", "padding = 5px 10px 20px 15px: ", paddingResult);
+            addTestResultToContainer("getDimensions", "paddingTop = 5: ", padTopResult);
+            addTestResultToContainer("getDimensions", "paddingRight = 10: ", padRightResult);
+            addTestResultToContainer("getDimensions", "paddingBottom = 20: ", padBottomResult);
+            addTestResultToContainer("getDimensions", "paddingLeft = 15: ", padLeftResult);
+
+            addTestResultToContainer("getDimensions", "borderWidth = " + (dynWidth + 28) + ": ", bWidthResult);
+            addTestResultToContainer("getDimensions", "borderHeight = 205: ", bHeightResult);
+
+            addTestResultToContainer("getDimensions", "border = 1px solid rgb(241, 215, 178): ", borderResult);
+            addTestResultToContainer("getDimensions", "borderTop = 1: ", borderTopResult);
+            addTestResultToContainer("getDimensions", "borderRight = 2: ", borderRightResult);
+            addTestResultToContainer("getDimensions", "borderBottom = 4: ", borderBottomResult);
+            addTestResultToContainer("getDimensions", "borderLeft = 3: ", borderLeftResult);
+
+            addTestResultToContainer("getDimensions", "margin = 10px 5px 15px 20px: ", marginResult);
+            addTestResultToContainer("getDimensions", "marginTop = 10: ", marginTopResult);
+            addTestResultToContainer("getDimensions", "marginRight = 5: ", marginRightResult);
+            addTestResultToContainer("getDimensions", "marginBottom = 15: ", marginBottomResult);
+            addTestResultToContainer("getDimensions", "marginLeft = 20: ", marginLeftResult);
+
+            addTestResultToContainer("getDimensions", "totalWidth = " + (dynWidth + 55) + ": ", totalWidthResult);
+            addTestResultToContainer("getDimensions", "totalHeight = 230: ", totalHeightResult);
+
+            //I want to use an non Spektral method to ensure the width
+            //is returning correctly in case Spektral.getStyle's
+            //logic gets changed in the future
+            function getDynamicWidth(element) {
+
+                var widthStr, returnedWidth;
+
+                try {
+                    widthStr = element.currentStyle["width"];
+                } catch(err) {
+                    widthStr = document.defaultView.getComputedStyle(element, null).getPropertyValue("width");
+                }
+
+                returnedWidth = parseInt(widthStr, 10);
+                returnedWidth = Math.round(returnedWidth);
+
+                return returnedWidth;
             }
         }
 
@@ -1876,7 +2018,7 @@
         if(resultType === expected) {
             pass = true;
         } else {
-            console.warn("!" + desc + " test failed. expected: " + expected + ", resultType: " + resultType + ".");
+            console.warn("!" + desc + " failed. expected: " + expected + ", resultType: " + resultType + ".");
         }
 
         return pass;
@@ -1925,7 +2067,7 @@
             if (result === expected) {
                 pass = true;
             } else {
-                console.warn("!" + desc + " test failed. expected: " + expected + ", result: " + result + ".");
+                console.warn("!" + desc + " failed. expected: " + expected + ", result: " + result + ".");
             }
         }
         return pass;

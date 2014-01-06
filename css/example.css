@@ -313,6 +313,28 @@ p {
   color: #f1d7b2;
   background-color: #352f2f;
 }
+.testDivDimensions {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  font-size: 14px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  text-shadow: 1px 1px 2px #000000;
+  height: 175px;
+  border-top: 1px solid #f1d7b2;
+  border-right: 2px solid #f1d7b2;
+  border-bottom: 4px solid #f1d7b2;
+  border-left: 3px solid #f1d7b2;
+  text-align: center;
+  margin: 10px 5px 15px 20px;
+  padding: 5px 10px 20px 15px;
+  color: #f1d7b2;
+  background-color: #352f2f;
+}
 .testAnchor {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;

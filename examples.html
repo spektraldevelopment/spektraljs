@@ -1406,7 +1406,7 @@ var
                 <div class="informationContainer">
                     <div class="innerInfoHolder">
                         <h3 class="method">hasPattern()</h3>
-                        <div class="description">Detects if a certain pattern exists in a string. Returns a boolean.</div>
+                        <div class="description">Detects if a certain pattern exists in a string. Returns an object containing two properties: match (boolean, is the pattern was found) and amount (how many times the pattern was found).</div>
                         <div id="hasPattern" class="testingContainer">
                             <h3 class="results">Testing Results</h3>
                         </div>
@@ -2382,6 +2382,77 @@ dTop = testDivPos.dTop;
 dRight = testDivPos.dRight;
 dBottom = testDivPos.dBottom;
 dLeft = testDivPos.dLeft;
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+            <!--******************-->
+            <!--GET DIMENSIONS-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">getDimensions()</h3>
+                        <div class="description">Returns an object with all dimensional properties. The object contains the following properties:</br>width, height</br>innerWidth, innerHeight (element width/height + padding)</br>padding (if padding contains multiple values: ex. 10px 5px, then returned value will be a string instead of a number)</br>paddingTop, paddingRight, paddingBottom, paddingLeft</br>borderWidth, borderHeight (element width/height + border + padding)</br>border (only returned is border shorthand method is used. ex. border: 1px solid red)</br>borderTop, borderRight, borderBottom, borderLeft</br>margin, marginTop, marginRight, marginBottom, marginLeft</br>totalWidth (the combination of margin, border, padding, and innerWidth), totalHeight (the combination of margin, border, padding, and innerHeight)</div>
+                        <div id="getDimensions" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <div id="gdDiv" class="testDivDimensions">div - id="gdDiv"</div>
+                        <div id="gdBorderDiv" class="testDiv">div - id="gdBorderDiv"</div>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    testDiv = Spektral.getElement("gdDiv"),
+    borderDiv = Spektral.getElement("gdBorderDiv"),
+    divDim = Spektral.getDimensions(testDiv),
+    borderDim = Spektral.getDimensions(borderDiv),
+
+    //width/height = width/height of element itself, no border/padding/margin
+    width = divDim.width,
+    height = divDim.height,
+
+    //innerWidth/innerHeight = element width/height + padding
+    innerWidth = divDim.innerWidth,
+    innerHeight = divDim.innerHeight,
+
+    //Padding
+    padding = divDim.padding,
+    paddingTop = divDim.paddingTop,
+    paddingRight = divDim.paddingRight,
+    paddingBottom = divDim.paddingBottom,
+    paddingLeft = divDim.paddingLeft,
+
+    //borderWidth/borderHeight = element width/height + border + padding
+    borderWidth = divDim.borderWidth,
+    borderHeight = divDim.borderHeight,
+
+    //Border
+    border = borderDim.border,
+    borderTop = divDim.borderTop,
+    borderRight = divDim.borderRight,
+    borderBottom = divDim.borderBottom,
+    borderLeft = divDim.borderLeft,
+
+    //Margin
+    margin = divDim.margin,
+    marginTop = divDim.marginTop,
+    marginRight = divDim.marginRight,
+    marginBottom = divDim.marginBottom,
+    marginLeft = divDim.marginLeft,
+
+    //totalWidth/totalHeight = element width/height + padding + border + margin
+    totalWidth = divDim.totalWidth,
+    totalHeight = divDim.totalHeight;
                         </pre>
                     </div>
                 </div>

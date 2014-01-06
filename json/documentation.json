@@ -479,13 +479,13 @@
         {
             "category" : ["utils, string"],
             "title" : "hasPattern()",
-            "description" : "Detects if a pattern is present in a string. Returns a Boolean.",
+            "description" : "Detects if a certain pattern exists in a string. Returns an object containing two properties: match (boolean, is the pattern was found) and amount (how many times the pattern was found).",
             "code" : "Spektral.hasPattern(request, pattern);",
             "params" : [
                 {"request (required, expects: String)" : "The string you wish to search."},
                 {"pattern (required, expects: String)" : "The pattern you want to detect."}
             ],
-            "returns" : "Boolean",
+            "returns" : "Object",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
         }
@@ -827,7 +827,7 @@
         {
             "category" : ["utils"],
             "title" : "getPos()",
-            "description" : "Returns an object containing x, y, left, top, right, bottom (position relative to browser viewport), and relX, relY, relLeft, relTop, relRight, relBottom (position relative to parent) properties of an element.",
+            "description" : "Returns an object containing x, y, left, top, right, bottom (the elements position relative to its parent), dX, dY, dTop, dRight, dBottom, dLeft (the elements position relative to the document), also returns elX, elY, elTop, elRight, elBottom, elLeft (the raw values returned using element.getBoundingClientRect)",
             "code" : "Spektral.getPos(element);",
             "params" : [
                 {"element (required, expects: Element)" : "The element you want get the position data from."}
@@ -839,7 +839,7 @@
         {
             "category" : ["utils"],
             "title" : "getDimensions()",
-            "description" : "Returns an object with all dimensional properties. The object contains the following properties:</br>width, height, innerWidth, innerHeight, padding, paddingTop, paddingRight, paddingBottom, paddingLeft, border, borderTop, borderRight, borderBottom, borderLeft, margin, marginTop, marginRight, marginBottom, marginLeft, totalWidth (the combination of margin, border, padding, and innerWidth), totalHeight (the combination of margin, border, padding, and innerHeight)",
+            "description" : "Returns an object with all dimensional properties. The object contains the following properties:</br>width, height</br>innerWidth, innerHeight (element width/height + padding), padding, paddingTop, paddingRight, paddingBottom, paddingLeft</br>borderWidth, borderHeight (element width/height + border + padding)</br>border, borderTop, borderRight, borderBottom, borderLeft</br>margin, marginTop, marginRight, marginBottom, marginLeft</br>totalWidth (the combination of margin, border, padding, and innerWidth), totalHeight (the combination of margin, border, padding, and innerHeight)",
             "code" : "Spektral.getDimensions(element);",
             "params" : [
                 {"element (required, expects: Element)" : "The element you want retrieve the dimensions from."}
