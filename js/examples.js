@@ -1997,6 +1997,38 @@
             }
         }
 
+        //////////////////////
+        ////IS OBJECT EMPTY
+        //////////////////////
+        isObjectEmpty();
+
+        function isObjectEmpty() {
+
+            var
+                emptyObject = {},
+                populatedObject = {"foo" : "bar", "foo" : "bar"},
+                emptyArray = [],
+                populatedArray = ["foo", "foo", "bar"],
+                emptyObjCheck = Spektral.isObjectEmpty(emptyObject),
+                popObjCheck = Spektral.isObjectEmpty(populatedObject),
+                emptyArrCheck = Spektral.isObjectEmpty(emptyArray),
+                popArrCheck = Spektral.isObjectEmpty(populatedArray),
+
+                ioeResult = testMethod("isObjectEmpty", populatedObject, "object"),
+                emptyObjResult = testReturnedValue("isObjectEmpty", emptyObjCheck, true),
+                popObjResult = testReturnedValue("isObjectEmpty", popObjCheck, false),
+                emptyArrResult = testReturnedValue("isObjectEmpty", emptyArrCheck, true),
+                popArrResult = testReturnedValue("isObjectEmpty", popArrCheck, false);
+
+            addTestResultToContainer("isObjectEmpty", "Method returned an object: ", ioeResult);
+            addTestResultToContainer("isObjectEmpty", "emptyObject is empty: ", emptyObjResult);
+            addTestResultToContainer("isObjectEmpty", "populatedObject is populated: ", popObjResult);
+            addTestResultToContainer("isObjectEmpty", "emptyArray is empty: ", emptyArrResult);
+            addTestResultToContainer("isObjectEmpty", "populatedArray is populated: ", popArrResult)
+
+        }
+
+
         adjustExamples();
     }
 
