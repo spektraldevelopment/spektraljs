@@ -35,14 +35,14 @@
     /////////////////
     Spektral.about = function () {
 
-        var mode;
+        var mode, message;
         if (debug) {
             mode = "debug";
         } else {
             mode = "release";
         }
-
-        Spektral.log("Spektral.js V.01 mode: " + mode);
+        message = "Spektral-beta.js: mode: " + mode;
+        Spektral.log(message);
         return message;
     };
 
@@ -1487,6 +1487,8 @@
         if(borderCheck === true) {
             dimensions["border"] = border;
         }
+
+
     
         dimensions["borderTop"] = Spektral.stringToNum(borderTop);
         dimensions["borderRight"] = Spektral.stringToNum(borderRight);
