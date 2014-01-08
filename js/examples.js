@@ -2028,6 +2028,23 @@
 
         }
 
+        //////////////////////
+        ////GET INFO
+        //////////////////////
+        getInfo();
+
+        function getInfo() {
+
+            var
+                testObject = {"foo" : "bar", "spektral" : "js"},
+                objectInfo = Spektral.getInfo(testObject),
+                giResult = testMethod("getInfo", objectInfo, "string"),
+                stringTest = testReturnedValue("getInfo", objectInfo, "{\"foo\":\"bar\",\"spektral\":\"js\"}");
+
+            addTestResultToContainer("getInfo", "Method returned a string: ", giResult);
+            addTestResultToContainer("getInfo", "String returned = \"{\"foo\":\"bar\",\"spektral\":\"js\"}\": ", stringTest);
+        }
+
 
         adjustExamples();
     }
