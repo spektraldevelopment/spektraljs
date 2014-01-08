@@ -2061,9 +2061,18 @@
                 elementIsTrue = testReturnedValue("isElement", elementCheck, true),
                 elementIsFalse = testReturnedValue("isElement", nonElementCheck, false);
 
-            addTestResultToContainer("isElement", "Method resturned a boolean: ", ieResult);
+            addTestResultToContainer("isElement", "Method returned a boolean: ", ieResult);
             addTestResultToContainer("isElement", "testDiv is an element: ", elementIsTrue);
             addTestResultToContainer("isElement", "string is not an element: ", elementIsFalse);
+        }
+
+        //////////////////////
+        ////GET ELEMENT IDENTIFIERS
+        //////////////////////
+        getElementIdentifiers();
+
+        function getElementIdentifiers() {
+
         }
 
 
