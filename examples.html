@@ -2524,6 +2524,39 @@ var
                 </div>
             </div>
 
+            <!--******************-->
+            <!--IS ELEMENT-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">isElement()</h3>
+                        <div class="description">Checks if an object is possibly an HTML element.</div>
+                        <div id="isElement" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <div id="ieDiv" class="testDiv">div - id="isElement"</div>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    testDiv = Spektral.getElement("ieDiv"),
+    nonElement = "This is not an element",
+    elementCheck = Spektral.isElement(testDiv),
+    nonElementCheck = Spektral.isElement(nonElement);
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
         <!--END OF MAIN CONTENT-->
         </section>
 

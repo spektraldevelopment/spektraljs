@@ -2045,6 +2045,27 @@
             addTestResultToContainer("getInfo", "String returned = \"{\"foo\":\"bar\",\"spektral\":\"js\"}\": ", stringTest);
         }
 
+        //////////////////////
+        ////IS ELEMENT
+        //////////////////////
+        isElement();
+
+        function isElement() {
+
+            var
+                testDiv = Spektral.getElement("ieDiv"),
+                nonElement = "This is not an element",
+                elementCheck = Spektral.isElement(testDiv),
+                nonElementCheck = Spektral.isElement(nonElement),
+                ieResult = testMethod("isElement", elementCheck, "boolean"),
+                elementIsTrue = testReturnedValue("isElement", elementCheck, true),
+                elementIsFalse = testReturnedValue("isElement", nonElementCheck, false);
+
+            addTestResultToContainer("isElement", "Method resturned a boolean: ", ieResult);
+            addTestResultToContainer("isElement", "testDiv is an element: ", elementIsTrue);
+            addTestResultToContainer("isElement", "string is not an element: ", elementIsFalse);
+        }
+
 
         adjustExamples();
     }
