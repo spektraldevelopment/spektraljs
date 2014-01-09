@@ -1895,14 +1895,17 @@
 
         var identifiers = {}, nn;
 
-        nn = element.nodeName;
+        nn = Spektral.convertCase(element.nodeName);
 
         identifiers["id"] = element.id;
         identifiers["name"] = element.name;
         identifiers["class"] = element.className;
-        identifiers["nodeName"] = Spektral.convertCase(nn);
+        //using nodeName as the key caused identifiers
+        //to return with a type of div instead of object
+        identifiers["node"] = nn;
 
         //Spektral.log("Identifiers for: " + element + " : " + Spektral.getInfo(identifiers));
+        //Spektral.log("getElementIdentifiers: type: " + Spektral.getType(identifiers));
         return identifiers;
     };
 

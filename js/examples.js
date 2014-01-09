@@ -2073,6 +2073,29 @@
 
         function getElementIdentifiers() {
 
+            var
+                testDiv = Spektral.getElement("geiDiv"),
+                testTa = Spektral.getElement("geiTextArea"),
+                divIds = Spektral.getElementIdentifiers(testDiv),
+                textIds = Spektral.getElementIdentifiers(testTa),
+                divID = divIds.id,
+                divClass = divIds.class,
+                taName = textIds.name,
+                taNodeName = textIds.node,
+                geiResult = testMethod("getElementIdentifiers", divIds, "object"),
+                hasID = testReturnedValue("getElementIdentifiers", divID, "geiDiv"),
+                hasClass = testReturnedValue("getElementIdentifiers", divClass, "testDiv"),
+                hasName = testReturnedValue("getElementIdentifiers", taName, "geiTextArea"),
+                hasNode = testReturnedValue("getElementIdentifiers", taNodeName, "textarea");
+
+//            console.log("divIds: " + Spektral.getType(divIds));
+//            console.log("divIds: info: " + Spektral.getInfo(divIds));
+
+            addTestResultToContainer("getElementIdentifiers", "Method returned an object: ", geiResult);
+            addTestResultToContainer("getElementIdentifiers", "div has id of geiDiv: ", hasID);
+            addTestResultToContainer("getElementIdentifiers", "div has class of testDiv: ", hasClass);
+            addTestResultToContainer("getElementIdentifiers", "textarea has name of geiTextArea: ", hasName);
+            addTestResultToContainer("getElementIdentifiers", "geiTextArea has node name of textarea: ", hasNode);
         }
 
 
