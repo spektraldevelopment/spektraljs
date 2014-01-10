@@ -2628,6 +2628,42 @@ var
                 </div>
             </div>
 
+            <!--******************-->
+            <!--GET EXTENSION-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">getExtension()</h3>
+                        <div class="description">Gets the extension of a file. ex. .jpg, .txt, .xml etc.</div>
+                        <div id="getExtension" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    jpgString = "imageOne.jpg",
+    txtString = "data.txt",
+    jsonString = "data.json",
+    multiplePeriods = "a.file.with.multiple.periods.png",
+    jpgExt = Spektral.getExtension(jpgString),
+    txtExt = Spektral.getExtension(txtString),
+    jsonExt = Spektral.getExtension(jsonString),
+    multiExt = Spektral.getExtension(multiplePeriods);
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
         <!--END OF MAIN CONTENT-->
         </section>
 

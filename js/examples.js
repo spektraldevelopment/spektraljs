@@ -2124,6 +2124,35 @@
             addTestResultToContainer("getType", "testNumber has type of string: ", numberResult);
         }
 
+        //////////////////////
+        ////GET EXTENSION
+        //////////////////////
+        getExtension();
+
+        function getExtension() {
+
+            var
+                jpgString = "imageOne.jpg",
+                txtString = "data.txt",
+                jsonString = "data.json",
+                multiplePeriods = "a.file.with.multiple.periods.png",
+                jpgExt = Spektral.getExtension(jpgString),
+                txtExt = Spektral.getExtension(txtString),
+                jsonExt = Spektral.getExtension(jsonString),
+                multiExt = Spektral.getExtension(multiplePeriods),
+                geResult = testMethod("getExtension", jpgExt, "string"),
+                jpgResult = testReturnedValue("getExtension", jpgExt, "jpg"),
+                txtResult = testReturnedValue("getExtension", txtExt, "txt"),
+                jsonResult = testReturnedValue("getExtension", jsonExt, "json"),
+                multiResult = testReturnedValue("getExtension", multiExt, "png");
+
+            addTestResultToContainer("getExtension", "Method returned a string: ", geResult);
+            addTestResultToContainer("getExtension", "jpgString has extension of jpg: ", jpgResult);
+            addTestResultToContainer("getExtension", "txtString has extension of txt: ", txtResult);
+            addTestResultToContainer("getExtension", "jsonString has extension of json: ", jsonResult);
+            addTestResultToContainer("getExtension", "multiPeriods has extension of png: ", multiResult);
+        }
+
         adjustExamples();
     }
 
