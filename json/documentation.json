@@ -899,10 +899,10 @@
         {
             "category" : ["utils"],
             "title" : "getType()",
-            "description" : "Returns the type of an object.",
+            "description" : "Returns an objects type.",
             "code" : "Spektral.getType(obj);",
             "params" : [
-                {"obj (required, expects: Anything)" : "Usually object is either an element, variable, or object, but could be anything."}
+                {"obj (required, expects: Anything)" : "Usually obj is either an element, variable, or object, but could be anything."}
             ],
             "returns" : "String",
             "dependencies" : "None",

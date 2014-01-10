@@ -2088,9 +2088,6 @@
                 hasName = testReturnedValue("getElementIdentifiers", taName, "geiTextArea"),
                 hasNode = testReturnedValue("getElementIdentifiers", taNodeName, "textarea");
 
-//            console.log("divIds: " + Spektral.getType(divIds));
-//            console.log("divIds: info: " + Spektral.getInfo(divIds));
-
             addTestResultToContainer("getElementIdentifiers", "Method returned an object: ", geiResult);
             addTestResultToContainer("getElementIdentifiers", "div has id of geiDiv: ", hasID);
             addTestResultToContainer("getElementIdentifiers", "div has class of testDiv: ", hasClass);
@@ -2098,6 +2095,34 @@
             addTestResultToContainer("getElementIdentifiers", "geiTextArea has node name of textarea: ", hasNode);
         }
 
+        //////////////////////
+        ////GET TYPE
+        //////////////////////
+        getType();
+
+        function getType() {
+
+            var
+                testObject = {"foo" : "bar", "spektral" : "js"},
+                testDiv = Spektral.getElement("gtDiv"),
+                testString = "This is a test string for demonstrating getType.",
+                testNumber = 25,
+                objectType = Spektral.getType(testObject),
+                divType = Spektral.getType(testDiv),
+                stringType = Spektral.getType(testString),
+                numberType = Spektral.getType(testNumber),
+                gtResult = testMethod("getType", objectType, "string"),
+                objectResult = testReturnedValue("getType", objectType, "object"),
+                divResult = testReturnedValue("getType", divType, "div"),
+                stringResult = testReturnedValue("getType", stringType, "string"),
+                numberResult = testReturnedValue("getType", numberType, "number");
+
+            addTestResultToContainer("getType", "Method returned a string: ", gtResult);
+            addTestResultToContainer("getType", "testObject has type of object: ", objectResult);
+            addTestResultToContainer("getType", "testDiv has type of div: ", divResult);
+            addTestResultToContainer("getType", "testString has type of string: ", stringResult);
+            addTestResultToContainer("getType", "testNumber has type of string: ", numberResult);
+        }
 
         adjustExamples();
     }

@@ -2591,6 +2591,43 @@ var
                 </div>
             </div>
 
+            <!--******************-->
+            <!--GET TYPE-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">getType()</h3>
+                        <div class="description">Returns an objects type.</div>
+                        <div id="getType" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                        <div id="gtDiv" class="testDiv">div - gtDiv</div>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    testObject = {"foo" : "bar", "spektral" : "js"},
+    testDiv = Spektral.getElement("gtDiv"),
+    testString = "This is a test string for demonstrating getType.",
+    testNumber = 25,
+    objectType = Spektral.getType(testObject),
+    divType = Spektral.getType(testDiv),
+    stringType = Spektral.getType(testString),
+    numberType = Spektral.getType(testNumber);
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
         <!--END OF MAIN CONTENT-->
         </section>
 
