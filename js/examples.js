@@ -2239,6 +2239,22 @@
             addTestResultToContainer("hashDetected", "hashDetected is true: ", hasHash);
         }
 
+        //////////////////////
+        ////GET QUERY STRING
+        //////////////////////
+        getQueryString();
+
+        function getQueryString() {
+
+            //Test string = ?valueOne=foo&valueTwo=bar&valueThree=spektral
+
+            var
+                queryObj = Spektral.getQueryString(),
+                url = Spektral.getURLPath();
+
+            console.log("queryObj: " + Spektral.getInfo(queryObj));
+        }
+
         adjustExamples();
     }
 

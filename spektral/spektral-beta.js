@@ -1958,7 +1958,7 @@
             //Spektral.throwError("getExtension: file needs to be string.")
             Spektral.log("getExtension: file needs to be string.", "warn");
         }
-        return file.split('.').pop();
+        return file.split(".").pop();
     };
 
     ////////////////////
@@ -1992,9 +1992,10 @@
     Spektral.getURLPath = function () {
 
         var 
-            protocol = window.location.protocol, hostName = window.location.hostname, 
-            pathName = window.location.pathname, pathArray = Spektral.splitString(pathName, "/"),  
-            hashTag = window.location.hash, fullPath = "", fullURL, urlObj = {}, i;
+            protocol = location.protocol, hostName = location.hostname, 
+            pathName = location.pathname, pathArray = Spektral.splitString(pathName, "/"),
+            queryString = location.search, hashTag = location.hash, 
+            fullPath = "", fullURL, urlObj = {}, i;
 
         for(i = 0; i < pathArray.length; i += 1) {
             fullPath += "/" + pathArray[i];
@@ -2006,20 +2007,14 @@
         urlObj["host"] = hostName;
         urlObj["path"] = fullPath;
         urlObj["pathArray"] = pathArray;
-        urlObj["fileType"] = fullPath.split('.').pop();
+        urlObj["fileType"] = fullPath.split(".").pop();
+        urlObj["query"] = queryString;
         urlObj["hash"] = hashTag;
         urlObj["fullURL"] = fullURL;
 
         //Spektral.log("urlObj: " + Spektral.getInfo(urlObj));
 
         return urlObj;
-    };
-
-    ////////////////////
-    ////SET HASH
-    ////////////////////
-    Spektral.setHash = function(hashtag) {
-        location.hash = hashtag;
     };
 
     ////////////////////
@@ -2034,6 +2029,13 @@
     };
 
     ////////////////////
+    ////SET HASH
+    ////////////////////
+    Spektral.setHash = function(hashtag) {
+        location.hash = hashtag;
+    };
+
+    ////////////////////
     ////HASH DETECTED
     ////////////////////
     Spektral.hashDetected = function () {
@@ -2045,6 +2047,33 @@
             detected = true;
         }
         return detected;
+    };
+
+    ////////////////////
+    ////GET QUERY STRING
+    ////////////////////
+    Spektral.getQueryString = function () {
+
+        var 
+            queryParams = {},
+            query = location.search,
+            queryString = query.split("?").pop(),
+            valArray = Spektral.splitString(queryString, "&"), i,
+            value;
+
+        for (i = 0; i < valArray.length; i += 1) {
+            value = Spektral.splitString(valArray[i], "=");
+            queryParams[value[0]] = value[1];
+        }
+
+        return queryParams;    
+    };
+
+    ////////////////////
+    ////SET QUERY STRING
+    ////////////////////
+    Spektral.setQueryString = function () {
+
     };
 
     ////////////////////
