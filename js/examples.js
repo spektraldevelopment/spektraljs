@@ -2179,7 +2179,7 @@
                 pathArrayResult = testMethod("getURLPath", pathArray, "array"),
                 fileTypeResult = testReturnedValue("getURLPath", fileType, "html"),
                 hashResult = testReturnedValue("getURLPath", hash, "#testHash"),
-                fullURLResult = testReturnedValue("getURLPath", fullURL, "http://" + currentHost + "/spektraljs/examples.html#testHash");
+                fullURLResult = testReturnedValue("getURLPath", fullURL, "http://" + currentHost + "/spektraljs/examples.html?valueOne=foo&valueTwo=bar&valueThree=spektral#testHash");
 
             addTestResultToContainer("getURLPath", "Method returns object: ", gupResult);
             addTestResultToContainer("getURLPath", "protocol is http: ", protocolResult);
@@ -2256,6 +2256,16 @@
 
             addTestResultToContainer("getQueryString", "Method returned an object: ", gqsResult);
             addTestResultToContainer("getQueryString", "valTwo = \"bar\": ", checkValTwo);
+        }
+
+        //////////////////////
+        ////GET QUERY STRING
+        //////////////////////
+        setQueryString();
+
+        function setQueryString() {
+
+            Spektral.setQueryString("valueFour=foobar");
         }
 
         adjustExamples();

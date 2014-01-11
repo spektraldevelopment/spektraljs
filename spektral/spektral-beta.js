@@ -2001,14 +2001,14 @@
             fullPath += "/" + pathArray[i];
         }
 
-        fullURL = protocol + "//" + hostName + fullPath + hashTag; 
+        fullURL = protocol + "//" + hostName + fullPath + queryString + hashTag; 
         
         urlObj["protocol"] = Spektral.stripString(protocol, ":");
         urlObj["host"] = hostName;
         urlObj["path"] = fullPath;
         urlObj["pathArray"] = pathArray;
         urlObj["fileType"] = fullPath.split(".").pop();
-        urlObj["query"] = queryString;
+        urlObj["queryString"] = queryString;
         urlObj["hash"] = hashTag;
         urlObj["fullURL"] = fullURL;
 
@@ -2057,23 +2057,68 @@
         var 
             queryParams = {},
             query = location.search,
-            queryString = query.split("?").pop(),
-            valArray = Spektral.splitString(queryString, "&"), i,
-            value;
-
-        for (i = 0; i < valArray.length; i += 1) {
-            value = Spektral.splitString(valArray[i], "=");
-            queryParams[value[0]] = value[1];
+            queryString, valArray, i, value;
+        if(query === "") {
+            Spektral.log("getQueryString: No query string was found.", "warn");
+        } else {
+            queryString = query.split("?").pop();
+            valArray = Spektral.splitString(queryString, "&");
+            for (i = 0; i < valArray.length; i += 1) {
+                value = Spektral.splitString(valArray[i], "=");
+                queryParams[value[0]] = value[1];
+            }
         }
-
         return queryParams;    
     };
 
     ////////////////////
     ////SET QUERY STRING
     ////////////////////
-    Spektral.setQueryString = function () {
+    Spektral.setQueryString = function (newProps) {
 
+        var 
+            currentURL = Spektral.getURLPath(),
+            existingString = currentURL.queryString,
+            queryObj = Spektral.getQueryString(),
+            url = currentURL.protocol + "//" + currentURL.host + currentURL.path,
+            hashTag = currentURL.hash,
+            newPropsObj = 
+
+        //Get props trying to be set
+
+
+        //Check if new values has already been set
+        for (key in queryObj) {
+                
+
+
+
+            // if(queryValue === newParams) {
+            //     newParamSet = true;
+            // }
+        }
+
+        //If newProps contain props that are already used
+        //ignore and set the ones that aren't already present
+
+        // Spektral.log("setQueryString: existingString: " + existingString);
+
+        // Spektral.log("setQueryString: url: " + url);
+
+        // Spektral.log("setQueryString: hashTag: " + hashTag);
+        // if(newParamSet === true) {
+        //     Spektral.log("setQueryString: New query value has already been set!", "warn");        
+        // } else {
+        //     if(existingString === "") {
+        //         //no query string detected
+        //         Spektral.log("setQueryString: no query string detected.");
+        //         //location.href = "?" + newString + hashTag;
+        //     } else {
+        //         //query string detected, append to existing string
+        //          Spektral.log("setQueryString: query string detected, appending to existing string.");
+        //          //location.href = existingString + "&" + newString + hashTag;
+        //     }
+        // }
     };
 
     ////////////////////
