@@ -935,12 +935,24 @@
         {
             "category" : ["utils"],
             "title" : "getURLPath()",
-            "description" : "Returns an object containing protocol, host, path, pathArray (contains the path split using its backslashes), and fullURL.",
+            "description" : "Returns an object containing protocol, host, path, pathArray (contains the path split using its backslashes), fileType (The file type of the web page), and fullURL.",
             "code" : "Spektral.getURLPath();",
             "params" : [
             ],
             "returns" : "Object",
             "dependencies" : "splitString",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
+            "title" : "setHash()",
+            "description" : "Sets a hash tag in the url.",
+            "code" : "Spektral.setHash(hashtag);",
+            "params" : [
+                {"hashtag (required, expects: String)" : "The hash tag you wish to set."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "None",
             "compatibility" : "Currently in testing."
         },
         {

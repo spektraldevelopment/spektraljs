@@ -1999,10 +1999,11 @@
 
         fullURL = protocol + "//" + hostName + fullPath + hashTag; 
         
-        urlObj["protocol"] = protocol;
+        urlObj["protocol"] = Spektral.stripString(protocol, ":");
         urlObj["host"] = hostName;
         urlObj["path"] = fullPath;
         urlObj["pathArray"] = pathArray;
+        urlObj["fileType"] = fullPath.split('.').pop();
         urlObj["hash"] = hashTag;
         urlObj["fullURL"] = fullURL;
 
@@ -2012,13 +2013,20 @@
     };
 
     ////////////////////
+    ////SET HASH
+    ////////////////////
+    Spektral.setHash = function(hashtag) {
+        location.hash = hashtag;
+    };
+
+    ////////////////////
     ////HASH DETECTED
     ////////////////////
     Spektral.hashDetected = function () {
 
         var 
             detected = false, 
-            hash = window.location.hash;
+            hash = location.hash;
         if(hash !== "") {
             detected = true;
         }

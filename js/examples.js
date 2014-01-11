@@ -725,15 +725,15 @@
         }
 
         //////////////////////
-        ////CANCEL EVENT
+        ////CANCEL EVENT - Have to retest
         //////////////////////
-        cancelEvent();
+        //cancelEvent();
 
         function cancelEvent() {
 
             var
                 testAnchor = Spektral.getElement("ceAnchor"),
-                ceResult, canCancel, canBubble, hash, hashCheck;
+                ceResult, hash, hashCheck;
 
             Spektral.attachEventListener(testAnchor, "click", onClickEvent);
 
@@ -748,7 +748,7 @@
 
             function checkForHash() {
                 hash = Spektral.hashDetected();
-                ceResult = testReturnedValue("cancelEvent", hash, false);
+                ceResult = testReturnedValue("cancelEvent", hash, true);
 
                 addTestResultToContainer("cancelEvent", "No hash #ceHash: ", ceResult);
             }
@@ -2151,6 +2151,44 @@
             addTestResultToContainer("getExtension", "txtString has extension of txt: ", txtResult);
             addTestResultToContainer("getExtension", "jsonString has extension of json: ", jsonResult);
             addTestResultToContainer("getExtension", "multiPeriods has extension of png: ", multiResult);
+        }
+
+        //////////////////////
+        ////GET URL PATH
+        //////////////////////
+        getURLPath();
+
+        function getURLPath() {
+
+            Spektral.setHash("#testHash");
+
+            var
+                currentHost = window.location.hostname,
+                urlObj = Spektral.getURLPath(),
+                protocol = urlObj.protocol,
+                host = urlObj.host,
+                path = urlObj.path,
+                pathArray = urlObj.pathArray,
+                fileType = urlObj.fileType,
+                hash = urlObj.hash,
+                fullURL = urlObj.fullURL,
+                gupResult = testMethod("getURLPath", urlObj, "object"),
+                protocolResult = testReturnedValue("getURLPath", protocol, "http"),
+                hostResult = testReturnedValue("getURLPath", host, currentHost),
+                pathResult = testReturnedValue("getURLPath", path, "/spektraljs/examples.html"),
+                pathArrayResult = testMethod("getURLPath", pathArray, "array"),
+                fileTypeResult = testReturnedValue("getURLPath", fileType, "html"),
+                hashResult = testReturnedValue("getURLPath", hash, "#testHash"),
+                fullURLResult = testReturnedValue("getURLPath", fullURL, "http://" + currentHost + "/spektraljs/examples.html#testHash");
+
+            addTestResultToContainer("getURLPath", "Method returns object: ", gupResult);
+            addTestResultToContainer("getURLPath", "protocol is http: ", protocolResult);
+            addTestResultToContainer("getURLPath", "host is " + currentHost + ": ", hostResult);
+            addTestResultToContainer("getURLPath", "path is /spektraljs/examples.html: ", pathResult);
+            addTestResultToContainer("getURLPath", "pathArray is an array: ", pathArrayResult);
+            addTestResultToContainer("getURLPath", "fileType is html: ", fileTypeResult);
+            addTestResultToContainer("getURLPath", "hash is #testHash: ", hashResult);
+            addTestResultToContainer("getURLPath", "fullURL is http://" + currentHost + "/spektraljs/examples.html#testHash: ", fullURLResult);
         }
 
         adjustExamples();
