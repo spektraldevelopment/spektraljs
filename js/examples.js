@@ -2250,9 +2250,12 @@
 
             var
                 queryObj = Spektral.getQueryString(),
-                url = Spektral.getURLPath();
+                valTwo = queryObj.valueTwo,
+                gqsResult = testMethod("getQueryString", queryObj, "object"),
+                checkValTwo = testReturnedValue("getQueryString", valTwo, "bar");
 
-            console.log("queryObj: " + Spektral.getInfo(queryObj));
+            addTestResultToContainer("getQueryString", "Method returned an object: ", gqsResult);
+            addTestResultToContainer("getQueryString", "valTwo = \"bar\": ", checkValTwo);
         }
 
         adjustExamples();
