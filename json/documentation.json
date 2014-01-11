@@ -542,6 +542,34 @@
             "compatibility" : "Currently in testing."
         }
     ],
+    "object" : [
+        {
+            "category" : ["object"],
+            "title" : "queryObject()",
+            "description" : "Queries an object for a specified key, and returns its value if it exists. Returns false if key is not found.",
+            "code" : "Spektral.queryObject(obj, key);",
+            "params" : [
+                {"obj (required, expects: Object)" : "The object you want to query."},
+                {"key (required, expects: String)" : "The key whose value you want to get."}
+            ],
+            "returns" : "String or Boolean",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["object"],
+            "title" : "objectHasKey()",
+            "description" : "Checks an object for a key, and returns a boolean.",
+            "code" : "Spektral.objectHasKey(obj, key);",
+            "params" : [
+                {"obj (required, expects: Object)" : "The object you want to search."},
+                {"key (required, expects: String)" : "The key you want to find."}
+            ],
+            "returns" : "Boolean",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        }
+    ],
     "style" : [
         {
             "category" : ["style"],

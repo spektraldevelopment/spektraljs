@@ -2081,14 +2081,13 @@
             existingString = currentURL.queryString,
             queryObj = Spektral.getQueryString(),
             url = currentURL.protocol + "//" + currentURL.host + currentURL.path,
-            hashTag = currentURL.hash,
-            newPropsObj = 
+            hashTag = currentURL.hash; 
 
         //Get props trying to be set
 
 
         //Check if new values has already been set
-        for (key in queryObj) {
+        //for (key in queryObj) {
                 
 
 
@@ -2096,7 +2095,7 @@
             // if(queryValue === newParams) {
             //     newParamSet = true;
             // }
-        }
+        //}
 
         //If newProps contain props that are already used
         //ignore and set the ones that aren't already present
@@ -2119,6 +2118,32 @@
         //          //location.href = existingString + "&" + newString + hashTag;
         //     }
         // }
+    };
+
+    ////////////////////
+    ////QUERY OBJECT
+    ////////////////////
+    Spektral.queryObject = function (obj, key) {
+        var value = false, k;
+        for (k in obj) {
+            if (k === key) {
+                value = obj[k];
+            }
+        }
+        return value;
+    };
+
+    ////////////////////
+    ////OBJECT HAS KEY
+    ////////////////////
+    Spektral.objectHasKey = function (obj, key) {
+        var hasKey = false, k;
+        for (k in obj) {
+            if (k === key) {
+                hasKey = true;
+            }
+        }
+        return hasKey;
     };
 
     ////////////////////

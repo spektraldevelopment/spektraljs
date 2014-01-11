@@ -2268,6 +2268,46 @@
             Spektral.setQueryString("valueFour=foobar");
         }
 
+        //////////////////////
+        ////QUERY OBJECT
+        //////////////////////
+        queryObject();
+
+        function queryObject() {
+
+            var
+                testObject = {"foo" : "bar", "spektral" : "js"},
+                spektralValue = Spektral.queryObject(testObject, "spektral"),
+                noKey = Spektral.queryObject(testObject, "nokey"),
+                qoResult = testMethod("queryObject", spektralValue, "string"),
+                spektralResult = testReturnedValue("queryObject", spektralValue, "js"),
+                noKeyResult = testReturnedValue("queryObject", noKey, false);
+
+            addTestResultToContainer("queryObject", "Method returned a string: ", qoResult);
+            addTestResultToContainer("queryObject", "spektralValue = \"js\": ", spektralResult);
+            addTestResultToContainer("queryObject", "noValue is false: ", noKeyResult);
+        }
+
+        //////////////////////
+        ////OBJECT HAS KEY
+        //////////////////////
+        objectHasKey();
+
+        function objectHasKey() {
+
+            var
+                testObject = {"foo" : "bar", "spektral" : "js"},
+                hasFoo = Spektral.objectHasKey(testObject, "foo"),
+                noKey = Spektral.objectHasKey(testObject, "nokey"),
+                ohkResult = testMethod("objectHasKey", hasFoo, "boolean"),
+                fooResult = testReturnedValue("objectHasKey", hasFoo, true),
+                noKeyResult = testReturnedValue("objectHasKey", noKey, false);
+
+            addTestResultToContainer("objectHasKey", "Method returned an object: ", ohkResult);
+            addTestResultToContainer("objectHasKey", "hasFoo is true: ", fooResult);
+            addTestResultToContainer("objectHasKey", "noKey is false: ", noKeyResult);
+        }
+
         adjustExamples();
     }
 

@@ -2816,14 +2816,14 @@ var
             </div>
 
             <!--******************-->
-            <!--SET QUERY STRING-->
+            <!--QUERY OBJECT-->
             <!--******************-->
             <div class="example">
                 <div class="informationContainer">
                     <div class="innerInfoHolder">
-                        <h3 class="method">setQueryString()</h3>
-                        <div class="description">Sets the query string in the url, if query string alread exists, appends new values to existing string.</div>
-                        <div id="setQueryString" class="testingContainer">
+                        <h3 class="method">queryObject()</h3>
+                        <div class="description">Queries an object for a specified key, and returns its value if it exists. Returns false if key is not found.</div>
+                        <div id="queryObject" class="testingContainer">
                             <h3 class="results">Testing Results</h3>
                         </div>
                     </div>
@@ -2837,6 +2837,41 @@ var
                     <div class="innerExampleCodeHolder">
                         <h3 class="exampleCodeHeader">Example Code</h3>
                         <pre class="prettyprint">
+var
+    testObject = {"foo" : "bar", "spektral" : "js"},
+    spektralValue = Spektral.queryObject(testObject, "spektral"),
+    noKey = Spektral.queryObject(testObject, "nokey");
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
+            <!--******************-->
+            <!--OBJECT HAS KEY-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">objectHasKey()</h3>
+                        <div class="description">Checks an object for a key, and returns a boolean.</div>
+                        <div id="objectHasKey" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+var
+    testObject = {"foo" : "bar", "spektral" : "js"},
+    hasFoo = Spektral.objectHasKey(testObject, "foo"),
+    noKey = Spektral.objectHasKey(testObject, "nokey");
                         </pre>
                     </div>
                 </div>
