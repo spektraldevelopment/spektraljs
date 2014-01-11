@@ -20,13 +20,16 @@
         docElem = document.documentElement,
         docBody = document.body,
         debug = false,
+        strictError = false,
         mouseEvents = ["click", "dblclick", "mousedown", "mousemove", "mouseup", "mouseover", "mouseout"],
         consoleLog = new Array();
 
     //////////////////
     ////DEBUG
     /////////////////
-    Spektral.debug = function () {
+    Spektral.debug = function (useError) {
+
+        strictError = useError || false;
         debug = true;
     };
 
@@ -2020,6 +2023,17 @@
     };
 
     ////////////////////
+    ////GET HASH
+    ////////////////////
+    Spektral.getHash = function() {
+        var hashtag = location.hash;
+        if(hashtag === "") {
+            Spektral.log("getHash. No hash found!", "warn");
+        }
+        return hashtag;
+    };
+
+    ////////////////////
     ////HASH DETECTED
     ////////////////////
     Spektral.hashDetected = function () {
@@ -2119,8 +2133,12 @@
                 console.dir(obj);
                 consoleLog.push(obj);
             } else if (method === "warn") {
-                console.warn("Spektraljs: " + message);
                 consoleLog.push(message);
+                if(strictError === false) {
+                    console.warn("Spektraljs: " + message);
+                } else {
+                    Spektral.throwError(message);
+                }
             } else {
                 console.log("Spektraljs: " + message);
                 consoleLog.push(message);

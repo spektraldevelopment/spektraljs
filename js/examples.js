@@ -725,9 +725,9 @@
         }
 
         //////////////////////
-        ////CANCEL EVENT - Have to retest
+        ////CANCEL EVENT
         //////////////////////
-        //cancelEvent();
+        cancelEvent();
 
         function cancelEvent() {
 
@@ -747,10 +747,10 @@
             }
 
             function checkForHash() {
-                hash = Spektral.hashDetected();
-                ceResult = testReturnedValue("cancelEvent", hash, true);
+                hash = Spektral.getHash();
 
-                addTestResultToContainer("cancelEvent", "No hash #ceHash: ", ceResult);
+                ceResult = testIsNotValue("cancelEvent", hash, "#ceHash");
+                addTestResultToContainer("cancelEvent", "Hash is not #ceHash: ", ceResult);
             }
         }
 
@@ -2191,6 +2191,22 @@
             addTestResultToContainer("getURLPath", "fullURL is http://" + currentHost + "/spektraljs/examples.html#testHash: ", fullURLResult);
         }
 
+        //////////////////////
+        ////SET HASH
+        //////////////////////
+        setHash();
+
+        function setHash() {
+
+            Spektral.setHash("#setHash");
+
+            var
+                hash = Spektral.getHash(),
+                hashSet = testReturnedValue("setHash", hash, "#setHash");
+
+            addTestResultToContainer("setHash", "hash was set to #setHash: ", hashSet);
+        }
+
         adjustExamples();
     }
 
@@ -2263,6 +2279,21 @@
             } else {
                 console.warn("!" + desc + " failed. expected: " + expected + ", result: " + result + ".");
             }
+        }
+        return pass;
+    }
+
+    ////////////////////
+    ////TEST IS NOT VALUE
+    ////////////////////
+    function testIsNotValue(desc, result, notExpected) {
+
+        var pass = false;
+
+        if(result !== notExpected) {
+            pass = true;
+        } else {
+            console.warn("!" + desc + " failed. Result matches with not expected.");
         }
         return pass;
     }

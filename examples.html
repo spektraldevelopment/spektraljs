@@ -979,7 +979,8 @@ function onClickEvent(evt) {
 
 function checkForHash() {
 
-    hash = Spektral.hashDetected();
+    //hash is not #ceHash
+    hash = Spektral.getHash();
 };
                         </pre>
                     </div>
@@ -2699,6 +2700,35 @@ var
                     </div>
                 </div>
             </div>
+
+            <!--******************-->
+            <!--SET HASH-->
+            <!--******************-->
+            <div class="example">
+                <div class="informationContainer">
+                    <div class="innerInfoHolder">
+                        <h3 class="method">setHash()</h3>
+                        <div class="description">Sets a hash tag in the url.</div>
+                        <div id="setHash" class="testingContainer">
+                            <h3 class="results">Testing Results</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementContainer">
+                    <div class="innerElementHolder">
+                        <h3 class="elementContainerTitle">Test Elements</h3>
+                    </div>
+                </div>
+                <div class="exampleCodeContainer">
+                    <div class="innerExampleCodeHolder">
+                        <h3 class="exampleCodeHeader">Example Code</h3>
+                        <pre class="prettyprint">
+Spektral.setHash("#setHash");
+                        </pre>
+                    </div>
+                </div>
+            </div>
+
 
         <!--END OF MAIN CONTENT-->
         </section>

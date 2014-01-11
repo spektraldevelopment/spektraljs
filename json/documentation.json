@@ -957,6 +957,17 @@
         },
         {
             "category" : ["utils"],
+            "title" : "getHash()",
+            "description" : "Gets the hash tag in the url.",
+            "code" : "Spektral.getHash(hashtag);",
+            "params" : [
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "None",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
             "title" : "hashDetected()",
             "description" : "Detects if a hash tag is in the url bar.",
             "code" : "Spektral.hashDetected();",
@@ -1010,7 +1021,7 @@
             "description" : "Stops a time out from completing.",
             "code" : "Spektral.stopTimeOut(timeout);",
             "params" : [
-                {"timeout" : "The timeout you want to stop."}
+                {"timeout (required, expects: Time Out Object)" : "The timeout you want to stop."}
             ],
             "returns" : "Nothing",
             "dependencies" : "None",
@@ -1033,8 +1044,10 @@
             "category" : ["debugging"],
             "title" : "debug()",
             "description" : "Allows for logging in Spektral.js. When not called, using Spektral.log() will not log in console. Can be used outside of Spektral.js instead of console.log.",
-            "code" : "Spektral.debug();",
-            "params" : [],
+            "code" : "Spektral.debug(useError);",
+            "params" : [
+                {"useError (required, expects: Boolean, default: false)" : "When set to true will throw errors in the console, instead of just warnings."}
+            ],
             "returns" : "Nothing",
             "dependencies" : "None",
             "compatibility" : "Currently in testing."
