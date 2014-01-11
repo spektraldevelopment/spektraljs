@@ -2207,6 +2207,22 @@
             addTestResultToContainer("setHash", "hash was set to #setHash: ", hashSet);
         }
 
+        //////////////////////
+        ////GET HASH
+        //////////////////////
+        getHash();
+
+        function getHash() {
+
+            var
+                hash = Spektral.getHash(),
+                ghResult = testMethod("getHash", hash, "string"),
+                isHash = testReturnedValue("getHash", hash, "#setHash");
+
+            addTestResultToContainer("getHash", "Method returned a string: ", ghResult);
+            addTestResultToContainer("getHash", "hash is #setHash: ", isHash);
+        }
+
         adjustExamples();
     }
 
