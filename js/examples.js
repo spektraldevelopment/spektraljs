@@ -2223,6 +2223,22 @@
             addTestResultToContainer("getHash", "hash is #setHash: ", isHash);
         }
 
+        //////////////////////
+        ////HASH DETECTED
+        //////////////////////
+        hashDetected();
+
+        function hashDetected() {
+
+            var
+                hashDetected = Spektral.hashDetected(),
+                hdResult = testMethod("hashDetected", hashDetected, "boolean"),
+                hasHash = testReturnedValue("hashDetected", hashDetected, true);
+
+            addTestResultToContainer("hashDetected", "Method returned a boolean: ", hdResult);
+            addTestResultToContainer("hashDetected", "hashDetected is true: ", hasHash);
+        }
+
         adjustExamples();
     }
 
