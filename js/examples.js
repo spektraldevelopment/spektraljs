@@ -2309,9 +2309,9 @@
 
         function setQueryString() {
 
-            //Spektral.setQueryString("valueThree", "pleasework");
+            //Spektral.setQueryString("valueFour", "spektral");
 
-           Spektral.setQueryString({"valueOne" : "changedValueOne", "valueFour" : "changedValueFour"});
+           Spektral.setQueryString({"valueOne" : "valueOneChanged", "valueFour" : "foobar"});
         }
 
         adjustExamples();

@@ -2194,37 +2194,82 @@
             noCurrentQuery = Spektral.isObjectEmpty(currentQueryObj),
             newURL, newQueryString = "", valuesChanged = checkForChange();
 
-        Spektral.log("setQueryString: HAVE VALUES CHANGED?: " + valuesChanged);
+        //Spektral.log("setQueryString: HAVE VALUES CHANGED?: " + valuesChanged);
 
         //Spektral.log("setQueryString: currentQueryObj: " + Spektral.getInfo(currentQueryObj));
         //Spektral.log("setQueryString: noCurrentQuery: " + noCurrentQuery);
 
-        if(keyType === "string") {
-            //single value
-            if(noCurrentQuery === true) {
-                newQueryString = firstTimeQuery();
-            } else {
-                newQueryString = appendSingleQuery();
-            }
+        if (valuesChanged === true) {
+           if(keyType === "string") {
+                //single value
+                if(noCurrentQuery === true) {
+                    newQueryString = firstTimeQuery();
+                } else {
+                    newQueryString = appendSingleQuery();
+                }
 
+            } else {
+                //An object with multiple values
+                newQueryString = appendMultiQuery(newKey);
+            } 
         } else {
-            //An object with multiple values
-            newQueryString = appendMultiQuery(newKey);
+            Spektral.log("setQueryString: No changes detected.", "warn");
         }
+
+        // if(keyType === "string") {
+        //     //single value
+        //     if(noCurrentQuery === true) {
+        //         newQueryString = firstTimeQuery();
+        //     } else {
+        //         newQueryString = appendSingleQuery();
+        //     }
+
+        // } else {
+        //     //An object with multiple values
+        //     newQueryString = appendMultiQuery(newKey);
+        // }
 
         function checkForChange() {
 
-            //Check existing values 
-            //to determine if they need 
-            //to be changed, if existing
-            //values don't need to be changed
-            //then check for new values
+            //Check if existing values need to be changed
+            //This avoids infinite reloading
             var 
-                isChanged = false, nKeys = [],
-                eKeys = [];
+                isChanged = false, nKeyObj, 
+                nVal, currentVal, l, m;
 
-                
+            if(keyType === "string") {
+                //check single value
+                //Existing
+                if (currentQueryObj[newKey] !== newVal) {
+                    isChanged = true;
+                }
+                //check for new
+                if (currentQueryObj[newKey] === undefined) {
+                    isChanged = true;
+                }
 
+            } else {
+                //Check object
+                nKeyObj = newKey;
+                //existing
+                for (l in currentQueryObj) {
+                    //check existing
+                    if (nKeyObj[l] !== undefined) {
+                        nVal = nKeyObj[l];
+                        currentVal = currentQueryObj[l];
+                        if (nVal !== currentVal) {
+                            isChanged = true;
+                        }
+                    }
+                }
+                //check for new
+                for (m in nKeyObj) {
+                    if(currentQueryObj[m] === undefined) {
+                        //New key
+                        isChanged = true;
+                    }
+                }
+            }    
             return isChanged;
         }
 
@@ -2341,13 +2386,17 @@
             return newQ;
         }
 
-        Spektral.log("***");
-        Spektral.log("setQueryString: newQueryString: " + newQueryString);
-        Spektral.log("***");
+        // Spektral.log("***");
+        // Spektral.log("setQueryString: newQueryString: " + newQueryString);
+        // Spektral.log("***");
 
         newURL = currentURL.protocol + "://" + currentURL.host + currentURL.path + "?" + newQueryString + currentURL.hash;
 
-        Spektral.log("setQueryString: NEW URL: " + newURL);
+        if (valuesChanged === true) {
+            location.href = newURL;
+        }
+
+        //Spektral.log("setQueryString: NEW URL: " + newURL);
     };
 
     ////////////////////
