@@ -2311,7 +2311,7 @@
 
             //Spektral.setQueryString("valueFour", "pleasework");
 
-           Spektral.setQueryString({"valueOne" : "changedValueOne", "valueFour" : "spektraljs"});
+           Spektral.setQueryString({"valueOne" : "changedValueOne", "valueFour" : "changedValueFour"});
         }
 
         adjustExamples();
