@@ -1,7 +1,7 @@
 /**
  * Spektraljs
  *
- * Copyright (c) 2013 spektraldevelopment.com, David Boyle.
+ * Copyright (c) 2013 - 2014 spektraldevelopment.com, David Boyle.
  *
  * Distributed under the terms of the MIT license.
  * http://www.opensource.org/licenses/mit-license.html
