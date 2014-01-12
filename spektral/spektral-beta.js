@@ -2074,17 +2074,145 @@
     ////////////////////
     ////SET QUERY STRING
     ////////////////////
-    Spektral.setQueryString = function (newProps) {
+    Spektral.setQueryString = function (key, val) {
 
         var 
+            keyType = Spektral.getType(key),
+            newPropObj = key,
             currentURL = Spektral.getURLPath(),
-            existingString = currentURL.queryString,
-            queryObj = Spektral.getQueryString(),
-            url = currentURL.protocol + "//" + currentURL.host + currentURL.path,
-            hashTag = currentURL.hash; 
+            fullCurrentURL = currentURL.fullURL,
+            url = currentURL.protocol + "://" + currentURL.host + currentURL.path, hashTag = currentURL.hash,
+            existingQuery = Spektral.getQueryString(),
+            newQueryString = "", newURL = "";
 
-        //Get props trying to be set
+        if(keyType === "string") {
 
+            // singleValSet = isValAlreadySet(key, val);
+
+            // if(singleValSet === false) {
+                processSingleValue(key, val);
+            // } else {
+            //     Spektral.log("setQueryString: " + key + " already has a value of " + val + ".", "warn");
+            // }
+        } else {
+            processMultiValues();
+        }
+
+        function processSingleValue(newKey, newVal) {
+
+            var 
+                propExists = Spektral.objectHasKey(existingQuery, newKey),
+                existingQueryString = currentURL.queryString, k,
+                valAlreadySet;
+
+            if(propExists === false) {
+
+                if(existingQueryString === "") {
+                    //No existing string
+                    newQueryString = "?" + newKey + "=" + newVal;
+                } else {
+                    newQueryString = existingQueryString + "&" + newKey + "=" + newVal;
+                }
+            } else {
+                //prop does exist, will have to go into existing 
+                //query string and change it
+                //Maybe check if you can get index in an object
+                for (k in existingQuery) {
+                    if(newKey === k) {
+                        newQueryString += "&" + k + "=" + newVal;
+                    } else {
+                        newQueryString += "&" + k + "=" + existingQuery[k];
+                    }
+                }
+                //Strip & symbol off the front and add ?
+                newQueryString = "?" + Spektral.stripString(newQueryString, "&", "first");
+            }
+
+            if(hashTag === "") {
+                newURL = url + newQueryString;
+            } else {
+                newURL = url + newQueryString + hashTag;
+            }
+        }
+
+        function processMultiValues() {
+
+            var k, isAlreadySet;
+
+            for (k in newPropObj) {
+                processSingleValue(k, newPropObj[k]);
+            }
+            Spektral.log("setQueryString: processMultiValues");
+        }
+
+        function isValAlreadySet(nKey, nVal) {
+
+            var 
+                keyExist = Spektral.objectHasKey(existingQuery, nKey),
+                currentVal, alreadySet = false;
+
+            if (keyExist === true) {
+                currentVal = Spektral.queryObject(existingQuery, nKey);
+
+                if (currentVal === nVal) {
+                    alreadySet = true;
+                }
+            }
+            return alreadySet;
+        }
+
+        if(newURL === fullCurrentURL || newURL === "") {
+            Spektral.log("setQueryString: Properties and values already exist!", "warn");
+        } else {
+            //location.href = newURL;
+            Spektral.log("setQueryString: navigating to: " + newURL);
+        }
+    };
+
+    ////////////////////
+    ////SET QUERY STRING
+    ////////////////////
+    // Spektral.setQueryString = function (newProps) {
+
+    //     var 
+    //         currentURL = Spektral.getURLPath(),
+    //         existingString = currentURL.queryString,
+    //         queryObj = Spektral.getQueryString(),
+    //         url = currentURL.protocol + "//" + currentURL.host + currentURL.path, hashTag = currentURL.hash,
+    //         checkForAnd = Spektral.detectCharacter(newProps, "&"),
+    //         newPropsObj = {}, newPropArray,
+    //         newQueryValues = "", newURL = "", newQueryString = ""; 
+
+    //     //Get props trying to be set
+    //     if(checkForAnd === true) {
+    //         processMultiValues();
+    //     } else {
+    //         processSingleValue();
+    //     }
+
+    //     function processSingleValue() {
+
+    //         var 
+    //             newPropKey = Spektral.splitString(newProps, "=")[0],
+    //             propExists = Spektral.objectHasKey(queryObj, newPropKey);
+
+    //         if(propExists === true) {
+    //             Spektral.log("setQueryString: Property " + newPropKey + " is already in use. Use a different property.", "warn");
+    //         } else {
+
+    //         }
+
+    //         Spektral.log("setQueryString: processSingleValue: propExists: " + propExists);
+    //     }
+
+    //     function processMultiValues() {
+    //         newPropArray = Spektral.splitString(newProps);
+    //         Spektral.log("setQueryString: processMultiValues");
+    //     }
+
+    //     newURL = url + existingString + newQueryString + hashTag;
+
+    //     Spektral.log("setQueryString: newURL: " + newURL);
 
         //Check if new values has already been set
         //for (key in queryObj) {
@@ -2118,7 +2246,7 @@
         //          //location.href = existingString + "&" + newString + hashTag;
         //     }
         // }
-    };
+    //};
 
     ////////////////////
     ////QUERY OBJECT
