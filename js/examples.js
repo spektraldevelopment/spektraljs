@@ -2200,7 +2200,7 @@
         //////////////////////
         ////GET URL PATH
         //////////////////////
-        //getURLPath();
+        getURLPath();
 
         function getURLPath() {
 
@@ -2223,7 +2223,7 @@
                 pathArrayResult = testMethod("getURLPath", pathArray, "array"),
                 fileTypeResult = testReturnedValue("getURLPath", fileType, "html"),
                 hashResult = testReturnedValue("getURLPath", hash, "#testHash"),
-                fullURLResult = testReturnedValue("getURLPath", fullURL, "http://" + currentHost + "/spektraljs/examples.html?valueOne=foo&valueTwo=bar&valueThree=spektral#testHash");
+                fullURLResult = testReturnedValue("getURLPath", fullURL, "http://" + currentHost + "/spektraljs/examples.html?valueOne=valueOneChanged&valueTwo=bar&valueFour=foobar&valueThree=valThreeSet#testHash");
 
             addTestResultToContainer("getURLPath", "Method returns object: ", gupResult);
             addTestResultToContainer("getURLPath", "protocol is http: ", protocolResult);
@@ -2232,7 +2232,7 @@
             addTestResultToContainer("getURLPath", "pathArray is an array: ", pathArrayResult);
             addTestResultToContainer("getURLPath", "fileType is html: ", fileTypeResult);
             addTestResultToContainer("getURLPath", "hash is #testHash: ", hashResult);
-            addTestResultToContainer("getURLPath", "fullURL is http://" + currentHost + "/spektraljs/examples.html#testHash: ", fullURLResult);
+            addTestResultToContainer("getURLPath", "fullURL is correct: ", fullURLResult);
         }
 
         //////////////////////
@@ -2286,11 +2286,11 @@
         //////////////////////
         ////GET QUERY STRING
         //////////////////////
-        //getQueryString();
+        getQueryString();
 
         function getQueryString() {
 
-            //Test string = ?valueOne=foo&valueTwo=bar&valueThree=spektral
+            //Test string = ?valueOne=foo&valueTwo=bar
 
             var
                 queryObj = Spektral.getQueryString(),
@@ -2309,8 +2309,7 @@
 
         function setQueryString() {
 
-            //Spektral.setQueryString("valueFour", "spektral");
-
+           Spektral.setQueryString("valueThree", "valThreeSet");
            Spektral.setQueryString({"valueOne" : "valueOneChanged", "valueFour" : "foobar"});
         }
 

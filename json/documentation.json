@@ -1007,6 +1007,30 @@
         },
         {
             "category" : ["utils"],
+            "title" : "getQueryString()",
+            "description" : "Gets the query string in the url, separates the keys and values, and returns them in an object.",
+            "code" : "Spektral.getQueryString();",
+            "params" : [
+            ],
+            "returns" : "Object",
+            "dependencies" : "splitString(), log()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
+            "title" : "setQueryString()",
+            "description" : "Sets or appends the query string in the url, and reloads the page. Accepts single or multiple properties.",
+            "code" : "Spektral.setQueryString(newKey, newVal);",
+            "params" : [
+                {"newKey (required, expects: String or Object)" : "Can either be a String (if setting a single property), or and Object containing multiple properties to be set."},
+                {"newVal (required if single property, expects: String)" : "The value you want to set when setting only a single property."}
+            ],
+            "returns" : "Nothing",
+            "dependencies" : "getType(), getURLPath(), getQueryString(), isObjectEmpty()",
+            "compatibility" : "Currently in testing."
+        },
+        {
+            "category" : ["utils"],
             "title" : "createTimer()",
             "description" : "Sets a timer.",
             "code" : "Spektral.createTimer(time, handler);",
