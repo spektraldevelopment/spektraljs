@@ -2200,7 +2200,7 @@
         //////////////////////
         ////GET URL PATH
         //////////////////////
-        getURLPath();
+        //getURLPath();
 
         function getURLPath() {
 
@@ -2286,7 +2286,7 @@
         //////////////////////
         ////GET QUERY STRING
         //////////////////////
-        getQueryString();
+        //getQueryString();
 
         function getQueryString() {
 
@@ -2309,7 +2309,7 @@
 
         function setQueryString() {
 
-            //Spektral.setQueryString("valueFour", "pleasework");
+            //Spektral.setQueryString("valueThree", "pleasework");
 
            Spektral.setQueryString({"valueOne" : "changedValueOne", "valueFour" : "changedValueFour"});
         }
