@@ -2309,8 +2309,14 @@
 
         function setQueryString() {
 
-           Spektral.setQueryString("valueThree", "valThreeSet");
-           Spektral.setQueryString({"valueOne" : "valueOneChanged", "valueFour" : "foobar"});
+            Spektral.setQueryString("valueThree", "valThreeSet");
+            Spektral.setQueryString({"valueOne" : "valueOneChanged", "valueFour" : "foobar"});
+
+            var
+                queryString = Spektral.getURLPath().queryString,
+                sqsResult = testReturnedValue("setQueryString", queryString, "?valueOne=valueOneChanged&valueTwo=bar&valueFour=foobar&valueThree=valThreeSet");
+
+            addTestResultToContainer("setQueryString", "queryString has been set: ", sqsResult);
         }
 
         adjustExamples();
