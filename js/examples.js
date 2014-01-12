@@ -2319,6 +2319,17 @@
             addTestResultToContainer("setQueryString", "queryString has been set: ", sqsResult);
         }
 
+        //////////////////////
+        ////REMOVE QUERY PROP - Needs work will test later
+        //////////////////////
+//        removeQueryProp();
+//
+//        function removeQueryProp() {
+//
+//            Spektral.setQueryString("valueFive", "tobeRemoved");
+//            Spektral.removeQueryProp("valueFive");
+//        }
+
         adjustExamples();
     }
 

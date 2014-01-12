@@ -2243,6 +2243,39 @@
     };
 
     ////////////////////
+    ////REMOVE QUERY PROP - almost done, need to solve infinite reload when setQueryString is used on the same page
+    ////////////////////
+    // Spektral.removeQueryProp = function (keyToRemove) {
+
+    //     var 
+    //         currentURL = Spektral.getURLPath(),
+    //         currentQueryObj, key, newQueryString = "", newURL = "";
+
+    //     if(currentURL.queryString !== "") {
+    //         currentQueryObj = Spektral.getQueryString();
+
+    //         for (key in currentQueryObj) {
+    //             if (key != keyToRemove) {
+    //                 newQueryString += key + "=" + currentQueryObj[key] + "&";
+    //             }
+    //         }
+
+    //         newQueryString = newQueryString.substring(0, (newQueryString.length - 1));
+
+    //         newURL = currentURL.protocol + "://" + currentURL.host + currentURL.path + "?" + newQueryString + currentURL.hash;
+
+    //         //location.href = newURL;
+
+    //         //Spektral.log("removeQueryProp: newQueryString: " + newQueryString);
+
+    //     } else {
+    //         Spektral.log("removeQueryProp: Property: " + keyToRemove + " does not exist.", "warn");
+    //     }
+
+    //     //Spektral.log("removeQueryProp: newURL: " + newURL);
+    // };
+
+    ////////////////////
     ////TRIM STRING
     ////////////////////
     Spektral.trimString = function (request, start, end) {
