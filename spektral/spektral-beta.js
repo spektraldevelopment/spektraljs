@@ -1613,6 +1613,7 @@
 
         matchObj["match"] = hasMatch;
         matchObj["amount"] = matchAmount;
+        matchObj["matchArray"] = matches;
 
         return matchObj;
     };
@@ -2314,7 +2315,7 @@
     Spektral.createTimer = function (time, handler) {
 
         var convertedTime = time * 1000;
-        setInterval(handler, convertedTime);
+        return setInterval(handler, convertedTime);
     };
 
     ////////////////////
@@ -2322,6 +2323,7 @@
     ////////////////////
     Spektral.clearTimer = function (timer) {
         clearInterval(timer);
+        timer = false;
     };
 
     ////////////////////
